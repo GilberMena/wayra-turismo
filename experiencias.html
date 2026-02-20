@@ -22,9 +22,9 @@
             </a>
 
             <nav class="main-nav" aria-label="Navegación principal">
-                <a href="index.html#sobre-wayra">Sobre WAYRA</a>
+                <a href="index.html#quienes-somos">Quiénes somos</a>
                 <a href="experiencias.html" class="active">Experiencias</a>
-                <a href="plans-nuqui.html#temporada">Plan temporada de ballenas</a>
+                <a href="plans-nuqui.html">Planes turísticos en Nuquí</a>
                 <a href="index.html#contacto">Contacto</a>
             </nav>
 
@@ -117,6 +117,17 @@
 
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="wayra-data.js"></script>
+    <script>
+        loadExperiences(function (exps) {
+            if (exps) {
+                renderExperienciasPage(exps, 'experiences-grid');
+            } else {
+                document.getElementById('experiences-grid').innerHTML =
+                    '<p class="muted" style="text-align:center;grid-column:1/-1;padding:40px;">No se pudieron cargar las experiencias.</p>';
+            }
+        });
     </script>
     <script src="script.js"></script>
 </body>

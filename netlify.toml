@@ -1,0 +1,16 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+  edge_functions = "netlify/edge-functions"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Edge function protege /admin/* a nivel de servidor
+[[edge_functions]]
+  path = "/admin/*"
+  function = "admin-auth"
+
+[[edge_functions]]
+  path = "/admin"
+  function = "admin-auth"

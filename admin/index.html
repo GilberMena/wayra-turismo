@@ -850,14 +850,23 @@
                 <div class="logo-icon">✈️</div>
                 <span>Wayra Admin</span>
             </div>
-            <a class="nav-item active" onclick="showSection('experiences')">
+            <a class="nav-item active" id="nav-experiences" onclick="showSection('experiences')">
                 <span class="icon">🗺️</span> Experiencias
             </a>
+            <a class="nav-item" id="nav-hotels" onclick="showSection('hotels')">
+                <span class="icon">🏨</span> Hoteles
+            </a>
+            <a class="nav-item" id="nav-planes" onclick="showSection('planes')">
+                <span class="icon">✈️</span> Planes turísticos
+            </a>
+            <a class="nav-item" id="nav-config" onclick="showSection('config')">
+                <span class="icon">⚙️</span> Configuración
+            </a>
             <div class="sidebar-footer">
-                <div class="nav-item" id="btn-open-file" style="cursor:pointer;" onclick="openFile()">
+                <div class="nav-item" id="btn-open-file" style="cursor:pointer;" onclick="openFileForSection()">
                     <span class="icon">📂</span> Abrir archivo
                 </div>
-                <div class="nav-item" id="btn-save" onclick="saveFile()" style="display:none;">
+                <div class="nav-item" id="btn-save" onclick="saveCurrentFile()" style="display:none;">
                     <span class="icon">💾</span> Guardar cambios
                 </div>
                 <div class="nav-item" style="cursor:pointer;" onclick="doLogout()">
@@ -874,9 +883,15 @@
                     <div class="subtitle" id="topbar-subtitle">Gestiona el contenido de tu sitio Wayra</div>
                 </div>
                 <div class="topbar-actions">
-                    <span class="badge" id="count-badge" style="display:none;">0 experiencias</span>
+                    <span class="badge" id="count-badge" style="display:none;">0 items</span>
                     <button class="btn btn-primary" id="btn-new" onclick="openModal()" style="display:none;">
                         ＋ Nueva experiencia
+                    </button>
+                    <button class="btn btn-primary" id="btn-new-hotel" onclick="openHotelModal()" style="display:none;">
+                        ＋ Nuevo hotel
+                    </button>
+                    <button class="btn btn-primary" id="btn-new-plan" onclick="openPlanModal()" style="display:none;">
+                        ＋ Nuevo plan
                     </button>
                 </div>
             </div>
@@ -905,10 +920,128 @@
                         experiences.json</button>
                 </div>
 
-                <!-- EDITOR SCREEN -->
+                <!-- EDITOR SCREEN (Experiencias) -->
                 <div id="screen-editor">
                     <div class="exp-grid" id="exp-grid"></div>
                 </div>
+
+                <!-- HOTELS SCREEN -->
+                <div id="screen-hotels" style="display:none;">
+                    <div id="screen-hotels-welcome"
+                        style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;text-align:center;gap:20px;">
+                        <div class="welcome-icon">🏨</div>
+                        <h2>Gestionar Hoteles</h2>
+                        <p style="color:var(--muted);font-size:15px;max-width:380px;line-height:1.6;">Abre el archivo
+                            <strong>hotels.json</strong> para editar hoteles y sus galerías de fotos.
+                        </p>
+                        <button class="btn btn-primary" onclick="openHotelsFile()">📂 Abrir hotels.json</button>
+                    </div>
+                    <div id="screen-hotels-editor" style="display:none;">
+                        <div class="exp-grid" id="hotel-grid-admin"></div>
+                    </div>
+                </div>
+
+                <!-- PLANES SCREEN -->
+                <div id="screen-planes" style="display:none;">
+                    <div id="screen-planes-welcome"
+                        style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;text-align:center;gap:20px;">
+                        <div class="welcome-icon">✈️</div>
+                        <h2>Gestionar Planes Turísticos</h2>
+                        <p style="color:var(--muted);font-size:15px;max-width:380px;line-height:1.6;">Abre el archivo
+                            <strong>planes.json</strong> para editar los planes del sitio.
+                        </p>
+                        <button class="btn btn-primary" onclick="openPlanesFile()">📂 Abrir planes.json</button>
+                    </div>
+                    <div id="screen-planes-editor" style="display:none;">
+                        <div class="exp-grid" id="planes-grid-admin"></div>
+                    </div>
+                </div>
+
+                <!-- CONFIG SCREEN -->
+                <div id="screen-config" style="display:none;">
+                    <div id="screen-config-welcome"
+                        style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;text-align:center;gap:20px;">
+                        <div class="welcome-icon">⚙️</div>
+                        <h2>Configuración del sitio</h2>
+                        <p style="color:var(--muted);font-size:15px;max-width:380px;line-height:1.6;">Abre el archivo
+                            <strong>config.json</strong> para editar textos, datos de contacto y redes sociales.
+                        </p>
+                        <button class="btn btn-primary" onclick="openConfigFile()">📂 Abrir config.json</button>
+                    </div>
+                    <div id="screen-config-editor" style="display:none;">
+                        <div style="max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:20px;">
+
+                            <div
+                                style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;">
+                                <h3 style="margin:0 0 16px;font-size:15px;font-weight:700;">🏠 Sección Hero</h3>
+                                <div class="field"><label>Título principal</label><input class="input"
+                                        id="cfg-hero-title" type="text" placeholder="WAYRA" /></div>
+                                <div class="field"><label>Subtítulo / tagline</label><input class="input"
+                                        id="cfg-hero-subtitle" type="text" placeholder="El viaje que se queda." /></div>
+                                <div class="field"><label>Texto del botón CTA</label><input class="input"
+                                        id="cfg-hero-cta" type="text" placeholder="Empieza aquí" /></div>
+                                <div class="field">
+                                    <label>Imagen de fondo (hero)</label>
+                                    <div id="cfg-hero-img-area" class="img-upload"
+                                        onclick="document.getElementById('cfg-hero-file').click()">
+                                        <div class="up-icon">🖼️</div>
+                                        <p>Clic para subir imagen<br><strong>o pega una URL abajo</strong></p>
+                                    </div>
+                                    <div id="cfg-hero-img-preview" class="img-preview" style="display:none;">
+                                        <img id="cfg-hero-img-el" src="" alt="" />
+                                        <button class="img-preview-remove" onclick="clearCfgHeroImg()">✕ Quitar</button>
+                                    </div>
+                                    <input type="file" id="cfg-hero-file" accept="image/*"
+                                        onchange="handleCfgHeroImg(event)" style="display:none;" />
+                                    <input class="input" id="cfg-hero-img-url" type="text"
+                                        placeholder="O pega URL: assets/hero.jpg"
+                                        oninput="previewCfgHeroImgUrl(this.value)" style="margin-top:8px;" />
+                                </div>
+                            </div>
+
+                            <div
+                                style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;">
+                                <h3 style="margin:0 0 16px;font-size:15px;font-weight:700;">📞 Contacto y redes</h3>
+                                <div class="field"><label>Número WhatsApp (sin +)</label><input class="input"
+                                        id="cfg-whatsapp" type="text" placeholder="573225225582" /></div>
+                                <div class="field"><label>Mensaje predeterminado WhatsApp</label><input class="input"
+                                        id="cfg-wa-msg" type="text" /></div>
+                                <div class="field"><label>Email</label><input class="input" id="cfg-email"
+                                        type="email" /></div>
+                                <div class="field"><label>Instagram URL</label><input class="input" id="cfg-instagram"
+                                        type="url" /></div>
+                                <div class="field"><label>Facebook URL</label><input class="input" id="cfg-facebook"
+                                        type="url" /></div>
+                            </div>
+
+                            <div
+                                style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;">
+                                <h3 style="margin:0 0 16px;font-size:15px;font-weight:700;">🌊 ¿Por qué Nuquí?</h3>
+                                <div class="field"><label>Título</label><input class="input" id="cfg-pn-title"
+                                        type="text" /></div>
+                                <div class="field"><label>Texto</label><textarea class="input" id="cfg-pn-text"
+                                        rows="5"></textarea></div>
+                            </div>
+
+                            <div
+                                style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;">
+                                <h3 style="margin:0 0 16px;font-size:15px;font-weight:700;">👥 Quiénes somos</h3>
+                                <div class="field"><label>Título</label><input class="input" id="cfg-qs-title"
+                                        type="text" /></div>
+                                <div class="field"><label>Subtítulo</label><input class="input" id="cfg-qs-subtitle"
+                                        type="text" /></div>
+                                <div class="field"><label>Texto</label><textarea class="input" id="cfg-qs-text"
+                                        rows="8"></textarea></div>
+                            </div>
+
+                            <div style="display:flex;gap:12px;justify-content:flex-end;padding-bottom:40px;">
+                                <button class="btn btn-primary" onclick="saveConfigFile()">💾 Guardar
+                                    configuración</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <!-- STATUS BAR -->
@@ -929,11 +1062,20 @@
             <div class="modal-body">
                 <div class="field">
                     <label>ID único (sin espacios)</label>
-                    <input class="input" id="field-id" type="text" placeholder="ej: whale-watching" />
+                    <input class="input" id="field-id" type="text" placeholder="ej: whale-watching"
+                        oninput="this.value = this.value.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'')" />
+                    <small style="color:var(--muted);font-size:11px;">Se genera automáticamente del título si lo dejas
+                        vacío</small>
                 </div>
                 <div class="field">
                     <label>Título</label>
-                    <input class="input" id="field-title" type="text" placeholder="Nombre de la experiencia" />
+                    <input class="input" id="field-title" type="text" placeholder="Nombre de la experiencia"
+                        oninput="autoId()" />
+                </div>
+                <div class="field">
+                    <label>Etiqueta (badge)</label>
+                    <input class="input" id="field-badge" type="text"
+                        placeholder="ej: ⭐ Imperdible  /  🌿 Naturaleza" />
                 </div>
                 <div class="field">
                     <label>Imagen</label>
@@ -962,6 +1104,161 @@
         </div>
     </div>
 
+    <!-- MODAL: EDIT/NEW PLAN -->
+    <div class="modal-overlay" id="modal-plan">
+        <div class="modal" style="max-width:680px;max-height:90vh;overflow-y:auto;">
+            <div class="modal-header">
+                <h3 id="modal-plan-title">Nuevo plan</h3>
+                <button class="modal-close" onclick="closePlanModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                    <div class="field">
+                        <label>ID único (sin espacios)</label>
+                        <input class="input" id="plan-field-id" type="text" placeholder="ej: plan-explorador"
+                            oninput="this.value=this.value.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'')" />
+                        <small style="color:var(--muted);font-size:11px;">Se genera automáticamente del título</small>
+                    </div>
+                    <div class="field">
+                        <label>Etiqueta (badge)</label>
+                        <input class="input" id="plan-field-badge" type="text" placeholder="ej: ✨ Popular" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Título</label>
+                    <input class="input" id="plan-field-title" type="text" placeholder="Plan Explorador"
+                        oninput="autoPlanId()" />
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                    <div class="field">
+                        <label>Precio</label>
+                        <input class="input" id="plan-field-price" type="text" placeholder="$1.250.000" />
+                    </div>
+                    <div class="field">
+                        <label>Duración</label>
+                        <input class="input" id="plan-field-duration" type="text" placeholder="3 días / 2 noches" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Subtítulo (ej: Salidas grupales)</label>
+                    <input class="input" id="plan-field-subtitle" type="text" />
+                </div>
+                <div class="field">
+                    <label>Descripción corta</label>
+                    <textarea class="input" id="plan-field-description" rows="3"
+                        placeholder="Describe el plan..."></textarea>
+                </div>
+                <div class="field">
+                    <label>¿Incluye? (1 item por línea)</label>
+                    <textarea class="input" id="plan-field-includes" rows="4"
+                        placeholder="Avistamiento de ballenas&#10;Guía local&#10;Alojamiento 2 noches"></textarea>
+                    <small style="color:var(--muted);font-size:11px;">Separa cada ítem con una línea nueva</small>
+                </div>
+                <div class="field">
+                    <label>Imagen</label>
+                    <div id="plan-img-upload-area" class="img-upload"
+                        onclick="document.getElementById('plan-img-file-input').click()">
+                        <div class="up-icon">🖼️</div>
+                        <p>Haz clic para seleccionar una imagen<br><strong>o escribe una URL abajo</strong></p>
+                    </div>
+                    <div id="plan-img-preview-area" class="img-preview" style="display:none;">
+                        <img id="plan-img-preview-img" src="" alt="" />
+                        <button class="img-preview-remove" onclick="clearPlanImage()">✕ Quitar</button>
+                    </div>
+                    <input type="file" id="plan-img-file-input" accept="image/*" onchange="handlePlanImageFile(event)"
+                        style="display:none;" />
+                    <input class="input" id="plan-field-image" type="text"
+                        placeholder="O pega una URL: assets/card1.jpg" oninput="previewPlanImageUrl(this.value)"
+                        style="margin-top:8px;" />
+                </div>
+                <div class="field" style="display:flex;align-items:center;gap:10px;">
+                    <input type="checkbox" id="plan-field-active" checked
+                        style="width:18px;height:18px;cursor:pointer;" />
+                    <label for="plan-field-active" style="margin:0;cursor:pointer;">Mostrar en el sitio (activo)</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" onclick="closePlanModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="savePlan()">💾 Guardar plan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: EDIT HOTEL -->
+    <div class="modal-overlay" id="modal-hotel">
+        <div class="modal" style="max-width:680px;max-height:90vh;overflow-y:auto;">
+            <div class="modal-header">
+                <h3 id="hotel-modal-title">Editar hotel</h3>
+                <button class="modal-close" onclick="closeHotelModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <!-- Info básica -->
+                <div class="field">
+                    <label>Nombre del hotel</label>
+                    <input class="input" id="h-name" type="text" placeholder="Ej: El Cantil Ecolodge" />
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                    <div class="field">
+                        <label>Categoría (emoji + texto)</label>
+                        <input class="input" id="h-category" type="text" placeholder="🌿 Ecolodge" />
+                    </div>
+                    <div class="field">
+                        <label>Estrellas</label>
+                        <input class="input" id="h-stars" type="text" placeholder="★★★★★" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Ubicación</label>
+                    <input class="input" id="h-location" type="text" placeholder="Bahía El Cantil, Nuquí" />
+                </div>
+                <div class="field">
+                    <label>Descripción</label>
+                    <textarea class="input" id="h-description" placeholder="Descripción del hotel..."></textarea>
+                </div>
+                <div class="field">
+                    <label>Etiquetas (separadas por coma)</label>
+                    <input class="input" id="h-tags" type="text"
+                        placeholder="🏖️ Playa privada, 🐋 Ballenas, 🍽️ Restaurante" />
+                </div>
+                <div class="field">
+                    <label>Mensaje WhatsApp</label>
+                    <input class="input" id="h-watext" type="text" placeholder="Hola, quiero información sobre..." />
+                </div>
+
+                <!-- Foto portada -->
+                <div class="field">
+                    <label>📸 Foto de portada (tarjeta)</label>
+                    <div id="h-cover-upload-area" class="img-upload"
+                        onclick="document.getElementById('h-cover-file').click()">
+                        <div class="up-icon">🖼️</div>
+                        <p>Clic para subir imagen de portada<br><strong>o escribe una URL abajo</strong></p>
+                    </div>
+                    <div id="h-cover-preview" class="img-preview" style="display:none;">
+                        <img id="h-cover-img" src="" alt="" />
+                        <button class="img-preview-remove" onclick="clearHotelCover()">✕ Quitar</button>
+                    </div>
+                    <input type="file" id="h-cover-file" accept="image/*" onchange="handleHotelCover(event)" />
+                    <input class="input" id="h-cover-url" type="text" placeholder="O pega URL: assets/hotel-portada.jpg"
+                        oninput="previewHotelCoverUrl(this.value)" style="margin-top:8px;" />
+                </div>
+
+                <!-- Galería -->
+                <div class="field">
+                    <label>🖼️ Galería de fotos</label>
+                    <div id="gallery-editor" style="display:flex;flex-direction:column;gap:12px;"></div>
+                    <button class="btn btn-ghost" style="margin-top:8px;width:100%;justify-content:center;"
+                        onclick="addGallerySlot()">
+                        ＋ Agregar foto a galería
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" onclick="closeHotelModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="saveHotel()">💾 Guardar hotel</button>
+            </div>
+        </div>
+    </div>
+
     <!-- MODAL: CONFIRM DELETE -->
     <div class="modal-overlay confirm-modal" id="modal-confirm">
         <div class="modal">
@@ -980,6 +1277,118 @@
 
     <!-- TOAST CONTAINER -->
     <div class="toast-container" id="toast-container"></div>
+
+    <!-- Hidden file inputs for gallery -->
+    <input type="file" id="gallery-file-input" accept="image/*" style="display:none;" />
+
+    <style>
+        /* ── GALLERY EDITOR SLOT ── */
+        .gallery-slot {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .gallery-slot-thumb {
+            width: 90px;
+            height: 64px;
+            flex-shrink: 0;
+            border-radius: 8px;
+            background: var(--bg);
+            border: 1px dashed var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-slot-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-slot-fields {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .gallery-slot-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .hotel-admin-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        .hotel-admin-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 1px var(--accent);
+        }
+
+        .hotel-admin-img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            background: var(--surface2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: var(--muted);
+        }
+
+        .hotel-admin-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hotel-admin-body {
+            padding: 14px 16px;
+        }
+
+        .hotel-admin-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .hotel-admin-sub {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .hotel-admin-gallery-count {
+            font-size: 11px;
+            color: var(--accent2);
+            font-weight: 700;
+            letter-spacing: .4px;
+        }
+
+        .hotel-admin-actions {
+            display: flex;
+            gap: 8px;
+            padding: 12px 16px;
+            border-top: 1px solid var(--border);
+            background: rgba(0, 0, 0, .12);
+        }
+    </style>
 
     <script>
         // ── AUTH CONFIG ──────────────────────────────────────────────
@@ -1041,11 +1450,113 @@
         });
 
         // ── APP STATE ──────────────────────────────────────────────
+        let currentSection = 'experiences';
         let fileHandle = null;
         let data = { experiences: [] };
         let editingIndex = null;
         let deletingIndex = null;
-        let pendingImageData = null; // base64 or URL
+        let pendingImageData = null;
+
+        // Hotels
+        let hotelsFileHandle = null;
+        let hotelsData = { hotels: [] };
+        let editingHotelIndex = null;
+        let pendingHotelCover = null;  // base64 or URL for cover
+        let gallerySlots = [];         // array of { imageData, imageUrl, caption } being edited
+
+        // Planes
+        let planesFileHandle = null;
+        let planesData = { planes: [] };
+        let editingPlanIndex = null;
+        let pendingPlanImage = null;
+
+        // Config
+        let configFileHandle = null;
+        let configData = { config: {} };
+        let pendingCfgHeroImage = null;
+
+        // ── SECTION SWITCHER ───────────────────────────────────────
+        function showSection(section) {
+            currentSection = section;
+            // Nav highlight
+            ['experiences', 'hotels', 'planes', 'config'].forEach(s => {
+                const el = document.getElementById('nav-' + s);
+                if (el) el.classList.toggle('active', s === section);
+            });
+
+            // Hide all top-level content screens
+            ['screen-welcome', 'screen-editor', 'screen-hotels', 'screen-planes', 'screen-config'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.display = 'none';
+            });
+            // Hide all action buttons
+            ['btn-new', 'btn-new-hotel', 'btn-new-plan'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.display = 'none';
+            });
+
+            if (section === 'experiences') {
+                if (fileHandle) {
+                    document.getElementById('screen-editor').style.display = 'block';
+                } else {
+                    document.getElementById('screen-welcome').style.display = 'flex';
+                }
+                if (fileHandle) document.getElementById('btn-new').style.display = 'flex';
+                document.getElementById('btn-save').style.display = fileHandle ? 'flex' : 'none';
+                document.getElementById('topbar-title').textContent = 'Experiencias';
+                document.getElementById('topbar-subtitle').textContent = 'Gestiona las experiencias del sitio';
+                document.getElementById('count-badge').style.display = fileHandle ? 'inline-flex' : 'none';
+
+            } else if (section === 'hotels') {
+                document.getElementById('screen-hotels').style.display = 'block';
+                if (hotelsFileHandle) {
+                    document.getElementById('btn-new-hotel').style.display = 'flex';
+                    document.getElementById('btn-save').style.display = 'flex';
+                    document.getElementById('count-badge').style.display = 'inline-flex';
+                    document.getElementById('count-badge').textContent = hotelsData.hotels.length + ' hotel' + (hotelsData.hotels.length !== 1 ? 'es' : '');
+                } else {
+                    document.getElementById('btn-save').style.display = 'none';
+                    document.getElementById('count-badge').style.display = 'none';
+                }
+                document.getElementById('topbar-title').textContent = 'Hoteles';
+                document.getElementById('topbar-subtitle').textContent = 'Gestiona hoteles y galerías de fotos';
+
+            } else if (section === 'planes') {
+                document.getElementById('screen-planes').style.display = 'block';
+                if (planesFileHandle) {
+                    document.getElementById('btn-new-plan').style.display = 'flex';
+                    document.getElementById('btn-save').style.display = 'flex';
+                    document.getElementById('count-badge').style.display = 'inline-flex';
+                    document.getElementById('count-badge').textContent = planesData.planes.length + ' plan' + (planesData.planes.length !== 1 ? 'es' : '');
+                } else {
+                    document.getElementById('btn-save').style.display = 'none';
+                    document.getElementById('count-badge').style.display = 'none';
+                }
+                document.getElementById('topbar-title').textContent = 'Planes turísticos';
+                document.getElementById('topbar-subtitle').textContent = 'Gestiona los paquetes y planes de viaje';
+
+            } else if (section === 'config') {
+                document.getElementById('screen-config').style.display = 'block';
+                document.getElementById('btn-save').style.display = configFileHandle ? 'flex' : 'none';
+                document.getElementById('count-badge').style.display = 'none';
+                document.getElementById('topbar-title').textContent = 'Configuración';
+                document.getElementById('topbar-subtitle').textContent = 'Textos generales, contacto y redes sociales';
+            }
+        }
+
+        function openFileForSection() {
+            if (currentSection === 'hotels') openHotelsFile();
+            else if (currentSection === 'planes') openPlanesFile();
+            else if (currentSection === 'config') openConfigFile();
+            else openFile();
+        }
+
+        function saveCurrentFile() {
+            if (currentSection === 'hotels') saveHotelsFile();
+            else if (currentSection === 'planes') savePlanesFile();
+            else if (currentSection === 'config') saveConfigFile();
+            else saveFile();
+        }
 
         // ── FILE OPS ──────────────────────────────────────────────
         async function openFile() {
@@ -1076,6 +1587,541 @@
             } catch (e) {
                 toast('error', '❌ No se pudo guardar: ' + e.message);
             }
+        }
+
+        // ── HOTELS FILE OPS ─────────────────────────────────────
+        async function openHotelsFile() {
+            try {
+                [hotelsFileHandle] = await window.showOpenFilePicker({
+                    types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+                    multiple: false
+                });
+                const file = await hotelsFileHandle.getFile();
+                const text = await file.text();
+                hotelsData = JSON.parse(text);
+                if (!Array.isArray(hotelsData.hotels)) hotelsData.hotels = [];
+                showHotelsEditor();
+                toast('success', '✅ hotels.json abierto correctamente');
+            } catch (e) {
+                if (e.name !== 'AbortError') toast('error', '❌ No se pudo abrir el archivo');
+            }
+        }
+
+        async function saveHotelsFile() {
+            if (!hotelsFileHandle) { toast('error', '❌ Primero abre hotels.json'); return; }
+            try {
+                const writable = await hotelsFileHandle.createWritable();
+                await writable.write(JSON.stringify(hotelsData, null, 2));
+                await writable.close();
+                updateStatus('Guardado · ' + new Date().toLocaleTimeString());
+                toast('success', '✅ hotels.json guardado');
+            } catch (e) {
+                toast('error', '❌ No se pudo guardar: ' + e.message);
+            }
+        }
+
+        // ── PLANES FILE OPS ──────────────────────────────────────
+        async function openPlanesFile() {
+            try {
+                [planesFileHandle] = await window.showOpenFilePicker({
+                    types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+                    multiple: false
+                });
+                const file = await planesFileHandle.getFile();
+                const text = await file.text();
+                planesData = JSON.parse(text);
+                if (!Array.isArray(planesData.planes)) planesData.planes = [];
+                showPlanesEditor();
+                toast('success', '✅ planes.json abierto correctamente');
+            } catch (e) {
+                if (e.name !== 'AbortError') toast('error', '❌ No se pudo abrir el archivo');
+            }
+        }
+
+        async function savePlanesFile() {
+            if (!planesFileHandle) { toast('error', '❌ Primero abre planes.json'); return; }
+            try {
+                const writable = await planesFileHandle.createWritable();
+                await writable.write(JSON.stringify(planesData, null, 2));
+                await writable.close();
+                updateStatus('Guardado · ' + new Date().toLocaleTimeString());
+                toast('success', '✅ planes.json guardado');
+            } catch (e) {
+                toast('error', '❌ No se pudo guardar: ' + e.message);
+            }
+        }
+
+        function showPlanesEditor() {
+            document.getElementById('screen-planes-welcome').style.display = 'none';
+            document.getElementById('screen-planes-editor').style.display = 'block';
+            document.getElementById('btn-new-plan').style.display = 'flex';
+            document.getElementById('btn-save').style.display = 'flex';
+            document.getElementById('status-dot').classList.add('online');
+            document.getElementById('count-badge').style.display = 'inline-flex';
+            renderPlanesGrid();
+            updateStatus('Archivo: ' + (planesFileHandle ? planesFileHandle.name : 'planes.json'));
+        }
+
+        function renderPlanesGrid() {
+            const grid = document.getElementById('planes-grid-admin');
+            const badge = document.getElementById('count-badge');
+            badge.textContent = planesData.planes.length + ' plan' + (planesData.planes.length !== 1 ? 'es' : '');
+
+            if (!planesData.planes.length) {
+                grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><div class="e-icon">✈️</div><p>No hay planes. Crea el primero con "+ Nuevo plan".</p></div>`;
+                return;
+            }
+            grid.innerHTML = planesData.planes.map((p, i) => {
+                const coverSrc = p.image || '';
+                const activeLabel = p.active === false ? '<span style="color:#e53e3e;font-size:12px;">● Oculto</span>' : '<span style="color:#38a169;font-size:12px;">● Activo</span>';
+                return `
+                <div class="hotel-admin-card">
+                  <div class="hotel-admin-img">
+                    ${coverSrc ? `<img src="${coverSrc}" alt="${p.title}" onerror="this.parentElement.innerHTML='✈️'" />` : '✈️'}
+                  </div>
+                  <div class="hotel-admin-body">
+                    <div class="hotel-admin-title">${p.title || 'Sin nombre'}</div>
+                    <div class="hotel-admin-sub">${p.price || ''} · ${p.duration || ''}</div>
+                    <div class="hotel-admin-sub">${p.subtitle || ''}</div>
+                    <div class="hotel-admin-gallery-count">${activeLabel}</div>
+                  </div>
+                  <div class="hotel-admin-actions">
+                    <button class="btn btn-ghost" style="flex:1;font-size:13px;" onclick="openPlanModal(${i})">✏️ Editar</button>
+                    <button class="btn btn-danger" style="font-size:13px;" onclick="deletePlan(${i})">🗑️</button>
+                  </div>
+                </div>`;
+            }).join('');
+        }
+
+        // ── PLAN MODAL ───────────────────────────────────────────
+        function openPlanModal(index = null) {
+            editingPlanIndex = index;
+            pendingPlanImage = null;
+            const p = index !== null ? planesData.planes[index] : null;
+            document.getElementById('modal-plan-title').textContent = p ? 'Editar plan' : 'Nuevo plan';
+            document.getElementById('plan-field-id').value = p ? p.id || '' : '';
+            document.getElementById('plan-field-title').value = p ? p.title || '' : '';
+            document.getElementById('plan-field-badge').value = p ? p.badge || '' : '';
+            document.getElementById('plan-field-price').value = p ? p.price || '' : '';
+            document.getElementById('plan-field-duration').value = p ? p.duration || '' : '';
+            document.getElementById('plan-field-subtitle').value = p ? p.subtitle || '' : '';
+            document.getElementById('plan-field-description').value = p ? p.description || '' : '';
+            document.getElementById('plan-field-includes').value = p && Array.isArray(p.includes) ? p.includes.join('\n') : '';
+            document.getElementById('plan-field-active').checked = p ? p.active !== false : true;
+            // Image
+            const imgUrl = p ? p.image || '' : '';
+            document.getElementById('plan-field-image').value = imgUrl;
+            if (imgUrl) {
+                document.getElementById('plan-img-upload-area').style.display = 'none';
+                document.getElementById('plan-img-preview-area').style.display = 'flex';
+                document.getElementById('plan-img-preview-img').src = imgUrl;
+            } else {
+                document.getElementById('plan-img-upload-area').style.display = 'flex';
+                document.getElementById('plan-img-preview-area').style.display = 'none';
+                document.getElementById('plan-img-preview-img').src = '';
+            }
+            document.getElementById('modal-plan').classList.add('open');
+        }
+
+        function closePlanModal() {
+            document.getElementById('modal-plan').classList.remove('open');
+        }
+
+        function autoPlanId() {
+            const idField = document.getElementById('plan-field-id');
+            if (!idField.dataset.touched) {
+                const title = document.getElementById('plan-field-title').value;
+                idField.value = title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '').replace(/-+/g, '-').replace(/^-|-$/g, '');
+            }
+        }
+
+        function handlePlanImageFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                pendingPlanImage = e.target.result;
+                document.getElementById('plan-img-upload-area').style.display = 'none';
+                document.getElementById('plan-img-preview-area').style.display = 'flex';
+                document.getElementById('plan-img-preview-img').src = pendingPlanImage;
+                document.getElementById('plan-field-image').value = '';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function previewPlanImageUrl(url) {
+            if (!url) { clearPlanImage(); return; }
+            document.getElementById('plan-img-upload-area').style.display = 'none';
+            document.getElementById('plan-img-preview-area').style.display = 'flex';
+            document.getElementById('plan-img-preview-img').src = url;
+            pendingPlanImage = null;
+        }
+
+        function clearPlanImage() {
+            pendingPlanImage = null;
+            document.getElementById('plan-img-upload-area').style.display = 'flex';
+            document.getElementById('plan-img-preview-area').style.display = 'none';
+            document.getElementById('plan-img-preview-img').src = '';
+            document.getElementById('plan-field-image').value = '';
+            document.getElementById('plan-img-file-input').value = '';
+        }
+
+        function savePlan() {
+            const title = document.getElementById('plan-field-title').value.trim();
+            if (!title) { toast('error', '❌ El título es obligatorio'); return; }
+            let id = document.getElementById('plan-field-id').value.trim();
+            if (!id) id = title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+            const includesRaw = document.getElementById('plan-field-includes').value;
+            const includes = includesRaw.split('\n').map(s => s.trim()).filter(Boolean);
+            const imageValue = pendingPlanImage || document.getElementById('plan-field-image').value.trim();
+            const plan = {
+                id,
+                title,
+                badge: document.getElementById('plan-field-badge').value.trim(),
+                price: document.getElementById('plan-field-price').value.trim(),
+                duration: document.getElementById('plan-field-duration').value.trim(),
+                subtitle: document.getElementById('plan-field-subtitle').value.trim(),
+                description: document.getElementById('plan-field-description').value.trim(),
+                includes,
+                image: imageValue,
+                active: document.getElementById('plan-field-active').checked
+            };
+            if (editingPlanIndex !== null) {
+                planesData.planes[editingPlanIndex] = plan;
+            } else {
+                planesData.planes.push(plan);
+            }
+            closePlanModal();
+            renderPlanesGrid();
+            toast('success', editingPlanIndex !== null ? '✅ Plan actualizado' : '✅ Plan creado');
+        }
+
+        function deletePlan(index) {
+            if (!confirm('¿Eliminar este plan?')) return;
+            planesData.planes.splice(index, 1);
+            renderPlanesGrid();
+            toast('success', '🗑️ Plan eliminado');
+        }
+
+        // ── CONFIG FILE OPS ──────────────────────────────────────
+        async function openConfigFile() {
+            try {
+                [configFileHandle] = await window.showOpenFilePicker({
+                    types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+                    multiple: false
+                });
+                const file = await configFileHandle.getFile();
+                const text = await file.text();
+                configData = JSON.parse(text);
+                if (!configData.config) configData.config = {};
+                showConfigEditor();
+                toast('success', '✅ config.json abierto correctamente');
+            } catch (e) {
+                if (e.name !== 'AbortError') toast('error', '❌ No se pudo abrir el archivo');
+            }
+        }
+
+        async function saveConfigFile() {
+            if (!configFileHandle) { toast('error', '❌ Primero abre config.json'); return; }
+            // Read all fields back into configData.config
+            const c = configData.config;
+            c.heroTitle = document.getElementById('cfg-hero-title').value.trim();
+            c.heroSubtitle = document.getElementById('cfg-hero-subtitle').value.trim();
+            c.heroCTA = document.getElementById('cfg-hero-cta').value.trim();
+            c.heroImage = pendingCfgHeroImage || document.getElementById('cfg-hero-img-url').value.trim() || c.heroImage || '';
+            c.whatsapp = document.getElementById('cfg-whatsapp').value.trim();
+            c.whatsappMessage = document.getElementById('cfg-wa-msg').value.trim();
+            c.email = document.getElementById('cfg-email').value.trim();
+            c.instagram = document.getElementById('cfg-instagram').value.trim();
+            c.facebook = document.getElementById('cfg-facebook').value.trim();
+            c.porqueNuquiTitle = document.getElementById('cfg-pn-title').value.trim();
+            c.porqueNuquiText = document.getElementById('cfg-pn-text').value.trim();
+            c.quienesSomosTitle = document.getElementById('cfg-qs-title').value.trim();
+            c.quienesSomosSubtitle = document.getElementById('cfg-qs-subtitle').value.trim();
+            c.quienesSomosText = document.getElementById('cfg-qs-text').value.trim();
+            try {
+                const writable = await configFileHandle.createWritable();
+                await writable.write(JSON.stringify(configData, null, 2));
+                await writable.close();
+                updateStatus('Guardado · ' + new Date().toLocaleTimeString());
+                toast('success', '✅ config.json guardado');
+            } catch (e) {
+                toast('error', '❌ No se pudo guardar: ' + e.message);
+            }
+        }
+
+        function showConfigEditor() {
+            document.getElementById('screen-config-welcome').style.display = 'none';
+            document.getElementById('screen-config-editor').style.display = 'block';
+            document.getElementById('btn-save').style.display = 'flex';
+            document.getElementById('status-dot').classList.add('online');
+            document.getElementById('count-badge').style.display = 'none';
+            // Populate form
+            const c = configData.config || {};
+            document.getElementById('cfg-hero-title').value = c.heroTitle || '';
+            document.getElementById('cfg-hero-subtitle').value = c.heroSubtitle || '';
+            document.getElementById('cfg-hero-cta').value = c.heroCTA || '';
+            document.getElementById('cfg-hero-img-url').value = c.heroImage || '';
+            if (c.heroImage) {
+                document.getElementById('cfg-hero-img-area').style.display = 'none';
+                document.getElementById('cfg-hero-img-preview').style.display = 'flex';
+                document.getElementById('cfg-hero-img-el').src = c.heroImage;
+            }
+            document.getElementById('cfg-whatsapp').value = c.whatsapp || '';
+            document.getElementById('cfg-wa-msg').value = c.whatsappMessage || '';
+            document.getElementById('cfg-email').value = c.email || '';
+            document.getElementById('cfg-instagram').value = c.instagram || '';
+            document.getElementById('cfg-facebook').value = c.facebook || '';
+            document.getElementById('cfg-pn-title').value = c.porqueNuquiTitle || '';
+            document.getElementById('cfg-pn-text').value = c.porqueNuquiText || '';
+            document.getElementById('cfg-qs-title').value = c.quienesSomosTitle || '';
+            document.getElementById('cfg-qs-subtitle').value = c.quienesSomosSubtitle || '';
+            document.getElementById('cfg-qs-text').value = c.quienesSomosText || '';
+            updateStatus('Archivo: ' + (configFileHandle ? configFileHandle.name : 'config.json'));
+        }
+
+        function handleCfgHeroImg(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                pendingCfgHeroImage = e.target.result;
+                document.getElementById('cfg-hero-img-area').style.display = 'none';
+                document.getElementById('cfg-hero-img-preview').style.display = 'flex';
+                document.getElementById('cfg-hero-img-el').src = pendingCfgHeroImage;
+                document.getElementById('cfg-hero-img-url').value = '';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function previewCfgHeroImgUrl(url) {
+            if (!url) { clearCfgHeroImg(); return; }
+            document.getElementById('cfg-hero-img-area').style.display = 'none';
+            document.getElementById('cfg-hero-img-preview').style.display = 'flex';
+            document.getElementById('cfg-hero-img-el').src = url;
+            pendingCfgHeroImage = null;
+        }
+
+        function clearCfgHeroImg() {
+            pendingCfgHeroImage = null;
+            document.getElementById('cfg-hero-img-area').style.display = 'flex';
+            document.getElementById('cfg-hero-img-preview').style.display = 'none';
+            document.getElementById('cfg-hero-img-el').src = '';
+            document.getElementById('cfg-hero-img-url').value = '';
+            document.getElementById('cfg-hero-file').value = '';
+        }
+
+        function showHotelsEditor() {
+            document.getElementById('screen-hotels-welcome').style.display = 'none';
+            document.getElementById('screen-hotels-editor').style.display = 'block';
+            document.getElementById('btn-new-hotel').style.display = 'flex';
+            document.getElementById('btn-save').style.display = 'flex';
+            document.getElementById('status-dot').classList.add('online');
+            document.getElementById('count-badge').style.display = 'inline-flex';
+            renderHotelGrid();
+            updateStatus('Archivo: ' + (hotelsFileHandle ? hotelsFileHandle.name : 'hotels.json'));
+        }
+
+        function renderHotelGrid() {
+            const grid = document.getElementById('hotel-grid-admin');
+            const badge = document.getElementById('count-badge');
+            badge.textContent = hotelsData.hotels.length + ' hotel' + (hotelsData.hotels.length !== 1 ? 'es' : '');
+
+            if (!hotelsData.hotels.length) {
+                grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><div class="e-icon">🏨</div><p>No hay hoteles. Crea el primero con "+ Nuevo hotel".</p></div>`;
+                return;
+            }
+
+            grid.innerHTML = hotelsData.hotels.map((h, i) => {
+                const photoCount = (h.gallery || []).filter(g => g.image).length;
+                const totalSlots = (h.gallery || []).length;
+                const coverSrc = h.coverImage || '';
+                return `
+                <div class="hotel-admin-card">
+                  <div class="hotel-admin-img">
+                    ${coverSrc ? `<img src="${coverSrc}" alt="${h.name}" onerror="this.parentElement.innerHTML='🏨'" />` : '🏨'}
+                  </div>
+                  <div class="hotel-admin-body">
+                    <div class="hotel-admin-title">${h.name || 'Sin nombre'}</div>
+                    <div class="hotel-admin-sub">${h.category || ''} · ${h.stars || ''}</div>
+                    <div class="hotel-admin-sub">📍 ${h.location || ''}</div>
+                    <div class="hotel-admin-gallery-count">🖼️ ${photoCount}/${totalSlots} fotos galería</div>
+                  </div>
+                  <div class="hotel-admin-actions">
+                    <button class="btn btn-ghost" style="flex:1;font-size:13px;" onclick="openHotelModal(${i})">✏️ Editar</button>
+                    <button class="btn btn-danger" style="font-size:13px;" onclick="deleteHotel(${i})">🗑️</button>
+                  </div>
+                </div>`;
+            }).join('');
+        }
+
+        // ── HOTEL MODAL ─────────────────────────────────────────
+        function openHotelModal(index = null) {
+            editingHotelIndex = index;
+            pendingHotelCover = null;
+            gallerySlots = [];
+
+            const h = index !== null ? hotelsData.hotels[index] : null;
+            document.getElementById('hotel-modal-title').textContent = h ? 'Editar hotel' : 'Nuevo hotel';
+
+            document.getElementById('h-name').value = h?.name || '';
+            document.getElementById('h-category').value = h?.category || '';
+            document.getElementById('h-stars').value = h?.stars || '';
+            document.getElementById('h-location').value = h?.location || '';
+            document.getElementById('h-description').value = h?.description || '';
+            document.getElementById('h-tags').value = (h?.tags || []).join(', ');
+            document.getElementById('h-watext').value = h?.waText || '';
+
+            // Cover
+            clearHotelCover(false);
+            if (h?.coverImage) showHotelCoverPreview(h.coverImage);
+
+            // Gallery slots
+            gallerySlots = (h?.gallery || [{ image: '', caption: '' }, { image: '', caption: '' }, { image: '', caption: '' }, { image: '', caption: '' }]).map(g => ({ imageData: null, imageUrl: g.image || '', caption: g.caption || '' }));
+            renderGalleryEditor();
+
+            document.getElementById('modal-hotel').classList.add('open');
+        }
+
+        function closeHotelModal() {
+            document.getElementById('modal-hotel').classList.remove('open');
+            editingHotelIndex = null;
+            gallerySlots = [];
+        }
+
+        function saveHotel() {
+            const name = document.getElementById('h-name').value.trim();
+            if (!name) { toast('error', '❌ El nombre es obligatorio'); return; }
+
+            const tagsRaw = document.getElementById('h-tags').value;
+            const tags = tagsRaw.split(',').map(t => t.trim()).filter(Boolean);
+            const coverUrl = document.getElementById('h-cover-url').value.trim();
+            const coverImage = pendingHotelCover || coverUrl || (editingHotelIndex !== null ? hotelsData.hotels[editingHotelIndex].coverImage : '') || '';
+
+            const gallery = gallerySlots.map(s => ({
+                image: s.imageData || s.imageUrl || '',
+                caption: s.caption || ''
+            }));
+
+            const hotel = {
+                id: editingHotelIndex !== null ? hotelsData.hotels[editingHotelIndex].id : name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
+                name,
+                category: document.getElementById('h-category').value.trim(),
+                stars: document.getElementById('h-stars').value.trim(),
+                location: document.getElementById('h-location').value.trim(),
+                description: document.getElementById('h-description').value.trim(),
+                tags,
+                waText: document.getElementById('h-watext').value.trim(),
+                coverImage,
+                gallery
+            };
+
+            if (editingHotelIndex !== null) {
+                hotelsData.hotels[editingHotelIndex] = hotel;
+                toast('success', '✅ Hotel actualizado');
+            } else {
+                hotelsData.hotels.push(hotel);
+                toast('success', '✅ Hotel creado');
+            }
+
+            closeHotelModal();
+            renderHotelGrid();
+        }
+
+        function deleteHotel(index) {
+            if (!confirm('¿Eliminar este hotel?')) return;
+            hotelsData.hotels.splice(index, 1);
+            renderHotelGrid();
+            toast('success', '🗑️ Hotel eliminado');
+        }
+
+        // ── HOTEL COVER IMAGE ───────────────────────────────────
+        function handleHotelCover(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = ev => { pendingHotelCover = ev.target.result; document.getElementById('h-cover-url').value = ''; showHotelCoverPreview(ev.target.result); };
+            reader.readAsDataURL(file);
+        }
+        function previewHotelCoverUrl(url) {
+            if (url) { pendingHotelCover = null; showHotelCoverPreview(url); }
+            else clearHotelCover(false);
+        }
+        function showHotelCoverPreview(src) {
+            document.getElementById('h-cover-upload-area').style.display = 'none';
+            document.getElementById('h-cover-preview').style.display = 'block';
+            document.getElementById('h-cover-img').src = src;
+        }
+        function clearHotelCover(resetField = true) {
+            pendingHotelCover = null;
+            document.getElementById('h-cover-upload-area').style.display = 'block';
+            document.getElementById('h-cover-preview').style.display = 'none';
+            document.getElementById('h-cover-img').src = '';
+            if (resetField) { document.getElementById('h-cover-url').value = ''; document.getElementById('h-cover-file').value = ''; }
+        }
+
+        // ── GALLERY EDITOR ──────────────────────────────────────
+        function renderGalleryEditor() {
+            const container = document.getElementById('gallery-editor');
+            container.innerHTML = gallerySlots.map((slot, idx) => {
+                const src = slot.imageData || slot.imageUrl || '';
+                return `
+                <div class="gallery-slot" id="gslot-${idx}">
+                    <div class="gallery-slot-thumb" onclick="triggerGalleryUpload(${idx})" title="Clic para cambiar foto">
+                        ${src ? `<img src="${src}" alt="" onerror="this.parentElement.innerHTML='📷'" />` : '📷'}
+                    </div>
+                    <div class="gallery-slot-fields">
+                        <input class="input" style="font-size:13px;" placeholder="URL de la foto (o sube desde el thumb izquierdo)" value="${slot.imageUrl}" oninput="updateGalleryUrl(${idx}, this.value)" />
+                        <input class="input" style="font-size:13px;" placeholder="Descripción de la foto" value="${slot.caption}" oninput="updateGalleryCaption(${idx}, this.value)" />
+                    </div>
+                    <div class="gallery-slot-actions">
+                        <button class="btn btn-danger" style="padding:6px 10px;font-size:13px;" onclick="removeGallerySlot(${idx})" title="Eliminar foto">🗑️</button>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        let targetGalleryIdx = -1;
+        function triggerGalleryUpload(idx) {
+            targetGalleryIdx = idx;
+            const inp = document.getElementById('gallery-file-input');
+            inp.value = '';
+            inp.onchange = (e) => handleGalleryFile(e, idx);
+            inp.click();
+        }
+
+        function handleGalleryFile(e, idx) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = ev => {
+                gallerySlots[idx].imageData = ev.target.result;
+                gallerySlots[idx].imageUrl = '';
+                renderGalleryEditor();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function updateGalleryUrl(idx, val) {
+            gallerySlots[idx].imageUrl = val;
+            gallerySlots[idx].imageData = null;
+            // Update thumb preview inline
+            const thumb = document.querySelector(`#gslot-${idx} .gallery-slot-thumb`);
+            if (thumb) thumb.innerHTML = val ? `<img src="${val}" alt="" onerror="this.parentElement.innerHTML='📷'" />` : '📷';
+        }
+
+        function updateGalleryCaption(idx, val) {
+            gallerySlots[idx].caption = val;
+        }
+
+        function addGallerySlot() {
+            gallerySlots.push({ imageData: null, imageUrl: '', caption: '' });
+            renderGalleryEditor();
+        }
+
+        function removeGallerySlot(idx) {
+            gallerySlots.splice(idx, 1);
+            renderGalleryEditor();
         }
 
         // ── UI STATE ──────────────────────────────────────────────
@@ -1126,24 +2172,45 @@
     `).join('');
         }
 
-        // ── MODAL ─────────────────────────────────────────────────
+        // Auto-genera el ID desde el título
+        function autoId() {
+            const idField = document.getElementById('field-id');
+            if (!idField._userEdited) {
+                const title = document.getElementById('field-title').value;
+                idField.value = title.toLowerCase()
+                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                    .replace(/\s+/g, '-')
+                    .replace(/[^a-z0-9-]/g, '');
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const idField = document.getElementById('field-id');
+            if (idField) idField.addEventListener('input', () => { idField._userEdited = idField.value.length > 0; });
+        });
+
         function openModal(index = null) {
             editingIndex = index;
             pendingImageData = null;
             const modal = document.getElementById('modal-exp');
             document.getElementById('modal-title').textContent = index !== null ? 'Editar experiencia' : 'Nueva experiencia';
 
+            const idField = document.getElementById('field-id');
+            idField._userEdited = false;
+
             if (index !== null) {
                 const exp = data.experiences[index];
-                document.getElementById('field-id').value = exp.id || '';
+                idField.value = exp.id || '';
+                idField._userEdited = true;
                 document.getElementById('field-title').value = exp.title || '';
+                document.getElementById('field-badge').value = exp.badge || '';
                 document.getElementById('field-description').value = exp.description || '';
                 document.getElementById('field-image').value = exp.image || '';
                 if (exp.image) showImagePreview(exp.image);
                 else clearImage(false);
             } else {
-                document.getElementById('field-id').value = '';
+                idField.value = '';
                 document.getElementById('field-title').value = '';
+                document.getElementById('field-badge').value = '';
                 document.getElementById('field-description').value = '';
                 document.getElementById('field-image').value = '';
                 clearImage(false);
@@ -1159,16 +2226,25 @@
         }
 
         function saveExperience() {
-            const id = document.getElementById('field-id').value.trim();
             const title = document.getElementById('field-title').value.trim();
             const description = document.getElementById('field-description').value.trim();
+            const badge = document.getElementById('field-badge').value.trim();
             const imageField = document.getElementById('field-image').value.trim();
             const image = pendingImageData || imageField || '';
+
+            // Auto-generate id if empty
+            let id = document.getElementById('field-id').value.trim();
+            if (!id && title) {
+                id = title.toLowerCase()
+                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                    .replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+                document.getElementById('field-id').value = id;
+            }
 
             if (!id) { toast('error', '❌ El ID es obligatorio'); return; }
             if (!title) { toast('error', '❌ El título es obligatorio'); return; }
 
-            const exp = { id, title, image, description };
+            const exp = { id, title, badge, image, description };
 
             if (editingIndex !== null) {
                 data.experiences[editingIndex] = exp;
@@ -1252,8 +2328,8 @@
 
         // ── KEYBOARD SHORTCUTS ───────────────────────────────────
         document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') { closeModal(); closeConfirm(); }
-            if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); saveFile(); }
+            if (e.key === 'Escape') { closeModal(); closeConfirm(); closeHotelModal(); }
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); saveCurrentFile(); }
         });
 
         // ── DRAG-ON-CARD (reorder) ────────────────────────────────
@@ -1264,6 +2340,12 @@
         document.getElementById('modal-confirm').addEventListener('click', function (e) {
             if (e.target === this) closeConfirm();
         });
+        document.getElementById('modal-hotel').addEventListener('click', function (e) {
+            if (e.target === this) closeHotelModal();
+        });
+
+        // Initialize section display
+        showSection('experiences');
     </script>
 </body>
 

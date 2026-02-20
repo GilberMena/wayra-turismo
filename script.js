@@ -380,3 +380,67 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
 });
+
+// ── Actividades: toggle "Ver más" ──────────────────────────────
+function toggleMasActividades() {
+  const wrap = document.getElementById('mas-actividades');
+  const icon = document.getElementById('ver-mas-icon');
+  const label = document.getElementById('btn-ver-mas-label');
+  if (!wrap) return;
+
+  const isOpen = wrap.classList.contains('open');
+  wrap.classList.toggle('open', !isOpen);
+  icon.classList.toggle('rotated', !isOpen);
+  label.textContent = isOpen ? 'Ver más actividades' : 'Ver menos actividades';
+
+  if (!isOpen) {
+    setTimeout(function () {
+      wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100);
+  }
+}
+
+// ── Quiénes somos modal ────────────────────────────────────────
+function abrirQuienesSomos(e) {
+  if (e) e.preventDefault();
+  const modal = document.getElementById('modal-quienes-somos');
+  if (modal) {
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function cerrarQuienesSomos() {
+  const modal = document.getElementById('modal-quienes-somos');
+  if (modal) {
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+}
+
+// Cerrar modal "Quiénes somos" con Escape
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') {
+    cerrarQuienesSomos();
+    cerrarModalActividades();
+  }
+});
+
+// ── Modal Actividades ──────────────────────────────────────────
+function abrirModalActividades() {
+  const modal = document.getElementById('modal-actividades');
+  if (modal) {
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function cerrarModalActividades() {
+  const modal = document.getElementById('modal-actividades');
+  if (modal) {
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+}
+
+

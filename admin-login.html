@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Acceso Admin — Wayra</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #0a0c14;
+            --surface: #111520;
+            --border: #1e2438;
+            --accent: #6c63ff;
+            --accent2: #a78bfa;
+            --text: #e8eaf0;
+            --muted: #6b7280;
+            --danger: #f87171;
+            --success: #34d399;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg);
+            font-family: 'Inter', system-ui, sans-serif;
+            background-image:
+                radial-gradient(ellipse at 20% 50%, rgba(108, 99, 255, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(167, 139, 250, 0.06) 0%, transparent 50%);
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 48px 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            20% {
+                transform: translateX(-8px);
+            }
+
+            40% {
+                transform: translateX(8px);
+            }
+
+            60% {
+                transform: translateX(-5px);
+            }
+
+            80% {
+                transform: translateX(5px);
+            }
+        }
+
+        .card.shake {
+            animation: shake 0.4s ease;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 12px;
+            box-shadow: 0 8px 24px rgba(108, 99, 255, 0.35);
+        }
+
+        h1 {
+            color: var(--text);
+            font-size: 22px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: var(--muted);
+            font-size: 14px;
+            text-align: center;
+            margin-top: 6px;
+        }
+
+        .fields {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 32px;
+        }
+
+        .field-wrap {
+            position: relative;
+        }
+
+        .field-wrap .icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            pointer-events: none;
+        }
+
+        .field-wrap input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 13px 14px 13px 42px;
+            color: var(--text);
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+
+        .field-wrap input:focus {
+            border-color: var(--accent);
+            background: rgba(108, 99, 255, 0.05);
+        }
+
+        .error {
+            color: var(--danger);
+            font-size: 13px;
+            text-align: center;
+            background: rgba(248, 113, 113, 0.08);
+            border: 1px solid rgba(248, 113, 113, 0.2);
+            border-radius: 8px;
+            padding: 10px;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: opacity 0.2s, transform 0.15s;
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-login:hover:not(:disabled) {
+            opacity: 0.88;
+            transform: translateY(-1px);
+        }
+
+        .btn-login:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            display: none;
+        }
+
+        .loading .spinner {
+            display: block;
+        }
+
+        .loading .btn-text {
+            display: none;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .footer-note {
+            color: var(--muted);
+            font-size: 11px;
+            text-align: center;
+            margin-top: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card" id="card">
+        <div class="logo">
+            <div class="logo-icon">✈️</div>
+            <h1>Wayra Admin</h1>
+            <p class="subtitle">Acceso exclusivo para administradores</p>
+        </div>
+
+        <div class="fields">
+            <div class="field-wrap">
+                <span class="icon">👤</span>
+                <input type="text" id="inp-user" placeholder="Usuario" autocomplete="username" autofocus>
+            </div>
+            <div class="field-wrap">
+                <span class="icon">🔒</span>
+                <input type="password" id="inp-pass" placeholder="Contraseña" autocomplete="current-password">
+            </div>
+            <div class="error" id="err-msg">Usuario o contraseña incorrectos.</div>
+            <button class="btn-login" id="btn-login" onclick="doLogin()">
+                <span class="btn-text">Ingresar →</span>
+                <div class="spinner"></div>
+            </button>
+        </div>
+
+        <p class="footer-note">🔒 Conexión segura · Acceso protegido por servidor</p>
+    </div>
+
+    <script>
+        // Redirige al destino si ya tiene sesión válida (la edge function redirige aquí si no la tiene)
+        const params = new URLSearchParams(location.search);
+        const next = params.get('next') || '/admin/';
+
+        async function doLogin() {
+            const user = document.getElementById('inp-user').value.trim();
+            const pass = document.getElementById('inp-pass').value;
+            const btn = document.getElementById('btn-login');
+            const err = document.getElementById('err-msg');
+            const card = document.getElementById('card');
+
+            if (!user || !pass) {
+                err.textContent = 'Completa usuario y contraseña.';
+                err.classList.add('show');
+                return;
+            }
+
+            // Estado de carga
+            btn.disabled = true;
+            btn.classList.add('loading');
+            err.classList.remove('show');
+
+            try {
+                const res = await fetch('/.netlify/functions/admin-verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: user, password: pass })
+                });
+
+                const data = await res.json();
+
+                if (res.ok && data.ok) {
+                    // ✅ Login correcto → redirige al panel
+                    window.location.href = next;
+                } else {
+                    // ❌ Credenciales incorrectas
+                    err.textContent = data.error || 'Usuario o contraseña incorrectos.';
+                    err.classList.add('show');
+                    card.classList.remove('shake');
+                    void card.offsetWidth;
+                    card.classList.add('shake');
+                    btn.disabled = false;
+                    btn.classList.remove('loading');
+                }
+            } catch (e) {
+                err.textContent = 'Error de conexión. Intenta de nuevo.';
+                err.classList.add('show');
+                btn.disabled = false;
+                btn.classList.remove('loading');
+            }
+        }
+
+        // Enter en cualquier campo
+        document.getElementById('inp-user').addEventListener('keydown', e => {
+            if (e.key === 'Enter') document.getElementById('inp-pass').focus();
+        });
+        document.getElementById('inp-pass').addEventListener('keydown', e => {
+            if (e.key === 'Enter') doLogin();
+        });
+    </script>
+</body>
+
+</html>

@@ -45,34 +45,45 @@
       </a>
 
       <nav class="main-nav" aria-label="Navegación principal">
-        <a href="index.html#sobre-wayra">Sobre WAYRA</a>
+        <a href="#" id="btn-quienes-somos" onclick="abrirQuienesSomos(event)">Quiénes somos</a>
         <a href="experiencias.html">Experiencias</a>
-        <a href="plans-nuqui.html#temporada">Plan temporada de ballenas</a>
+        <a href="hoteles.html">Hoteles</a>
+        <a href="plans-nuqui.html">Planes turísticos en Nuquí</a>
         <a href="index.html#contacto">Contacto</a>
       </nav>
 
       <div class="header-actions">
-        <!-- Social Icons -->
-        <a href="https://www.facebook.com/profile.php?id=61587257972289" class="social-icon-link" aria-label="Facebook"
-          target="_blank">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <!-- Social Icons con colores de marca -->
+        <a href="https://www.facebook.com/profile.php?id=61587257972289" class="social-brand-link fb-link"
+          aria-label="Síguenos en Facebook" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true">
             <path
-              d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z">
-            </path>
+              d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z" />
           </svg>
+          <span>Síguenos</span>
         </a>
-        <a href="https://www.instagram.com/vivewayra/" class="social-icon-link" aria-label="Instagram" target="_blank">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path
-              d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z">
-            </path>
+        <a href="https://www.instagram.com/vivewayra/" class="social-brand-link ig-link"
+          aria-label="Síguenos en Instagram" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+            <defs>
+              <linearGradient id="ig-grad-hdr" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#f09433" />
+                <stop offset="25%" stop-color="#e6683c" />
+                <stop offset="50%" stop-color="#dc2743" />
+                <stop offset="75%" stop-color="#cc2366" />
+                <stop offset="100%" stop-color="#bc1888" />
+              </linearGradient>
+            </defs>
+            <path fill="url(#ig-grad-hdr)"
+              d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z" />
           </svg>
+          <span>Síguenos</span>
         </a>
 
-        <a class="btn-whatsapp" id="whatsappTop" href="https://wa.me/573225225582?text=Hola%20quiero%20informaci%C3%B3n"
-          aria-label="Hablar por WhatsApp" target="_blank">WhatsApp</a>
+
         <button class="nav-toggle" aria-label="Abrir navegación">☰</button>
       </div>
+
     </div>
   </header>
 
@@ -80,17 +91,20 @@
     <section class="hero" id="hero">
       <div class="hero-overlay"></div>
       <div class="container hero-content">
-        <h1>WAYRA</h1>
-        <p class="lead">El viaje que se queda.</p>
-        <p><a class="btn-primary" href="#porque-nuqui">Empieza aquí</a></p>
+        <h1 id="hero-title">WAYRA</h1>
+        <p class="lead" id="hero-subtitle">El viaje que se queda.</p>
+        <p><a class="btn-primary" id="hero-cta" href="#porque-nuqui">Empieza aquí</a></p>
       </div>
     </section>
 
-    <section id="sobre-wayra" class="section">
-      <div class="container" style="text-align:center; max-width:800px;">
-        <h2>Sobre WAYRA</h2>
+    <!-- Modal Quiénes somos -->
+    <div id="modal-quienes-somos" class="modal" aria-hidden="true"
+      onclick="if(event.target===this)cerrarQuienesSomos()">
+      <div class="modal-content qs-modal">
+        <button class="modal-close" aria-label="Cerrar" onclick="cerrarQuienesSomos()">×</button>
+        <h2>Quiénes somos</h2>
         <p class="subtitle">Descubre Nuquí con intención</p>
-        <div style="font-size:1.1em; line-height:1.8; color:var(--text);">
+        <div class="qs-body">
           <p>WAYRA nace del deseo de viajar de otra manera.</p>
           <p>Creamos experiencias en Nuquí para quienes valoran la naturaleza en su estado más auténtico, el silencio
             del mar al atardecer y la sensación de estar realmente presentes en un lugar.</p>
@@ -100,25 +114,59 @@
             genuina.</p>
           <p>WAYRA es una invitación a descubrir Nuquí con intención.</p>
         </div>
+        <div style="text-align:center; margin-top:24px;">
+          <a class="btn-primary" href="#contacto" onclick="cerrarQuienesSomos()">Contáctanos →</a>
+        </div>
       </div>
-    </section>
+    </div>
 
-    <section id="porque-nuqui" class="section light">
+    <section id="porque-nuqui" class="section-razones">
       <div class="container">
-        <h2>¿Por qué viajar a Nuquí?</h2>
-        <p class="subtitle">Un destino que transforma</p>
-        <div class="card">
-          <p>Nuquí es un rincón casi intacto de la costa Pacífica colombiana: selva, playas vírgenes y una biodiversidad
-            que asombra. Es uno de los mejores lugares del planeta para el avistamiento de ballenas, con salidas que
-            acercan a los viajeros al espectáculo sin invadir su espacio. Viajar a Nuquí significa también apoyar
-            comunidades locales, probar una gastronomía única y vivir experiencias diseñadas con respeto al entorno.</p>
-          <p style="margin-top:12px">Con WAYRA encontrarás itinerarios sostenibles, guías locales expertos y grupos
-            pequeños para que tu viaje sea seguro, auténtico y memorable.</p>
-          <p style="margin-top:14px"><a class="btn-primary" href="plans-nuqui.html#planes-nuqui">Ver planes a Nuquí</a>
-          </p>
+        <p class="razones-eyebrow">¿POR QUÉ NUQUÍ?</p>
+        <h2 class="razones-titulo">5 razones para no<br>quedarte en casa</h2>
+        <p class="razones-sub">Nuquí no es un destino. Es una experiencia que te cambia.</p>
+
+        <div class="razones-grid">
+
+          <div class="razon-card">
+            <div class="razon-emoji">🐋</div>
+            <h3>Ballenas de frente</h3>
+            <p>Uno de los mejores lugares del planeta para el avistamiento de ballenas jorobadas, de julio a octubre.
+            </p>
+          </div>
+
+          <div class="razon-card">
+            <div class="razon-emoji">🌿</div>
+            <h3>Selva sin filtros</h3>
+            <p>Ecosistemas del Pacífico colombiano casi intactos. Biodiversidad que te deja sin palabras.</p>
+          </div>
+
+          <div class="razon-card">
+            <div class="razon-emoji">📷</div>
+            <h3>Luz y colores épicos</h3>
+            <p>Atardeceres increíbles, fauna exótica y paisajes que son una foto cada tres pasos.</p>
+          </div>
+
+          <div class="razon-card">
+            <div class="razon-emoji">🏄</div>
+            <h3>Mar salvaje</h3>
+            <p>Playas vírgenes, olas perfectas y agua tibia del Pacífico. Sin multitudes, sin prisa.</p>
+          </div>
+
+          <div class="razon-card">
+            <div class="razon-emoji">🤝</div>
+            <h3>Comunidades reales</h3>
+            <p>Gastronomía única, cultura afropacífica auténtica y guías locales que conocen cada rincón.</p>
+          </div>
+
+        </div>
+
+        <div class="razones-cta">
+          <a class="btn-primary" href="plans-nuqui.html#planes-nuqui">Ver planes a Nuquí →</a>
         </div>
       </div>
     </section>
+
 
     <!-- Modal de reserva (compartido) -->
     <div id="reserveModal" class="modal" aria-hidden="true">
@@ -210,116 +258,102 @@
       </div>
     </div>
 
-    <section id="planes" class="section pale">
+    <section id="como-funciona" class="section-como">
       <div class="container">
-        <h2>Planes turísticos en Nuquí</h2>
-        <p class="subtitle">Paquetes e itinerarios para explorar Nuquí: aventura, fotografía y descanso. Elige uno y
-          contáctanos para personalizar fechas.</p>
+        <p class="como-eyebrow">¿CÓMO FUNCIONA?</p>
+        <h2 class="como-titulo">Tu viaje a Nuquí en 3 pasos</h2>
+        <p class="como-sub">Sin complicaciones. Tú nos dices cómo quieres vivir el Pacífico, nosotros lo hacemos
+          realidad.</p>
 
-        <div class="grid plan-grid">
-          <article class="plan-card">
-            <div class="plan-image"
-              style="background-image:linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.12)), url('assets/card1.svg');">
-            </div>
-            <div class="plan-header">
-              <h3>Plan Explorador</h3>
-              <div class="price">$1.250.000</div>
-            </div>
-            <p class="muted">3 días / 2 noches · Salidas grupales</p>
-            <p>Avistamiento de ballenas, caminata por la costa y inmersión en la cultura local.</p>
-            <div class="plan-actions">
-              <a href="detail.html?type=plan&id=plan-explorador" class="btn-outline btn-plan"
-                data-plan-title="Plan Explorador" data-plan-price="$1.250.000" data-plan-duration="3 días / 2 noches"
-                data-plan-desc="Avistamiento de ballenas, caminata por la costa y inmersión en la cultura local."
-                data-plan-image="assets/card1.svg">Ver plan</a>
-              <a href="#" class="btn-whatsapp open-reserve" data-plan-id="plan-explorador"
-                data-plan-title="Plan Explorador" data-plan-price="$1.250.000"
-                data-plan-image="assets/card1.svg">Reservar</a>
-            </div>
-          </article>
+        <div class="como-grid">
 
-          <article class="plan-card">
-            <div class="plan-image"
-              style="background-image:linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.12)), url('assets/card2.svg');">
-            </div>
-            <div class="plan-header">
-              <h3>Plan Fotógrafo</h3>
-              <div class="price">$1.800.000</div>
-            </div>
-            <p class="muted">4 días / 3 noches · Taller incluido</p>
-            <p>Sesiones guiadas de fotografía con guías locales y salida en bote al atardecer.</p>
-            <div class="plan-actions">
-              <a href="detail.html?type=plan&id=plan-fotografo" class="btn-outline btn-plan"
-                data-plan-title="Plan Fotógrafo" data-plan_price="$1.800.000" data-plan-duration="4 días / 3 noches"
-                data-plan-desc="Sesiones guiadas de fotografía con guías locales y salida en bote al atardecer."
-                data-plan-image="assets/card2.svg">Ver plan</a>
-              <a href="#" class="btn-whatsapp open-reserve" data-plan-id="plan-fotografo"
-                data-plan-title="Plan Fotógrafo" data-plan-price="$1.800.000"
-                data-plan-image="assets/card2.svg">Reservar</a>
-            </div>
-          </article>
+          <div class="como-paso">
+            <div class="paso-numero">01</div>
+            <div class="paso-icon">🗺️</div>
+            <h3>Elige tu experiencia</h3>
+            <p>Explora nuestros planes o cuéntanos qué quieres vivir: avistamiento de ballenas, fotografía, surf, relax
+              o todo a la vez.</p>
+          </div>
 
-          <article class="plan-card">
-            <div class="plan-image"
-              style="background-image:linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.12)), url('assets/card3.svg');">
-            </div>
-            <div class="plan-header">
-              <h3>Plan A tu Medida</h3>
-              <div class="price">Desde $2.200.000</div>
-            </div>
-            <p class="muted">Flexible · Itinerario personalizado</p>
-            <p>Diseñamos un viaje según tus tiempos, intereses y presupuesto.</p>
-            <div class="plan-actions">
-              <a href="detail.html?type=plan&id=plan-a-tu-medida" class="btn-outline btn-plan"
-                data-plan-title="Plan A tu Medida" data-plan-price="Desde $2.200.000" data-plan-duration="Flexible"
-                data-plan-desc="Diseñamos un viaje según tus tiempos, intereses y presupuesto."
-                data-plan-image="assets/card3.svg">Ver plan</a>
-              <a href="#" class="btn-whatsapp open-reserve" data-plan-id="plan-a-tu-medida"
-                data-plan-title="Plan A tu Medida" data-plan-price="Desde $2.200.000"
-                data-plan-image="assets/card3.svg">Reservar</a>
-            </div>
-          </article>
+          <div class="como-conector" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"
+              stroke-linecap="round">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </div>
+
+          <div class="como-paso">
+            <div class="paso-numero">02</div>
+            <div class="paso-icon">💬</div>
+            <h3>Nos contactamos</h3>
+            <p>Un asesor de Wayra te escribe para ajustar fechas, número de personas, presupuesto y cualquier detalle
+              especial.</p>
+          </div>
+
+          <div class="como-conector" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"
+              stroke-linecap="round">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </div>
+
+          <div class="como-paso">
+            <div class="paso-numero">03</div>
+            <div class="paso-icon">🌊</div>
+            <h3>Vives el viaje</h3>
+            <p>¡Listo! Solo empaca y disfruta. Nos encargamos de la logística para que tu experiencia en Nuquí sea
+              perfecta.</p>
+          </div>
+
+        </div>
+
+        <div class="como-cta">
+          <a class="btn-primary" href="#informacion-y-cotizacion">Comenzar ahora →</a>
+          <a class="btn-secondary-link" href="plans-nuqui.html">Ver todos los planes</a>
         </div>
       </div>
     </section>
 
-    <!-- Añadimos sección de experiencias (Temporada de ballenas) dentro de la sección de planes -->
-    <div class="container" style="margin-top:28px">
-      <h3>Temporada de ballenas</h3>
-      <p class="subtitle">Nuquí, Chocó — De julio a octubre. Un espectáculo que marca el alma.</p>
-      <div class="grid cards">
-        <article id="plan-ballena" class="card">
-          <div class="card-image"
-            style="background-image:linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.25)), url('assets/card1.svg');">
-          </div>
-          <h3>Avistamiento en la bahía</h3>
-          <p>Salidas al amanecer para vivir la experiencia más cercana con las ballenas.</p>
-          <p><a class="btn-outline" href="detail.html?type=exp&id=exp-avistamiento"
-              data-exp-title="Avistamiento en la bahía"
-              data-exp-desc="Salidas al amanecer para vivir la experiencia más cercana con las ballenas.">Ver
-              experiencias</a></p>
-        </article>
 
-        <article class="card">
-          <div class="card-image"
-            style="background-image:linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.25)), url('assets/card2.svg');">
-          </div>
-          <h3>Fotografía y naturaleza</h3>
-          <p>Rutas que incluyen biodiversidad, cultura y costa virgen.</p>
-          <p><a class="btn-outline" href="detail.html?type=exp&id=exp-fotografia"
-              data-exp-title="Fotografía y naturaleza"
-              data-exp-desc="Rutas que incluyen biodiversidad, cultura y costa virgen.">Ver experiencias</a></p>
-        </article>
+    <!-- ── ACTIVIDADES EN NUQUÍ ── -->
+    <section id="actividades" class="section light">
+      <div class="container">
+        <h2>Actividades en Nuquí</h2>
+        <p class="subtitle">Experiencias únicas en uno de los destinos más biodiversos del planeta.</p>
 
-        <article class="card">
-          <div class="card-image"
-            style="background-image:linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.25)), url('assets/card3.svg');">
+        <!-- 3 actividades destacadas — cargadas desde data/experiences.json -->
+        <div class="grid cards act-grid" id="act-grid-home">
+          <div style="grid-column:1/-1;text-align:center;padding:30px;color:var(--muted);">⏳ Cargando actividades...
           </div>
-          <h3>Programas a medida</h3>
-          <p>Diseñamos tu viaje según tus tiempos e intereses.</p>
-          <p><a class="btn-outline" href="detail.html?type=exp&id=exp-personalizado" data-exp-title="Programas a medida"
-              data-exp-desc="Diseñamos tu viaje según tus tiempos e intereses.">Ver experiencias</a></p>
-        </article>
+        </div>
+
+        <!-- Botón ver más → abre modal -->
+        <div style="text-align:center; margin-top:28px;">
+          <button class="btn-ver-mas" id="btn-ver-mas" onclick="abrirModalActividades()">
+            <span>Ver más actividades</span>
+            <span style="font-size:16px;">&#10697;</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── MODAL: TODAS LAS ACTIVIDADES ── -->
+    <div id="modal-actividades" class="modal" aria-hidden="true"
+      onclick="if(event.target===this)cerrarModalActividades()">
+      <div class="modal-content act-modal">
+        <button class="modal-close" aria-label="Cerrar" onclick="cerrarModalActividades()">&#x2715;</button>
+        <h2>Actividades en Nuquí</h2>
+        <p class="subtitle">6 experiencias únicas para vivir el Pacífico colombiano</p>
+
+        <!-- Modal grid — cargado desde data/experiences.json -->
+        <div class="act-modal-grid" id="act-modal-grid">
+          <div style="text-align:center;padding:30px;color:var(--muted);grid-column:1/-1;">⏳ Cargando...</div>
+        </div>
+
+        <div style="text-align:center; margin-top:28px;">
+          <a class="btn-primary" href="#contacto" onclick="cerrarModalActividades()">Reservar una actividad →</a>
+        </div>
       </div>
     </div>
 
@@ -369,33 +403,51 @@
       <div class="container">
         <!-- departures and quote block moved from plans-nuqui -->
         <div class="air-departures">
-          <h3>Salidas en avión desde:</h3>
+          <h2 class="dep-title">SALIDAS EN AVION DESDE:</h2>
           <div class="dep-grid">
+
             <div class="dep-item">
-              <!-- plane icon SVG -->
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="#1e508b" aria-hidden="true">
-                <path d="M21 16v-2l-8-5V3.5a.5.5 0 0 0-1 0V9l-8 5v2l8-2.5V21l2-1 2 1v-7.5l8 2.5z" stroke="#1e508b"
-                  stroke-width="1.5" />
-              </svg>
+              <!-- Takeoff icon -->
+              <div class="dep-icon-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="#1e508b"
+                  aria-hidden="true">
+                  <path
+                    d="M2.5 19h19v2h-19zm7.18-1.73L21.43 8.2a2 2 0 0 0-1.06-3.73H16.5L6.5 2l-1 1.73 7.72 4.46L9.26 12H5.5l-2-2-1.44.84 2 3.46 1 1.73 3.46 2z" />
+                </svg>
+                <div class="dep-underline"></div>
+              </div>
               <strong>Medellín</strong>
-              <p>Todos los días</p>
+              <p>Todos los días.</p>
             </div>
+
             <div class="dep-item">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="#1e508b" aria-hidden="true">
-                <path d="M21 16v-2l-8-5V3.5a.5.5 0 0 0-1 0V9l-8 5v2l8-2.5V21l2-1 2 1v-7.5l8 2.5z" stroke="#1e508b"
-                  stroke-width="1.5" />
-              </svg>
+              <!-- Cruise / in-flight icon -->
+              <div class="dep-icon-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="#1e508b"
+                  aria-hidden="true">
+                  <path
+                    d="M21 16v-2l-8-5V3.5C13 2.67 12.33 2 11.5 2S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
+                </svg>
+                <div class="dep-underline"></div>
+              </div>
               <strong>Bogotá</strong>
-              <p>Todos los días, con escala</p>
+              <p>Todos los días, con escala.</p>
             </div>
+
             <div class="dep-item">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="#1e508b" aria-hidden="true">
-                <path d="M21 16v-2l-8-5V3.5a.5.5 0 0 0-1 0V9l-8 5v2l8-2.5V21l2-1 2 1v-7.5l8 2.5z" stroke="#1e508b"
-                  stroke-width="1.5" />
-              </svg>
+              <!-- Landing icon -->
+              <div class="dep-icon-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="#1e508b"
+                  aria-hidden="true">
+                  <path
+                    d="M2.5 19h19v2h-19zM20 8.94a1.993 1.993 0 0 0-2.44-1.41l-3.96 1.06L8.5 4 7 4.4l3.65 5.02-3.81 1.02-1.95-1.7L3.5 9.2l2.1 3.64 1 1.72 3.63-.97 4.07-1.09 3.96-1.06A2 2 0 0 0 20 8.94z" />
+                </svg>
+                <div class="dep-underline"></div>
+              </div>
               <strong>Cali</strong>
-              <p>Sábados y martes</p>
+              <p>Sábados y Martes</p>
             </div>
+
           </div>
         </div>
 
@@ -498,19 +550,32 @@
       <small>&copy; <span id="year"></span> WAYRA — Todos los derechos reservados.</small>
       <div class="footer-links">
         <nav class="social-nav" aria-label="Redes sociales">
-          <a href="https://www.facebook.com/profile.php?id=61587257972289" aria-label="Facebook" target="_blank">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/profile.php?id=61587257972289" class="social-brand-link fb-link"
+            aria-label="Síguenos en Facebook" target="_blank" rel="noopener">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true">
               <path
-                d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z">
-              </path>
+                d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z" />
             </svg>
+            <span>Síguenos</span>
           </a>
-          <a href="https://www.instagram.com/vivewayra/" aria-label="Instagram" target="_blank">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path
-                d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z">
-              </path>
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/vivewayra/" class="social-brand-link ig-link"
+            aria-label="Síguenos en Instagram" target="_blank" rel="noopener">
+            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <defs>
+                <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#f09433" />
+                  <stop offset="25%" stop-color="#e6683c" />
+                  <stop offset="50%" stop-color="#dc2743" />
+                  <stop offset="75%" stop-color="#cc2366" />
+                  <stop offset="100%" stop-color="#bc1888" />
+                </linearGradient>
+              </defs>
+              <path fill="url(#ig-grad)"
+                d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z" />
             </svg>
+            <span>Síguenos</span>
           </a>
         </nav>
         <nav class="footer-nav">
@@ -521,8 +586,36 @@
     </div>
   </footer>
 
+  <!-- Botón flotante WhatsApp -->
+  <a href="https://wa.me/573225225582?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20planes%20a%20Nuqu%C3%AD"
+    class="wa-float" target="_blank" rel="noopener" aria-label="Contáctanos por WhatsApp">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+      <path
+        d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z" />
+    </svg>
+    <span class="wa-float-text">¿Hablamos?</span>
+  </a>
+
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="wayra-data.js"></script>
+  <script>
+    // ── Experiencias (actividades) ──
+    loadExperiences(function (exps) {
+      if (exps) {
+        renderExperienceCards(exps, 'act-grid-home', 3);
+        renderModalActividades(exps, 'act-modal-grid');
+      } else {
+        ['act-grid-home', 'act-modal-grid'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.innerHTML = '<p class="muted" style="text-align:center;grid-column:1/-1;">No se pudieron cargar las actividades.</p>';
+        });
+      }
+    });
+
+    // ── Configuración general (textos dinámicos) ──
+    loadConfig(function (cfg) { applyConfig(cfg); });
   </script>
   <script src="script.js"></script>
 </body>
