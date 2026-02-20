@@ -1,0 +1,28 @@
+{
+  "experiences": [
+    {
+      "id": "whale-watching",
+      "title": "Avistamiento de Ballenas",
+      "image": "assets/card1.svg",
+      "description": "Entre julio y octubre, las ballenas jorobadas visitan nuestras aguas. Vivirás el espectáculo de sus cantos y saltos desde una distancia respetuosa y segura."
+    },
+    {
+      "id": "bird-watching",
+      "title": "Avistamiento de Aves",
+      "image": "assets/card2.svg",
+      "description": "Nuquí es un paraíso ornitológico. Descubre especies endémicas y migratorias en recorridos por manglares y selva húmeda."
+    },
+    {
+      "id": "gastronomy",
+      "title": "Gastronomía del Pacífico",
+      "image": "assets/card3.svg",
+      "description": "Saborea la frescura del mar y la tierra. Platos tradicionales preparados por manos locales con ingredientes autóctonos."
+    },
+    {
+      "id": "hiking",
+      "title": "Senderismo y Cascadas",
+      "image": "assets/hero.svg",
+      "description": "Adéntrate en la selva para descubrir cascadas escondidas y piscinas naturales, guiado por expertos conocedores del territorio."
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin — WAYRA</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .admin-card{max-width:1100px;margin:20px auto;padding:20px;background:#fff;border-radius:10px}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:8px 10px;border-bottom:1px solid #eee;text-align:left}
+    .small{font-size:13px;color:#666}
+    .status-handled{color:green;font-weight:700}
+  </style>
+</head>
+<body>
+  <header class="site-header centered">
+    <div class="container header-inner">
+      <div class="nav-bar">
+        <button class="nav-toggle" aria-label="Abrir navegación">☰</button>
+        <nav class="main-nav">
+          <a href="index.html#hero">Sobre WAYRA</a>
+          <a href="index.html?reserve=nuqui-esencial">Experiencias</a>
+          <a href="plans-nuqui.html#temporada">Plan temporada de ballenas</a>
+          <a href="index.html#contacto">Contacto</a>
+        </nav>
+        <a class="btn-whatsapp" href="https://wa.me/573225225582?text=Hola%20necesito%20acceso%20al%20panel%20de%20administraci%C3%B3n" target="_blank">WhatsApp</a>
+        <nav class="right-nav">
+          <a href="index.html">Inicio</a>
+        </nav>
+      </div>
+      <div class="logo-row">
+        <a class="logo" href="index.html"><img src="assets/img/logo.png" alt="Wayra logo"></a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>Panel administrador</h1>
+    <div class="admin-card" id="adminArea" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <button id="btnExport" class="btn-primary">Exportar CSV</button>
+          <button id="btnClearHandled" class="btn-secondary">Eliminar resueltas</button>
+        </div>
+        <div class="small">Reservas locales: <span id="resCount">0</span></div>
+      </div>
+      <div style="margin-top:12px;overflow:auto">
+        <table id="resTable"><thead><tr><th>#</th><th>Fecha</th><th>Plan</th><th>Nombre</th><th>Tel</th><th>Email</th><th>Fechas</th><th>Personas</th><th>Comentarios</th><th>Estado</th><th></th></tr></thead><tbody></tbody></table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simple client-side admin. NOT secure. Change ADMIN_PASS.
+    const ADMIN_PASS = 'changeme';
+    (function(){
+      const ok = prompt('Clave de administrador:');
+      if(ok !== ADMIN_PASS){
+        document.body.innerHTML = '<p style="padding:20px">Acceso denegado. Si necesitas el panel contacta al administrador.</p>';
+        return;
+      }
+      const adminArea = document.getElementById('adminArea');
+      adminArea.style.display = 'block';
+
+      async function loadRes(){
+        const tbody = document.querySelector('#resTable tbody');
+        tbody.innerHTML = '';
+        // Try serverless list first
+        try{
+          const resp = await fetch('/.netlify/functions/list-reservations');
+          if(resp.ok){
+            const json = await resp.json();
+            if(json && json.records){
+              json.records.forEach(function(rec,i){
+                const f = rec.fields || {};
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${i+1}</td><td>${new Date(f['created_at']||rec.createdTime||'').toLocaleString()}</td><td>${f['Plan']||''}</td><td>${f['Nombre']||''}</td><td>${f['Telefono']||''}</td><td>${f['Email']||''}</td><td>${f['Fecha Inicio']||''} - ${f['Fecha Fin']||''}</td><td>${f['Personas']||''}</td><td>${(f['Comentarios']||'').replace(/\n/g,'<br>')}</td><td class="small">Servidor</td><td></td>`;
+                tbody.appendChild(tr);
+              });
+              document.getElementById('resCount').textContent = json.records.length;
+              return;
+            }
+          }
+        }catch(e){ /* ignore and fallback to localStorage */ }
+
+        // Fallback: localStorage
+        const key = 'vivewayra_reservas';
+        const arr = JSON.parse(localStorage.getItem(key) || '[]');
+        arr.forEach(function(r,i){
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${i+1}</td><td>${new Date(r.created_at||'').toLocaleString()}</td><td>${r.plan||''}</td><td>${r.name||''}</td><td>${r.phone||''}</td><td>${r.email||''}</td><td>${r.start||''} - ${r.end||''}</td><td>${r.guests||''}</td><td>${(r.comments||'').replace(/\n/g,'<br>')}</td><td class="small">${r.handled?'<span class="status-handled">Resuelta</span>':'Pendiente'}</td><td><button class="btn-secondary" data-idx="${i}">${r.handled?'Reabrir':'Marcar resuelta'}</button></td>`;
+          tbody.appendChild(tr);
+        });
+        document.getElementById('resCount').textContent = arr.length;
+        document.querySelectorAll('#resTable button').forEach(function(b){
+          b.addEventListener('click', function(){
+            const idx = parseInt(this.dataset.idx,10);
+            toggleHandled(idx);
+          });
+        });
+      }
+
+      function toggleHandled(idx){
+        const key = 'vivewayra_reservas';
+        const arr = JSON.parse(localStorage.getItem(key) || '[]');
+        if(!arr[idx]) return;
+        arr[idx].handled = !arr[idx].handled;
+        localStorage.setItem(key, JSON.stringify(arr));
+        loadRes();
+      }
+
+      function exportCSV(){
+        const key = 'vivewayra_reservas';
+        const arr = JSON.parse(localStorage.getItem(key) || '[]');
+        if(!arr.length){ alert('No hay reservas para exportar.'); return; }
+        const rows = [['created_at','plan','name','phone','email','start','end','guests','comments','handled']];
+        arr.forEach(r=> rows.push([r.created_at||'', r.plan||'', r.name||'', r.phone||'', r.email||'', r.start||'', r.end||'', r.guests||'', (r.comments||'').replace(/\n/g,' '), r.handled?1:0]));
+        const csv = rows.map(r=> r.map(c=> '"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
+        const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a'); a.href = url; a.download = 'reservas_vivewayra.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+      }
+
+      function clearHandled(){
+        const key = 'vivewayra_reservas';
+        const arr = JSON.parse(localStorage.getItem(key) || '[]');
+        const filtered = arr.filter(r=> !r.handled);
+        localStorage.setItem(key, JSON.stringify(filtered));
+        loadRes();
+      }
+
+      document.getElementById('btnExport').addEventListener('click', exportCSV);
+      document.getElementById('btnClearHandled').addEventListener('click', function(){ if(confirm('Eliminar las reservas marcadas como resuelta?')) clearHandled(); });
+
+      loadRes();
+    })();
+  </script>
+</body>
+</html>

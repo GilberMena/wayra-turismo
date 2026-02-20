@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Experiencias en Nuquí — WAYRA</title>
+    <meta name="description"
+        content="Vive experiencias únicas en Nuquí: avistamiento de ballenas, aves, manglares y cultura local con WAYRA.">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Montserrat:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="logo" href="index.html">
+                <img src="assets/img/logo.png" alt="Wayra logo">
+            </a>
+
+            <nav class="main-nav" aria-label="Navegación principal">
+                <a href="index.html#sobre-wayra">Sobre WAYRA</a>
+                <a href="experiencias.html" class="active">Experiencias</a>
+                <a href="plans-nuqui.html#temporada">Plan temporada de ballenas</a>
+                <a href="index.html#contacto">Contacto</a>
+            </nav>
+
+            <div class="header-actions">
+                <!-- Social Icons -->
+                <a href="https://www.facebook.com/profile.php?id=61587257972289" class="social-icon-link"
+                    aria-label="Facebook" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path
+                            d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z">
+                        </path>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/vivewayra/" class="social-icon-link" aria-label="Instagram"
+                    target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path
+                            d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z">
+                        </path>
+                    </svg>
+                </a>
+
+                <a class="btn-whatsapp"
+                    href="https://wa.me/573225225582?text=Hola%20quiero%20informaci%C3%B3n%20sobre%20experiencias"
+                    target="_blank">WhatsApp</a>
+                <button class="nav-toggle" aria-label="Abrir navegación">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" style="background-image:url('assets/hero.svg'); height:50vh; min-height:300px;">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content">
+                <h1>Experiencias en Nuquí</h1>
+                <p class="lead">Conexión profunda con la naturaleza y la cultura del Pacífico.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Lo que vivirás con nosotros</h2>
+                <p class="subtitle">Cada salida es una oportunidad para descubrir la magia de la selva y el mar.</p>
+
+                <div id="experiences-grid" class="grid">
+                    <!-- Content loaded dynamically from data/experiences.json -->
+                    <div style="grid-column:1/-1;text-align:center;padding:40px">
+                        <p class="muted">Cargando experiencias...</p>
+                    </div>
+                </div>
+
+                <div style="margin-top:40px; text-align:center;">
+                    <p class="lead" style="font-size:1.2em; color:var(--text);">¿Quieres vivir alguna de estas
+                        experiencias?</p>
+                    <a href="#" class="btn-primary open-reserve" data-plan-title="Experiencia Personalizada"
+                        data-plan-price="" data-plan-id="exp-general">Contáctanos para armar tu plan</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <small>&copy; <span id="year"></span> WAYRA — Todos los derechos reservados.</small>
+            <div class="footer-links">
+                <nav class="social-nav" aria-label="Redes sociales">
+                    <a href="https://www.facebook.com/profile.php?id=61587257972289" aria-label="Facebook"
+                        target="_blank">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path
+                                d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/vivewayra/" aria-label="Instagram" target="_blank">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path
+                                d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z">
+                            </path>
+                        </svg>
+                    </a>
+                </nav>
+                <nav class="footer-nav">
+                    <a href="index.html#contacto">Contacto</a>
+                    <a href="admin.html">Admin</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+# Dependencias de Node
+node_modules/
+
+# Variables de entorno
+.env
+.env.local
+
+# Laravel (no lo necesitamos en el sitio principal)
+laravel-project/vendor/
+laravel-project/.env
+laravel-project/storage/logs/*.log
+laravel-project/public/hot
+laravel-project/public/storage
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VS Code
+.vscode/

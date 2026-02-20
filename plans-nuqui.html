@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Planes en Nuquí — WAYRA</title>
+  <meta name="description"
+    content="Planes y paquetes para Nuquí: avistamiento de ballenas, fotografía y experiencias a medida en la costa Pacífica colombiana.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Montserrat:wght@300;400;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header class="site-header centered">
+    <div class="container header-inner">
+      <div class="nav-bar">
+        <button class="nav-toggle" aria-label="Abrir navegación">☰</button>
+        <nav class="main-nav">
+          <a href="index.html#sobre-wayra">Sobre WAYRA</a>
+          <a href="experiencias.html">Experiencias</a>
+          <a href="#temporada">Plan temporada de ballenas</a>
+          <a href="index.html#contacto">Contacto</a>
+        </nav>
+        <a class="btn-whatsapp" href="https://wa.me/573225225582?text=Hola%20quiero%20informaci%C3%B3n"
+          target="_blank">WhatsApp</a>
+        <nav class="right-nav">
+          <a href="index.html">Inicio</a>
+        </nav>
+      </div>
+      <div class="logo-row">
+        <a class="logo" href="index.html">
+          <img src="assets/img/logo.png" alt="Wayra logo">
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="background-image:url('assets/hero.svg');">
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <h1>Planes en Nuquí</h1>
+        <p class="lead">Experiencias en la costa Pacífica: avistamiento de ballenas, manglares y cultura local.</p>
+        <p><a class="btn-primary" href="#planes-nuqui">Ver planes</a></p>
+      </div>
+    </section>
+
+    <!-- información específica de temporada -->
+    <section id="temporada" class="section light">
+      <div class="container">
+        <h2>Plan temporada de ballenas</h2>
+        <p class="subtitle">Salidas especiales durante julio–octubre. Incluye transporte desde Medellín y Bogotá.</p>
+        <ul>
+          <li><strong>Precio estimado:</strong> $1.100.000 por persona (2 días/1 noche).</li>
+          <li><strong>Salida desde Medellín:</strong> vuelo charter a Chocó + traslado terrestre.</li>
+          <li><strong>Salida desde Bogotá:</strong> vuelo comercial a Medellín y conexión con el charter.</li>
+          <li>Fechas de viaje sujetas a disponibilidad de avistamiento y cupo mínimo de 4 personas.</li>
+        </ul>
+        <p>También podemos organizar paquetes desde otras ciudades o añadir noches extra en Medellín.</p>
+
+        <!-- departures and quote block -->
+        <div class="air-departures">
+          <h3>Salidas en avión desde:</h3>
+          <div class="dep-grid">
+            <div class="dep-item">
+              <!-- plane icon SVG -->
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="#1e508b" aria-hidden="true">
+                <path d="M21 16v-2l-8-5V3.5a.5.5 0 0 0-1 0V9l-8 5v2l8-2.5V21l2-1 2 1v-7.5l8 2.5z" stroke="#1e508b"
+                  stroke-width="1.5" />
+              </svg>
+              <strong>Medellín</strong>
+              <p>Todos los días</p>
+            </div>
+            <div class="dep-item">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="#1e508b" aria-hidden="true">
+                <path d="M21 16v-2l-8-5V3.5a.5.5 0 0 0-1 0V9l-8 5v2l8-2.5V21l2-1 2 1v-7.5l8 2.5z" stroke="#1e508b"
+                  stroke-width="1.5" />
+              </svg>
+              <strong>Bogotá</strong>
+              <p>Todos los días, con escala</p>
+            </div>
+            <div class="dep-item">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="#1e508b" aria-hidden="true">
+                <path d="M21 16v-2l-8-5V3.5a.5.5 0 0 0-1 0V9l-8 5v2l8-2.5V21l2-1 2 1v-7.5l8 2.5z" stroke="#1e508b"
+                  stroke-width="1.5" />
+              </svg>
+              <strong>Cali</strong>
+              <p>Sábados y martes</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote-form">
+          <h3>Realizar cotización</h3>
+          <form>
+            <div class="form-row">
+              <label>E-mail<input type="email" required></label>
+            </div>
+            <div class="form-row two-cols">
+              <label>Nombre<input type="text" required></label>
+              <label>Apellidos<input type="text" required></label>
+            </div>
+            <div class="form-row two-cols">
+              <label>Teléfono<input type="tel" placeholder="+57 3xx..." required></label>
+              <label>Número de personas<input type="number" min="1" value="2" required></label>
+            </div>
+            <div class="form-row two-cols">
+              <label>Fecha de viaje (aprox)<input type="date"></label>
+              <label>Destino/Plan de interés
+                <select>
+                  <option value="">Selecciona una opción</option>
+                  <option value="nuqui-gral">Nuquí (General)</option>
+                  <option value="ballenas">Temporada de Ballenas</option>
+                  <option value="fotografia">Plan Fotografía</option>
+                  <option value="a-medida">A tu Medida</option>
+                </select>
+              </label>
+            </div>
+            <div class="form-row">
+              <label>Comentarios / Dudas<textarea rows="3"></textarea></label>
+            </div>
+            <div class="form-row">
+              <button type="submit" class="btn-primary">Solicitar cotización</button>
+            </div>
+          </form>
+        </div>
+
+        <p><a href="#planes-nuqui" class="btn-primary">Ver otros planes</a></p>
+      </div>
+    </section>
+
+    <section id="planes-nuqui" class="section pale">
+      <div class="container">
+        <h2>Planes destacados en Nuquí</h2>
+        <p class="subtitle">Seleccionamos tres opciones pensadas para distintos viajeros. Todos los planes pueden
+          personalizarse.</p>
+
+        <div class="grid plan-grid">
+          <article class="plan-card">
+            <div class="plan-image"
+              style="background-image:linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.12)), url('assets/card1.svg');">
+            </div>
+            <div class="plan-header">
+              <h3>Nuquí Esencial</h3>
+              <div class="price">$1.100.000</div>
+            </div>
+            <p class="muted">2 días / 1 noche · Grupo mínimo 4</p>
+            <ul>
+              <li>Avistamiento de ballenas (salida en bote)</li>
+              <li>Alojamiento en eco-cabaña</li>
+              <li>Guía local bilingüe</li>
+            </ul>
+            <div class="plan-actions">
+              <a href="#" class="btn-outline btn-plan" data-plan-title="Nuquí Esencial" data-plan-price="$1.100.000"
+                data-plan-duration="2 días / 1 noche" data-plan-desc="Incluye avistamiento, alojamiento y guía local."
+                data-plan-image="assets/card1.svg">Ver plan</a>
+              <a href="#" class="btn-whatsapp open-reserve" data-plan-id="nuqui-esencial"
+                data-plan-title="Nuquí Esencial" data-plan-price="$1.100.000"
+                data-plan-image="assets/card1.svg">Reservar</a>
+            </div>
+          </article>
+
+          <article class="plan-card">
+            <div class="plan-image"
+              style="background-image:linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.12)), url('assets/card2.svg');">
+            </div>
+            <div class="plan-header">
+              <h3>Nuquí Fotográfico</h3>
+              <div class="price">$1.750.000</div>
+            </div>
+            <p class="muted">3 días / 2 noches · Taller incluido</p>
+            <ul>
+              <li>Taller de fotografía con guía especializado</li>
+              <li>Salidas fotográficas al amanecer y atardecer</li>
+              <li>Transporte y alimentación incluida</li>
+            </ul>
+            <div class="plan-actions">
+              <a href="#" class="btn-outline btn-plan" data-plan-title="Nuquí Fotográfico" data-plan-price="$1.750.000"
+                data-plan-duration="3 días / 2 noches"
+                data-plan-desc="Taller de fotografía y salidas en bote al amanecer y atardecer."
+                data-plan-image="assets/card2.svg">Ver plan</a>
+              <a href="#" class="btn-whatsapp open-reserve" data-plan-id="nuqui-fotografico"
+                data-plan-title="Nuquí Fotográfico" data-plan-price="$1.750.000"
+                data-plan-image="assets/card2.svg">Reservar</a>
+            </div>
+          </article>
+
+          <article class="plan-card">
+            <div class="plan-image"
+              style="background-image:linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.12)), url('assets/card3.svg');">
+            </div>
+            <div class="plan-header">
+              <h3>Nuquí A tu Medida</h3>
+              <div class="price">Desde $2.200.000</div>
+            </div>
+            <p class="muted">Flexible · Itinerario personalizado</p>
+            <ul>
+              <li>Itinerario diseñado según tus intereses</li>
+              <li>Opciones de alojamiento y actividades certificadas</li>
+              <li>Apoyo logístico 24/7</li>
+            </ul>
+            <div class="plan-actions">
+              <a href="#" class="btn-outline btn-plan" data-plan-title="Nuquí A tu Medida"
+                data-plan-price="Desde $2.200.000" data-plan-duration="Flexible"
+                data-plan-desc="Itinerario a medida con opciones de alojamiento y actividades."
+                data-plan-image="assets/card3.svg">Ver plan</a>
+              <a href="#" class="btn-whatsapp open-reserve" data-plan-id="nuqui-a-tu-medida"
+                data-plan-title="Nuquí A tu Medida" data-plan-price="Desde $2.200.000"
+                data-plan-image="assets/card3.svg">Reservar</a>
+            </div>
+          </article>
+        </div>
+
+        <p class="muted" style="margin-top:18px">Los precios son indicativos por persona y pueden variar según temporada
+          y número de personas. Contáctanos para cotizar fechas específicas.</p>
+      </div>
+    </section>
+
+    <!-- Modal de reserva compartido -->
+    <div id="reserveModal" class="modal" aria-hidden="true">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Cerrar">×</button>
+        <div id="reserveImage" class="plan-image" style="display:none;margin-bottom:10px"></div>
+        <h3 id="reserveTitle">Reservar</h3>
+        <form id="reserveForm" class="reserve-form">
+          <input type="hidden" name="planId" id="reservePlanId">
+          <label>
+            <span>Plan</span>
+            <input type="text" id="reservePlanTitle" readonly>
+          </label>
+          <label>
+            <span>Precio estimado</span>
+            <input type="text" id="reservePlanPrice" readonly>
+          </label>
+          <label>
+            <span>Nombre completo</span>
+            <input type="text" name="name" id="reserveName" required>
+          </label>
+          <label>
+            <span>Teléfono (para contacto / WhatsApp)</span>
+            <input type="tel" name="phone" id="reservePhone" placeholder="+57 3xx xxx xxxx" required>
+          </label>
+          <label>
+            <span>Correo</span>
+            <input type="email" name="email" id="reserveEmail">
+          </label>
+          <label>
+            <span>Fecha de llegada</span>
+            <input type="date" name="start" id="reserveStart">
+          </label>
+          <label>
+            <span>Fecha de salida</span>
+            <input type="date" name="end" id="reserveEnd">
+          </label>
+          <label>
+            <span>Número de personas</span>
+            <input type="number" name="guests" id="reserveGuests" min="1" value="1">
+          </label>
+          <label>
+            <span>Comentarios</span>
+            <textarea name="comments" id="reserveComments" rows="3"></textarea>
+          </label>
+          <div class="form-actions">
+            <button id="reserveWhatsapp" class="btn-whatsapp" type="button">Contactar por WhatsApp</button>
+            <button id="reserveMail" class="btn-primary" type="button">Enviar por correo</button>
+            <a href="tel:+573225225582" class="btn-outline">Llamar</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <small>&copy; <span id="year"></span> WAYRA — Todos los derechos reservados.</small>
+      <div class="footer-links">
+        <nav class="social-nav" aria-label="Redes sociales">
+          <a href="https://www.facebook.com/profile.php?id=61587257972289" aria-label="Facebook" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z">
+              </path>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/vivewayra/" aria-label="Instagram" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z">
+              </path>
+            </svg>
+          </a>
+        </nav>
+        <nav class="footer-nav">
+          <a href="#contacto">Contacto</a>
+          <a href="admin.html">Admin</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="script.js"></script>
+</body>
+
+</html>

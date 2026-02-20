@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Detalle — WAYRA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img src="assets/img/logo.png" alt="Wayra logo">
+      </a>
+
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="index.html#sobre-wayra">Sobre WAYRA</a>
+        <a href="experiencias.html">Experiencias</a>
+        <a href="plans-nuqui.html#temporada">Plan temporada de ballenas</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Social Icons -->
+        <a href="https://www.facebook.com/profile.php?id=61587257972289" class="social-icon-link" aria-label="Facebook"
+          target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z">
+            </path>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/vivewayra/" class="social-icon-link" aria-label="Instagram" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z">
+            </path>
+          </svg>
+        </a>
+
+        <a class="btn-whatsapp"
+          href="https://wa.me/573225225582?text=Hola%20quisiera%20informaci%C3%B3n%20sobre%20este%20plan"
+          target="_blank">WhatsApp</a>
+        <button class="nav-toggle" aria-label="Abrir navegación">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container section">
+    <div id="detail" class="card" style="padding:28px">
+      <div id="detailImage" class="detail-image" style="display:none"></div>
+      <h2 id="detailTitle">Detalle</h2>
+      <p id="detailSubtitle" class="muted"></p>
+      <div id="detailBody" style="margin-top:18px;"></div>
+      <div style="margin-top:20px;display:flex;gap:10px;align-items:center">
+        <a id="btnReserveDetail" class="btn-primary" href="#">Reservar</a>
+        <a id="btnWhatsappDetail" class="btn-whatsapp" href="#" target="_blank">Reservar por WhatsApp</a>
+        <a href="index.html" class="btn-secondary">Volver</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <small>&copy; <span id="year"></span> WAYRA — Todos los derechos reservados.</small>
+      <div class="footer-links">
+        <nav class="social-nav" aria-label="Redes sociales">
+          <a href="https://www.facebook.com/profile.php?id=61587257972289" aria-label="Facebook" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z">
+              </path>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/vivewayra/" aria-label="Instagram" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z">
+              </path>
+            </svg>
+          </a>
+        </nav>
+        <nav class="footer-nav">
+          <a href="#contacto">Contacto</a>
+          <a href="admin.html">Admin</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    (function () {
+      const whatsappNumber = '573225225582';
+      function whatsappUrlFor(message) { return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`; }
+      const params = new URLSearchParams(window.location.search);
+      const type = params.get('type');
+      const id = params.get('id');
+
+      const content = {
+        'plan-explorador': {
+          type: 'plan', title: 'Plan Explorador', subtitle: '3 días / 2 noches · Salidas grupales', price: '$1.250.000',
+          image: 'assets/card1.svg',
+          body: '<p>Avistamiento de ballenas, caminata por la costa y inmersión en la cultura local.</p>'
+        },
+        'plan-fotografo': {
+          type: 'plan', title: 'Plan Fotógrafo', subtitle: '4 días / 3 noches · Taller incluido', price: '$1.800.000',
+          image: 'assets/card2.svg',
+          body: '<p>Sesiones guiadas de fotografía con guías locales y salida en bote al atardecer.</p>'
+        },
+        'plan-a-tu-medida': {
+          type: 'plan', title: 'Plan A tu Medida', subtitle: 'Flexible · Itinerario personalizado', price: 'Desde $2.200.000',
+          image: 'assets/card3.svg',
+          body: '<p>Diseñamos un viaje según tus tiempos, intereses y presupuesto.</p>'
+        },
+        'exp-avistamiento': {
+          type: 'exp', title: 'Avistamiento en la bahía', subtitle: 'Salida en bote al amanecer', price: '',
+          image: 'assets/card1.svg',
+          body: '<p>Salidas al amanecer para vivir la experiencia más cercana con las ballenas.</p>'
+        },
+        'exp-fotografia': {
+          type: 'exp', title: 'Fotografía y naturaleza', subtitle: '', price: '',
+          image: 'assets/card2.svg',
+          body: '<p>Rutas que incluyen biodiversidad, cultura y costa virgen.</p>'
+        },
+        'exp-personalizado': {
+          type: 'exp', title: 'Programas a medida', subtitle: '', price: '',
+          image: 'assets/card3.svg',
+          body: '<p>Diseñamos tu itinerario según tus intereses.</p>'
+        }
+      };
+
+      const d = content[id];
+      if (!d) {
+        document.getElementById('detailTitle').textContent = 'No encontrado';
+        document.getElementById('detailBody').innerHTML = '<p>No se encontró información para este identificador.</p>';
+        document.getElementById('btnReserveDetail').style.display = 'none';
+        document.getElementById('btnWhatsappDetail').style.display = 'none';
+        return;
+      }
+      document.getElementById('detailTitle').textContent = d.title;
+      document.getElementById('detailSubtitle').textContent = d.subtitle + (d.price ? ' · ' + d.price : '');
+      document.getElementById('detailBody').innerHTML = d.body;
+      // If there is an image, show it
+      if (d.image) {
+        const di = document.getElementById('detailImage');
+        di.style.display = 'block';
+        di.style.backgroundImage = `linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.06)), url('${d.image}')`;
+      }
+
+      // Reserve button: open index with reserve param so modal opens there
+      document.getElementById('btnReserveDetail').href = `index.html?reserve=${encodeURIComponent(id)}`;
+      // WhatsApp button: prefill message
+      const msg = `Hola, estoy interesado en ${d.title}. Quisiera más información y disponibilidad, por favor.`;
+      document.getElementById('btnWhatsappDetail').href = whatsappUrlFor(msg);
+    })();
+  </script>
+</body>
+
+</html>
