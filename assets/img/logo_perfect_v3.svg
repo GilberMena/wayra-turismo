@@ -1,0 +1,19 @@
+<svg width="240" height="280" viewBox="0 0 240 280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Solid Circle Background -->
+  <circle cx="120" cy="100" r="90" fill="#3D5A44" />
+  
+  <!-- 5 White Wavy Lines -->
+  <g fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round">
+    <path d="M55 65 Q 95 35 135 75 T 185 65" opacity="0.9" />
+    <path d="M45 90 Q 95 60 145 110 T 195 85" opacity="0.9" />
+    <path d="M45 115 Q 95 85 145 135 T 195 110" opacity="0.95" />
+    <path d="M55 140 Q 100 120 150 160 T 190 135" opacity="0.9" />
+    <path d="M70 165 Q 105 145 145 175" opacity="0.8" />
+  </g>
+  
+  <!-- Typography "WAYRA" (Embedded style fallback) -->
+  <text x="120" y="235" text-anchor="middle" font-family="'Merriweather', serif" font-size="42" font-weight="700" fill="#3D5A44" letter-spacing="4">WAYRA</text>
+  
+  <!-- Slogan "El viaje que se queda" -->
+  <text x="120" y="265" text-anchor="middle" font-family="'Merriweather', serif" font-size="16" fill="#3D5A44" letter-spacing="0.5">El viaje que se queda</text>
+</svg>
