@@ -23,3 +23,28 @@ collections:
               - {label: "Título", name: "title", widget: "string"}
               - {label: "Imagen", name: "image", widget: "image"}
               - {label: "Descripción", name: "description", widget: "text"}
+
+  - name: "planes"
+    label: "Planes"
+    files:
+      - name: "planes"
+        label: "Lista de Planes"
+        file: "data/planes.json"
+        fields:
+          - label: "Planes"
+            name: "planes"
+            widget: "list"
+            fields:
+              - {label: "ID (unico)", name: "id", widget: "string"}
+              - {label: "Título", name: "title", widget: "string"}
+              - {label: "Medalla", name: "badge", widget: "string"}
+              - {label: "Precio", name: "price", widget: "string"}
+              - {label: "Duración", name: "duration", widget: "string"}
+              - {label: "Subtítulo", name: "subtitle", widget: "string"}
+              - {label: "Descripción", name: "description", widget: "text"}
+              - label: "Incluye"
+                name: "includes"
+                widget: "list"
+                summary: "{{fields.item}}"
+                field: {label: "Item", name: "item", widget: "string"}
+              - {label: "Imagen", name: "image", widget: "image"}

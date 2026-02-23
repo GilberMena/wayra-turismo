@@ -5,6 +5,7 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  SECRETS_SCAN_OMIT_KEYS = "ADMIN_USER,ADMIN_PASS"
 
 # Edge function protege /admin/* a nivel de servidor
 [[edge_functions]]

@@ -12,40 +12,64 @@
     href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Montserrat:wght@300;400;600&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  </style>
 </head>
 
 <body>
   <header class="site-header">
     <div class="container header-inner">
       <a class="logo" href="index.html">
-        <img src="assets/img/logo.png" alt="Wayra logo">
+        <div class="wayra-brand-container">
+          <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" class="wayra-svg">
+            <circle cx="100" cy="100" r="90" fill="#3D5A44" />
+            <g fill="none" stroke="white" stroke-width="3" stroke-linecap="round">
+              <path d="M45 75 Q 85 45 130 85 T 170 75" opacity="0.9" />
+              <path d="M35 105 Q 85 75 135 125 T 180 100" opacity="0.9" />
+              <path d="M45 135 Q 90 115 140 155 T 175 130" opacity="0.9" />
+              <path d="M60 165 Q 95 145 130 175" opacity="0.9" />
+            </g>
+            <text x="100" y="215" text-anchor="middle" class="wayra-title">WAYRA</text>
+            <text x="100" y="235" text-anchor="middle" class="wayra-slogan">EL VIAJE QUE SE QUEDA</text>
+          </svg>
+        </div>
       </a>
 
       <nav class="main-nav" aria-label="Navegación principal">
-        <a href="index.html#quienes-somos">Quiénes somos</a>
+        <a href="index.html">Inicio</a>
         <a href="experiencias.html">Experiencias</a>
         <a href="plans-nuqui.html" class="active">Planes turísticos en Nuquí</a>
-        <a href="index.html#contacto">Contacto</a>
+        <a href="https://wa.me/573225225582" target="_blank">Contacto</a>
       </nav>
 
       <div class="header-actions">
-        <a href="https://www.facebook.com/profile.php?id=61587257972289" class="social-icon-link" aria-label="Facebook"
-          target="_blank">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <!-- Social Icons con colores de marca (Estilo Home) -->
+        <a href="https://www.facebook.com/profile.php?id=61587257972289" class="social-brand-link fb-link"
+          aria-label="Síguenos en Facebook" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true">
             <path
               d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z">
             </path>
           </svg>
+          <span>Síguenos</span>
         </a>
-        <a href="https://www.instagram.com/vivewayra/" class="social-icon-link" aria-label="Instagram" target="_blank">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path
+        <a href="https://www.instagram.com/vivewayra/" class="social-brand-link ig-link"
+          aria-label="Síguenos en Instagram" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+            <defs>
+              <linearGradient id="ig-grad-hdr-nav" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#f09433"></stop>
+                <stop offset="25%" stop-color="#e6683c"></stop>
+                <stop offset="50%" stop-color="#dc2743"></stop>
+                <stop offset="75%" stop-color="#cc2366"></stop>
+                <stop offset="100%" stop-color="#bc1888"></stop>
+              </linearGradient>
+            </defs>
+            <path fill="url(#ig-grad-hdr-nav)"
               d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z">
             </path>
           </svg>
+          <span>Síguenos</span>
         </a>
-        <a class="btn-whatsapp" href="https://wa.me/573225225582?text=Hola%20quiero%20informaci%C3%B3n"
-          aria-label="Hablar por WhatsApp" target="_blank">WhatsApp</a>
         <button class="nav-toggle" aria-label="Abrir navegación">☰</button>
       </div>
     </div>
@@ -53,31 +77,101 @@
 
 
   <main>
-    <section class="hero" style="background-image:url('assets/hero.svg');">
-      <div class="hero-overlay"></div>
-      <div class="container hero-content">
-        <h1>Planes en Nuquí</h1>
-        <p class="lead">Experiencias en la costa Pacífica: avistamiento de ballenas, manglares y cultura local.</p>
-        <p><a class="btn-primary" href="#planes-nuqui">Ver planes</a></p>
-      </div>
-    </section>
-
-    <!-- SECCIÓN 1: Grid dinámico de planes -->
-    <section id="planes-nuqui" class="section pale">
-      <div class="container">
-        <h2>Planes turísticos en Nuquí</h2>
-        <p class="subtitle">Seleccionamos opciones para distintos viajeros. Todos los planes pueden personalizarse.</p>
-
-        <div id="planes-grid" class="grid plan-grid">
-          <p class="muted" style="text-align:center;grid-column:1/-1;padding:30px;">Cargando planes…</p>
+    <!-- ── ÁREA VIBRANTE DE PLANES ── -->
+    <div class="whale-vivid-area" id="vivid-plans-section">
+      <section class="hero" id="plans-hero" style="background-image:none;">
+        <div class="hero-overlay" style="background:transparent;"></div>
+        <div class="container hero-content">
+          <h1>Planes en Nuquí</h1>
+          <p class="lead">Experiencias en la costa Pacífica: avistamiento de ballenas, manglares y cultura local.</p>
+          <p><a class="btn-primary" href="#planes-nuqui">Ver planes</a></p>
         </div>
+      </section>
 
-        <p class="muted" style="margin-top:18px">Los precios son indicativos por persona y pueden variar según temporada
-          y número de personas. Contáctanos para cotizar fechas específicas.</p>
-      </div>
-    </section>
+      <!-- SECCIÓN 1: Grid dinámico de planes -->
+      <section id="planes-nuqui" class="section pale" style="background:transparent;box-shadow:none;">
+        <div class="container">
+          <h2>Planes turísticos en Nuquí</h2>
+          <p class="subtitle">Seleccionamos opciones para distintos viajeros. Todos los planes pueden personalizarse.
+          </p>
 
-    <!-- SECCIÓN 2: Cómo llegar a Nuquí -->
+          <div id="planes-grid" class="grid plan-grid">
+            <p class="muted" style="text-align:center;grid-column:1/-1;padding:30px;">Cargando planes…</p>
+          </div>
+
+          <p class="muted" style="margin-top:18px">Los precios son indicativos por persona y pueden variar según
+            temporada y número de personas. Contáctanos para cotizar fechas específicas.</p>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 2: Crea Tu Paquete Ideal -->
+      <section class="section light" style="background:transparent;box-shadow:none;">
+        <div class="container">
+          <div class="personalized-package-card">
+            <div class="personalized-content">
+              <h2>Crea Tu Paquete Ideal</h2>
+              <p>¿No encuentras el paquete perfecto? No te preocupes. Nuestro equipo está listo para diseñar una
+                experiencia 100% personalizada que se ajuste a tu presupuesto, tiempo y preferencias.</p>
+              <ul class="personalized-features">
+                <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg> Asesoría personalizada sin costo</li>
+                <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg> Combinaciones de actividades flexibles</li>
+                <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg> Opciones para todos los presupuestos</li>
+                <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg> Atención 24/7 durante tu viaje</li>
+              </ul>
+            </div>
+            <div class="personalized-actions">
+              <a href="https://wa.me/573225225582" class="btn-custom btn-white" target="_blank">Solicitar Paquete
+                Personalizado</a>
+
+              <!-- Redes sociales estilo inicio -->
+              <div class="header-actions" style="margin-top: 15px; justify-content: flex-start;">
+                <a href="https://www.facebook.com/profile.php?id=61587257972289" class="social-brand-link fb-link"
+                  aria-label="Síguenos en Facebook" target="_blank" rel="noopener">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true">
+                    <path
+                      d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z">
+                    </path>
+                  </svg>
+                  <span>Síguenos</span>
+                </a>
+                <a href="https://www.instagram.com/vivewayra/" class="social-brand-link ig-link"
+                  aria-label="Síguenos en Instagram" target="_blank" rel="noopener">
+                  <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="ig-grad-plans-fix" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#f09433"></stop>
+                        <stop offset="25%" stop-color="#e6683c"></stop>
+                        <stop offset="50%" stop-color="#dc2743"></stop>
+                        <stop offset="75%" stop-color="#cc2366"></stop>
+                        <stop offset="100%" stop-color="#bc1888"></stop>
+                      </linearGradient>
+                    </defs>
+                    <path fill="url(#ig-grad-plans-fix)"
+                      d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z">
+                    </path>
+                  </svg>
+                  <span>Síguenos</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- SECCIÓN 3: Cómo llegar a Nuquí -->
     <section id="temporada" class="section light">
       <div class="container">
         <h2>Cómo llegar a Nuquí</h2>
@@ -128,45 +222,47 @@
 
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- Formulario de cotización -->
-        <div class="quote-form" style="margin-top:40px;">
-          <h3>Realizar cotización</h3>
-          <form>
-            <div class="form-row">
-              <label>E-mail<input type="email" required></label>
-            </div>
-            <div class="form-row two-cols">
-              <label>Nombre<input type="text" required></label>
-              <label>Apellidos<input type="text" required></label>
-            </div>
-            <div class="form-row two-cols">
-              <label>Teléfono<input type="tel" placeholder="+57 3xx..." required></label>
-              <label>Número de personas<input type="number" min="1" value="2" required></label>
-            </div>
-            <div class="form-row two-cols">
-              <label>Fecha de viaje (aprox)<input type="date"></label>
-              <label>Destino/Plan de interés
-                <select>
-                  <option value="">Selecciona una opción</option>
-                  <option value="nuqui-gral">Nuquí (General)</option>
-                  <option value="ballenas">Avistamiento de Ballenas</option>
-                  <option value="fotografia">Plan Fotografía</option>
-                  <option value="pesca">Pesca y Manglares</option>
-                  <option value="bienestar">Retiro Naturaleza y Bienestar</option>
-                  <option value="a-medida">A tu Medida</option>
-                </select>
-              </label>
-            </div>
-            <div class="form-row">
-              <label>Comentarios / Dudas<textarea rows="3"></textarea></label>
-            </div>
-            <div class="form-row">
-              <button type="submit" class="btn-primary">Solicitar cotización</button>
-            </div>
-          </form>
-        </div>
 
+    <!-- Formulario de cotización -->
+    <section id="contacto" class="quote-form" style="margin-top:40px;">
+      <div class="container">
+        <h3>Realizar cotización</h3>
+        <form>
+          <div class="form-row">
+            <label>E-mail<input type="email" required></label>
+          </div>
+          <div class="form-row two-cols">
+            <label>Nombre<input type="text" required></label>
+            <label>Apellidos<input type="text" required></label>
+          </div>
+          <div class="form-row two-cols">
+            <label>Teléfono<input type="tel" placeholder="+57 3xx..." required></label>
+            <label>Número de personas<input type="number" min="1" value="2" required></label>
+          </div>
+          <div class="form-row two-cols">
+            <label>Fecha de viaje (aprox)<input type="date"></label>
+            <label>Destino/Plan de interés
+              <select>
+                <option value="">Selecciona una opción</option>
+                <option value="nuqui-gral">Nuquí (General)</option>
+                <option value="ballenas">Avistamiento de Ballenas</option>
+                <option value="fotografia">Plan Fotografía</option>
+                <option value="pesca">Pesca y Manglares</option>
+                <option value="bienestar">Retiro Naturaleza y Bienestar</option>
+                <option value="a-medida">A tu Medida</option>
+              </select>
+            </label>
+          </div>
+          <div class="form-row">
+            <label>Comentarios / Dudas<textarea rows="3"></textarea></label>
+          </div>
+          <div class="form-row">
+            <button type="submit" class="btn-primary">Solicitar cotización</button>
+          </div>
+        </form>
       </div>
     </section>
 
@@ -228,32 +324,92 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <small>&copy; <span id="year"></span> WAYRA — Todos los derechos reservados.</small>
-      <div class="footer-links">
-        <nav class="social-nav" aria-label="Redes sociales">
-          <a href="https://www.facebook.com/profile.php?id=61587257972289" aria-label="Facebook" target="_blank">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path
-                d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z">
-              </path>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-logo-area">
+          <div class="wayra-brand-container">
+            <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" class="wayra-svg">
+              <circle cx="100" cy="100" r="90" fill="#3D5A44" />
+              <g fill="none" stroke="white" stroke-width="3" stroke-linecap="round">
+                <path d="M45 75 Q 85 45 130 85 T 170 75" opacity="0.9" />
+                <path d="M35 105 Q 85 75 135 125 T 180 100" opacity="0.9" />
+                <path d="M45 135 Q 90 115 140 155 T 175 130" opacity="0.9" />
+                <path d="M60 165 Q 95 145 130 175" opacity="0.9" />
+              </g>
+              <text x="100" y="215" text-anchor="middle" class="wayra-title">WAYRA</text>
+              <text x="100" y="235" text-anchor="middle" class="wayra-slogan">EL VIAJE QUE SE QUEDA</text>
             </svg>
-          </a>
-          <a href="https://www.instagram.com/vivewayra/" aria-label="Instagram" target="_blank">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path
-                d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z">
-              </path>
-            </svg>
-          </a>
-        </nav>
-        <nav class="footer-nav">
-          <a href="#contacto">Contacto</a>
-          <a href="admin.html">Admin</a>
-        </nav>
+          </div>
+          <p class="footer-rnt">
+            Expertos en experiencias auténticas en el Pacífico Colombiano.<br>
+            <strong>"El viaje que se queda"</strong>
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h3>Servicios</h3>
+          <ul class="footer-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="plans-nuqui.html">Planes turísticos a Nuquí</a></li>
+            <li><a href="experiencias.html">Experiencias y actividades</a></li>
+            <li><a href="hoteles.html">Mejores Hoteles</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Empresarial</h3>
+          <ul class="footer-list">
+            <li><a href="https://wa.me/573225225582" target="_blank">Contacto</a></li>
+            <li><a href="admin/index.html">Acceso Admin</a></li>
+            <li><a href="mailto:vivewayra@gmail.com">P.Q.R.S.</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Redes Sociales</h3>
+          <div class="footer-social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61587257972289" class="footer-social-icon facebook"
+              aria-label="Facebook" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z" />
+              </svg>
+            </a>
+            <a href="https://wa.me/573225225582" class="footer-social-icon whatsapp" aria-label="WhatsApp"
+              target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z" />
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/vivewayra/" class="footer-social-icon instagram" aria-label="Instagram"
+              target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> WAYRA. Todos los derechos reservados.<br>
+          Sitio Web Diseñado Por WAYRA</p>
       </div>
     </div>
   </footer>
+
+
+  <!-- Botón flotante WhatsApp -->
+  <a href="https://wa.me/573225225582?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20planes%20a%20Nuqu%C3%AD"
+    class="wa-float" target="_blank" rel="noopener" aria-label="Contáctanos por WhatsApp">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+      <path
+        d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z" />
+    </svg>
+    <span class="wa-float-text">¿Hablamos?</span>
+  </a>
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   <script src="wayra-data.js"></script>

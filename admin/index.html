@@ -366,6 +366,7 @@
             line-height: 1.55;
             display: -webkit-box;
             -webkit-line-clamp: 3;
+            line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -821,27 +822,7 @@
 
 <body>
 
-    <!-- ── LOGIN OVERLAY ── -->
-    <div id="login-overlay">
-        <div class="login-box" id="login-box">
-            <div class="login-logo">✈️</div>
-            <h2>Wayra Admin</h2>
-            <p class="login-sub">Acceso restringido</p>
-            <div class="login-fields">
-                <div class="login-field-wrap">
-                    <span class="field-icon">👤</span>
-                    <input class="input" id="login-user" type="text" placeholder="Usuario" autocomplete="username" />
-                </div>
-                <div class="login-field-wrap">
-                    <span class="field-icon">🔒</span>
-                    <input class="input" id="login-pass" type="password" placeholder="Contraseña"
-                        autocomplete="current-password" />
-                </div>
-                <div class="login-error" id="login-error">Usuario o contraseña incorrectos</div>
-                <button class="btn btn-primary btn-login" onclick="doLogin()">Ingresar →</button>
-            </div>
-        </div>
-    </div>
+    <!-- El login ahora lo maneja la Edge Function a nivel de servidor -->
 
     <div class="layout">
         <!-- SIDEBAR -->
@@ -953,6 +934,56 @@
                         <button class="btn btn-primary" onclick="openPlanesFile()">📂 Abrir planes.json</button>
                     </div>
                     <div id="screen-planes-editor" style="display:none;">
+                        <!-- Planes Page Global Config -->
+                        <div id="planes-page-config-area"
+                            style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:32px;display:none;">
+                            <h3 style="margin:0 0 16px;font-size:15px;font-weight:700;">🗺️ Diseño de la página de
+                                Planes</h3>
+
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:20px;">
+                                <div class="field">
+                                    <label>Imagen Hero (Cabecera)</label>
+                                    <div id="cfg-plans-hero-area" class="img-upload"
+                                        onclick="document.getElementById('cfg-plans-hero-file').click()">
+                                        <div class="up-icon">🖼️</div>
+                                        <p>Subir imagen</p>
+                                    </div>
+                                    <div id="cfg-plans-hero-preview" class="img-preview" style="display:none;">
+                                        <img id="cfg-plans-hero-el" src="" alt="" />
+                                        <button class="img-preview-remove" onclick="clearCfgPlansHeroImg()">✕
+                                            Quitar</button>
+                                    </div>
+                                    <input type="file" id="cfg-plans-hero-file" accept="image/*"
+                                        onchange="handleCfgPlansHeroImg(event)" style="display:none;" />
+                                    <input class="input" id="cfg-plans-hero-url" type="text" placeholder="O pega URL"
+                                        oninput="previewCfgPlansHeroImgUrl(this.value)" style="margin-top:8px;" />
+                                </div>
+
+                                <div class="field">
+                                    <label>Fondo de la sección</label>
+                                    <div id="cfg-plans-bg-area" class="img-upload"
+                                        onclick="document.getElementById('cfg-plans-bg-file').click()">
+                                        <div class="up-icon">🖼️</div>
+                                        <p>Subir imagen</p>
+                                    </div>
+                                    <div id="cfg-plans-bg-preview" class="img-preview" style="display:none;">
+                                        <img id="cfg-plans-bg-el" src="" alt="" />
+                                        <button class="img-preview-remove" onclick="clearCfgPlansBgImg()">✕
+                                            Quitar</button>
+                                    </div>
+                                    <input type="file" id="cfg-plans-bg-file" accept="image/*"
+                                        onchange="handleCfgPlansBgImg(event)" style="display:none;" />
+                                    <input class="input" id="cfg-plans-bg-url" type="text" placeholder="O pega URL"
+                                        oninput="previewCfgPlansBgImgUrl(this.value)" style="margin-top:8px;" />
+                                </div>
+                            </div>
+
+                            <div style="display:flex;justify-content:flex-end;">
+                                <button class="btn btn-secondary" onclick="saveConfigFile(true)">💾 Guardar diseño de
+                                    página</button>
+                            </div>
+                        </div>
+
                         <div class="exp-grid" id="planes-grid-admin"></div>
                     </div>
                 </div>
@@ -997,6 +1028,26 @@
                                         placeholder="O pega URL: assets/hero.jpg"
                                         oninput="previewCfgHeroImgUrl(this.value)" style="margin-top:8px;" />
                                 </div>
+
+                                <div class="field"
+                                    style="margin-top: 16px; border-top: 1px solid var(--border); padding-top: 16px;">
+                                    <label>✨ Fondo Continuo (Hero + 5 Razones)</label>
+                                    <div id="cfg-banner-img-area" class="img-upload"
+                                        onclick="document.getElementById('cfg-banner-file').click()">
+                                        <div class="up-icon">🌄</div>
+                                        <p>Subir imagen para fondo continuo<br><strong>o pega una URL abajo</strong></p>
+                                    </div>
+                                    <div id="cfg-banner-img-preview" class="img-preview" style="display:none;">
+                                        <img id="cfg-banner-img-el" src="" alt="" />
+                                        <button class="img-preview-remove" onclick="clearCfgBannerImg()">✕
+                                            Quitar</button>
+                                    </div>
+                                    <input type="file" id="cfg-banner-file" accept="image/*"
+                                        onchange="handleCfgBannerImg(event)" style="display:none;" />
+                                    <input class="input" id="cfg-banner-img-url" type="text"
+                                        placeholder="O pega URL (esta imagen cubrirá ambas secciones)"
+                                        oninput="previewCfgBannerImgUrl(this.value)" style="margin-top:8px;" />
+                                </div>
                             </div>
 
                             <div
@@ -1024,14 +1075,79 @@
                             </div>
 
                             <div
+                                style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:24px;">
+                                <h3 style="margin:0 0 16px;font-size:15px;font-weight:700;">🐋 Fondo del sitio</h3>
+                                <div class="field">
+                                    <label>Imagen de fondo (Sección Ballenas)</label>
+                                    <div id="cfg-whale-img-area" class="img-upload"
+                                        onclick="document.getElementById('cfg-whale-file').click()">
+                                        <div class="up-icon">🖼️</div>
+                                        <p>Clic para subir imagen<br><strong>o pega una URL abajo</strong></p>
+                                    </div>
+                                    <div id="cfg-whale-img-preview" class="img-preview" style="display:none;">
+                                        <img id="cfg-whale-img-el" src="" alt="" />
+                                        <button class="img-preview-remove" onclick="clearCfgWhaleImg()">✕
+                                            Quitar</button>
+                                    </div>
+                                    <input type="file" id="cfg-whale-file" accept="image/*"
+                                        onchange="handleCfgWhaleImg(event)" style="display:none;" />
+                                    <input class="input" id="cfg-whale-img-url" type="text"
+                                        placeholder="O pega URL (ej: assets/img/whale-bg.jpg)"
+                                        oninput="previewCfgWhaleImgUrl(this.value)" style="margin-top:8px;" />
+                                </div>
+                                <div class="field">
+                                    <label>Título Sección Ballenas</label>
+                                    <input class="input" id="cfg-whale-title" type="text" />
+                                </div>
+                                <div class="field">
+                                    <label>Subtítulo Sección Ballenas</label>
+                                    <textarea class="input" id="cfg-whale-subtitle" rows="2"></textarea>
+                                </div>
+                                <div class="field">
+                                    <label>Color de fondo (Cuerpo del sitio)</label>
+                                    <div style="display:flex;gap:10px;align-items:center;">
+                                        <input type="color" id="cfg-site-bg-color"
+                                            style="width:50px;height:40px;border:1px solid var(--border);border-radius:4px;cursor:pointer;padding:2px;" />
+                                        <input class="input" id="cfg-site-bg-color-text" type="text"
+                                            placeholder="#f7ede8"
+                                            oninput="document.getElementById('cfg-site-bg-color').value = this.value" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div
                                 style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;">
                                 <h3 style="margin:0 0 16px;font-size:15px;font-weight:700;">👥 Quiénes somos</h3>
-                                <div class="field"><label>Título</label><input class="input" id="cfg-qs-title"
-                                        type="text" /></div>
-                                <div class="field"><label>Subtítulo</label><input class="input" id="cfg-qs-subtitle"
-                                        type="text" /></div>
-                                <div class="field"><label>Texto</label><textarea class="input" id="cfg-qs-text"
-                                        rows="8"></textarea></div>
+                                <div class="field">
+                                    <label>Título</label>
+                                    <input class="input" id="cfg-qs-title" type="text" />
+                                </div>
+                                <div class="field">
+                                    <label>Subtítulo</label>
+                                    <input class="input" id="cfg-qs-subtitle" type="text" />
+                                </div>
+                                <div class="field">
+                                    <label>Imagen</label>
+                                    <div id="cfg-qs-img-area" class="img-upload"
+                                        onclick="document.getElementById('cfg-qs-file').click()">
+                                        <div class="up-icon">🖼️</div>
+                                        <p>Clic para subir imagen<br><strong>o pega una URL abajo</strong></p>
+                                    </div>
+                                    <div id="cfg-qs-img-preview" class="img-preview" style="display:none;">
+                                        <img id="cfg-qs-img-el" src="" alt="" />
+                                        <button class="img-preview-remove" onclick="clearCfgQsImg()">✕ Quitar</button>
+                                    </div>
+                                    <input type="file" id="cfg-qs-file" accept="image/*"
+                                        onchange="handleCfgQsImg(event)" style="display:none;" />
+                                    <input class="input" id="cfg-qs-img-url" type="text"
+                                        placeholder="O pega URL (ej: assets/qs.jpg)"
+                                        oninput="previewCfgQsImgUrl(this.value)" style="margin-top:8px;" />
+                                </div>
+                                <div class="field">
+                                    <label>Texto</label>
+                                    <textarea class="input" id="cfg-qs-text" rows="8"></textarea>
+                                </div>
                             </div>
 
                             <div style="display:flex;gap:12px;justify-content:flex-end;padding-bottom:40px;">
@@ -1092,9 +1208,50 @@
                     <input class="input" id="field-image" type="text" placeholder="O pega una URL: assets/card1.svg"
                         oninput="previewImageUrl(this.value)" style="margin-top:8px;" />
                 </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                    <div class="field">
+                        <label>Precio</label>
+                        <input class="input" id="field-price" type="text" placeholder="ej: $150.000" />
+                    </div>
+                    <div class="field">
+                        <label>Duración</label>
+                        <input class="input" id="field-duration" type="text" placeholder="ej: 4 horas / 1 día" />
+                    </div>
+                </div>
                 <div class="field">
-                    <label>Descripción</label>
-                    <textarea class="input" id="field-description" placeholder="Describe la experiencia..."></textarea>
+                    <label>Subtítulo (ej: Tour guiado)</label>
+                    <input class="input" id="field-subtitle" type="text" />
+                </div>
+                <div class="field">
+                    <label>Descripción corta (listado)</label>
+                    <textarea class="input" id="field-description" rows="2"
+                        placeholder="Describe la experiencia brevemente..."></textarea>
+                </div>
+                <div class="field">
+                    <label>¿Qué incluye? (1 item por línea)</label>
+                    <textarea class="input" id="field-includes" rows="3"
+                        placeholder="Guía certificado&#10;Equipos de seguridad&#10;Snack"></textarea>
+                    <small style="color:var(--muted);font-size:11px;">Separa cada ítem con una línea nueva</small>
+                </div>
+                <div class="field">
+                    <label>¿No incluye? (1 item por línea)</label>
+                    <textarea class="input" id="field-not-includes" rows="2"
+                        placeholder="Transporte al punto de encuentro&#10;Propinas"></textarea>
+                    <small style="color:var(--muted);font-size:11px;">Separa cada ítem con una línea nueva</small>
+                </div>
+                <div class="field">
+                    <label>Descripción detallada (itinerario, etc)</label>
+                    <textarea class="input" id="field-description-long" rows="4"
+                        placeholder="Detalles extendidos para la página de detalle..."></textarea>
+                </div>
+                <div class="field">
+                    <label>Notas / Recomendaciones</label>
+                    <textarea class="input" id="field-notes" rows="2"
+                        placeholder="Botas pantaneras, repelente, etc..."></textarea>
+                </div>
+                <div class="field" style="display:flex;align-items:center;gap:10px;">
+                    <input type="checkbox" id="field-active" checked style="width:18px;height:18px;cursor:pointer;" />
+                    <label for="field-active" style="margin:0;cursor:pointer;">Activo (mostrar en el sitio)</label>
                 </div>
             </div>
             <div class="modal-footer">
@@ -1150,9 +1307,25 @@
                 </div>
                 <div class="field">
                     <label>¿Incluye? (1 item por línea)</label>
-                    <textarea class="input" id="plan-field-includes" rows="4"
+                    <textarea class="input" id="plan-field-includes" rows="3"
                         placeholder="Avistamiento de ballenas&#10;Guía local&#10;Alojamiento 2 noches"></textarea>
                     <small style="color:var(--muted);font-size:11px;">Separa cada ítem con una línea nueva</small>
+                </div>
+                <div class="field">
+                    <label>¿No incluye? (1 item por línea)</label>
+                    <textarea class="input" id="plan-field-not-includes" rows="3"
+                        placeholder="Vuelos nacionales&#10;Gastos personales"></textarea>
+                    <small style="color:var(--muted);font-size:11px;">Separa cada ítem con una línea nueva</small>
+                </div>
+                <div class="field">
+                    <label>Descripción detallada</label>
+                    <textarea class="input" id="plan-field-description-long" rows="4"
+                        placeholder="Describe el itinerario o detalles del plan..."></textarea>
+                </div>
+                <div class="field">
+                    <label>Notas / Información adicional</label>
+                    <textarea class="input" id="plan-field-notes" rows="3"
+                        placeholder="Ej: Recomendado llevar protector solar, zapatos cómodos..."></textarea>
                 </div>
                 <div class="field">
                     <label>Imagen</label>
@@ -1391,63 +1564,15 @@
     </style>
 
     <script>
-        // ── AUTH CONFIG ──────────────────────────────────────────────
-        // Para cambiar la contraseña, genera el hash SHA-256 de tu nueva
-        // contraseña en: https://emn178.github.io/online-tools/sha256.html
-        // y reemplaza el valor de PASS_HASH abajo.
-        //
-        // Credenciales por defecto: usuario = wayra / contraseña = wayra2025
-        const AUTH = {
-            USER: 'wayra',
-            PASS_HASH: 'c10cfe6b18e2b7e3db8c6f3f19d228b31249e752379983725abfc7bcc9588676' // wayra2025
-        };
-
-        async function sha256(message) {
-            const msgBuffer = new TextEncoder().encode(message);
-            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-            return Array.from(new Uint8Array(hashBuffer))
-                .map(b => b.toString(16).padStart(2, '0')).join('');
-        }
-
-        async function doLogin() {
-            const user = document.getElementById('login-user').value.trim();
-            const pass = document.getElementById('login-pass').value;
-            const hash = await sha256(pass);
-            const errEl = document.getElementById('login-error');
-            const box = document.getElementById('login-box');
-
-            if (user === AUTH.USER && hash === AUTH.PASS_HASH) {
-                sessionStorage.setItem('wayra_auth', '1');
-                document.getElementById('login-overlay').style.display = 'none';
-                errEl.classList.remove('show');
-            } else {
-                errEl.classList.add('show');
-                box.classList.remove('shake');
-                void box.offsetWidth; // reflow to restart animation
-                box.classList.add('shake');
-            }
-        }
+        // ── AUTH & SESSION ───────────────────────────────────────────
+        // El acceso a esta carpeta ya está protegido por Netlify Edge Functions.
+        // Si el usuario llega aquí, es porque tiene una cookie válida.
 
         function doLogout() {
-            sessionStorage.removeItem('wayra_auth');
-            location.reload();
+            // Borramos la cookie de sesión expirándola
+            document.cookie = "wayra_admin_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+            location.href = "/admin-login.html";
         }
-
-        // Check session on load
-        if (sessionStorage.getItem('wayra_auth') === '1') {
-            document.getElementById('login-overlay').style.display = 'none';
-        }
-
-        // Allow Enter key on login form
-        document.addEventListener('keydown', e => {
-            if (document.getElementById('login-overlay').style.display !== 'none') return;
-        });
-        document.getElementById('login-pass')?.addEventListener('keydown', e => {
-            if (e.key === 'Enter') doLogin();
-        });
-        document.getElementById('login-user')?.addEventListener('keydown', e => {
-            if (e.key === 'Enter') document.getElementById('login-pass').focus();
-        });
 
         // ── APP STATE ──────────────────────────────────────────────
         let currentSection = 'experiences';
@@ -1474,6 +1599,11 @@
         let configFileHandle = null;
         let configData = { config: {} };
         let pendingCfgHeroImage = null;
+        let pendingCfgBannerImage = null;
+        let pendingCfgQsImage = null;
+        let pendingCfgWhaleImage = null;
+        let pendingCfgPlansHeroImage = null;
+        let pendingCfgPlansBgImage = null;
 
         // ── SECTION SWITCHER ───────────────────────────────────────
         function showSection(section) {
@@ -1523,6 +1653,7 @@
 
             } else if (section === 'planes') {
                 document.getElementById('screen-planes').style.display = 'block';
+                if (configFileHandle) populatePlanesPageConfig();
                 if (planesFileHandle) {
                     document.getElementById('btn-new-plan').style.display = 'flex';
                     document.getElementById('btn-save').style.display = 'flex';
@@ -1551,11 +1682,18 @@
             else openFile();
         }
 
-        function saveCurrentFile() {
-            if (currentSection === 'hotels') saveHotelsFile();
-            else if (currentSection === 'planes') savePlanesFile();
-            else if (currentSection === 'config') saveConfigFile();
-            else saveFile();
+        async function saveCurrentFile() {
+            if (currentSection === 'hotels') {
+                await saveHotelsFile();
+            } else if (currentSection === 'planes') {
+                await savePlanesFile();
+                // If config is also open and we are in planes tab, save it too as it contains page design
+                if (configFileHandle) await saveConfigFile();
+            } else if (currentSection === 'config') {
+                await saveConfigFile();
+            } else {
+                await saveFile();
+            }
         }
 
         // ── FILE OPS ──────────────────────────────────────────────
@@ -1660,6 +1798,42 @@
             document.getElementById('count-badge').style.display = 'inline-flex';
             renderPlanesGrid();
             updateStatus('Archivo: ' + (planesFileHandle ? planesFileHandle.name : 'planes.json'));
+
+            // Show page config area if config is loaded
+            const configArea = document.getElementById('planes-page-config-area');
+            if (configArea) {
+                if (configFileHandle) {
+                    configArea.style.display = 'block';
+                    populatePlanesPageConfig();
+                } else {
+                    configArea.style.display = 'none';
+                }
+            }
+        }
+
+        function populatePlanesPageConfig() {
+            const c = configData.config || {};
+            const plansHero = c.plansHeroImage || '';
+            document.getElementById('cfg-plans-hero-url').value = plansHero;
+            if (plansHero) {
+                document.getElementById('cfg-plans-hero-area').style.display = 'none';
+                document.getElementById('cfg-plans-hero-preview').style.display = 'flex';
+                document.getElementById('cfg-plans-hero-el').src = plansHero;
+            } else {
+                document.getElementById('cfg-plans-hero-area').style.display = 'flex';
+                document.getElementById('cfg-plans-hero-preview').style.display = 'none';
+            }
+
+            const plansBg = c.plansBgImage || '';
+            document.getElementById('cfg-plans-bg-url').value = plansBg;
+            if (plansBg) {
+                document.getElementById('cfg-plans-bg-area').style.display = 'none';
+                document.getElementById('cfg-plans-bg-preview').style.display = 'flex';
+                document.getElementById('cfg-plans-bg-el').src = plansBg;
+            } else {
+                document.getElementById('cfg-plans-bg-area').style.display = 'flex';
+                document.getElementById('cfg-plans-bg-preview').style.display = 'none';
+            }
         }
 
         function renderPlanesGrid() {
@@ -1706,7 +1880,10 @@
             document.getElementById('plan-field-duration').value = p ? p.duration || '' : '';
             document.getElementById('plan-field-subtitle').value = p ? p.subtitle || '' : '';
             document.getElementById('plan-field-description').value = p ? p.description || '' : '';
+            document.getElementById('plan-field-description-long').value = p ? p.descriptionLong || '' : '';
             document.getElementById('plan-field-includes').value = p && Array.isArray(p.includes) ? p.includes.join('\n') : '';
+            document.getElementById('plan-field-not-includes').value = p && Array.isArray(p.notIncluded) ? p.notIncluded.join('\n') : '';
+            document.getElementById('plan-field-notes').value = p ? p.notes || '' : '';
             document.getElementById('plan-field-active').checked = p ? p.active !== false : true;
             // Image
             const imgUrl = p ? p.image || '' : '';
@@ -1773,6 +1950,8 @@
             if (!id) id = title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
             const includesRaw = document.getElementById('plan-field-includes').value;
             const includes = includesRaw.split('\n').map(s => s.trim()).filter(Boolean);
+            const notIncludesRaw = document.getElementById('plan-field-not-includes').value;
+            const notIncluded = notIncludesRaw.split('\n').map(s => s.trim()).filter(Boolean);
             const imageValue = pendingPlanImage || document.getElementById('plan-field-image').value.trim();
             const plan = {
                 id,
@@ -1782,7 +1961,10 @@
                 duration: document.getElementById('plan-field-duration').value.trim(),
                 subtitle: document.getElementById('plan-field-subtitle').value.trim(),
                 description: document.getElementById('plan-field-description').value.trim(),
+                descriptionLong: document.getElementById('plan-field-description-long').value.trim(),
                 includes,
+                notIncluded,
+                notes: document.getElementById('plan-field-notes').value.trim(),
                 image: imageValue,
                 active: document.getElementById('plan-field-active').checked
             };
@@ -1793,7 +1975,7 @@
             }
             closePlanModal();
             renderPlanesGrid();
-            toast('success', editingPlanIndex !== null ? '✅ Plan actualizado' : '✅ Plan creado');
+            toast('success', editingPlanIndex !== null ? '✅ Plan actualizado (Haz clic en GUARDAR para confirmar)' : '✅ Plan creado (Haz clic en GUARDAR para confirmar)');
         }
 
         function deletePlan(index) {
@@ -1815,6 +1997,8 @@
                 configData = JSON.parse(text);
                 if (!configData.config) configData.config = {};
                 showConfigEditor();
+                // Also update planes tab if we are there
+                if (currentSection === 'planes') showPlanesEditor();
                 toast('success', '✅ config.json abierto correctamente');
             } catch (e) {
                 if (e.name !== 'AbortError') toast('error', '❌ No se pudo abrir el archivo');
@@ -1823,30 +2007,74 @@
 
         async function saveConfigFile() {
             if (!configFileHandle) { toast('error', '❌ Primero abre config.json'); return; }
-            // Read all fields back into configData.config
+
             const c = configData.config;
-            c.heroTitle = document.getElementById('cfg-hero-title').value.trim();
-            c.heroSubtitle = document.getElementById('cfg-hero-subtitle').value.trim();
-            c.heroCTA = document.getElementById('cfg-hero-cta').value.trim();
-            c.heroImage = pendingCfgHeroImage || document.getElementById('cfg-hero-img-url').value.trim() || c.heroImage || '';
-            c.whatsapp = document.getElementById('cfg-whatsapp').value.trim();
-            c.whatsappMessage = document.getElementById('cfg-wa-msg').value.trim();
-            c.email = document.getElementById('cfg-email').value.trim();
-            c.instagram = document.getElementById('cfg-instagram').value.trim();
-            c.facebook = document.getElementById('cfg-facebook').value.trim();
-            c.porqueNuquiTitle = document.getElementById('cfg-pn-title').value.trim();
-            c.porqueNuquiText = document.getElementById('cfg-pn-text').value.trim();
-            c.quienesSomosTitle = document.getElementById('cfg-qs-title').value.trim();
-            c.quienesSomosSubtitle = document.getElementById('cfg-qs-subtitle').value.trim();
-            c.quienesSomosText = document.getElementById('cfg-qs-text').value.trim();
+            const getVal = (id) => document.getElementById(id)?.value?.trim();
+
+            // Only update if the element is in the DOM
+            const fields = {
+                heroTitle: 'cfg-hero-title',
+                heroSubtitle: 'cfg-hero-subtitle',
+                heroCTA: 'cfg-hero-cta',
+                whatsapp: 'cfg-whatsapp',
+                whatsappMessage: 'cfg-wa-msg',
+                email: 'cfg-email',
+                instagram: 'cfg-instagram',
+                facebook: 'cfg-facebook',
+                porqueNuquiTitle: 'cfg-pn-title',
+                porqueNuquiText: 'cfg-pn-text',
+                quienesSomosTitle: 'cfg-qs-title',
+                quienesSomosSubtitle: 'cfg-qs-subtitle',
+                quienesSomosText: 'cfg-qs-text',
+                whaleSectionTitle: 'cfg-whale-title',
+                whaleSectionSubtitle: 'cfg-whale-subtitle'
+            };
+
+            for (const [key, id] of Object.entries(fields)) {
+                const val = getVal(id);
+                if (val !== undefined) c[key] = val;
+            }
+
+            // Handle images with their respective "pending" variables
+            if (document.getElementById('cfg-hero-img-url')) {
+                c.heroImage = pendingCfgHeroImage || getVal('cfg-hero-img-url');
+            }
+            if (document.getElementById('cfg-qs-img-url')) {
+                c.quienesSomosImage = pendingCfgQsImage || getVal('cfg-qs-img-url');
+            }
+            if (document.getElementById('cfg-whale-img-url')) {
+                c.whaleBgImage = pendingCfgWhaleImage || getVal('cfg-whale-img-url');
+            }
+            if (document.getElementById('cfg-plans-hero-url')) {
+                c.plansHeroImage = pendingCfgPlansHeroImage || getVal('cfg-plans-hero-url');
+            }
+            if (document.getElementById('cfg-plans-bg-url')) {
+                c.plansBgImage = pendingCfgPlansBgImage || getVal('cfg-plans-bg-url');
+            }
+            if (document.getElementById('cfg-banner-img-url')) {
+                c.bannerImage = pendingCfgBannerImage || getVal('cfg-banner-img-url');
+            }
+            if (document.getElementById('cfg-site-bg-color')) {
+                c.siteBgColor = document.getElementById('cfg-site-bg-color').value;
+            }
+
             try {
                 const writable = await configFileHandle.createWritable();
                 await writable.write(JSON.stringify(configData, null, 2));
                 await writable.close();
-                updateStatus('Guardado · ' + new Date().toLocaleTimeString());
-                toast('success', '✅ config.json guardado');
+
+                // Clear pending images after successful save
+                pendingCfgHeroImage = null;
+                pendingCfgQsImage = null;
+                pendingCfgWhaleImage = null;
+                pendingCfgPlansHeroImage = null;
+                pendingCfgPlansBgImage = null;
+
+                updateStatus('Configuración guardada · ' + new Date().toLocaleTimeString());
+                toast('success', '✅ Cambios en config.json guardados');
             } catch (e) {
-                toast('error', '❌ No se pudo guardar: ' + e.message);
+                console.error(e);
+                toast('error', '❌ Error al guardar config.json: ' + e.message);
             }
         }
 
@@ -1876,7 +2104,70 @@
             document.getElementById('cfg-pn-text').value = c.porqueNuquiText || '';
             document.getElementById('cfg-qs-title').value = c.quienesSomosTitle || '';
             document.getElementById('cfg-qs-subtitle').value = c.quienesSomosSubtitle || '';
+            document.getElementById('cfg-qs-img-url').value = c.quienesSomosImage || '';
+            if (c.quienesSomosImage) {
+                document.getElementById('cfg-qs-img-area').style.display = 'none';
+                document.getElementById('cfg-qs-img-preview').style.display = 'flex';
+                document.getElementById('cfg-qs-img-el').src = c.quienesSomosImage;
+            } else {
+                document.getElementById('cfg-qs-img-area').style.display = 'flex';
+                document.getElementById('cfg-qs-img-preview').style.display = 'none';
+            }
             document.getElementById('cfg-qs-text').value = c.quienesSomosText || '';
+
+            // Whale section
+            const whaleBg = c.whaleBgImage || '';
+            document.getElementById('cfg-whale-img-url').value = whaleBg;
+            if (whaleBg) {
+                document.getElementById('cfg-whale-img-area').style.display = 'none';
+                document.getElementById('cfg-whale-img-preview').style.display = 'flex';
+                document.getElementById('cfg-whale-img-el').src = whaleBg;
+            } else {
+                document.getElementById('cfg-whale-img-area').style.display = 'flex';
+                document.getElementById('cfg-whale-img-preview').style.display = 'none';
+            }
+            document.getElementById('cfg-whale-title').value = c.whaleSectionTitle || '';
+            document.getElementById('cfg-whale-subtitle').value = c.whaleSectionSubtitle || '';
+
+            // Plans section
+            const plansHero = c.plansHeroImage || '';
+            document.getElementById('cfg-plans-hero-url').value = plansHero;
+            if (plansHero) {
+                document.getElementById('cfg-plans-hero-area').style.display = 'none';
+                document.getElementById('cfg-plans-hero-preview').style.display = 'flex';
+                document.getElementById('cfg-plans-hero-el').src = plansHero;
+            } else {
+                document.getElementById('cfg-plans-hero-area').style.display = 'flex';
+                document.getElementById('cfg-plans-hero-preview').style.display = 'none';
+            }
+
+            const plansBg = c.plansBgImage || '';
+            document.getElementById('cfg-plans-bg-url').value = plansBg;
+            if (plansBg) {
+                document.getElementById('cfg-plans-bg-area').style.display = 'none';
+                document.getElementById('cfg-plans-bg-preview').style.display = 'flex';
+                document.getElementById('cfg-plans-bg-el').src = plansBg;
+            } else {
+                document.getElementById('cfg-plans-bg-area').style.display = 'flex';
+                document.getElementById('cfg-plans-bg-preview').style.display = 'none';
+            }
+
+            const bgColor = c.siteBgColor || '#f7ede8';
+            document.getElementById('cfg-site-bg-color').value = bgColor;
+            document.getElementById('cfg-site-bg-color-text').value = bgColor;
+
+            // Banner image
+            const bannerImg = c.bannerImage || '';
+            document.getElementById('cfg-banner-img-url').value = bannerImg;
+            if (bannerImg) {
+                document.getElementById('cfg-banner-img-area').style.display = 'none';
+                document.getElementById('cfg-banner-img-preview').style.display = 'flex';
+                document.getElementById('cfg-banner-img-el').src = bannerImg;
+            } else {
+                document.getElementById('cfg-banner-img-area').style.display = 'flex';
+                document.getElementById('cfg-banner-img-preview').style.display = 'none';
+            }
+
             updateStatus('Archivo: ' + (configFileHandle ? configFileHandle.name : 'config.json'));
         }
 
@@ -1909,6 +2200,166 @@
             document.getElementById('cfg-hero-img-el').src = '';
             document.getElementById('cfg-hero-img-url').value = '';
             document.getElementById('cfg-hero-file').value = '';
+        }
+
+        // ── BANNER IMAGE ─────────────────────────────────────────────
+        function handleCfgBannerImg(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                pendingCfgBannerImage = e.target.result;
+                document.getElementById('cfg-banner-img-area').style.display = 'none';
+                document.getElementById('cfg-banner-img-preview').style.display = 'flex';
+                document.getElementById('cfg-banner-img-el').src = pendingCfgBannerImage;
+                document.getElementById('cfg-banner-img-url').value = '';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function previewCfgBannerImgUrl(url) {
+            if (!url) { clearCfgBannerImg(); return; }
+            document.getElementById('cfg-banner-img-area').style.display = 'none';
+            document.getElementById('cfg-banner-img-preview').style.display = 'flex';
+            document.getElementById('cfg-banner-img-el').src = url;
+            pendingCfgBannerImage = null;
+        }
+
+        function clearCfgBannerImg() {
+            pendingCfgBannerImage = null;
+            document.getElementById('cfg-banner-img-area').style.display = 'flex';
+            document.getElementById('cfg-banner-img-preview').style.display = 'none';
+            document.getElementById('cfg-banner-img-el').src = '';
+            document.getElementById('cfg-banner-img-url').value = '';
+            document.getElementById('cfg-banner-file').value = '';
+        }
+
+        // ── QS IMAGE ─────────────────────────────────────────────
+        function handleCfgQsImg(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                pendingCfgQsImage = e.target.result;
+                document.getElementById('cfg-qs-img-area').style.display = 'none';
+                document.getElementById('cfg-qs-img-preview').style.display = 'flex';
+                document.getElementById('cfg-qs-img-el').src = pendingCfgQsImage;
+                document.getElementById('cfg-qs-img-url').value = '';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function previewCfgQsImgUrl(url) {
+            if (!url) { clearCfgQsImg(); return; }
+            document.getElementById('cfg-qs-img-area').style.display = 'none';
+            document.getElementById('cfg-qs-img-preview').style.display = 'flex';
+            document.getElementById('cfg-qs-img-el').src = url;
+            pendingCfgQsImage = null;
+        }
+
+        function clearCfgQsImg() {
+            pendingCfgQsImage = null;
+            document.getElementById('cfg-qs-img-area').style.display = 'flex';
+            document.getElementById('cfg-qs-img-preview').style.display = 'none';
+            document.getElementById('cfg-qs-img-el').src = '';
+            document.getElementById('cfg-qs-img-url').value = '';
+            document.getElementById('cfg-qs-file').value = '';
+        }
+
+        // ── WHALE BG IMAGE ─────────────────────────────────────────
+        function handleCfgWhaleImg(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                pendingCfgWhaleImage = e.target.result;
+                document.getElementById('cfg-whale-img-area').style.display = 'none';
+                document.getElementById('cfg-whale-img-preview').style.display = 'flex';
+                document.getElementById('cfg-whale-img-el').src = pendingCfgWhaleImage;
+                document.getElementById('cfg-whale-img-url').value = '';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function previewCfgWhaleImgUrl(url) {
+            if (!url) { clearCfgWhaleImg(); return; }
+            document.getElementById('cfg-whale-img-area').style.display = 'none';
+            document.getElementById('cfg-whale-img-preview').style.display = 'flex';
+            document.getElementById('cfg-whale-img-el').src = url;
+            pendingCfgWhaleImage = null;
+        }
+
+        function clearCfgWhaleImg() {
+            pendingCfgWhaleImage = null;
+            document.getElementById('cfg-whale-img-area').style.display = 'flex';
+            document.getElementById('cfg-whale-img-preview').style.display = 'none';
+            document.getElementById('cfg-whale-img-el').src = '';
+            document.getElementById('cfg-whale-img-url').value = '';
+            document.getElementById('cfg-whale-file').value = '';
+        }
+
+        // ── PLANS HERO IMAGE ─────────────────────────────────────────
+        function handleCfgPlansHeroImg(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                pendingCfgPlansHeroImage = e.target.result;
+                document.getElementById('cfg-plans-hero-area').style.display = 'none';
+                document.getElementById('cfg-plans-hero-preview').style.display = 'flex';
+                document.getElementById('cfg-plans-hero-el').src = pendingCfgPlansHeroImage;
+                document.getElementById('cfg-plans-hero-url').value = '';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function previewCfgPlansHeroImgUrl(url) {
+            if (!url) { clearCfgPlansHeroImg(); return; }
+            document.getElementById('cfg-plans-hero-area').style.display = 'none';
+            document.getElementById('cfg-plans-hero-preview').style.display = 'flex';
+            document.getElementById('cfg-plans-hero-el').src = url;
+            pendingCfgPlansHeroImage = null;
+        }
+
+        function clearCfgPlansHeroImg() {
+            pendingCfgPlansHeroImage = null;
+            document.getElementById('cfg-plans-hero-area').style.display = 'flex';
+            document.getElementById('cfg-plans-hero-preview').style.display = 'none';
+            document.getElementById('cfg-plans-hero-el').src = '';
+            document.getElementById('cfg-plans-hero-url').value = '';
+            document.getElementById('cfg-plans-hero-file').value = '';
+        }
+
+        // ── PLANS BG IMAGE ─────────────────────────────────────────
+        function handleCfgPlansBgImg(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = e => {
+                pendingCfgPlansBgImage = e.target.result;
+                document.getElementById('cfg-plans-bg-area').style.display = 'none';
+                document.getElementById('cfg-plans-bg-preview').style.display = 'flex';
+                document.getElementById('cfg-plans-bg-el').src = pendingCfgPlansBgImage;
+                document.getElementById('cfg-plans-bg-url').value = '';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function previewCfgPlansBgImgUrl(url) {
+            if (!url) { clearCfgPlansBgImg(); return; }
+            document.getElementById('cfg-plans-bg-area').style.display = 'none';
+            document.getElementById('cfg-plans-bg-preview').style.display = 'flex';
+            document.getElementById('cfg-plans-bg-el').src = url;
+            pendingCfgPlansBgImage = null;
+        }
+
+        function clearCfgPlansBgImg() {
+            pendingCfgPlansBgImage = null;
+            document.getElementById('cfg-plans-bg-area').style.display = 'flex';
+            document.getElementById('cfg-plans-bg-preview').style.display = 'none';
+            document.getElementById('cfg-plans-bg-el').src = '';
+            document.getElementById('cfg-plans-bg-url').value = '';
+            document.getElementById('cfg-plans-bg-file').value = '';
         }
 
         function showHotelsEditor() {
@@ -2154,14 +2605,22 @@
                 return;
             }
 
-            grid.innerHTML = data.experiences.map((exp, i) => `
+            grid.innerHTML = data.experiences.map((exp, i) => {
+                const activeLabel = exp.active === false ? '<span style="color:#e53e3e;font-size:11px;">● Oculto</span>' : '<span style="color:#38a169;font-size:11px;">● Activo</span>';
+                return `
       <div class="exp-card">
         <div class="exp-card-img">
           ${exp.image ? `<img src="${exp.image}" alt="${exp.title}" onerror="this.parentElement.innerHTML='🌊'" />` : '🌊'}
         </div>
         <div class="exp-card-body">
-          <div class="exp-card-tag">#${exp.id || 'sin-id'}</div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+            <div class="exp-card-tag">#${exp.id || 'sin-id'}</div>
+            ${activeLabel}
+          </div>
           <div class="exp-card-title">${exp.title || 'Sin título'}</div>
+          <div style="font-size:12px; color:var(--accent2); font-weight:600; margin-bottom:8px;">
+            ${exp.price || ''} ${exp.duration ? ' · ' + exp.duration : ''}
+          </div>
           <div class="exp-card-desc">${exp.description || ''}</div>
         </div>
         <div class="exp-card-actions">
@@ -2169,7 +2628,8 @@
           <button class="btn btn-danger" style="font-size:13px;" onclick="openConfirm(${i})">🗑️</button>
         </div>
       </div>
-    `).join('');
+    `;
+            }).join('');
         }
 
         // Auto-genera el ID desde el título
@@ -2203,7 +2663,15 @@
                 idField._userEdited = true;
                 document.getElementById('field-title').value = exp.title || '';
                 document.getElementById('field-badge').value = exp.badge || '';
+                document.getElementById('field-price').value = exp.price || '';
+                document.getElementById('field-duration').value = exp.duration || '';
+                document.getElementById('field-subtitle').value = exp.subtitle || '';
                 document.getElementById('field-description').value = exp.description || '';
+                document.getElementById('field-description-long').value = exp.descriptionLong || '';
+                document.getElementById('field-includes').value = exp.includes && Array.isArray(exp.includes) ? exp.includes.join('\n') : '';
+                document.getElementById('field-not-includes').value = exp.notIncluded && Array.isArray(exp.notIncluded) ? exp.notIncluded.join('\n') : '';
+                document.getElementById('field-notes').value = exp.notes || '';
+                document.getElementById('field-active').checked = exp.active !== false;
                 document.getElementById('field-image').value = exp.image || '';
                 if (exp.image) showImagePreview(exp.image);
                 else clearImage(false);
@@ -2211,7 +2679,15 @@
                 idField.value = '';
                 document.getElementById('field-title').value = '';
                 document.getElementById('field-badge').value = '';
+                document.getElementById('field-price').value = '';
+                document.getElementById('field-duration').value = '';
+                document.getElementById('field-subtitle').value = '';
                 document.getElementById('field-description').value = '';
+                document.getElementById('field-description-long').value = '';
+                document.getElementById('field-includes').value = '';
+                document.getElementById('field-not-includes').value = '';
+                document.getElementById('field-notes').value = '';
+                document.getElementById('field-active').checked = true;
                 document.getElementById('field-image').value = '';
                 clearImage(false);
             }
@@ -2244,14 +2720,33 @@
             if (!id) { toast('error', '❌ El ID es obligatorio'); return; }
             if (!title) { toast('error', '❌ El título es obligatorio'); return; }
 
-            const exp = { id, title, badge, image, description };
+            const includesRaw = document.getElementById('field-includes').value;
+            const includes = includesRaw.split('\n').map(s => s.trim()).filter(Boolean);
+            const notIncludesRaw = document.getElementById('field-not-includes').value;
+            const notIncluded = notIncludesRaw.split('\n').map(s => s.trim()).filter(Boolean);
+
+            const exp = {
+                id,
+                title,
+                badge,
+                price: document.getElementById('field-price').value.trim(),
+                duration: document.getElementById('field-duration').value.trim(),
+                subtitle: document.getElementById('field-subtitle').value.trim(),
+                description,
+                descriptionLong: document.getElementById('field-description-long').value.trim(),
+                includes,
+                notIncluded,
+                notes: document.getElementById('field-notes').value.trim(),
+                image,
+                active: document.getElementById('field-active').checked
+            };
 
             if (editingIndex !== null) {
                 data.experiences[editingIndex] = exp;
-                toast('success', '✅ Experiencia actualizada');
+                toast('success', '✅ Experiencia actualizada (Haz clic en GUARDAR para confirmar)');
             } else {
                 data.experiences.push(exp);
-                toast('success', '✅ Experiencia creada');
+                toast('success', '✅ Experiencia creada (Haz clic en GUARDAR para confirmar)');
             }
 
             closeModal();

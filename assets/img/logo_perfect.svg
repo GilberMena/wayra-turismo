@@ -1,0 +1,24 @@
+<svg width="240" height="240" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer Ring with precise stroke -->
+  <circle cx="256" cy="180" r="105" fill="none" stroke="#2C3E35" stroke-width="2.2"/>
+  
+  <!-- Sun Emblem (exactly matching the arc) -->
+  <path d="M210 178 A 46 46 0 0 1 302 178" fill="none" stroke="#2C3E35" stroke-width="1.4"/>
+  <circle cx="256" cy="178" r="78" fill="none" stroke="#2C3E35" stroke-width="1.2" opacity="0.3"/>
+
+  <!-- Three Parallel Wavy Lines (Precise geometry) -->
+  <g fill="none" stroke="#2C3E35" stroke-width="1.6">
+    <!-- Top Wave -->
+    <path d="M190 200 C 205 185, 230 215, 256 200 C 282 185, 307 215, 322 200"/>
+    <!-- Middle Wave -->
+    <path d="M182 225 C 197 210, 222 240, 248 225 C 274 210, 299 240, 314 225"/>
+    <!-- Bottom Wave -->
+    <path d="M174 250 C 189 235, 214 265, 240 250 C 266 235, 291 265, 306 250"/>
+  </g>
+  
+  <!-- Typography "WAYRA" (Correct scale and tracking) -->
+  <text x="50%" y="360" text-anchor="middle" font-family="'Merriweather', serif" font-size="82" font-weight="700" fill="#2C3E35" letter-spacing="9">WAYRA</text>
+  
+  <!-- Slogan (Perfectly centered and sized) -->
+  <text x="50%" y="415" text-anchor="middle" font-family="'Merriweather', serif" font-size="28" fill="#2C3E35" letter-spacing="1.2">El viaje que se queda</text>
+</svg>

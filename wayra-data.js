@@ -81,7 +81,7 @@ function renderExperienceCards(experiences, containerId, maxCards) {
         <div class="act-body">
           <h3>${exp.title || ''}</h3>
           <p>${exp.description || ''}</p>
-          <a class="btn-outline" href="detail.html?type=exp&id=${exp.id}">Ver experiencia →</a>
+          <a class="btn-outline" href="detail.html?type=exp&id=${exp.id}">Ver plan →</a>
         </div>
       </article>`;
   }).join('');
@@ -126,7 +126,7 @@ function renderExperienciasPage(experiences, containerId) {
         <div class="card-body" style="padding:20px;">
           <h3 style="margin:0 0 8px;font-size:17px;">${exp.title || ''}</h3>
           <p style="font-size:14px;color:var(--text-muted,#666);line-height:1.6;margin:0 0 16px;">${exp.description || ''}</p>
-          <a class="btn-outline" href="detail.html?type=exp&id=${exp.id}" style="font-size:13px;">Ver experiencia →</a>
+          <a class="btn-outline" href="detail.html?type=exp&id=${exp.id}" style="font-size:13px;">Ver plan →</a>
         </div>
       </article>`;
   }).join('');
@@ -192,6 +192,129 @@ function applyConfig(cfg) {
   if (pnTitle && cfg.porqueNuquiTitle) pnTitle.textContent = cfg.porqueNuquiTitle;
   if (pnText && cfg.porqueNuquiText) pnText.textContent = cfg.porqueNuquiText;
   // Quiénes somos
+  const qsTitle = document.getElementById('quienes-somos-title');
+  const qsSubtitle = document.getElementById('quienes-somos-subtitle');
+  const qsImg = document.getElementById('quienes-somos-img');
   const qsText = document.getElementById('quienes-somos-text');
-  if (qsText && cfg.quienesSomosText) qsText.textContent = cfg.quienesSomosText;
+
+  if (qsTitle && cfg.quienesSomosTitle) qsTitle.textContent = cfg.quienesSomosTitle;
+  if (qsSubtitle && cfg.quienesSomosSubtitle) qsSubtitle.textContent = cfg.quienesSomosSubtitle;
+  if (qsImg && cfg.quienesSomosImage) {
+    qsImg.src = cfg.quienesSomosImage;
+    qsImg.style.display = 'block';
+  } else if (qsImg) {
+    qsImg.style.display = 'none';
+  }
+  if (qsText && cfg.quienesSomosText) {
+    // Si el texto tiene saltos de línea, convertirlos a párrafos o usar line-breaks
+    qsText.innerHTML = cfg.quienesSomosText.split('\n').filter(p => p.trim()).map(p => `<p>${p}</p>`).join('');
+  }
+
+  // Vibrant Hero Area (on main page)
+  const vividHero = document.getElementById('vivid-hero-section');
+  if (vividHero && cfg.bannerImage) {
+    vividHero.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${cfg.bannerImage}')`;
+    vividHero.style.backgroundSize = 'cover';
+    vividHero.style.backgroundPosition = 'center';
+    vividHero.style.backgroundAttachment = 'fixed';
+
+    const innerSecs = vividHero.querySelectorAll('section');
+    innerSecs.forEach(s => {
+      s.style.background = 'transparent';
+      const textEls = s.querySelectorAll('h2, .subtitle, p, li, strong, h3, .razones-eyebrow, .razones-titulo');
+      textEls.forEach(el => {
+        if (!el.closest('.razon-card')) {
+          el.style.color = '#ffffff';
+          el.style.textShadow = '0 2px 4px rgba(0,0,0,0.3)';
+        }
+      });
+    });
+  }
+
+  // Vibrant Whale Background Area
+  const vividSection = document.getElementById('vivid-whale-section');
+  if (vividSection && cfg.whaleBgImage) {
+    vividSection.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('${cfg.whaleBgImage}')`;
+    vividSection.style.backgroundSize = 'cover';
+    vividSection.style.backgroundPosition = 'center';
+    vividSection.style.backgroundAttachment = 'fixed';
+
+    const innerSections = vividSection.querySelectorAll('.section');
+    innerSections.forEach(s => {
+      s.style.background = 'transparent';
+      const textEls = s.querySelectorAll('h2, .subtitle, p, li, strong');
+      textEls.forEach(el => {
+        if (!el.closest('.plan-card') && !el.closest('.personalized-package-card')) {
+          el.style.color = '#ffffff';
+          el.style.textShadow = '0 2px 4px rgba(0,0,0,0.3)';
+        }
+      });
+    });
+  }
+
+  // Vibrant Planes Background Area
+  const vividPlans = document.getElementById('vivid-plans-section');
+  if (vividPlans && cfg.plansBgImage) {
+    vividPlans.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${cfg.plansBgImage}')`;
+    vividPlans.style.backgroundSize = 'cover';
+    vividPlans.style.backgroundPosition = 'center';
+    vividPlans.style.backgroundAttachment = 'fixed';
+
+    const innerSections = vividPlans.querySelectorAll('.section');
+    innerSections.forEach(s => {
+      s.style.background = 'transparent';
+      const container = s.querySelector('.container');
+      if (container) {
+        // Restore "Transparent Contrast" (Glassmorphism)
+        container.style.background = 'rgba(255, 255, 255, 0.1)';
+        container.style.backdropFilter = 'blur(10px)';
+        container.style.webkitBackdropFilter = 'blur(10px)';
+        container.style.padding = '40px 20px';
+        container.style.borderRadius = '24px';
+        container.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+      }
+      const textEls = s.querySelectorAll('h2, .subtitle, p, li, strong');
+      textEls.forEach(el => {
+        if (!el.closest('.plan-card') && !el.closest('.personalized-package-card')) {
+          el.style.color = '#ffffff';
+          el.style.textShadow = '0 2px 4px rgba(0,0,0,0.3)';
+        }
+      });
+
+      // Keep cards solid as requested
+      const cards = s.querySelectorAll('.plan-card, .personalized-package-card');
+      cards.forEach(c => {
+        c.style.background = '#2b2b2b';
+        c.style.backdropFilter = 'none';
+        c.style.webkitBackdropFilter = 'none';
+        c.style.opacity = '1';
+      });
+    });
+  }
+
+  // Plans Hero
+  const plansHero = document.getElementById('plans-hero');
+  if (plansHero) {
+    // If we have a unified background, the hero should be transparent
+    plansHero.style.background = 'transparent';
+    const overlay = plansHero.querySelector('.hero-overlay');
+    if (overlay) overlay.style.background = 'rgba(0,0,0,0.2)'; // Subtle darken for readability
+  }
+
+  const actSection = document.getElementById('actividades');
+  if (actSection) {
+    const actTitle = actSection.querySelector('h2');
+    const actSub = actSection.querySelector('.subtitle');
+    if (actTitle && cfg.whaleSectionTitle) actTitle.textContent = cfg.whaleSectionTitle;
+    if (actSub && cfg.whaleSectionSubtitle) actSub.textContent = cfg.whaleSectionSubtitle;
+  }
+  if (cfg.siteBgColor) {
+    document.documentElement.style.setProperty('--bg', cfg.siteBgColor);
+    document.body.style.backgroundColor = cfg.siteBgColor;
+  }
+}
+
+// Auto-load config on all pages unless we are in admin
+if (!window.location.pathname.includes('/admin/')) {
+  loadConfig(applyConfig);
 }

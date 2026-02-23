@@ -18,88 +18,42 @@
       "active": true
     },
     {
-      "id": "plan-fotografo",
-      "title": "Plan Fotógrafo",
-      "price": "$1.800.000",
-      "duration": "4 días / 3 noches",
-      "subtitle": "Taller incluido",
-      "description": "Sesiones guiadas de fotografía con guías locales y salida en bote al atardecer.",
-      "badge": "📸",
-      "image": "",
-      "includes": [
-        "Taller de fotografía",
-        "Bote al atardecer",
-        "Guía fotográfico",
-        "Alojamiento 3 noches"
-      ],
-      "active": true
-    },
-    {
-      "id": "plan-a-tu-medida",
-      "title": "Plan A tu Medida",
-      "price": "Desde $2.200.000",
-      "duration": "Flexible",
-      "subtitle": "Itinerario personalizado",
-      "description": "Diseñamos un viaje según tus tiempos, intereses y presupuesto.",
-      "badge": "✨",
-      "image": "",
-      "includes": [
-        "Itinerario personalizado",
-        "Fechas flexibles",
-        "Asesoría completa",
-        "Experiencias a medida"
-      ],
-      "active": true
-    },
-    {
-      "id": "plan-ballenas",
-      "title": "Avistamiento de Ballenas",
-      "badge": "⭐ Temporada",
+      "id": "surfnuqui",
+      "title": "SurfNuqui",
+      "badge": "⭐ Todo El Año",
       "price": "$1.450.000",
       "duration": "3 días / 2 noches",
       "subtitle": "Jul – Oct",
       "description": "Vive la magia del Pacífico: observa ballenas jorobadas en su hábitat natural, con guía bilingüe certificado y salida en lancha.",
+      "descriptionLong": "",
       "includes": [
         "Salida en bote con guía especializado",
         "Alojamiento 2 noches en cabaña eco",
         "Desayunos incluidos",
         "Equipo de snorkel"
       ],
+      "notIncluded": [],
+      "notes": "",
       "image": "",
       "active": true
     },
     {
-      "id": "plan-pesca-manglares",
-      "title": "Pesca y Manglares",
+      "id": "senderos-y-manglares",
+      "title": "Senderos y Manglares",
       "badge": "🎣 Aventura",
       "price": "$980.000",
       "duration": "2 días / 1 noche",
       "subtitle": "Grupo mínimo 2",
       "description": "Recorre los manglares del Pacífico en kayak, aprende pesca artesanal con los lugareños y saborea el fruto del mar.",
+      "descriptionLong": "",
       "includes": [
         "Recorrido en kayak por manglares",
         "Pesca artesanal con guía local",
         "Almuerzo típico incluido",
         "Alojamiento 1 noche"
       ],
-      "image": "",
-      "active": true
-    },
-    {
-      "id": "plan-retiro-bienestar",
-      "title": "Retiro Naturaleza y Bienestar",
-      "badge": "🧘 Exclusivo",
-      "price": "Desde $2.800.000",
-      "duration": "5 días / 4 noches",
-      "subtitle": "Cupos limitados",
-      "description": "Desconéctate del mundo: yoga al amanecer en la playa, meditación en la selva, masajes y gastronomía local saludable.",
-      "includes": [
-        "Clases de yoga y meditación diarias",
-        "Masajes terapéuticos",
-        "Alimentación saludable 3 tiempos",
-        "Alojamiento 4 noches premium",
-        "Caminatas guiadas por la selva"
-      ],
+      "notIncluded": [],
+      "notes": "",
       "image": "",
       "active": true
     }

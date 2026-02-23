@@ -1,0 +1,17 @@
+{
+    "version": 2,
+    "rewrites": [
+        {
+            "source": "/admin/(.*)",
+            "destination": "/api/admin-auth?path=$1"
+        },
+        {
+            "source": "/admin",
+            "destination": "/api/admin-auth"
+        },
+        {
+            "source": "/.netlify/functions/(.*)",
+            "destination": "/api/$1"
+        }
+    ]
+}
