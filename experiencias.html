@@ -17,17 +17,17 @@
 <body>
     <header class="site-header">
         <div class="container header-inner">
-            <a class="logo" href="index.html">
+            <!-- <a class="logo" href="index.html">
                 <div class="wayra-brand-container">
-                    <!-- Logo removido temporalmente -->
+                    <img id="site-logo" src="assets/img/logo_perfect_v3.svg" alt="WAYRA Logo">
                 </div>
-            </a>
+            </a> -->
 
             <nav class="main-nav" aria-label="Navegación principal">
                 <a href="index.html">Inicio</a>
                 <a href="experiencias.html" class="active">Experiencias</a>
                 <a href="plans-nuqui.html">Planes turísticos en Nuquí</a>
-                <a href="https://wa.me/573225225582" target="_blank">Contacto</a>
+                <a href="https://wa.me/573225225582" target="_blank" data-wa-link>Contacto</a>
             </nav>
 
             <div class="header-actions">
@@ -51,20 +51,21 @@
 
                 <a class="btn-whatsapp"
                     href="https://wa.me/573225225582?text=Hola%20quiero%20informaci%C3%B3n%20sobre%20experiencias"
-                    target="_blank">WhatsApp</a>
+                    target="_blank" data-wa-link>WhatsApp</a>
                 <button class="nav-toggle" aria-label="Abrir navegación">☰</button>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="hero" style="background-image:url('assets/hero.svg'); height:50vh; min-height:300px;">
+        <header id="experiences-hero" class="hero-section"
+            style="background-image: url('assets/img/hero-experiencias.jpg');">
             <div class="hero-overlay"></div>
             <div class="container hero-content">
                 <h1>Experiencias en Nuquí</h1>
                 <p class="lead">Conexión profunda con la naturaleza y la cultura del Pacífico.</p>
             </div>
-        </section>
+        </header>
 
         <section class="section">
             <div class="container">
@@ -81,8 +82,8 @@
                 <div style="margin-top:40px; text-align:center;">
                     <p class="lead" style="font-size:1.2em; color:var(--text);">¿Quieres vivir alguna de estas
                         experiencias?</p>
-                    <a href="#" class="btn-primary open-reserve" data-plan-title="Experiencia Personalizada"
-                        data-plan-price="" data-plan-id="exp-general">Contáctanos para armar tu plan</a>
+                    <!-- <a href="#" class="btn-primary open-reserve" data-plan-title="Experiencia Personalizada"
+                        data-plan-price="" data-plan-id="exp-general">Contáctanos para armar tu plan</a> -->
                 </div>
             </div>
         </section>
@@ -91,15 +92,16 @@
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col footer-logo-area">
+                <!-- <div class="footer-col footer-logo-area">
                     <div class="wayra-brand-container">
-                        <!-- Logo removido temporalmente -->
+                        <img id="site-logo" src="assets/img/logo_perfect_v3.svg" alt="WAYRA Logo"
+                            style="max-width: 140px; margin-bottom: 20px;">
                     </div>
                     <p class="footer-rnt">
                         Expertos en experiencias auténticas en el Pacífico Colombiano.<br>
                         <strong>"El viaje que se queda"</strong>
                     </p>
-                </div>
+                </div> -->
 
                 <div class="footer-col">
                     <h3>Servicios</h3>
@@ -114,9 +116,9 @@
                 <div class="footer-col">
                     <h3>Empresarial</h3>
                     <ul class="footer-list">
-                        <li><a href="https://wa.me/573225225582" target="_blank">Contacto</a></li>
+                        <li><a href="https://wa.me/573225225582" target="_blank" data-wa-link>Contacto</a></li>
                         <li><a href="admin/index.html">Acceso Admin</a></li>
-                        <li><a href="mailto:vivewayra@gmail.com">P.Q.R.S.</a></li>
+                        <li><a href="mailto:vivewayra@gmail.com" data-email-link>P.Q.R.S.</a></li>
                     </ul>
                 </div>
 
@@ -124,21 +126,22 @@
                     <h3>Redes Sociales</h3>
                     <div class="footer-social-icons">
                         <a href="https://www.facebook.com/profile.php?id=61587257972289"
-                            class="footer-social-icon facebook" aria-label="Facebook" target="_blank" rel="noopener">
+                            class="footer-social-icon facebook" aria-label="Facebook" target="_blank" rel="noopener"
+                            data-fb-link>
                             <svg viewBox="0 0 24 24">
                                 <path
                                     d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z" />
                             </svg>
                         </a>
                         <a href="https://wa.me/573225225582" class="footer-social-icon whatsapp" aria-label="WhatsApp"
-                            target="_blank" rel="noopener">
+                            target="_blank" rel="noopener" data-wa-link>
                             <svg viewBox="0 0 24 24">
                                 <path
                                     d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z" />
                             </svg>
                         </a>
                         <a href="https://www.instagram.com/vivewayra/" class="footer-social-icon instagram"
-                            aria-label="Instagram" target="_blank" rel="noopener">
+                            aria-label="Instagram" target="_blank" rel="noopener" data-ig-link>
                             <svg viewBox="0 0 24 24">
                                 <path
                                     d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z" />

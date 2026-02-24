@@ -1,0 +1,14 @@
+{
+    "name": "wayra-turismo",
+    "version": "1.0.0",
+    "description": "Wayra Turismo Website",
+    "main": "index.html",
+    "dependencies": {
+        "next": "latest"
+    },
+    "scripts": {
+        "start": "next start",
+        "build": "next build",
+        "dev": "next dev"
+    }
+}

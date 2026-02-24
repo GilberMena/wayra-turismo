@@ -179,11 +179,42 @@ function applyConfig(cfg) {
   if (heroSubtitle && cfg.heroSubtitle) heroSubtitle.textContent = cfg.heroSubtitle;
   if (heroCTA && cfg.heroCTA) heroCTA.textContent = cfg.heroCTA;
   if (heroSection && cfg.heroImage) heroSection.style.backgroundImage = `url('${cfg.heroImage}')`;
+
+  // Logos (Header, Footer, etc)
+  if (cfg.siteLogo) {
+    document.querySelectorAll('#site-logo').forEach(img => {
+      img.src = cfg.siteLogo;
+    });
+  }
   // WhatsApp links
   if (cfg.whatsapp) {
     const wa = encodeURIComponent(cfg.whatsappMessage || 'Hola, quiero información');
     document.querySelectorAll('[data-wa-link]').forEach(el => {
       el.href = `https://wa.me/${cfg.whatsapp}?text=${wa}`;
+    });
+  }
+
+  // Social & Contact links
+  if (cfg.email) {
+    document.querySelectorAll('[data-email-link]').forEach(el => {
+      el.href = `mailto:${cfg.email}`;
+    });
+  }
+  if (cfg.phone) {
+    document.querySelectorAll('[data-phone-link]').forEach(el => {
+      el.href = `tel:${cfg.phone.replace(/\s+/g, '')}`;
+    });
+    const phoneEl = document.getElementById('site-phone');
+    if (phoneEl) phoneEl.textContent = cfg.phone;
+  }
+  if (cfg.instagram) {
+    document.querySelectorAll('[data-ig-link]').forEach(el => {
+      el.href = cfg.instagram;
+    });
+  }
+  if (cfg.facebook) {
+    document.querySelectorAll('[data-fb-link]').forEach(el => {
+      el.href = cfg.facebook;
     });
   }
   // Textos "Por qué Nuquí"
@@ -294,23 +325,40 @@ function applyConfig(cfg) {
 
   // Plans Hero
   const plansHero = document.getElementById('plans-hero');
-  if (plansHero) {
-    // If we have a unified background, the hero should be transparent
-    plansHero.style.background = 'transparent';
+  if (plansHero && cfg.plansHeroImage) {
+    plansHero.style.backgroundImage = `url('${cfg.plansHeroImage}')`;
+    plansHero.style.backgroundSize = 'cover';
+    plansHero.style.backgroundPosition = 'center';
     const overlay = plansHero.querySelector('.hero-overlay');
-    if (overlay) overlay.style.background = 'rgba(0,0,0,0.2)'; // Subtle darken for readability
+    if (overlay) overlay.style.background = 'rgba(0,0,0,0.2)';
   }
 
-  const actSection = document.getElementById('actividades');
-  if (actSection) {
-    const actTitle = actSection.querySelector('h2');
-    const actSub = actSection.querySelector('.subtitle');
-    if (actTitle && cfg.whaleSectionTitle) actTitle.textContent = cfg.whaleSectionTitle;
-    if (actSub && cfg.whaleSectionSubtitle) actSub.textContent = cfg.whaleSectionSubtitle;
+  // Experiences Hero
+  const expHero = document.getElementById('experiences-hero');
+  if (expHero && cfg.experiencesHeroImage) {
+    expHero.style.backgroundImage = `url('${cfg.experiencesHeroImage}')`;
+    expHero.style.backgroundSize = 'cover';
+    expHero.style.backgroundPosition = 'center';
   }
+
+  // Hotels Hero
+  const hotelsHero = document.getElementById('hotels-hero');
+  if (hotelsHero && cfg.hotelsHeroImage) {
+    hotelsHero.style.backgroundImage = `url('${cfg.hotelsHeroImage}')`;
+    hotelsHero.style.backgroundSize = 'cover';
+    hotelsHero.style.backgroundPosition = 'center';
+  }
+
+  // Site Background Color
   if (cfg.siteBgColor) {
-    document.documentElement.style.setProperty('--bg', cfg.siteBgColor);
     document.body.style.backgroundColor = cfg.siteBgColor;
+    document.documentElement.style.setProperty('--bg', cfg.siteBgColor);
+  }
+
+  // Whale Section Text (if applicable)
+  const actSection = document.getElementById('vid-title'); // Sometimes used for whale title
+  if (actSection) {
+    if (cfg.whaleSectionTitle) actSection.textContent = cfg.whaleSectionTitle;
   }
 }
 
