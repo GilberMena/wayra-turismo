@@ -7,8 +7,6 @@
         "next": "latest"
     },
     "scripts": {
-        "start": "next start",
-        "build": "next build",
-        "dev": "next dev"
+        "build": "echo 'Static build'"
     }
 }
