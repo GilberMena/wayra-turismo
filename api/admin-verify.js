@@ -1,54 +1,52 @@
 const crypto = require('crypto');
 
 /**
- * api/admin-verify.js — Vercel Serverless Function
+ * api/admin-verify.js — Vercel Serverless Function (Direct Export)
  */
-module.exports = async function handler(req, res) {
-    // Solo POST
+module.exports = async (req, res) => {
+    // Manejo de CORS si fuera necesario
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+
     if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method Not Allowed' });
+        return res.status(405).json({ error: 'Solo se permite POST' });
     }
 
-    const { username, password } = req.body;
+    try {
+        const { username, password } = req.body;
 
-    // Credenciales esperadas desde variables de entorno
-    const EXPECTED_USER = process.env.ADMIN_USER;
-    const EXPECTED_PASS = process.env.ADMIN_PASS;
-    const ADMIN_TOKEN = process.env.ADMIN_TOKEN;
+        const EXPECTED_USER = process.env.ADMIN_USER;
+        const EXPECTED_PASS = process.env.ADMIN_PASS;
+        const ADMIN_TOKEN = process.env.ADMIN_TOKEN;
 
-    if (!EXPECTED_USER || !EXPECTED_PASS || !ADMIN_TOKEN) {
-        console.error('[admin-verify] Variables de entorno no configuradas');
-        return res.status(500).json({ error: 'Servidor no configurado' });
+        if (!EXPECTED_USER || !EXPECTED_PASS || !ADMIN_TOKEN) {
+            return res.status(500).json({ error: 'Configuración faltante en el servidor' });
+        }
+
+        const inputHash = crypto.createHash('sha256').update(password).digest('hex');
+        const expectedHash = crypto.createHash('sha256').update(EXPECTED_PASS).digest('hex');
+
+        // Comparación segura
+        const userOk = crypto.timingSafeEqual(Buffer.from(username), Buffer.from(EXPECTED_USER));
+        const passOk = crypto.timingSafeEqual(Buffer.from(inputHash), Buffer.from(expectedHash));
+
+        if (!userOk || !passOk) {
+            return res.status(401).json({ ok: false, error: 'Credenciales inválidas' });
+        }
+
+        // Seteo de cookie
+        const maxAge = 60 * 60 * 8;
+        res.setHeader('Set-Cookie', `wayra_admin_token=${ADMIN_TOKEN}; Path=/; Max-Age=${maxAge}; HttpOnly; Secure; SameSite=Strict`);
+
+        return res.status(200).json({ ok: true });
+    } catch (err) {
+        console.error('API Error:', err);
+        return res.status(500).json({ error: 'Error interno del servidor' });
     }
-
-    // Hash SHA-256 de la contraseña recibida
-    const inputHash = crypto.createHash('sha256').update(password).digest('hex');
-    // Hash SHA-256 de la contraseña esperada
-    const expectedHash = crypto.createHash('sha256').update(EXPECTED_PASS).digest('hex');
-
-    const userOk = timingSafeEqual(username, EXPECTED_USER);
-    const passOk = timingSafeEqual(inputHash, expectedHash);
-
-    if (!userOk || !passOk) {
-        // Delay para seguridad
-        await new Promise(resolve => setTimeout(resolve, 500));
-        return res.status(401).json({ ok: false, error: 'Credenciales incorrectas' });
-    }
-
-    // ✅ Credenciales correctas -> Seteamos cookie
-    // En Vercel pasamos la cookie en el header
-    const maxAge = 60 * 60 * 8;
-    res.setHeader('Set-Cookie', `wayra_admin_token=${ADMIN_TOKEN}; Path=/; Max-Age=${maxAge}; HttpOnly; Secure; SameSite=Strict`);
-
-    return res.status(200).json({ ok: true });
-}
-
-function timingSafeEqual(a, b) {
-    const bufA = Buffer.from(String(a));
-    const bufB = Buffer.from(String(b));
-    if (bufA.length !== bufB.length) {
-        crypto.timingSafeEqual(bufA, bufA);
-        return false;
-    }
-    return crypto.timingSafeEqual(bufA, bufB);
-}
+};

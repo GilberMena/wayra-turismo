@@ -3,6 +3,10 @@ netlify/
 node_modules/
 .git/
 .vscode/
+.env
+*.py
+netlify.toml
+README.md
 update_logo.py
 analyze_hotels.py
 deep_analysis.py

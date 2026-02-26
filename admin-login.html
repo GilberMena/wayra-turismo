@@ -291,12 +291,53 @@
             btn.classList.add('loading');
             err.classList.remove('show');
 
+            const loginInfo = { username: user, password: pass };
+            const fetchOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(loginInfo)
+            };
+
             try {
-                const res = await fetch('/api/admin-verify', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username: user, password: pass })
-                });
+                const hostname = window.location.hostname;
+                const isNetlify = hostname.includes('netlify.app') || hostname.includes('netlify.com');
+
+                // Lista de rutas posibles para intentar
+                const endpoints = isNetlify
+                    ? ['/.netlify/functions/admin-verify', '/api/admin-verify', '/api/admin-verify.js']
+                    : ['/api/admin-verify', '/api/admin-verify.js', '/.netlify/functions/admin-verify'];
+
+                let res = null;
+                let lastTriedUrl = '';
+
+                for (const url of endpoints) {
+                    try {
+                        lastTriedUrl = url;
+                        console.log(`Intentando login en: ${url}`);
+                        const tempRes = await fetch(url, fetchOptions);
+
+                        // Si no es 404 ni 405, esta es nuestra ruta (aunque de error 401 de credenciales)
+                        if (tempRes.status !== 404 && tempRes.status !== 405) {
+                            res = tempRes;
+                            break;
+                        }
+                        console.warn(`Ruta ${url} devolvió ${tempRes.status}. Probando siguiente...`);
+                    } catch (e) {
+                        console.error(`Error de red en ${url}:`, e);
+                    }
+                }
+
+                if (!res) {
+                    throw new Error("No se pudo encontrar el endpoint de autenticación (404/405 en todas las rutas).");
+                }
+
+                // Verificamos si la respuesta es JSON
+                const contentType = res.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    const text = await res.text();
+                    console.error(`Error en ${lastTriedUrl} (No JSON):`, text.substring(0, 200));
+                    throw new Error(`Error ${res.status} en ${lastTriedUrl}: El servidor no ejecutó la función.`);
+                }
 
                 const data = await res.json();
 
@@ -304,7 +345,7 @@
                     // ✅ Login correcto → redirige al panel
                     window.location.href = next;
                 } else {
-                    // ❌ Credenciales incorrectas
+                    // ❌ Credenciales incorrectas o error de validación
                     err.textContent = data.error || 'Usuario o contraseña incorrectos.';
                     err.classList.add('show');
                     card.classList.remove('shake');
@@ -314,7 +355,13 @@
                     btn.classList.remove('loading');
                 }
             } catch (e) {
-                err.textContent = 'Error de conexión. Intenta de nuevo.';
+                console.error('Login Error:', e);
+                // Si es un error de TypeError fetch, suele ser conexión o CORS
+                const isNetworkError = e instanceof TypeError;
+                err.textContent = isNetworkError
+                    ? 'Error de red o CORS. Verifica que el servidor (Vercel/Netlify) esté activo y acepte peticiones POST.'
+                    : (e.message || 'Error desconocido en el proceso de login.');
+
                 err.classList.add('show');
                 btn.disabled = false;
                 btn.classList.remove('loading');

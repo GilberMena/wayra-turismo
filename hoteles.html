@@ -678,21 +678,14 @@
         const WA_NUM = '573225225582';
         let hotelsData = [];
 
-        fetch('../data/hotels.json')
-            .then(r => r.json())
-            .then(json => {
-                hotelsData = json.hotels || [];
+        loadHotels(function (hotels) {
+            if (hotels) {
+                hotelsData = hotels;
                 renderHotels(hotelsData);
-            })
-            .catch(() => {
-                // Fallback: intenta desde la misma carpeta
-                fetch('data/hotels.json')
-                    .then(r => r.json())
-                    .then(json => { hotelsData = json.hotels || []; renderHotels(hotelsData); })
-                    .catch(() => {
-                        document.getElementById('hotel-grid').innerHTML = '<p style="color:#999;text-align:center;grid-column:1/-1">No se pudo cargar la información de hoteles. Intenta recargar la página.</p>';
-                    });
-            });
+            } else {
+                document.getElementById('hotel-grid').innerHTML = '<p style="color:#999;text-align:center;grid-column:1/-1">No se pudo cargar la información de hoteles. Intenta recargar la página.</p>';
+            }
+        });
 
         function renderHotels(hotels) {
             const grid = document.getElementById('hotel-grid');
