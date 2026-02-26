@@ -922,7 +922,11 @@
                         <p style="color:var(--muted);font-size:15px;max-width:380px;line-height:1.6;">Abre el archivo
                             <strong>hotels.json</strong> para editar hoteles y sus galerías de fotos.
                         </p>
-                        <button class="btn btn-primary" onclick="openHotelsFile()">📂 Abrir hotels.json</button>
+                        <div style="display:flex;gap:10px;">
+                            <button class="btn btn-primary" onclick="openHotelsFile()">📂 Abrir hotels.json</button>
+                            <button class="btn btn-ghost" onclick="autoLoadFromCloud()">☁️ Cargar desde
+                                servidor</button>
+                        </div>
                     </div>
                     <div id="screen-hotels-editor" style="display:none;">
                         <div class="exp-grid" id="hotel-grid-admin"></div>
@@ -938,7 +942,11 @@
                         <p style="color:var(--muted);font-size:15px;max-width:380px;line-height:1.6;">Abre el archivo
                             <strong>planes.json</strong> para editar los planes del sitio.
                         </p>
-                        <button class="btn btn-primary" onclick="openPlanesFile()">📂 Abrir planes.json</button>
+                        <div style="display:flex;gap:10px;">
+                            <button class="btn btn-primary" onclick="openPlanesFile()">📂 Abrir planes.json</button>
+                            <button class="btn btn-ghost" onclick="autoLoadFromCloud()">☁️ Cargar desde
+                                servidor</button>
+                        </div>
                     </div>
                     <div id="screen-planes-editor" style="display:none;">
                         <!-- Planes Page Global Config -->
@@ -1001,10 +1009,16 @@
                         style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;text-align:center;gap:20px;">
                         <div class="welcome-icon">⚙️</div>
                         <h2>Configuración del sitio</h2>
-                        <p style="color:var(--muted);font-size:15px;max-width:380px;line-height:1.6;">Abre el archivo
-                            <strong>config.json</strong> para editar textos, datos de contacto y redes sociales.
+                        <p
+                            style="color:var(--muted);font-size:15px;max-width:380px;line-height:1.6;margin-bottom:20px;">
+                            Abre el archivo <strong>config.json</strong> para editar textos, datos de contacto y redes
+                            sociales.
                         </p>
-                        <button class="btn btn-primary" onclick="openConfigFile()">📂 Abrir config.json</button>
+                        <div style="display:flex;gap:10px;justify-content:center;">
+                            <button class="btn btn-primary" onclick="openConfigFile()">📂 Abrir config.json</button>
+                            <button class="btn btn-ghost" onclick="autoLoadFromCloud()">☁️ Cargar desde
+                                servidor</button>
+                        </div>
                     </div>
                     <div id="screen-config-editor" style="display:none;">
                         <div style="max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:20px;">
@@ -1853,13 +1867,12 @@
                 'config': '../data/config.json'
             };
 
-            toast('info', '⌛ Cargando datos del servidor...');
-            try {
-                // Determine what to load based on current section or just load all for experiences
-                let target = currentSection;
-                if (!target || target === 'welcome') target = 'experiences';
+            let target = currentSection;
+            if (!target || target === 'welcome') target = 'experiences';
 
-                const resp = await fetch(files[target] || '../data/experiences.json');
+            toast('info', `⌛ Cargando ${target}.json del servidor...`);
+            try {
+                const resp = await fetch(files[target]);
                 if (!resp.ok) throw new Error('Error al conectar con el servidor');
 
                 const json = await resp.json();
@@ -1880,9 +1893,10 @@
                     configData = json;
                     if (!configData.config) configData.config = {};
                     showConfigEditor();
+                    if (currentSection === 'planes' && planesFileHandle) showPlanesEditor();
                 }
 
-                toast('success', '✅ Datos cargados desde el servidor. Podrás "Guardar" descargando el archivo.');
+                toast('success', `✅ Datos de ${target} cargados. Recuerda usar "Guardar" y subir el archivo a GitHub.`);
             } catch (e) {
                 toast('error', '❌ Falló la carga: ' + e.message);
             }
