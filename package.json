@@ -5,7 +5,7 @@
         "node": "24.x"
     },
     "scripts": {
-        "build": "exit 0"
+        "build": "mkdir -p dist && cp -rp . dist/ && rm -rf dist/api dist/netlify dist/dist dist/node_modules dist/package.json dist/vercel.json dist/laravel-project"
     },
     "dependencies": {}
 }
