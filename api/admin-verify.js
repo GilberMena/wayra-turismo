@@ -45,7 +45,8 @@ module.exports = async (req, res) => {
 
         if (userOk && passOk) {
             const maxAge = 60 * 60 * 8;
-            res.setHeader('Set-Cookie', `wayra_admin_token=${ADMIN_TOKEN}; Path=/; Max-Age=${maxAge}; HttpOnly; Secure; SameSite=Strict`);
+            // Quitamos HttpOnly para que el panel de administración (Javascript) pueda detectar la sesión
+            res.setHeader('Set-Cookie', `wayra_admin_token=${ADMIN_TOKEN}; Path=/; Max-Age=${maxAge}; Secure; SameSite=Strict`);
             return res.status(200).json({ ok: true });
         } else {
             return res.status(401).json({ ok: false, error: 'Credenciales inválidas' });

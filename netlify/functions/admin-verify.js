@@ -59,7 +59,7 @@ exports.handler = async function (event) {
     // ✅ Credenciales correctas → seteamos cookie segura (HttpOnly, Secure, SameSite)
     // La cookie expira en 8 horas
     const maxAge = 60 * 60 * 8;
-    const cookie = `wayra_admin_token=${ADMIN_TOKEN}; Path=/; Max-Age=${maxAge}; HttpOnly; Secure; SameSite=Strict`;
+    const cookie = `wayra_admin_token=${ADMIN_TOKEN}; Path=/; Max-Age=${maxAge}; Secure; SameSite=Strict`;
 
     return {
         statusCode: 200,
