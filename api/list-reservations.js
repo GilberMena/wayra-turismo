@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
     const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
     const AIRTABLE_BASE = process.env.AIRTABLE_BASE;
     const AIRTABLE_TABLE = process.env.AIRTABLE_TABLE || 'Reservas';
