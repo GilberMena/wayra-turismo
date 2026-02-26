@@ -4,9 +4,7 @@
     "description": "Wayra Turismo Website",
     "main": "index.html",
     "type": "module",
-    "dependencies": {
-        "next": "latest"
-    },
+    "dependencies": {},
     "scripts": {
         "build": "echo 'Static build'"
     }
