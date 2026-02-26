@@ -1,4 +1,19 @@
 {
     "version": 2,
-    "cleanUrls": true
+    "cleanUrls": true,
+    "functions": {
+        "api/**/*.js": {
+            "maxDuration": 10
+        }
+    },
+    "rewrites": [
+        {
+            "source": "/api/admin-verify",
+            "destination": "/api/admin-verify.js"
+        },
+        {
+            "source": "/api/:path*",
+            "destination": "/api/:path*.js"
+        }
+    ]
 }

@@ -1,52 +1,57 @@
 const crypto = require('crypto');
 
 /**
- * api/admin-verify.js — Vercel Serverless Function (Direct Export)
+ * api/admin-verify.js — Vercel Serverless Function
  */
 module.exports = async (req, res) => {
-    // Manejo de CORS si fuera necesario
-    res.setHeader('Access-Control-Allow-Credentials', true);
+    // CORS
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST,OPTIONS');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    if (req.method === 'OPTIONS') {
-        return res.status(200).end();
-    }
-
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Solo se permite POST' });
-    }
+    if (req.method === 'OPTIONS') return res.status(200).end();
+    if (req.method !== 'POST') return res.status(405).json({ error: 'Solo POST' });
 
     try {
-        const { username, password } = req.body;
+        const { username, password } = req.body || {};
+        if (!username || !password) {
+            return res.status(400).json({ error: 'Faltan datos' });
+        }
 
         const EXPECTED_USER = process.env.ADMIN_USER;
         const EXPECTED_PASS = process.env.ADMIN_PASS;
         const ADMIN_TOKEN = process.env.ADMIN_TOKEN;
 
         if (!EXPECTED_USER || !EXPECTED_PASS || !ADMIN_TOKEN) {
-            return res.status(500).json({ error: 'Configuración faltante en el servidor' });
+            console.error('Variables de entorno no configuradas');
+            return res.status(500).json({ error: 'Configuración de servidor incompleta' });
         }
 
+        // Generar hashes
         const inputHash = crypto.createHash('sha256').update(password).digest('hex');
         const expectedHash = crypto.createHash('sha256').update(EXPECTED_PASS).digest('hex');
 
-        // Comparación segura
-        const userOk = crypto.timingSafeEqual(Buffer.from(username), Buffer.from(EXPECTED_USER));
-        const passOk = crypto.timingSafeEqual(Buffer.from(inputHash), Buffer.from(expectedHash));
+        // Comparación segura (timing-safe)
+        // Usamos una función auxiliar para evitar errores de longitud
+        const safeCompare = (a, b) => {
+            const bufA = Buffer.from(a);
+            const bufB = Buffer.from(b);
+            if (bufA.length !== bufB.length) return false;
+            return crypto.timingSafeEqual(bufA, bufB);
+        };
 
-        if (!userOk || !passOk) {
+        const userOk = safeCompare(username, EXPECTED_USER);
+        const passOk = safeCompare(inputHash, expectedHash);
+
+        if (userOk && passOk) {
+            const maxAge = 60 * 60 * 8;
+            res.setHeader('Set-Cookie', `wayra_admin_token=${ADMIN_TOKEN}; Path=/; Max-Age=${maxAge}; HttpOnly; Secure; SameSite=Strict`);
+            return res.status(200).json({ ok: true });
+        } else {
             return res.status(401).json({ ok: false, error: 'Credenciales inválidas' });
         }
-
-        // Seteo de cookie
-        const maxAge = 60 * 60 * 8;
-        res.setHeader('Set-Cookie', `wayra_admin_token=${ADMIN_TOKEN}; Path=/; Max-Age=${maxAge}; HttpOnly; Secure; SameSite=Strict`);
-
-        return res.status(200).json({ ok: true });
     } catch (err) {
-        console.error('API Error:', err);
-        return res.status(500).json({ error: 'Error interno del servidor' });
+        console.error('Login error:', err);
+        return res.status(500).json({ error: 'Error interno' });
     }
 };

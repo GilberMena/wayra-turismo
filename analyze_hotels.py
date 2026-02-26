@@ -1,5 +1,6 @@
 import json
 import os
+from collections import Counter
 
 def analyze_hotels(file_path):
     with open(file_path, 'r', encoding='utf-8') as f:
@@ -11,7 +12,7 @@ def analyze_hotels(file_path):
     categories = {}
     stars = {}
     locations = {}
-    tags_count = {}
+    tags_count = Counter()
     
     for hotel in hotels:
         cat = hotel.get('category', 'Unknown')
@@ -24,15 +25,14 @@ def analyze_hotels(file_path):
         locations[loc] = locations.get(loc, 0) + 1
         
         tags = hotel.get('tags', [])
-        for tag in tags:
-            tags_count[tag] = tags_count.get(tag, 0) + 1
+        tags_count.update(tags)
             
     analysis = {
         "total_hotels": total_hotels,
         "categories": categories,
         "stars": stars,
         "locations": locations,
-        "top_tags": dict(sorted(tags_count.items(), key=lambda item: item[1], reverse=True)[:10])
+        "top_tags": dict(tags_count.most_common(10))
     }
     
     return analysis
