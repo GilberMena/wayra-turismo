@@ -131,7 +131,14 @@
   </a>
 
   <script>
-    // Simple client-side admin. NOT secure. Change ADMIN_PASS.
+    // Simple client-side admin check
+    (function checkAuth() {
+      const cookies = document.cookie.split('; ');
+      const token = cookies.find(row => row.startsWith('wayra_admin_token='));
+      if (!token) {
+        window.location.href = "admin-login.html?next=" + encodeURIComponent(window.location.pathname);
+      }
+    })();
     (function () {
       const adminArea = document.getElementById('adminArea');
       adminArea.style.display = 'block';
@@ -141,7 +148,7 @@
         tbody.innerHTML = '';
         // Try serverless list first
         try {
-          const resp = await fetch('/.netlify/functions/list-reservations');
+          const resp = await fetch('/api/list-reservations');
           if (resp.ok) {
             const json = await resp.json();
             if (json && json.records) {

@@ -1671,8 +1671,15 @@
 
     <script>
         // ── AUTH & SESSION ───────────────────────────────────────────
-        // El acceso a esta carpeta ya está protegido por Netlify Edge Functions.
-        // Si el usuario llega aquí, es porque tiene una cookie válida.
+        (function checkAuth() {
+            const cookies = document.cookie.split('; ');
+            const token = cookies.find(row => row.startsWith('wayra_admin_token='));
+            // Si no hay token, redirigir al login
+            if (!token) {
+                console.warn('Acceso denegado: Token no encontrado.');
+                window.location.href = "../admin-login.html?next=" + encodeURIComponent(window.location.pathname);
+            }
+        })();
 
         function doLogout() {
             // Borramos la cookie de sesión expirándola
