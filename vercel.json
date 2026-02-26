@@ -3,11 +3,11 @@
     "rewrites": [
         {
             "source": "/admin/(.*)",
-            "destination": "/api/admin-auth?path=$1"
+            "destination": "/api/admin-verify?path=$1"
         },
         {
             "source": "/admin",
-            "destination": "/api/admin-auth"
+            "destination": "/api/admin-verify"
         },
         {
             "source": "/.netlify/functions/(.*)",

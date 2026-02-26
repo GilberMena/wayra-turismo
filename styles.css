@@ -41,7 +41,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 0;
+  padding: 10px 0;
+  gap: 20px;
+  /* Más espacio entre logo, nav y acciones */
+  width: 100%;
+}
+
+.site-header .container {
+  max-width: 1200px;
+  /* Un poco más de aire para las palabras largas */
 }
 
 /* Logo */
@@ -49,17 +57,28 @@ body {
   display: flex;
   align-items: center;
   margin-right: auto;
-  /* Push everything else to the right if needed, or just let justify-content handle it */
+  text-decoration: none;
+}
+
+#site-logo {
+  height: 90px !important;
+  width: auto !important;
+  max-height: none !important;
+  max-width: none !important;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover #site-logo {
+  transform: scale(1.05);
 }
 
 .wayra-brand-container {
-  /* AQUÍ AJUSTAS EL TAMAÑO: Cámbialo a 80px o 100px si lo quieres más pequeño */
-  width: 110px;
+  /* Sin restricción de ancho para no comprimir el logo */
+  max-width: none;
   margin: 0;
   display: flex;
   align-items: center;
-  padding: 5px 0;
-  /* Adjusted from 10px to fit better in header */
 }
 
 .wayra-logo {
@@ -98,17 +117,24 @@ body {
 /* Navigation */
 .main-nav {
   display: flex;
-  gap: 24px;
+  gap: clamp(12px, 2vw, 32px);
   align-items: center;
-  margin: 0 32px;
-  /* Spacing from logo and actions */
+  margin: 0 auto;
+  flex: 1;
+  justify-content: center;
 }
 
 .main-nav a {
   color: var(--text);
   text-decoration: none;
   font-weight: 600;
-  font-size: 15px;
+  font-size: clamp(13px, 0.9vw, 15px);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.main-nav a:hover {
+  color: var(--green);
 }
 
 /* Actions (Right side) */
@@ -1111,9 +1137,10 @@ body {
 }
 
 .footer-logo-area img {
-  height: 90px;
+  height: 75px;
+  /* Aumentado para que destaque en el pie de página */
   width: auto;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   filter: brightness(1.1);
 }
 
@@ -1214,11 +1241,12 @@ body {
 .social-brand-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   text-decoration: none;
   font-size: 13px;
   font-weight: 600;
-  padding: 6px 12px;
+  padding: 5px 10px;
+  /* Un poco más compacto */
   border-radius: 20px;
   transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s;
   border: 1.5px solid transparent;

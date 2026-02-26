@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wayra Admin Panel</title>
+    <link rel="icon" href="../assets/img/icono.png" type="image/png">
+    <link rel="apple-touch-icon" href="../assets/img/icono.png">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
@@ -882,23 +884,28 @@
                 <div id="screen-welcome">
                     <div class="welcome-icon">📂</div>
                     <h2>Bienvenido al panel</h2>
-                    <p>Para empezar, abre tu archivo <strong>experiences.json</strong> desde tu computadora.</p>
+                    <p>Para empezar, abre tu archivo <strong>experiences.json</strong>. <br>
+                        <small style="color:var(--muted)">Si estás en Vercel, deberás descargar el archivo editado y
+                            subirlo a tu repositorio.</small>
+                    </p>
                     <div class="steps">
                         <div class="step">
                             <div class="step-num">Paso 1</div>
-                            <p>Haz clic en <strong>"Abrir archivo"</strong> en el menú lateral</p>
+                            <p>Haz clic en <strong>"Abrir archivo"</strong> o en las pestañas laterales</p>
                         </div>
                         <div class="step">
                             <div class="step-num">Paso 2</div>
-                            <p>Edita, agrega o elimina experiencias</p>
+                            <p>Realiza los cambios (puedes subir fotos directamente)</p>
                         </div>
                         <div class="step">
                             <div class="step-num">Paso 3</div>
-                            <p>Guarda los cambios con el botón <strong>"Guardar"</strong></p>
+                            <p>Haz clic en <strong>"Guardar"</strong> (si falla, se descargará el archivo)</p>
                         </div>
                     </div>
-                    <button class="btn btn-primary" style="margin-top:8px;" onclick="openFile()">📂 Abrir
-                        experiences.json</button>
+                    <div style="display:flex;gap:10px;justify-content:center;margin-top:20px;">
+                        <button class="btn btn-primary" onclick="openFile()">📂 Abrir experiences.json</button>
+                        <button class="btn btn-ghost" onclick="autoLoadFromCloud()">☁️ Cargar desde servidor</button>
+                    </div>
                 </div>
 
                 <!-- EDITOR SCREEN (Experiencias) -->
@@ -1803,15 +1810,81 @@
         }
 
         async function saveFile() {
-            if (!fileHandle) { toast('error', '❌ Primero abre un archivo'); return; }
+            const fileName = fileHandle ? fileHandle.name : 'experiences.json';
+            const content = JSON.stringify(data, null, 2);
+
             try {
-                const writable = await fileHandle.createWritable();
-                await writable.write(JSON.stringify(data, null, 2));
-                await writable.close();
-                updateStatus('Guardado · ' + new Date().toLocaleTimeString());
-                toast('success', '✅ Cambios guardados');
+                if (fileHandle) {
+                    const writable = await fileHandle.createWritable();
+                    await writable.write(content);
+                    await writable.close();
+                    updateStatus('Guardado localmente · ' + new Date().toLocaleTimeString());
+                    toast('success', '✅ Cambios guardados en el archivo local');
+                } else {
+                    downloadContent(content, fileName);
+                    toast('success', '📥 Archivo descargado (Súbelo a GitHub)');
+                }
             } catch (e) {
-                toast('error', '❌ No se pudo guardar: ' + e.message);
+                console.error(e);
+                // Fallback a descarga
+                downloadContent(content, fileName);
+                toast('success', '📥 No se pudo escribir al disco, se descargó el archivo');
+            }
+        }
+
+        function downloadContent(content, fileName) {
+            const blob = new Blob([content], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            updateStatus('Descargado · ' + new Date().toLocaleTimeString());
+        }
+
+        async function autoLoadFromCloud() {
+            const files = {
+                'experiences': '../data/experiences.json',
+                'hotels': '../data/hotels.json',
+                'planes': '../data/planes.json',
+                'config': '../data/config.json'
+            };
+
+            toast('info', '⌛ Cargando datos del servidor...');
+            try {
+                // Determine what to load based on current section or just load all for experiences
+                let target = currentSection;
+                if (!target || target === 'welcome') target = 'experiences';
+
+                const resp = await fetch(files[target] || '../data/experiences.json');
+                if (!resp.ok) throw new Error('Error al conectar con el servidor');
+
+                const json = await resp.json();
+
+                if (target === 'experiences') {
+                    data = json;
+                    if (!Array.isArray(data.experiences)) data.experiences = [];
+                    showEditor();
+                } else if (target === 'hotels') {
+                    hotelsData = json;
+                    if (!Array.isArray(hotelsData.hotels)) hotelsData.hotels = [];
+                    showHotelsEditor();
+                } else if (target === 'planes') {
+                    planesData = json;
+                    if (!Array.isArray(planesData.planes)) planesData.planes = [];
+                    showPlanesEditor();
+                } else if (target === 'config') {
+                    configData = json;
+                    if (!configData.config) configData.config = {};
+                    showConfigEditor();
+                }
+
+                toast('success', '✅ Datos cargados desde el servidor. Podrás "Guardar" descargando el archivo.');
+            } catch (e) {
+                toast('error', '❌ Falló la carga: ' + e.message);
             }
         }
 
@@ -1834,15 +1907,22 @@
         }
 
         async function saveHotelsFile() {
-            if (!hotelsFileHandle) { toast('error', '❌ Primero abre hotels.json'); return; }
+            const fileName = hotelsFileHandle ? hotelsFileHandle.name : 'hotels.json';
+            const content = JSON.stringify(hotelsData, null, 2);
             try {
-                const writable = await hotelsFileHandle.createWritable();
-                await writable.write(JSON.stringify(hotelsData, null, 2));
-                await writable.close();
-                updateStatus('Guardado · ' + new Date().toLocaleTimeString());
-                toast('success', '✅ hotels.json guardado');
+                if (hotelsFileHandle) {
+                    const writable = await hotelsFileHandle.createWritable();
+                    await writable.write(content);
+                    await writable.close();
+                    updateStatus('hotels.json guardado localmente · ' + new Date().toLocaleTimeString());
+                    toast('success', '✅ hotels.json guardado');
+                } else {
+                    downloadContent(content, fileName);
+                    toast('success', '📥 hotels.json descargado');
+                }
             } catch (e) {
-                toast('error', '❌ No se pudo guardar: ' + e.message);
+                downloadContent(content, fileName);
+                toast('success', '📥 Archivo descargado (Error al escribir localmente)');
             }
         }
 
@@ -1865,15 +1945,22 @@
         }
 
         async function savePlanesFile() {
-            if (!planesFileHandle) { toast('error', '❌ Primero abre planes.json'); return; }
+            const fileName = planesFileHandle ? planesFileHandle.name : 'planes.json';
+            const content = JSON.stringify(planesData, null, 2);
             try {
-                const writable = await planesFileHandle.createWritable();
-                await writable.write(JSON.stringify(planesData, null, 2));
-                await writable.close();
-                updateStatus('Guardado · ' + new Date().toLocaleTimeString());
-                toast('success', '✅ planes.json guardado');
+                if (planesFileHandle) {
+                    const writable = await planesFileHandle.createWritable();
+                    await writable.write(content);
+                    await writable.close();
+                    updateStatus('planes.json guardado localmente · ' + new Date().toLocaleTimeString());
+                    toast('success', '✅ planes.json guardado');
+                } else {
+                    downloadContent(content, fileName);
+                    toast('success', '📥 planes.json descargado');
+                }
             } catch (e) {
-                toast('error', '❌ No se pudo guardar: ' + e.message);
+                downloadContent(content, fileName);
+                toast('success', '📥 Archivo descargado (Error al escribir localmente)');
             }
         }
 
@@ -2156,9 +2243,14 @@
             }
 
             try {
-                const writable = await configFileHandle.createWritable();
-                await writable.write(JSON.stringify(configData, null, 2));
-                await writable.close();
+                const content = JSON.stringify(configData, null, 2);
+                if (configFileHandle) {
+                    const writable = await configFileHandle.createWritable();
+                    await writable.write(content);
+                    await writable.close();
+                } else {
+                    downloadContent(content, 'config.json');
+                }
 
                 // Clear pending images after successful save
                 pendingCfgLogoImage = null;
@@ -2172,7 +2264,7 @@
 
                 showConfigEditor();
                 updateStatus('Configuración guardada · ' + new Date().toLocaleTimeString());
-                toast('success', '✅ Cambios en config.json guardados');
+                toast('success', (configFileHandle ? '✅ Cambios en config.json guardados' : '📥 config.json descargado'));
             } catch (e) {
                 console.error(e);
                 toast('error', '❌ Error al guardar config.json: ' + e.message);
