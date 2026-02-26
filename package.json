@@ -3,7 +3,10 @@
     "version": "1.0.0",
     "description": "Wayra Turismo Website",
     "main": "index.html",
-    "dependencies": {},
+    "type": "module",
+    "dependencies": {
+        "next": "latest"
+    },
     "scripts": {
         "build": "echo 'Static build'"
     }

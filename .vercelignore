@@ -1,0 +1,8 @@
+laravel-project/
+netlify/
+node_modules/
+.git/
+.vscode/
+update_logo.py
+analyze_hotels.py
+deep_analysis.py
