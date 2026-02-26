@@ -1,10 +1,8 @@
 {
     "name": "wayra-turismo",
     "version": "1.0.0",
-    "description": "Wayra Turismo Website",
-    "main": "index.html",
-    "dependencies": {},
-    "scripts": {
-        "build": "exit 0"
+    "private": true,
+    "engines": {
+        "node": "18.x"
     }
 }
