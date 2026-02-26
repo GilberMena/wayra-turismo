@@ -2,10 +2,9 @@
     "name": "wayra-turismo",
     "version": "1.0.0",
     "engines": {
-        "node": "24.x"
+        "node": "20.x"
     },
     "scripts": {
-        "build": "mkdir -p public && cp *.html *.css *.js *.json *.png *.jpg *.svg public/ 2>/dev/null || true && cp -r assets data public/ 2>/dev/null || true"
-    },
-    "dependencies": {}
+        "build": "exit 0"
+    }
 }
