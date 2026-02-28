@@ -1,15 +1,15 @@
 // script.js — manejo de formulario, smooth scroll y menú móvil
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function(){
   // Smooth scroll for internal links
-  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-    anchor.addEventListener('click', function (e) {
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor){
+    anchor.addEventListener('click', function(e){
       const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
+      if(target){
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.scrollIntoView({behavior:'smooth', block:'start'});
         // close mobile nav if open
         const nav = document.querySelector('.main-nav');
-        if (nav.classList.contains('open')) nav.classList.remove('open');
+        if(nav.classList.contains('open')) nav.classList.remove('open');
       }
     });
   });
@@ -17,22 +17,22 @@ document.addEventListener('DOMContentLoaded', function () {
   // Mobile nav toggle
   const navToggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.main-nav');
-  if (navToggle) {
-    navToggle.addEventListener('click', function () {
+  if(navToggle){
+    navToggle.addEventListener('click', function(){
       nav.classList.toggle('open');
     });
   }
 
   // Cross-page behavior: si estamos en plans-nuqui.html, hacer scroll al ancla #planes-nuqui
-  document.querySelectorAll('a[href*="plans-nuqui.html"]').forEach(function (link) {
-    link.addEventListener('click', function (e) {
+  document.querySelectorAll('a[href*="plans-nuqui.html"]').forEach(function(link){
+    link.addEventListener('click', function(e){
       const current = window.location.pathname.split('/').pop();
       // Si ya estamos en plans-nuqui.html, prevenimos la navegación y hacemos scroll al ancla
-      if (current === 'plans-nuqui.html') {
+      if(current === 'plans-nuqui.html'){
         e.preventDefault();
         const target = document.getElementById('planes-nuqui');
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if(target){
+          target.scrollIntoView({behavior:'smooth', block:'start'});
         }
       }
       // En caso contrario, dejamos que el enlace navegue normalmente a plans-nuqui.html
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // --- Funcionalidad WhatsApp y modal de experiencias ---
   const whatsappNumber = '573225225582'; // +57 322 522 5582 (formato para wa.me)
-  function whatsappUrlFor(message) {
+  function whatsappUrlFor(message){
     return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
   }
 
@@ -57,16 +57,16 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   // Si la URL contiene ?reserve=plan-id abrimos el modal con esos datos
-  try {
+  try{
     const params = new URLSearchParams(window.location.search);
-    if (params.has('reserve')) {
+    if(params.has('reserve')){
       const id = params.get('reserve');
       const p = plansData[id] || {};
       // Intent: cuando la página recibe ?reserve=plan-id mostramos el chooser de contacto
       // en lugar del modal, para priorizar el flujo contact-first.
       // Buscamos un elemento en la página que represente ese plan para posicionar el chooser.
       let anchor = document.querySelector(`[data-plan-id="${id}"]`);
-      if (!anchor) {
+      if(!anchor){
         // fallback por compatibilidad: elemento con id 'plan-'+id o id 'plan-ballena'
         anchor = document.getElementById('plan-' + id) || document.getElementById('plan-ballena');
       }
@@ -79,27 +79,27 @@ document.addEventListener('DOMContentLoaded', function () {
       url.searchParams.delete('reserve');
       window.history.replaceState({}, document.title, url.toString());
     }
-  } catch (e) { /* ignore URL parsing errors */ }
+  }catch(e){ /* ignore URL parsing errors */ }
 
   // Cerrar modal
   const modal = document.getElementById('experienceModal');
-  if (modal) {
-    modal.querySelector('.modal-close').addEventListener('click', function () {
-      modal.setAttribute('aria-hidden', 'true');
+  if(modal){
+    modal.querySelector('.modal-close').addEventListener('click', function(){
+      modal.setAttribute('aria-hidden','true');
     });
-    modal.addEventListener('click', function (e) {
-      if (e.target === modal) modal.setAttribute('aria-hidden', 'true');
+    modal.addEventListener('click', function(e){
+      if(e.target === modal) modal.setAttribute('aria-hidden','true');
     });
   }
 
   // Botón para enviar el formulario por WhatsApp
   const sendWaFromForm = document.getElementById('sendWaFromForm');
   const contactForm = document.querySelector('.contact-form');
-  if (sendWaFromForm && contactForm) {
-    sendWaFromForm.addEventListener('click', function () {
-      const name = (contactForm.querySelector('input[name="name"]') || {}).value || '';
-      const email = (contactForm.querySelector('input[name="email"]') || {}).value || '';
-      const message = (contactForm.querySelector('textarea[name="message"]') || {}).value || '';
+  if(sendWaFromForm && contactForm){
+    sendWaFromForm.addEventListener('click', function(){
+      const name = (contactForm.querySelector('input[name="name"]')||{}).value || '';
+      const email = (contactForm.querySelector('input[name="email"]')||{}).value || '';
+      const message = (contactForm.querySelector('textarea[name="message"]')||{}).value || '';
       const text = `Hola, me llamo ${name}. Mi correo es ${email}. ${message}`;
       window.open(whatsappUrlFor(text), '_blank');
     });
@@ -114,29 +114,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Modal de reserva (se comparte en index y plans-nuqui)
   const reserveModal = document.getElementById('reserveModal');
-  function openReserveModal(opts) {
-    if (!reserveModal) return;
-    reserveModal.setAttribute('aria-hidden', 'false');
+  function openReserveModal(opts){
+    if(!reserveModal) return;
+    reserveModal.setAttribute('aria-hidden','false');
     document.getElementById('reservePlanId').value = opts.id || '';
     document.getElementById('reservePlanTitle').value = opts.title || '';
     document.getElementById('reservePlanPrice').value = opts.price || '';
     // show image in modal if provided
     const ri = document.getElementById('reserveImage');
-    if (ri) {
-      if (opts.image) { ri.style.display = 'block'; ri.style.backgroundImage = `linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.08)), url('${opts.image}')`; }
-      else { ri.style.display = 'none'; ri.style.backgroundImage = 'none'; }
+    if(ri){
+      if(opts.image){ ri.style.display='block'; ri.style.backgroundImage = `linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.08)), url('${opts.image}')`; }
+      else { ri.style.display='none'; ri.style.backgroundImage='none'; }
     }
   }
 
   // Cuando se presiona 'Reservar' en un plan: mostrar un selector con opciones (WhatsApp / Correo / Llamar)
   // Creamos dinámicamente un pequeño chooser y lo mostramos posicionado cerca del botón
-  function ensureContactChooser() {
+  function ensureContactChooser(){
     let chooser = document.getElementById('contactChooser');
-    if (chooser) return chooser;
+    if(chooser) return chooser;
     chooser = document.createElement('div');
     chooser.id = 'contactChooser';
     chooser.className = 'contact-chooser';
-    chooser.setAttribute('aria-hidden', 'true');
+    chooser.setAttribute('aria-hidden','true');
     chooser.innerHTML = `
       <div class="chooser-header">
         <div class="chooser-title">Contactar para reservar</div>
@@ -151,17 +151,17 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.appendChild(chooser);
 
     // Close handler
-    chooser.querySelector('#chooserClose').addEventListener('click', function () { hideContactChooser(); });
+    chooser.querySelector('#chooserClose').addEventListener('click', function(){ hideContactChooser(); });
     // clicking outside chooser should close it
-    document.addEventListener('click', function (e) {
-      if (!chooser.classList.contains('visible')) return;
-      if (chooser.contains(e.target)) return;
+    document.addEventListener('click', function(e){
+      if(!chooser.classList.contains('visible')) return;
+      if(chooser.contains(e.target)) return;
       hideContactChooser();
     });
     return chooser;
   }
 
-  function showContactChooser(opts, anchorRect) {
+  function showContactChooser(opts, anchorRect){
     const chooser = ensureContactChooser();
     const wa = chooser.querySelector('#chooserWhatsapp');
     const mail = chooser.querySelector('#chooserMail');
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const price = opts.price || '';
     const id = opts.id || '';
     const phoneForCall = opts.phone || whatsappNumber;
-    const emailTarget = opts.email || 'vivewayra@gmail.com';
+  const emailTarget = opts.email || 'vivewayra@gmail.com';
 
     const message = `Hola, estoy interesado en reservar *${title}* ${price ? `(${price})` : ''}. ¿Podrían confirmarme disponibilidad y pasos para reservar? Referencia: ${id}`;
     wa.href = whatsappUrlFor(message);
@@ -182,25 +182,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     call.href = `tel:${phoneForCall}`;
 
-    // Temporarily show to measure dimensions
-    chooser.style.visibility = 'hidden';
-    chooser.classList.add('visible');
-    const ch = chooser.offsetHeight || 300; // fallback height
-    chooser.classList.remove('visible');
-    chooser.style.visibility = '';
-
     // Position chooser: try to place near anchorRect (below it), else center-bottom on small screens
     const cw = 300;
-    if (anchorRect && window.innerWidth > 640) {
-      const left = Math.min(Math.max(anchorRect.left + (anchorRect.width / 2) - (cw / 2), 8), window.innerWidth - cw - 8);
-      let top = anchorRect.bottom + 8;
-
-      // Check if it fits below (viewport relative), otherwise put it above
-      if (top + ch > window.innerHeight) {
-        const topAbove = anchorRect.top - ch - 8;
-        if (topAbove > 0) top = topAbove;
-      }
-
+    if(anchorRect && window.innerWidth > 640){
+      const left = Math.min(Math.max(anchorRect.left + (anchorRect.width/2) - (cw/2), 8), window.innerWidth - cw - 8);
+      const top = anchorRect.bottom + 8;
       chooser.style.left = left + 'px';
       chooser.style.top = top + 'px';
       chooser.style.right = 'auto';
@@ -214,19 +200,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     chooser.classList.add('visible');
-    chooser.setAttribute('aria-hidden', 'false');
+    chooser.setAttribute('aria-hidden','false');
   }
 
-  function hideContactChooser() {
+  function hideContactChooser(){
     const chooser = document.getElementById('contactChooser');
-    if (!chooser) return;
+    if(!chooser) return;
     chooser.classList.remove('visible');
-    chooser.setAttribute('aria-hidden', 'true');
+    chooser.setAttribute('aria-hidden','true');
   }
 
   // Handler: al pulsar 'Reservar' mostrar chooser con info del plan
-  document.querySelectorAll('.open-reserve').forEach(function (btn) {
-    btn.addEventListener('click', function (e) {
+  document.querySelectorAll('.open-reserve').forEach(function(btn){
+    btn.addEventListener('click', function(e){
       e.preventDefault();
       // Evitar que el click burbujee al document y cierre inmediatamente el chooser
       e.stopPropagation();
@@ -234,17 +220,17 @@ document.addEventListener('DOMContentLoaded', function () {
       const price = this.dataset.planPrice || this.getAttribute('data-plan-price') || '';
       const id = this.dataset.planId || this.getAttribute('data-plan-id') || '';
       const rect = this.getBoundingClientRect();
-      showContactChooser({ id: id, title: title, price: price }, rect);
+      showContactChooser({id:id, title:title, price:price}, rect);
     });
   });
 
   // Cerrar modal de reserva
-  if (reserveModal) {
-    reserveModal.querySelector('.modal-close').addEventListener('click', function () {
-      reserveModal.setAttribute('aria-hidden', 'true');
+  if(reserveModal){
+    reserveModal.querySelector('.modal-close').addEventListener('click', function(){
+      reserveModal.setAttribute('aria-hidden','true');
     });
-    reserveModal.addEventListener('click', function (e) {
-      if (e.target === reserveModal) reserveModal.setAttribute('aria-hidden', 'true');
+    reserveModal.addEventListener('click', function(e){
+      if(e.target === reserveModal) reserveModal.setAttribute('aria-hidden','true');
     });
   }
 
@@ -253,66 +239,66 @@ document.addEventListener('DOMContentLoaded', function () {
   const btnWhatsappReserve = document.getElementById('reserveWhatsapp');
   const btnReserveMail = document.getElementById('reserveMail');
 
-  function collectReserveData() {
+  function collectReserveData(){
     return {
-      id: (document.getElementById('reservePlanId') || {}).value || '',
-      title: (document.getElementById('reservePlanTitle') || {}).value || '',
-      price: (document.getElementById('reservePlanPrice') || {}).value || '',
-      name: (document.getElementById('reserveName') || {}).value || '',
-      phone: (document.getElementById('reservePhone') || {}).value || '',
-      email: (document.getElementById('reserveEmail') || {}).value || '',
-      start: (document.getElementById('reserveStart') || {}).value || '',
-      end: (document.getElementById('reserveEnd') || {}).value || '',
-      guests: (document.getElementById('reserveGuests') || {}).value || '',
-      comments: (document.getElementById('reserveComments') || {}).value || ''
+      id: (document.getElementById('reservePlanId')||{}).value || '',
+      title: (document.getElementById('reservePlanTitle')||{}).value || '',
+      price: (document.getElementById('reservePlanPrice')||{}).value || '',
+      name: (document.getElementById('reserveName')||{}).value || '',
+      phone: (document.getElementById('reservePhone')||{}).value || '',
+      email: (document.getElementById('reserveEmail')||{}).value || '',
+      start: (document.getElementById('reserveStart')||{}).value || '',
+      end: (document.getElementById('reserveEnd')||{}).value || '',
+      guests: (document.getElementById('reserveGuests')||{}).value || '',
+      comments: (document.getElementById('reserveComments')||{}).value || ''
     };
   }
 
-  if (btnWhatsappReserve) {
-    btnWhatsappReserve.addEventListener('click', function () {
+  if(btnWhatsappReserve){
+    btnWhatsappReserve.addEventListener('click', function(){
       const d = collectReserveData();
       const text = `Solicitud de reserva: ${d.title}\nNombre: ${d.name}\nTeléfono: ${d.phone}\nEmail: ${d.email}\nFechas: ${d.start} - ${d.end}\nPersonas: ${d.guests}\nComentarios: ${d.comments}\n\nPor favor confirme disponibilidad y pasos para confirmar la reserva.`;
       window.open(whatsappUrlFor(text), '_blank');
     });
   }
 
-  if (btnReserveMail) {
-    btnReserveMail.addEventListener('click', function () {
+  if(btnReserveMail){
+    btnReserveMail.addEventListener('click', function(){
       const d = collectReserveData();
-      if (!d.name || !d.phone) {
+      if(!d.name || !d.phone){
         showToast('Por favor completa tu nombre y teléfono antes de enviar la solicitud.', 'error');
         return;
       }
       const subject = `Solicitud de reserva: ${d.title} - ${d.name}`;
       const body = `Plan: ${d.title}\nPrecio estimado: ${d.price}\nNombre: ${d.name}\nTeléfono: ${d.phone}\nEmail: ${d.email}\nFechas: ${d.start} - ${d.end}\nPersonas: ${d.guests}\nComentarios:\n${d.comments}`;
-      window.location.href = `mailto:vivewayra@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = `mailto:vivewayra@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
   }
 
   // ------------ Helpers: toast y guardado local -------------
-  function showToast(message, type) {
+  function showToast(message, type){
     const t = document.createElement('div');
-    t.className = `toast ${type || ''}`.trim();
+    t.className = `toast ${type||''}`.trim();
     t.textContent = message;
     document.body.appendChild(t);
-    setTimeout(() => { t.classList.add('visible'); }, 10);
-    setTimeout(() => { t.classList.remove('visible'); setTimeout(() => t.remove(), 300); }, 4200);
+    setTimeout(()=>{ t.classList.add('visible'); },10);
+    setTimeout(()=>{ t.classList.remove('visible'); setTimeout(()=>t.remove(),300); }, 4200);
   }
 
-  function saveLocalReservation(obj) {
-    try {
+  function saveLocalReservation(obj){
+    try{
       const key = 'vivewayra_reservas';
       const existing = JSON.parse(localStorage.getItem(key) || '[]');
-      existing.push(Object.assign({ created_at: new Date().toISOString() }, obj));
+      existing.push(Object.assign({created_at: new Date().toISOString()}, obj));
       localStorage.setItem(key, JSON.stringify(existing));
-    } catch (e) { console.warn('No se pudo guardar en localStorage', e); }
+    }catch(e){ console.warn('No se pudo guardar en localStorage', e); }
   }
 
   // Small helper: add/remove spinner in buttons while loading
-  function setButtonLoading(btn, loading) {
-    if (!btn) return;
-    if (loading) {
-      if (btn.dataset.loading === '1') return;
+  function setButtonLoading(btn, loading){
+    if(!btn) return;
+    if(loading){
+      if(btn.dataset.loading === '1') return;
       btn.dataset.loading = '1';
       btn.disabled = true;
       const s = document.createElement('span');
@@ -323,90 +309,44 @@ document.addEventListener('DOMContentLoaded', function () {
       delete btn.dataset.loading;
       btn.disabled = false;
       const s = btn.querySelector('.btn-spinner');
-      if (s) s.remove();
+      if(s) s.remove();
     }
   }
 
   // Contact form: open mail client with prefilled subject/body
   const form = document.querySelector('.contact-form');
-  if (form) {
-    form.addEventListener('submit', function (e) {
+  if(form){
+    form.addEventListener('submit', function(e){
       e.preventDefault();
-      const name = (form.querySelector('input[name="name"]') || {}).value || '';
-      const email = (form.querySelector('input[name="email"]') || {}).value || '';
-      const message = (form.querySelector('textarea[name="message"]') || {}).value || '';
+      const name = (form.querySelector('input[name="name"]')||{}).value || '';
+      const email = (form.querySelector('input[name="email"]')||{}).value || '';
+      const message = (form.querySelector('textarea[name="message"]')||{}).value || '';
       const subject = encodeURIComponent('Consulta desde ViveWayra');
       const body = encodeURIComponent(`Nombre: ${name}%0AEmail: ${email}%0A%0A${message}`);
       // Open mailto
-      const mailto = `mailto:vivewayra@gmail.com?subject=${subject}&body=${body}`;
+  const mailto = `mailto:vivewayra@gmail.com?subject=${subject}&body=${body}`;
       window.location.href = mailto;
       // también preparar mensaje para WhatsApp en caso que el usuario quiera usarlo
     });
   }
 
-  // Whatsapp buttons: ensure they have prefilled message (no extra logic needed currently)
-  document.querySelectorAll('.btn-whatsapp').forEach(function (btn) { });
-
-  // Load dynamic experiences from data/experiences.json
-  const expGrid = document.getElementById('experiences-grid');
-  if (expGrid) {
-    fetch('data/experiences.json')
-      .then(response => response.json())
-      .then(data => {
-        if (data && data.experiences) {
-          expGrid.innerHTML = '';
-          data.experiences.forEach(item => {
-            const article = document.createElement('article');
-            article.className = 'card';
-            let imgStyle = '';
-            if (item.image) imgStyle = `background-image:linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.2)), url('${item.image}'); background-size: cover;`;
-            else imgStyle = `background-color:#eee;`;
-
-            article.innerHTML = `
-              <div class="card-image" style="${imgStyle}"></div>
-              <h3>${item.title}</h3>
-              <p>${item.description}</p>
-            `;
-            expGrid.appendChild(article);
-          });
-        } else {
-          expGrid.innerHTML = '<p class="muted">No hay experiencias disponibles.</p>';
-        }
-      })
-      .catch(err => {
-        console.error(err);
-        expGrid.innerHTML = '<p class="muted">Error al cargar experiencias.</p>';
-      });
-  }
-
+  // Whatsapp buttons: ensure they have prefilled message
+  document.querySelectorAll('.btn-whatsapp').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      // allow normal navigation if target _blank; otherwise open in new tab
+      // link already prepared in HTML; nothing extra needed here
+    });
+  });
 });
 
-// ── Actividades: toggle "Ver más" ──────────────────────────────
-function toggleMasActividades() {
-  const wrap = document.getElementById('mas-actividades');
-  const icon = document.getElementById('ver-mas-icon');
-  const label = document.getElementById('btn-ver-mas-label');
-  if (!wrap) return;
-
-  const isOpen = wrap.classList.contains('open');
-  wrap.classList.toggle('open', !isOpen);
-  icon.classList.toggle('rotated', !isOpen);
-  label.textContent = isOpen ? 'Ver más actividades' : 'Ver menos actividades';
-
-  if (!isOpen) {
-    setTimeout(function () {
-      wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 100);
+// Funciones para el modal Quiénes somos
+function abrirQuienesSomos(event) {
+  if (event) {
+    event.preventDefault();
   }
-}
-
-// ── Quiénes somos modal ────────────────────────────────────────
-function abrirQuienesSomos(e) {
-  if (e) e.preventDefault();
   const modal = document.getElementById('modal-quienes-somos');
   if (modal) {
     modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
   }
 }
 
@@ -414,33 +354,5 @@ function cerrarQuienesSomos() {
   const modal = document.getElementById('modal-quienes-somos');
   if (modal) {
     modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
   }
 }
-
-// Cerrar modal "Quiénes somos" con Escape
-document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape') {
-    cerrarQuienesSomos();
-    cerrarModalActividades();
-  }
-});
-
-// ── Modal Actividades ──────────────────────────────────────────
-function abrirModalActividades() {
-  const modal = document.getElementById('modal-actividades');
-  if (modal) {
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-}
-
-function cerrarModalActividades() {
-  const modal = document.getElementById('modal-actividades');
-  if (modal) {
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-}
-
-

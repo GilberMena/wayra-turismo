@@ -14,10 +14,15 @@ Cómo probar localmente:
 PowerShell (Windows):
 
 ```powershell
-# Python 3
-python -m http.server 8000
-# luego abrir http://localhost:8000
+# RECOMENDADO (Para que funcione el login y el backend):
+node dev-server.js
+
+# Otras opciones:
+# npx vercel dev
+# netlify dev
 ```
+
+> **Nota:** El login de administrador requiere funciones backend. Con `node dev-server.js` todas las funciones de `/api/` estarán activas en el puerto 3000.
 
 Personalización rápida:
 - Cambia las imágenes de fondo reemplazando los `background-image` de `.hero` o `.card-image` en `styles.css` o insertando una imagen en `assets/` y enlazándola.

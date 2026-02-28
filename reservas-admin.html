@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Admin — WAYRA</title>
+  <title>Admin — vivewayra</title>
   <link rel="icon" href="assets/img/icono.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/img/icono.png">
   <link rel="stylesheet" href="styles.css">
@@ -38,14 +38,172 @@
       color: green;
       font-weight: 700
     }
+
+    /* Estadísticas Dashboard */
+    .stats-section {
+      margin-bottom: 30px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3);
+    }
+
+    .stat-card.secondary {
+      background: linear-gradient(135deg, #48cae4 0%, #00b4d8 100%);
+    }
+
+    .stat-card.accent {
+      background: linear-gradient(135deg, #90e0ef 0%, #48cae4 100%);
+      color: #023e8a;
+    }
+
+    .stat-card.neutral {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      color: #333;
+    }
+
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-top: 5px;
+    }
+
+    .charts-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+
+    .chart-container {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .chart-container h3 {
+      margin: 0 0 15px 0;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .chart-wrapper {
+      position: relative;
+      height: 250px;
+    }
+
+    .top-plans-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .top-plans-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .top-plans-list li:last-child {
+      border-bottom: none;
+    }
+
+    .plan-name {
+      font-weight: 500;
+      color: #333;
+    }
+
+    .plan-stats {
+      display: flex;
+      gap: 15px;
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .plan-badge {
+      background: #e3f2fd;
+      color: #1976d2;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .stats-loading {
+      text-align: center;
+      padding: 40px;
+      color: #666;
+    }
+
+    .stats-error {
+      text-align: center;
+      padding: 20px;
+      background: #fff3cd;
+      border-radius: 8px;
+      color: #856404;
+    }
+
+    .section-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .tab-btn {
+      padding: 10px 20px;
+      border: none;
+      background: #e9ecef;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: #0077b6;
+      color: white;
+    }
+
+    .tab-btn:hover:not(.active) {
+      background: #dee2e6;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
   <header class="site-header">
     <div class="container header-inner">
       <a class="logo" href="index.html">
-        <img id="site-logo" src="assets/img/unicologo.png" alt="WAYRA Logo">
+        <img id="site-logo" src="assets/img/unicologo.png" alt="vivewayra Logo">
       </a>
 
       <nav class="main-nav" aria-label="Navegación principal">
@@ -89,6 +247,81 @@
 
   <div class="container">
     <h1>Panel administrador</h1>
+    
+    <!-- Tabs de navegación -->
+    <div class="section-tabs">
+      <button class="tab-btn active" data-tab="stats">📊 Estadísticas</button>
+      <button class="tab-btn" data-tab="reservations">📋 Reservas</button>
+    </div>
+
+    <!-- Sección de Estadísticas -->
+    <div id="statsSection" class="tab-content active">
+      <div class="admin-card stats-section">
+        <div id="statsLoading" class="stats-loading">
+          <p>Cargando estadísticas...</p>
+        </div>
+        
+        <div id="statsContent" style="display:none">
+          <!-- Tarjetas de resumen -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <p class="stat-value" id="statTotalGuests">0</p>
+              <p class="stat-label">Visitantes Totales</p>
+            </div>
+            <div class="stat-card secondary">
+              <p class="stat-value" id="statTotalReservations">0</p>
+              <p class="stat-label">Reservas Totales</p>
+            </div>
+            <div class="stat-card accent">
+              <p class="stat-value" id="statAvgGuests">0</p>
+              <p class="stat-label">Promedio Personas/Reserva</p>
+            </div>
+            <div class="stat-card neutral">
+              <p class="stat-value" id="statThisMonth">0</p>
+              <p class="stat-label">Visitantes Este Mes</p>
+            </div>
+          </div>
+
+          <!-- Gráficos -->
+          <div class="charts-row">
+            <div class="chart-container">
+              <h3>📈 Tendencia de Visitantes (Últimos 6 meses)</h3>
+              <div class="chart-wrapper">
+                <canvas id="guestsChart"></canvas>
+              </div>
+            </div>
+            <div class="chart-container">
+              <h3>🏆 Planes Más Populares</h3>
+              <ul class="top-plans-list" id="topPlansList">
+                <li><span class="plan-name">Cargando...</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="charts-row">
+            <div class="chart-container">
+              <h3>📊 Distribución por Plan</h3>
+              <div class="chart-wrapper">
+                <canvas id="plansChart"></canvas>
+              </div>
+            </div>
+            <div class="chart-container">
+              <h3>📅 Reservas por Mes</h3>
+              <div class="chart-wrapper">
+                <canvas id="reservationsChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="statsError" class="stats-error" style="display:none">
+          <p>No se pudieron cargar las estadísticas. Verifica la conexión con Airtable.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Reservas -->
+    <div id="reservationsSection" class="tab-content">
     <div class="admin-card" id="adminArea" style="display:none">
       <div style="display:flex;justify-content:space-between;align-items:center">
         <div>
@@ -118,7 +351,127 @@
         </table>
       </div>
     </div>
+    </div> <!-- Cierre reservationsSection -->
   </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <!-- Main Footer Content -->
+      <div class="footer-grid">
+        <!-- Columna 1: Marca y Descripción -->
+        <div class="footer-col footer-logo-area">
+          <img id="site-logo" src="assets/img/unicologo.png" alt="vivewayra Logo">
+          <p class="footer-rnt">
+            Expertos en experiencias auténticas en el Pacífico Colombiano.<br>
+            <strong>"El viaje que se queda"</strong>
+          </p>
+          <div class="footer-contact-quick">
+            <a href="tel:+573225225582" class="contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              +57 322 5225582
+            </a>
+            <a href="mailto:vivewayra@gmail.com" class="contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+              vivewayra@gmail.com
+            </a>
+          </div>
+        </div>
+
+        <!-- Columna 2: Servicios -->
+        <div class="footer-col">
+          <h3>Servicios</h3>
+          <ul class="footer-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="plans-nuqui.html">Planes a Nuquí</a></li>
+            <li><a href="experiencias.html">Experiencias</a></li>
+            <li><a href="hoteles.html">Hoteles</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 3: Información -->
+        <div class="footer-col">
+          <h3>Información</h3>
+          <ul class="footer-list">
+            <li><a href="#" onclick="abrirQuienesSomos(event)">Quiénes somos</a></li>
+            <li><a href="mailto:vivewayra@gmail.com" data-email-link>Contáctanos</a></li>
+            <li><a href="#">Política de Privacidad</a></li>
+            <li><a href="#">Términos y Condiciones</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 4: Horarios y Redes -->
+        <div class="footer-col">
+          <h3>Horarios</h3>
+          <div class="footer-hours">
+            <p><span>Lunes a Viernes:</span> 8:00 AM - 6:00 PM</p>
+            <p><span>Sábados:</span> 9:00 AM - 5:00 PM</p>
+            <p><span>Domingos:</span> 10:00 AM - 4:00 PM</p>
+          </div>
+          <div class="footer-social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61587257972289" class="footer-social-icon facebook"
+              aria-label="Facebook" target="_blank" rel="noopener" data-fb-link title="Facebook">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z" />
+              </svg>
+            </a>
+            <a href="https://wa.me/573225225582" class="footer-social-icon whatsapp" aria-label="WhatsApp"
+              target="_blank" rel="noopener" data-wa-link title="WhatsApp">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z" />
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/vivewayra/" class="footer-social-icon instagram" aria-label="Instagram"
+              target="_blank" rel="noopener" data-ig-link title="Instagram">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Trust Badges -->
+      <div class="footer-badges">
+        <div class="badge">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>100% Seguro</span>
+        </div>
+        <div class="badge">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span>Agencia Certificada</span>
+        </div>
+        <div class="badge">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22C6.48 22 2 17.52 2 12s4.48-10 10-10 10 4.48 10 10-4.48 10-10 10z"/><path d="m9 16 5-5 5 5"/>
+          </svg>
+          <span>Soporte 24/7</span>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> WAYRA - Agencia de Viajes Responsable. Todos los derechos reservados.<br>
+          Diseñado con <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="display: inline; vertical-align: middle; margin: 0 2px;">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg> por el equipo WAYRA | 
+          <a href="#">Política de Privacidad</a> • <a href="#">Términos de Uso</a>
+        </p>
+      </div>
+    </div>
+  </footer>
 
   <!-- Botón flotante WhatsApp -->
   <a href="https://wa.me/573225225582?text=Hola%2C%20necesito%20soporte%20con%20el%20Panel%20de%20Administraci%C3%B3n"
@@ -214,6 +567,179 @@
       document.getElementById('btnClearHandled').addEventListener('click', function () { if (confirm('Eliminar las reservas marcadas como resuelta?')) clearHandled(); });
 
       loadRes();
+    })();
+
+    // ============================================
+    // TABS NAVIGATION
+    // ============================================
+    (function initTabs() {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const statsSection = document.getElementById('statsSection');
+      const reservationsSection = document.getElementById('reservationsSection');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          tabs.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+          
+          const targetTab = this.dataset.tab;
+          if (targetTab === 'stats') {
+            statsSection.classList.add('active');
+            reservationsSection.classList.remove('active');
+          } else {
+            statsSection.classList.remove('active');
+            reservationsSection.classList.add('active');
+          }
+        });
+      });
+    })();
+
+    // ============================================
+    // STATISTICS DASHBOARD
+    // ============================================
+    (async function initStats() {
+      const loading = document.getElementById('statsLoading');
+      const content = document.getElementById('statsContent');
+      const error = document.getElementById('statsError');
+
+      let guestsChart = null;
+      let plansChart = null;
+      let reservationsChart = null;
+
+      try {
+        const resp = await fetch('/api/get-stats');
+        if (!resp.ok) throw new Error('API error');
+        
+        const json = await resp.json();
+        if (!json.success || !json.stats) throw new Error('Invalid response');
+
+        const stats = json.stats;
+
+        // Update summary cards
+        document.getElementById('statTotalGuests').textContent = stats.totalGuests.toLocaleString();
+        document.getElementById('statTotalReservations').textContent = stats.totalReservations.toLocaleString();
+        document.getElementById('statAvgGuests').textContent = stats.averageGuestsPerReservation;
+        document.getElementById('statThisMonth').textContent = stats.thisMonthGuests.toLocaleString();
+
+        // Render top plans list
+        const topPlansList = document.getElementById('topPlansList');
+        if (stats.topPlans && stats.topPlans.length > 0) {
+          topPlansList.innerHTML = stats.topPlans.map((plan, i) => `
+            <li>
+              <span class="plan-name">${i + 1}. ${plan.name}</span>
+              <div class="plan-stats">
+                <span class="plan-badge">${plan.count} reservas</span>
+                <span>${plan.guests} personas</span>
+              </div>
+            </li>
+          `).join('');
+        } else {
+          topPlansList.innerHTML = '<li><span class="plan-name">Sin datos</span></li>';
+        }
+
+        // Chart colors
+        const colors = {
+          primary: 'rgba(0, 119, 182, 1)',
+          primaryLight: 'rgba(0, 119, 182, 0.2)',
+          secondary: 'rgba(0, 180, 216, 1)',
+          secondaryLight: 'rgba(0, 180, 216, 0.2)',
+          palette: [
+            'rgba(0, 119, 182, 0.8)',
+            'rgba(0, 180, 216, 0.8)',
+            'rgba(72, 202, 228, 0.8)',
+            'rgba(144, 224, 239, 0.8)',
+            'rgba(202, 240, 248, 0.8)'
+          ]
+        };
+
+        // Guests trend chart
+        const guestsCtx = document.getElementById('guestsChart').getContext('2d');
+        guestsChart = new Chart(guestsCtx, {
+          type: 'line',
+          data: {
+            labels: stats.guestsTrend.map(m => m.label),
+            datasets: [{
+              label: 'Visitantes',
+              data: stats.guestsTrend.map(m => m.guests),
+              borderColor: colors.primary,
+              backgroundColor: colors.primaryLight,
+              fill: true,
+              tension: 0.4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false }
+            },
+            scales: {
+              y: { beginAtZero: true }
+            }
+          }
+        });
+
+        // Plans distribution chart (doughnut)
+        const plansCtx = document.getElementById('plansChart').getContext('2d');
+        const planLabels = stats.topPlans.map(p => p.name);
+        const planData = stats.topPlans.map(p => p.count);
+        plansChart = new Chart(plansCtx, {
+          type: 'doughnut',
+          data: {
+            labels: planLabels,
+            datasets: [{
+              data: planData,
+              backgroundColor: colors.palette,
+              borderWidth: 2,
+              borderColor: '#fff'
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: { boxWidth: 12, padding: 15 }
+              }
+            }
+          }
+        });
+
+        // Reservations per month bar chart
+        const resCtx = document.getElementById('reservationsChart').getContext('2d');
+        reservationsChart = new Chart(resCtx, {
+          type: 'bar',
+          data: {
+            labels: stats.guestsTrend.map(m => m.label),
+            datasets: [{
+              label: 'Reservas',
+              data: stats.guestsTrend.map(m => m.reservations),
+              backgroundColor: colors.secondary,
+              borderRadius: 6
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false }
+            },
+            scales: {
+              y: { beginAtZero: true, ticks: { stepSize: 1 } }
+            }
+          }
+        });
+
+        // Show content, hide loading
+        loading.style.display = 'none';
+        content.style.display = 'block';
+
+      } catch (err) {
+        console.error('Stats error:', err);
+        loading.style.display = 'none';
+        error.style.display = 'block';
+      }
     })();
   </script>
 </body>
