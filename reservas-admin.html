@@ -195,6 +195,180 @@
     .tab-content.active {
       display: block;
     }
+
+    /* Embudo de conversión */
+    .funnel-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 20px 0;
+    }
+
+    .funnel-step {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px 20px;
+      background: linear-gradient(90deg, var(--funnel-color) 0%, var(--funnel-color) var(--funnel-width), #f8f9fa var(--funnel-width));
+      border-radius: 8px;
+      margin-bottom: 2px;
+      position: relative;
+    }
+
+    .funnel-step::after {
+      content: '↓';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #ccc;
+      font-size: 14px;
+      z-index: 1;
+    }
+
+    .funnel-step:last-child::after {
+      display: none;
+    }
+
+    .funnel-icon {
+      font-size: 1.5rem;
+      width: 40px;
+      text-align: center;
+    }
+
+    .funnel-info {
+      flex: 1;
+    }
+
+    .funnel-label {
+      font-weight: 600;
+      color: #333;
+    }
+
+    .funnel-sublabel {
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    .funnel-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0077b6;
+    }
+
+    .funnel-rate {
+      font-size: 0.9rem;
+      color: #28a745;
+      margin-left: 10px;
+    }
+
+    .funnel-rate.warning {
+      color: #ffc107;
+    }
+
+    .funnel-rate.danger {
+      color: #dc3545;
+    }
+
+    /* Analytics cards */
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .analytics-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+
+    .analytics-card .value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0077b6;
+    }
+
+    .analytics-card .label {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    .analytics-card .trend {
+      font-size: 0.75rem;
+      margin-top: 5px;
+    }
+
+    .trend.up { color: #28a745; }
+    .trend.down { color: #dc3545; }
+
+    /* Traffic sources table */
+    .sources-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .sources-table th,
+    .sources-table td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    .sources-table th {
+      background: #f8f9fa;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .source-icon {
+      margin-right: 8px;
+    }
+
+    /* Device breakdown */
+    .device-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .device-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .device-bar .label {
+      width: 80px;
+      font-size: 0.9rem;
+    }
+
+    .device-bar .bar-bg {
+      flex: 1;
+      height: 24px;
+      background: #e9ecef;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .device-bar .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #0077b6, #48cae4);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 8px;
+      font-size: 0.75rem;
+      color: white;
+      font-weight: 600;
+      min-width: 30px;
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -251,6 +425,7 @@
     <!-- Tabs de navegación -->
     <div class="section-tabs">
       <button class="tab-btn active" data-tab="stats">📊 Estadísticas</button>
+      <button class="tab-btn" data-tab="analytics">📈 Analytics Web</button>
       <button class="tab-btn" data-tab="reservations">📋 Reservas</button>
     </div>
 
@@ -316,6 +491,168 @@
 
         <div id="statsError" class="stats-error" style="display:none">
           <p>No se pudieron cargar las estadísticas. Verifica la conexión con Airtable.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Analytics Web -->
+    <div id="analyticsSection" class="tab-content">
+      <div class="admin-card">
+        <div id="analyticsLoading" class="stats-loading">
+          <p>Cargando analytics...</p>
+        </div>
+
+        <div id="analyticsContent" style="display:none">
+          <!-- Resumen de métricas web -->
+          <h3 style="margin-bottom:15px">🌐 Métricas Web (Últimos 30 días)</h3>
+          <div class="analytics-grid">
+            <div class="analytics-card">
+              <div class="value" id="anUniqueVisitors">0</div>
+              <div class="label">Visitantes Únicos</div>
+            </div>
+            <div class="analytics-card">
+              <div class="value" id="anTotalSessions">0</div>
+              <div class="label">Sesiones</div>
+            </div>
+            <div class="analytics-card">
+              <div class="value" id="anPageviews">0</div>
+              <div class="label">Páginas Vistas</div>
+            </div>
+            <div class="analytics-card">
+              <div class="value" id="anAvgDuration">0s</div>
+              <div class="label">Duración Promedio</div>
+            </div>
+            <div class="analytics-card">
+              <div class="value" id="anBounceRate">0%</div>
+              <div class="label">Tasa de Rebote</div>
+            </div>
+            <div class="analytics-card">
+              <div class="value" id="anConversionRate">0%</div>
+              <div class="label">Tasa de Conversión</div>
+            </div>
+          </div>
+
+          <!-- Embudo de conversión -->
+          <div class="charts-row" style="margin-top:25px">
+            <div class="chart-container">
+              <h3>🔻 Embudo de Conversión</h3>
+              <div class="funnel-container" id="funnelContainer">
+                <div class="funnel-step" style="--funnel-color: rgba(0,119,182,0.2); --funnel-width: 100%">
+                  <span class="funnel-icon">👁️</span>
+                  <div class="funnel-info">
+                    <div class="funnel-label">Visitas a la Web</div>
+                    <div class="funnel-sublabel">Todas las páginas vistas</div>
+                  </div>
+                  <span class="funnel-value" id="funnelVisits">0</span>
+                </div>
+                <div class="funnel-step" style="--funnel-color: rgba(0,180,216,0.2); --funnel-width: 60%">
+                  <span class="funnel-icon">🎯</span>
+                  <div class="funnel-info">
+                    <div class="funnel-label">Vieron un Plan</div>
+                    <div class="funnel-sublabel">Scrollearon a ver planes</div>
+                  </div>
+                  <span class="funnel-value" id="funnelPlanViews">0</span>
+                  <span class="funnel-rate" id="funnelPlanViewsRate">0%</span>
+                </div>
+                <div class="funnel-step" style="--funnel-color: rgba(72,202,228,0.2); --funnel-width: 30%">
+                  <span class="funnel-icon">🖱️</span>
+                  <div class="funnel-info">
+                    <div class="funnel-label">Clic en Reservar</div>
+                    <div class="funnel-sublabel">Interés en reservar</div>
+                  </div>
+                  <span class="funnel-value" id="funnelReserveClicks">0</span>
+                  <span class="funnel-rate" id="funnelReserveClicksRate">0%</span>
+                </div>
+                <div class="funnel-step" style="--funnel-color: rgba(144,224,239,0.2); --funnel-width: 15%">
+                  <span class="funnel-icon">📝</span>
+                  <div class="funnel-info">
+                    <div class="funnel-label">Enviaron Formulario</div>
+                    <div class="funnel-sublabel">Completaron reserva</div>
+                  </div>
+                  <span class="funnel-value" id="funnelFormSubmits">0</span>
+                  <span class="funnel-rate" id="funnelFormSubmitsRate">0%</span>
+                </div>
+                <div class="funnel-step" style="--funnel-color: rgba(40,167,69,0.2); --funnel-width: 20%">
+                  <span class="funnel-icon">💬</span>
+                  <div class="funnel-info">
+                    <div class="funnel-label">Contacto WhatsApp</div>
+                    <div class="funnel-sublabel">Escribieron por WhatsApp</div>
+                  </div>
+                  <span class="funnel-value" id="funnelWhatsapp">0</span>
+                  <span class="funnel-rate" id="funnelWhatsappRate">0%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="chart-container">
+              <h3>📱 Dispositivos</h3>
+              <div class="device-bars" id="deviceBars">
+                <div class="device-bar">
+                  <span class="label">💻 Desktop</span>
+                  <div class="bar-bg">
+                    <div class="bar-fill" id="barDesktop" style="width:0%">0%</div>
+                  </div>
+                </div>
+                <div class="device-bar">
+                  <span class="label">📱 Móvil</span>
+                  <div class="bar-bg">
+                    <div class="bar-fill" id="barMobile" style="width:0%">0%</div>
+                  </div>
+                </div>
+                <div class="device-bar">
+                  <span class="label">📲 Tablet</span>
+                  <div class="bar-bg">
+                    <div class="bar-fill" id="barTablet" style="width:0%">0%</div>
+                  </div>
+                </div>
+              </div>
+
+              <h3 style="margin-top:25px">🔗 Fuentes de Tráfico</h3>
+              <table class="sources-table" id="sourcesTable">
+                <thead>
+                  <tr>
+                    <th>Fuente</th>
+                    <th>Visitas</th>
+                    <th>Sesiones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td colspan="3" style="text-align:center;color:#999">Cargando...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Gráfico de visitas diarias -->
+          <div class="charts-row" style="margin-top:20px">
+            <div class="chart-container" style="grid-column: span 2">
+              <h3>📅 Visitas Diarias (Últimos 14 días)</h3>
+              <div class="chart-wrapper">
+                <canvas id="dailyVisitsChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top páginas -->
+          <div class="charts-row" style="margin-top:20px">
+            <div class="chart-container">
+              <h3>🏆 Páginas Más Visitadas</h3>
+              <ul class="top-plans-list" id="topPagesList">
+                <li><span class="plan-name">Cargando...</span></li>
+              </ul>
+            </div>
+            <div class="chart-container">
+              <h3>⏰ Actividad por Hora</h3>
+              <div class="chart-wrapper">
+                <canvas id="hourlyChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="analyticsError" class="stats-error" style="display:none">
+          <p>No se pudieron cargar los analytics. Es posible que la tabla "Analytics" no esté configurada en Airtable.</p>
+          <p style="font-size:0.9rem;margin-top:10px">Para habilitar analytics, crea una tabla "Analytics" en Airtable con los campos: Visitor ID, Session ID, Event Type, Event Data, Page, Page Title, Referrer, Landing Page, Traffic Source, Traffic Medium, Campaign, Device Type, Screen Width, Timestamp, Session Duration, Pageviews</p>
         </div>
       </div>
     </div>
@@ -575,6 +912,7 @@
     (function initTabs() {
       const tabs = document.querySelectorAll('.tab-btn');
       const statsSection = document.getElementById('statsSection');
+      const analyticsSection = document.getElementById('analyticsSection');
       const reservationsSection = document.getElementById('reservationsSection');
 
       tabs.forEach(tab => {
@@ -583,11 +921,17 @@
           this.classList.add('active');
           
           const targetTab = this.dataset.tab;
+          // Hide all sections
+          statsSection.classList.remove('active');
+          analyticsSection.classList.remove('active');
+          reservationsSection.classList.remove('active');
+          
+          // Show target section
           if (targetTab === 'stats') {
             statsSection.classList.add('active');
-            reservationsSection.classList.remove('active');
-          } else {
-            statsSection.classList.remove('active');
+          } else if (targetTab === 'analytics') {
+            analyticsSection.classList.add('active');
+          } else if (targetTab === 'reservations') {
             reservationsSection.classList.add('active');
           }
         });
@@ -739,6 +1083,256 @@
         console.error('Stats error:', err);
         loading.style.display = 'none';
         error.style.display = 'block';
+      }
+    })();
+
+    // ============================================
+    // ANALYTICS DASHBOARD
+    // ============================================
+    (async function initAnalytics() {
+      const loading = document.getElementById('analyticsLoading');
+      const content = document.getElementById('analyticsContent');
+      const error = document.getElementById('analyticsError');
+
+      let dailyVisitsChart = null;
+      let hourlyChart = null;
+
+      try {
+        const resp = await fetch('/api/get-analytics');
+        if (!resp.ok) throw new Error('API error');
+        
+        const json = await resp.json();
+        if (!json.success || !json.analytics) throw new Error('Invalid response');
+
+        const analytics = json.analytics;
+
+        // Update summary cards
+        document.getElementById('anUniqueVisitors').textContent = analytics.summary.uniqueVisitors.toLocaleString();
+        document.getElementById('anTotalSessions').textContent = analytics.summary.totalSessions.toLocaleString();
+        document.getElementById('anPageviews').textContent = analytics.summary.totalPageviews.toLocaleString();
+        
+        // Format duration
+        const duration = analytics.summary.avgSessionDuration;
+        const mins = Math.floor(duration / 60);
+        const secs = duration % 60;
+        document.getElementById('anAvgDuration').textContent = mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
+        
+        document.getElementById('anBounceRate').textContent = analytics.summary.bounceRate + '%';
+        document.getElementById('anConversionRate').textContent = analytics.conversionRate + '%';
+
+        // Update funnel
+        const funnel = analytics.funnel;
+        document.getElementById('funnelVisits').textContent = funnel.visits.toLocaleString();
+        document.getElementById('funnelPlanViews').textContent = funnel.planViews.toLocaleString();
+        document.getElementById('funnelReserveClicks').textContent = funnel.reserveClicks.toLocaleString();
+        document.getElementById('funnelFormSubmits').textContent = funnel.formSubmits.toLocaleString();
+        document.getElementById('funnelWhatsapp').textContent = funnel.whatsappClicks.toLocaleString();
+
+        // Calculate and display funnel rates
+        function calcRate(val, total) {
+          if (total === 0) return '0%';
+          const rate = Math.round((val / total) * 100);
+          return rate + '%';
+        }
+
+        function getRateClass(rate) {
+          const num = parseInt(rate);
+          if (num >= 50) return '';
+          if (num >= 20) return 'warning';
+          return 'danger';
+        }
+
+        const planViewsRate = calcRate(funnel.planViews, funnel.visits);
+        const reserveClicksRate = calcRate(funnel.reserveClicks, funnel.planViews || 1);
+        const formSubmitsRate = calcRate(funnel.formSubmits, funnel.reserveClicks || 1);
+        const whatsappRate = calcRate(funnel.whatsappClicks, funnel.visits);
+
+        document.getElementById('funnelPlanViewsRate').textContent = planViewsRate;
+        document.getElementById('funnelPlanViewsRate').className = 'funnel-rate ' + getRateClass(planViewsRate);
+        document.getElementById('funnelReserveClicksRate').textContent = reserveClicksRate;
+        document.getElementById('funnelReserveClicksRate').className = 'funnel-rate ' + getRateClass(reserveClicksRate);
+        document.getElementById('funnelFormSubmitsRate').textContent = formSubmitsRate;
+        document.getElementById('funnelFormSubmitsRate').className = 'funnel-rate ' + getRateClass(formSubmitsRate);
+        document.getElementById('funnelWhatsappRate').textContent = whatsappRate;
+        document.getElementById('funnelWhatsappRate').className = 'funnel-rate ' + getRateClass(whatsappRate);
+
+        // Update funnel widths dynamically
+        const funnelSteps = document.querySelectorAll('.funnel-step');
+        const maxVisits = Math.max(funnel.visits, 1);
+        const widths = [100, (funnel.planViews/maxVisits)*100, (funnel.reserveClicks/maxVisits)*100, (funnel.formSubmits/maxVisits)*100, (funnel.whatsappClicks/maxVisits)*100];
+        widths.forEach((w, i) => {
+          if (funnelSteps[i]) {
+            funnelSteps[i].style.setProperty('--funnel-width', Math.max(w, 5) + '%');
+          }
+        });
+
+        // Device breakdown
+        const devices = analytics.deviceBreakdown;
+        const totalDevices = devices.mobile + devices.desktop + devices.tablet;
+        if (totalDevices > 0) {
+          const desktopPct = Math.round((devices.desktop / totalDevices) * 100);
+          const mobilePct = Math.round((devices.mobile / totalDevices) * 100);
+          const tabletPct = Math.round((devices.tablet / totalDevices) * 100);
+          
+          document.getElementById('barDesktop').style.width = desktopPct + '%';
+          document.getElementById('barDesktop').textContent = desktopPct + '%';
+          document.getElementById('barMobile').style.width = mobilePct + '%';
+          document.getElementById('barMobile').textContent = mobilePct + '%';
+          document.getElementById('barTablet').style.width = tabletPct + '%';
+          document.getElementById('barTablet').textContent = tabletPct + '%';
+        }
+
+        // Traffic sources table
+        const sourcesTbody = document.querySelector('#sourcesTable tbody');
+        if (analytics.trafficSources && analytics.trafficSources.length > 0) {
+          const sourceIcons = {
+            'google': '🔍',
+            'facebook': '📘',
+            'instagram': '📸',
+            'whatsapp': '💬',
+            'direct': '🔗',
+            'twitter': '🐦',
+            'bing': '🔎'
+          };
+          sourcesTbody.innerHTML = analytics.trafficSources.map(s => `
+            <tr>
+              <td><span class="source-icon">${sourceIcons[s.source.toLowerCase()] || '🌐'}</span>${s.source}</td>
+              <td>${s.visits.toLocaleString()}</td>
+              <td>${s.sessions.toLocaleString()}</td>
+            </tr>
+          `).join('');
+        } else {
+          sourcesTbody.innerHTML = '<tr><td colspan="3" style="text-align:center;color:#999">Sin datos</td></tr>';
+        }
+
+        // Top pages list
+        const topPagesList = document.getElementById('topPagesList');
+        if (analytics.topPages && analytics.topPages.length > 0) {
+          topPagesList.innerHTML = analytics.topPages.map((p, i) => `
+            <li>
+              <span class="plan-name">${i + 1}. ${p.page || '/'}</span>
+              <span class="plan-badge">${p.views} vistas</span>
+            </li>
+          `).join('');
+        } else {
+          topPagesList.innerHTML = '<li><span class="plan-name">Sin datos</span></li>';
+        }
+
+        // Chart colors
+        const colors = {
+          primary: 'rgba(0, 119, 182, 1)',
+          primaryLight: 'rgba(0, 119, 182, 0.2)',
+          secondary: 'rgba(0, 180, 216, 1)',
+          secondaryLight: 'rgba(0, 180, 216, 0.2)'
+        };
+
+        // Daily visits chart
+        if (analytics.dailyVisits && analytics.dailyVisits.length > 0) {
+          const dailyCtx = document.getElementById('dailyVisitsChart').getContext('2d');
+          dailyVisitsChart = new Chart(dailyCtx, {
+            type: 'line',
+            data: {
+              labels: analytics.dailyVisits.map(d => d.label),
+              datasets: [
+                {
+                  label: 'Páginas vistas',
+                  data: analytics.dailyVisits.map(d => d.pageviews),
+                  borderColor: colors.primary,
+                  backgroundColor: colors.primaryLight,
+                  fill: true,
+                  tension: 0.4
+                },
+                {
+                  label: 'Visitantes',
+                  data: analytics.dailyVisits.map(d => d.visitors),
+                  borderColor: colors.secondary,
+                  backgroundColor: 'transparent',
+                  borderDash: [5, 5],
+                  tension: 0.4
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { position: 'top' }
+              },
+              scales: {
+                y: { beginAtZero: true }
+              }
+            }
+          });
+        }
+
+        // Hourly activity chart
+        if (analytics.hourlyActivity && analytics.hourlyActivity.length > 0) {
+          const hourlyCtx = document.getElementById('hourlyChart').getContext('2d');
+          const hourLabels = Array.from({length: 24}, (_, i) => i + 'h');
+          hourlyChart = new Chart(hourlyCtx, {
+            type: 'bar',
+            data: {
+              labels: hourLabels,
+              datasets: [{
+                label: 'Actividad',
+                data: analytics.hourlyActivity,
+                backgroundColor: colors.secondary,
+                borderRadius: 4
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { display: false }
+              },
+              scales: {
+                y: { beginAtZero: true },
+                x: { 
+                  ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 12 }
+                }
+              }
+            }
+          });
+        }
+
+        // Show content, hide loading
+        loading.style.display = 'none';
+        content.style.display = 'block';
+
+      } catch (err) {
+        console.error('Analytics error:', err);
+        loading.style.display = 'none';
+        // Try to use local analytics if server fails
+        tryLocalAnalytics(content, loading, error);
+      }
+
+      function tryLocalAnalytics(content, loading, error) {
+        try {
+          const localData = JSON.parse(localStorage.getItem('wayra_analytics') || '[]');
+          if (localData.length > 0) {
+            // Show a message that we're using local data
+            error.innerHTML = '<p>Mostrando datos locales. Configura Airtable para persistir analytics.</p>';
+            error.style.display = 'block';
+            error.style.background = '#d4edda';
+            error.style.color = '#155724';
+            
+            // Basic stats from local data
+            const visitors = new Set(localData.map(e => e.visitorId));
+            const sessions = new Set(localData.map(e => e.sessionId));
+            const pageviews = localData.filter(e => e.eventType === 'pageview').length;
+            
+            document.getElementById('anUniqueVisitors').textContent = visitors.size;
+            document.getElementById('anTotalSessions').textContent = sessions.size;
+            document.getElementById('anPageviews').textContent = pageviews;
+            
+            content.style.display = 'block';
+          } else {
+            error.style.display = 'block';
+          }
+        } catch (e) {
+          error.style.display = 'block';
+        }
       }
     })();
   </script>
