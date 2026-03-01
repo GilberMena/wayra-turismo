@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         *,
         *::before,
@@ -819,6 +820,166 @@
         .shake {
             animation: shake 0.4s ease;
         }
+
+        /* ── STATS STYLES ── */
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .stats-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .stats-tab {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--muted);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .stats-tab:hover {
+            border-color: var(--accent);
+            color: var(--text);
+        }
+
+        .stats-tab.active {
+            background: var(--accentGlow);
+            border-color: var(--accent);
+            color: var(--accent2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-align: center;
+        }
+
+        .stat-card .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .stat-card .stat-label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.8);
+            font-weight: 500;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+        }
+
+        .chart-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+        }
+
+        .chart-card h4 {
+            margin: 0 0 16px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .chart-card canvas {
+            max-height: 250px;
+        }
+
+        .top-plans {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .top-plans li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .top-plans li:last-child {
+            border-bottom: none;
+        }
+
+        .top-plans .plan-name {
+            color: var(--text);
+        }
+
+        .top-plans .plan-count {
+            background: var(--accentGlow);
+            color: var(--accent2);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Funnel styles */
+        .funnel-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .funnel-step {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .funnel-bar {
+            height: 40px;
+            border-radius: 8px;
+            transition: width 0.5s ease;
+        }
+
+        .funnel-label {
+            min-width: 140px;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .funnel-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        @media (max-width: 768px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
 
@@ -844,6 +1005,9 @@
             </a>
             <a class="nav-item" id="nav-config" onclick="showSection('config')">
                 <span class="icon">⚙️</span> Configuración
+            </a>
+            <a class="nav-item" id="nav-stats" onclick="showSection('stats')">
+                <span class="icon">📊</span> Estadísticas
             </a>
             <div class="sidebar-footer">
                 <div class="nav-item" id="btn-open-file" style="cursor:pointer;" onclick="openFileForSection()">
@@ -1252,6 +1416,134 @@
                                 <button class="btn btn-primary" onclick="saveConfigFile()">💾 Guardar
                                     configuración</button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STATS SCREEN -->
+                <div id="screen-stats" style="display:none;">
+                    <div class="stats-container">
+                        <!-- Tabs -->
+                        <div class="stats-tabs">
+                            <button class="stats-tab active" onclick="switchStatsTab('reservas')">📋 Reservas</button>
+                            <button class="stats-tab" onclick="switchStatsTab('analytics')">🌐 Analytics Web</button>
+                        </div>
+
+                        <!-- Loading -->
+                        <div id="stats-loading" style="text-align:center;padding:60px;color:var(--muted);">
+                            <p>Cargando estadísticas...</p>
+                        </div>
+
+                        <!-- Reservas Tab -->
+                        <div id="stats-reservas" style="display:none;">
+                            <div class="stats-grid">
+                                <div class="stat-card" style="background:linear-gradient(135deg,#00b4d8,#0077b6);">
+                                    <div class="stat-value" id="st-total-guests">0</div>
+                                    <div class="stat-label">Visitantes Totales</div>
+                                </div>
+                                <div class="stat-card" style="background:linear-gradient(135deg,#06d6a0,#118ab2);">
+                                    <div class="stat-value" id="st-total-reservations">0</div>
+                                    <div class="stat-label">Reservas Totales</div>
+                                </div>
+                                <div class="stat-card" style="background:linear-gradient(135deg,#f48c06,#dc2f02);">
+                                    <div class="stat-value" id="st-avg-guests">0</div>
+                                    <div class="stat-label">Promedio Personas</div>
+                                </div>
+                                <div class="stat-card" style="background:var(--surface2);border:1px solid var(--border);">
+                                    <div class="stat-value" id="st-this-month">0</div>
+                                    <div class="stat-label">Este Mes</div>
+                                </div>
+                            </div>
+
+                            <div class="charts-grid">
+                                <div class="chart-card">
+                                    <h4>📈 Tendencia de Visitantes</h4>
+                                    <canvas id="admin-guests-chart"></canvas>
+                                </div>
+                                <div class="chart-card">
+                                    <h4>🏆 Planes Más Populares</h4>
+                                    <ul id="admin-top-plans" class="top-plans">
+                                        <li>Sin datos</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="charts-grid">
+                                <div class="chart-card">
+                                    <h4>📊 Distribución por Plan</h4>
+                                    <canvas id="admin-plans-chart"></canvas>
+                                </div>
+                                <div class="chart-card">
+                                    <h4>📅 Reservas por Mes</h4>
+                                    <canvas id="admin-reservations-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Analytics Web Tab -->
+                        <div id="stats-analytics" style="display:none;">
+                            <div class="stats-grid">
+                                <div class="stat-card" style="background:linear-gradient(135deg,#6c63ff,#a78bfa);">
+                                    <div class="stat-value" id="an-visitors">0</div>
+                                    <div class="stat-label">Visitantes Únicos</div>
+                                </div>
+                                <div class="stat-card" style="background:linear-gradient(135deg,#06d6a0,#118ab2);">
+                                    <div class="stat-value" id="an-sessions">0</div>
+                                    <div class="stat-label">Sesiones</div>
+                                </div>
+                                <div class="stat-card" style="background:linear-gradient(135deg,#fca311,#e85d04);">
+                                    <div class="stat-value" id="an-pageviews">0</div>
+                                    <div class="stat-label">Páginas Vistas</div>
+                                </div>
+                                <div class="stat-card" style="background:var(--surface2);border:1px solid var(--border);">
+                                    <div class="stat-value" id="an-conversion">0%</div>
+                                    <div class="stat-label">Conversión</div>
+                                </div>
+                            </div>
+
+                            <div class="chart-card" style="margin-top:24px;">
+                                <h4>🔄 Embudo de Conversión</h4>
+                                <div class="funnel-container" id="admin-funnel">
+                                    <div class="funnel-step">
+                                        <div class="funnel-bar" style="width:100%;background:#6c63ff;"></div>
+                                        <span class="funnel-label">Visitantes</span>
+                                        <span class="funnel-value" id="fn-visitors">0</span>
+                                    </div>
+                                    <div class="funnel-step">
+                                        <div class="funnel-bar" style="width:75%;background:#a78bfa;"></div>
+                                        <span class="funnel-label">Vieron Planes</span>
+                                        <span class="funnel-value" id="fn-plans">0</span>
+                                    </div>
+                                    <div class="funnel-step">
+                                        <div class="funnel-bar" style="width:40%;background:#06d6a0;"></div>
+                                        <span class="funnel-label">Contacto WhatsApp</span>
+                                        <span class="funnel-value" id="fn-whatsapp">0</span>
+                                    </div>
+                                    <div class="funnel-step">
+                                        <div class="funnel-bar" style="width:20%;background:#34d399;"></div>
+                                        <span class="funnel-label">Reservas</span>
+                                        <span class="funnel-value" id="fn-reservations">0</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="charts-grid" style="margin-top:24px;">
+                                <div class="chart-card">
+                                    <h4>📱 Páginas Más Visitadas</h4>
+                                    <ul id="admin-top-pages" class="top-plans">
+                                        <li>Sin datos</li>
+                                    </ul>
+                                </div>
+                                <div class="chart-card">
+                                    <h4>📈 Visitas por Día</h4>
+                                    <canvas id="admin-visits-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Error Message -->
+                        <div id="stats-error" style="display:none;background:rgba(248,113,113,0.1);border:1px solid var(--danger);border-radius:var(--radius);padding:20px;text-align:center;color:var(--danger);">
+                            <p>No se pudieron cargar las estadísticas. Verifica la conexión con Airtable.</p>
                         </div>
                     </div>
                 </div>
@@ -1725,13 +2017,13 @@
         function showSection(section) {
             currentSection = section;
             // Nav highlight
-            ['experiences', 'hotels', 'planes', 'config'].forEach(s => {
+            ['experiences', 'hotels', 'planes', 'config', 'stats'].forEach(s => {
                 const el = document.getElementById('nav-' + s);
                 if (el) el.classList.toggle('active', s === section);
             });
 
             // Hide all top-level content screens
-            ['screen-welcome', 'screen-editor', 'screen-hotels', 'screen-planes', 'screen-config'].forEach(id => {
+            ['screen-welcome', 'screen-editor', 'screen-hotels', 'screen-planes', 'screen-config', 'screen-stats'].forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.style.display = 'none';
             });
@@ -1788,6 +2080,14 @@
                 document.getElementById('count-badge').style.display = 'none';
                 document.getElementById('topbar-title').textContent = 'Configuración';
                 document.getElementById('topbar-subtitle').textContent = 'Textos generales, contacto y redes sociales';
+
+            } else if (section === 'stats') {
+                document.getElementById('screen-stats').style.display = 'block';
+                document.getElementById('btn-save').style.display = 'none';
+                document.getElementById('count-badge').style.display = 'none';
+                document.getElementById('topbar-title').textContent = 'Estadísticas';
+                document.getElementById('topbar-subtitle').textContent = 'Métricas de reservas y analytics web';
+                loadStats();
             }
         }
 
@@ -3185,6 +3485,229 @@
         document.getElementById('modal-hotel').addEventListener('click', function (e) {
             if (e.target === this) closeHotelModal();
         });
+
+        // ── STATS FUNCTIONS ───────────────────────────────────────
+        let statsCharts = {};
+        let currentStatsTab = 'reservas';
+
+        function switchStatsTab(tab) {
+            currentStatsTab = tab;
+            document.querySelectorAll('.stats-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.stats-tab[onclick*="${tab}"]`).classList.add('active');
+            document.getElementById('stats-reservas').style.display = tab === 'reservas' ? 'block' : 'none';
+            document.getElementById('stats-analytics').style.display = tab === 'analytics' ? 'block' : 'none';
+        }
+
+        async function loadStats() {
+            const loading = document.getElementById('stats-loading');
+            const error = document.getElementById('stats-error');
+            const reservasTab = document.getElementById('stats-reservas');
+            const analyticsTab = document.getElementById('stats-analytics');
+
+            loading.style.display = 'block';
+            error.style.display = 'none';
+            reservasTab.style.display = 'none';
+            analyticsTab.style.display = 'none';
+
+            try {
+                // Load reservation stats
+                const statsResp = await fetch('/api/get-stats');
+                if (!statsResp.ok) throw new Error('Stats API error');
+                const statsData = await statsResp.json();
+                
+                if (statsData.success) {
+                    renderReservationStats(statsData.stats);
+                }
+
+                // Try to load analytics (may fail if not configured)
+                try {
+                    const analyticsResp = await fetch('/api/get-analytics');
+                    if (analyticsResp.ok) {
+                        const analyticsData = await analyticsResp.json();
+                        if (analyticsData.success) {
+                            renderAnalyticsStats(analyticsData.analytics);
+                        }
+                    }
+                } catch (e) {
+                    console.log('Analytics not configured yet');
+                }
+
+                loading.style.display = 'none';
+                if (currentStatsTab === 'reservas') {
+                    reservasTab.style.display = 'block';
+                } else {
+                    analyticsTab.style.display = 'block';
+                }
+
+            } catch (err) {
+                console.error('Error loading stats:', err);
+                loading.style.display = 'none';
+                error.style.display = 'block';
+            }
+        }
+
+        function renderReservationStats(stats) {
+            document.getElementById('st-total-guests').textContent = stats.totalGuests || 0;
+            document.getElementById('st-total-reservations').textContent = stats.totalReservations || 0;
+            document.getElementById('st-avg-guests').textContent = stats.averageGuestsPerReservation || 0;
+            document.getElementById('st-this-month').textContent = stats.thisMonthGuests || 0;
+
+            // Top plans
+            const topPlansList = document.getElementById('admin-top-plans');
+            if (stats.topPlans && stats.topPlans.length > 0) {
+                topPlansList.innerHTML = stats.topPlans.map(p => 
+                    `<li><span class="plan-name">${p.name}</span><span class="plan-count">${p.count} reservas</span></li>`
+                ).join('');
+            } else {
+                topPlansList.innerHTML = '<li>Sin datos</li>';
+            }
+
+            // Guests trend chart
+            if (stats.guestsTrend && stats.guestsTrend.length > 0) {
+                const ctx = document.getElementById('admin-guests-chart');
+                if (statsCharts.guests) statsCharts.guests.destroy();
+                statsCharts.guests = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: stats.guestsTrend.map(g => g.label),
+                        datasets: [{
+                            label: 'Visitantes',
+                            data: stats.guestsTrend.map(g => g.guests),
+                            borderColor: '#6c63ff',
+                            backgroundColor: 'rgba(108,99,255,0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#8b92b5' } },
+                            x: { grid: { display: false }, ticks: { color: '#8b92b5' } }
+                        }
+                    }
+                });
+            }
+
+            // Plans distribution chart
+            if (stats.planBreakdown && Object.keys(stats.planBreakdown).length > 0) {
+                const ctx = document.getElementById('admin-plans-chart');
+                const labels = Object.keys(stats.planBreakdown);
+                const data = labels.map(k => stats.planBreakdown[k].count);
+                if (statsCharts.plans) statsCharts.plans.destroy();
+                statsCharts.plans = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: data,
+                            backgroundColor: ['#6c63ff', '#a78bfa', '#06d6a0', '#fca311', '#f87171', '#38bdf8']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'bottom', labels: { color: '#8b92b5' } } }
+                    }
+                });
+            }
+
+            // Reservations by month chart
+            if (stats.monthlyData && Object.keys(stats.monthlyData).length > 0) {
+                const ctx = document.getElementById('admin-reservations-chart');
+                const months = Object.keys(stats.monthlyData).sort();
+                if (statsCharts.reservations) statsCharts.reservations.destroy();
+                statsCharts.reservations = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: months.map(m => m.slice(5)),
+                        datasets: [{
+                            label: 'Reservas',
+                            data: months.map(m => stats.monthlyData[m].reservations),
+                            backgroundColor: '#06d6a0'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#8b92b5' } },
+                            x: { grid: { display: false }, ticks: { color: '#8b92b5' } }
+                        }
+                    }
+                });
+            }
+        }
+
+        function renderAnalyticsStats(analytics) {
+            document.getElementById('an-visitors').textContent = analytics.uniqueVisitors || 0;
+            document.getElementById('an-sessions').textContent = analytics.totalSessions || 0;
+            document.getElementById('an-pageviews').textContent = analytics.pageviews || 0;
+            const convRate = analytics.conversionRate || 0;
+            document.getElementById('an-conversion').textContent = convRate.toFixed(1) + '%';
+
+            // Funnel
+            const visitors = analytics.uniqueVisitors || 1;
+            const plansViews = analytics.plansPageViews || 0;
+            const whatsappClicks = analytics.whatsappClicks || 0;
+            const reservations = analytics.reservations || 0;
+
+            document.getElementById('fn-visitors').textContent = visitors;
+            document.getElementById('fn-plans').textContent = plansViews;
+            document.getElementById('fn-whatsapp').textContent = whatsappClicks;
+            document.getElementById('fn-reservations').textContent = reservations;
+
+            // Update funnel bar widths
+            const funnelBars = document.querySelectorAll('#admin-funnel .funnel-bar');
+            if (funnelBars.length >= 4) {
+                funnelBars[0].style.width = '100%';
+                funnelBars[1].style.width = Math.max(5, (plansViews / visitors) * 100) + '%';
+                funnelBars[2].style.width = Math.max(5, (whatsappClicks / visitors) * 100) + '%';
+                funnelBars[3].style.width = Math.max(5, (reservations / visitors) * 100) + '%';
+            }
+
+            // Top pages
+            const topPagesList = document.getElementById('admin-top-pages');
+            if (analytics.topPages && analytics.topPages.length > 0) {
+                topPagesList.innerHTML = analytics.topPages.map(p => 
+                    `<li><span class="plan-name">${p.page}</span><span class="plan-count">${p.views} vistas</span></li>`
+                ).join('');
+            } else {
+                topPagesList.innerHTML = '<li>Sin datos</li>';
+            }
+
+            // Daily visits chart
+            if (analytics.dailyVisits && analytics.dailyVisits.length > 0) {
+                const ctx = document.getElementById('admin-visits-chart');
+                if (statsCharts.visits) statsCharts.visits.destroy();
+                statsCharts.visits = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: analytics.dailyVisits.map(d => d.date.slice(5)),
+                        datasets: [{
+                            label: 'Visitas',
+                            data: analytics.dailyVisits.map(d => d.visits),
+                            borderColor: '#a78bfa',
+                            backgroundColor: 'rgba(167,139,250,0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#8b92b5' } },
+                            x: { grid: { display: false }, ticks: { color: '#8b92b5' } }
+                        }
+                    }
+                });
+            }
+        }
 
         // Initialize section display
         showSection('experiences');
