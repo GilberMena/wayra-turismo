@@ -48,3 +48,34 @@ collections:
                 summary: "{{fields.item}}"
                 field: {label: "Item", name: "item", widget: "string"}
               - {label: "Imagen", name: "image", widget: "image"}
+  - name: "configuracion"
+    label: "Configuración del Sitio"
+    files:
+      - name: "config"
+        label: "Ajustes generales"
+        file: "data/config.json"
+        fields:
+          - label: "Configuración"
+            name: "config"
+            widget: "object"
+            fields:
+              - {label: "Logo del sitio", name: "siteLogo", widget: "image"}
+              - {label: "Nombre del sitio", name: "siteName", widget: "string"}
+              - {label: "Tagline", name: "tagline", widget: "string"}
+              - {label: "WhatsApp (solo números, ej: 573225225582)", name: "whatsapp", widget: "string"}
+              - {label: "Mensaje WhatsApp", name: "whatsappMessage", widget: "string"}
+              - {label: "Email", name: "email", widget: "string"}
+              - {label: "Teléfono", name: "phone", widget: "string"}
+              - {label: "Instagram URL", name: "instagram", widget: "string"}
+              - {label: "Facebook URL", name: "facebook", widget: "string"}
+              - {label: "Imagen hero (inicio)", name: "heroImage", widget: "image", required: false}
+              - {label: "Título hero (inicio)", name: "heroTitle", widget: "string"}
+              - {label: "Subtítulo hero (inicio)", name: "heroSubtitle", widget: "string"}
+              - {label: "Imagen hero — Planes Nuquí", name: "plansHeroImage", widget: "image", required: false}
+              - {label: "Imagen hero — Experiencias", name: "experiencesHeroImage", widget: "image", required: false}
+              - {label: "Imagen hero — Hoteles", name: "hotelsHeroImage", widget: "image", required: false}
+              - {label: "🗺️ Imagen de fondo — Página Contacto", name: "contactoHeroImage", widget: "image", required: false}
+              - {label: "Título hero — Contacto", name: "contactoHeroTitle", widget: "string", default: "Contáctanos"}
+              - {label: "Subtítulo hero — Contacto", name: "contactoHeroSubtitle", widget: "string", default: "Estamos aquí para ayudarte a vivir una experiencia inolvidable en el Pacífico colombiano."}
+              - {label: "Dirección / Ubicación (Contacto)", name: "contactoAddress", widget: "string", default: "Nuquí, Chocó — Colombia"}
+              - {label: "Color de fondo del sitio", name: "siteBgColor", widget: "color", default: "#ffffff"}

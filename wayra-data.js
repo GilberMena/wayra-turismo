@@ -349,6 +349,26 @@ function applyConfig(cfg) {
     hotelsHero.style.backgroundPosition = 'center';
   }
 
+  // Contacto Hero
+  const contactHero = document.getElementById('contact-hero');
+  if (contactHero && cfg.contactoHeroImage) {
+    contactHero.style.backgroundImage = `linear-gradient(180deg,rgba(0,0,0,.52),rgba(0,0,0,.22)), url('${cfg.contactoHeroImage}')`;
+    contactHero.style.backgroundSize = 'cover';
+    contactHero.style.backgroundPosition = 'center';
+  }
+  const contactHeroTitle = document.getElementById('contact-hero-title');
+  const contactHeroSubtitle = document.getElementById('contact-hero-subtitle');
+  if (contactHeroTitle && cfg.contactoHeroTitle) contactHeroTitle.textContent = cfg.contactoHeroTitle;
+  if (contactHeroSubtitle && cfg.contactoHeroSubtitle) contactHeroSubtitle.textContent = cfg.contactoHeroSubtitle;
+
+  // Contacto: dirección, teléfono, email, wa en tarjetas
+  const contactAddress = document.getElementById('contact-address');
+  if (contactAddress && cfg.contactoAddress) contactAddress.textContent = cfg.contactoAddress;
+  const contactWaNumber = document.getElementById('contact-wa-number');
+  if (contactWaNumber && cfg.phone) contactWaNumber.textContent = cfg.phone;
+  const contactEmailText = document.getElementById('contact-email-text');
+  if (contactEmailText && cfg.email) contactEmailText.textContent = cfg.email;
+
   // Site Background Color
   if (cfg.siteBgColor) {
     document.body.style.backgroundColor = cfg.siteBgColor;

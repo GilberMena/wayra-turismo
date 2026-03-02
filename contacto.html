@@ -1,0 +1,851 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contacto — vivewayra</title>
+  <meta name="description"
+    content="Contáctanos para vivir tu aventura en Nuquí. Teléfono, WhatsApp, correo, redes sociales y formulario de contacto. Estamos para ayudarte.">
+  <link rel="icon" href="assets/img/unicologo.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/unicologo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Montserrat:wght@300;400;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* ══════════════════════════════════════════
+       HERO CONTACTO
+    ══════════════════════════════════════════ */
+    .contact-hero {
+      position: relative;
+      min-height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      padding: 80px 20px 60px;
+      background-image: linear-gradient(180deg, rgba(0,0,0,.52), rgba(0,0,0,.22)),
+        url('assets/img/unicologo.png');
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .contact-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 620px;
+    }
+
+    .contact-hero h1 {
+      font-family: Merriweather, serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700;
+      margin: 0 0 14px;
+      letter-spacing: -0.5px;
+    }
+
+    .contact-hero p {
+      font-size: 17px;
+      opacity: .88;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ══════════════════════════════════════════
+       LAYOUT PRINCIPAL
+    ══════════════════════════════════════════ */
+    .contact-main {
+      padding: 64px 0 80px;
+      background: #fafaf8;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    @media (max-width: 860px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    /* ══════════════════════════════════════════
+       COLUMNA IZQUIERDA: INFO + REDES + MAPA
+    ══════════════════════════════════════════ */
+    .contact-info-col h2 {
+      font-family: Merriweather, serif;
+      font-size: 26px;
+      margin: 0 0 8px;
+      color: var(--text);
+    }
+
+    .contact-info-col .subtitle {
+      color: var(--muted);
+      font-size: 15px;
+      margin: 0 0 28px;
+      line-height: 1.6;
+    }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+
+    .contact-item-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #fff;
+      border: 1px solid rgba(43,43,43,.07);
+      border-radius: 14px;
+      padding: 16px 20px;
+      text-decoration: none;
+      color: var(--text);
+      transition: box-shadow .2s, transform .2s;
+      box-shadow: 0 2px 10px rgba(0,0,0,.04);
+    }
+
+    .contact-item-card:hover {
+      box-shadow: 0 8px 28px rgba(0,0,0,.1);
+      transform: translateY(-2px);
+      color: var(--text);
+    }
+
+    .contact-item-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-item-icon.icon-phone  { background: #e8f5e9; color: #388e3c; }
+    .contact-item-icon.icon-wa     { background: #e8f5e9; color: #25d366; }
+    .contact-item-icon.icon-email  { background: #e3f2fd; color: #1565c0; }
+    .contact-item-icon.icon-loc    { background: #fce4ec; color: #c62828; }
+
+    .contact-item-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 2px;
+    }
+
+    .contact-item-value {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    /* Redes sociales */
+    .social-section-title {
+      font-family: Merriweather, serif;
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0 0 14px;
+      color: var(--text);
+    }
+
+    .social-links-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+
+    .social-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 40px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform .18s, box-shadow .18s;
+    }
+
+    .social-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,.15);
+    }
+
+    .social-pill svg { flex-shrink: 0; }
+
+    .social-pill.pill-wa    { background: #25d366; color: #fff; }
+    .social-pill.pill-ig    { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: #fff; }
+    .social-pill.pill-fb    { background: #1877F2; color: #fff; }
+    .social-pill.pill-tiktok{ background: #010101; color: #fff; }
+
+    /* Mapa */
+    .map-wrapper {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,.1);
+      border: 1px solid rgba(43,43,43,.07);
+    }
+
+    .map-wrapper iframe {
+      display: block;
+      width: 100%;
+      height: 280px;
+      border: none;
+    }
+
+    .map-caption {
+      background: #fff;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ══════════════════════════════════════════
+       COLUMNA DERECHA: FORMULARIO
+    ══════════════════════════════════════════ */
+    .contact-form-col h2 {
+      font-family: Merriweather, serif;
+      font-size: 26px;
+      margin: 0 0 8px;
+      color: var(--text);
+    }
+
+    .contact-form-col .subtitle {
+      color: var(--muted);
+      font-size: 15px;
+      margin: 0 0 28px;
+      line-height: 1.6;
+    }
+
+    .contact-form-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 36px 32px;
+      box-shadow: 0 8px 40px rgba(0,0,0,.07);
+      border: 1px solid rgba(43,43,43,.06);
+    }
+
+    @media (max-width: 500px) {
+      .contact-form-card { padding: 24px 18px; }
+    }
+
+    .cf-group {
+      margin-bottom: 20px;
+    }
+
+    .cf-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .cf-group input,
+    .cf-group select,
+    .cf-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--text);
+      background: #fafaf8;
+      border: 1.5px solid #e0ddd6;
+      border-radius: 10px;
+      transition: border-color .18s, box-shadow .18s;
+      outline: none;
+      resize: vertical;
+    }
+
+    .cf-group input:focus,
+    .cf-group select:focus,
+    .cf-group textarea:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(107,143,122,.13);
+      background: #fff;
+    }
+
+    .cf-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 500px) {
+      .cf-row-2 { grid-template-columns: 1fr; }
+    }
+
+    .cf-submit {
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: Montserrat, sans-serif;
+      letter-spacing: .04em;
+      background: var(--green);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background .2s, transform .18s, box-shadow .2s;
+      margin-top: 6px;
+    }
+
+    .cf-submit:hover {
+      background: #557a67;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(107,143,122,.35);
+    }
+
+    .cf-submit:active { transform: translateY(0); }
+
+    .cf-submit:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Mensaje de éxito / error */
+    .cf-feedback {
+      display: none;
+      margin-top: 18px;
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .cf-feedback.success {
+      display: block;
+      background: #e8f5e9;
+      color: #2e7d32;
+      border: 1px solid #a5d6a7;
+    }
+
+    .cf-feedback.error {
+      display: block;
+      background: #fce4ec;
+      color: #c62828;
+      border: 1px solid #ef9a9a;
+    }
+
+    /* ══════════════════════════════════════════
+       SEPARADOR DECORATIVO
+    ══════════════════════════════════════════ */
+    .contact-divider {
+      text-align: center;
+      padding: 28px 0 0;
+      margin-top: 20px;
+      border-top: 1px solid rgba(43,43,43,.07);
+    }
+
+    .contact-divider p {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .contact-divider a {
+      color: var(--green);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* ══════════════════════════════════════════
+       SPINNER
+    ══════════════════════════════════════════ */
+    .cf-spinner {
+      display: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255,255,255,.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════ HEADER ══════════ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img id="site-logo" src="assets/img/unicologo.png" alt="vivewayra Logo">
+      </a>
+
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="#" id="btn-quienes-somos" onclick="abrirQuienesSomos(event)">Quiénes somos</a>
+        <a href="experiencias.html">Experiencias</a>
+        <a href="hoteles.html">Hoteles</a>
+        <a href="plans-nuqui.html">Planes turísticos en Nuquí</a>
+        <a href="contacto.html" class="active">Contacto</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="https://www.facebook.com/profile.php?id=61587257972289" class="social-brand-link fb-link"
+          aria-label="Síguenos en Facebook" target="_blank" rel="noopener" data-fb-link>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true">
+            <path d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z"/>
+          </svg>
+          <span>Síguenos</span>
+        </a>
+        <a href="https://www.instagram.com/vivewayra/" class="social-brand-link ig-link"
+          aria-label="Síguenos en Instagram" target="_blank" rel="noopener" data-ig-link>
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+            <defs>
+              <linearGradient id="ig-grad-hdr-c" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#f09433"/>
+                <stop offset="25%" stop-color="#e6683c"/>
+                <stop offset="50%" stop-color="#dc2743"/>
+                <stop offset="75%" stop-color="#cc2366"/>
+                <stop offset="100%" stop-color="#bc1888"/>
+              </linearGradient>
+            </defs>
+            <path fill="url(#ig-grad-hdr-c)"
+              d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z"/>
+          </svg>
+          <span>Síguenos</span>
+        </a>
+        <button class="nav-toggle" aria-label="Abrir navegación">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ══════════ HERO ══════════ -->
+    <section class="contact-hero" id="contact-hero">
+      <div class="contact-hero-content">
+        <h1 id="contact-hero-title">Contáctanos</h1>
+        <p id="contact-hero-subtitle">Estamos aquí para ayudarte a vivir una experiencia inolvidable en el Pacífico colombiano. Escríbenos o llámanos.</p>
+      </div>
+    </section>
+
+    <!-- ══════════ CONTENIDO PRINCIPAL ══════════ -->
+    <section class="contact-main">
+      <div class="container">
+        <div class="contact-grid">
+
+          <!-- ── COLUMNA IZQUIERDA: INFO, REDES Y MAPA ── -->
+          <div class="contact-info-col">
+            <h2>¿Cómo contactarnos?</h2>
+            <p class="subtitle">Elige el canal que prefieras. Respondemos en menos de 24 horas.</p>
+
+            <!-- Medios de contacto -->
+            <div class="contact-items">
+              <a href="https://wa.me/573225225582" class="contact-item-card" target="_blank" rel="noopener" data-wa-link>
+                <span class="contact-item-icon icon-wa">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z"/>
+                  </svg>
+                </span>
+                <div>
+                  <p class="contact-item-label">WhatsApp</p>
+                  <p class="contact-item-value" id="contact-wa-number">+57 322 5225582</p>
+                </div>
+              </a>
+
+              <a href="tel:+573225225582" class="contact-item-card" data-phone-link>
+                <span class="contact-item-icon icon-phone">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                  </svg>
+                </span>
+                <div>
+                  <p class="contact-item-label">Teléfono</p>
+                  <p class="contact-item-value" id="site-phone">+57 322 5225582</p>
+                </div>
+              </a>
+
+              <a href="mailto:vivewayra@gmail.com" class="contact-item-card" data-email-link>
+                <span class="contact-item-icon icon-email">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                  </svg>
+                </span>
+                <div>
+                  <p class="contact-item-label">Correo electrónico</p>
+                  <p class="contact-item-value" id="contact-email-text">vivewayra@gmail.com</p>
+                </div>
+              </a>
+
+              <div class="contact-item-card" style="cursor:default;">
+                <span class="contact-item-icon icon-loc">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                  </svg>
+                </span>
+                <div>
+                  <p class="contact-item-label">Ubicación</p>
+                  <p class="contact-item-value" id="contact-address">Nuquí, Chocó — Colombia</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Redes sociales -->
+            <p class="social-section-title">Síguenos en redes</p>
+            <div class="social-links-row">
+              <a href="https://wa.me/573225225582" class="social-pill pill-wa" target="_blank" rel="noopener" data-wa-link>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z"/>
+                </svg>
+                WhatsApp
+              </a>
+              <a href="https://www.instagram.com/vivewayra/" class="social-pill pill-ig" target="_blank" rel="noopener" data-ig-link>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z"/>
+                </svg>
+                Instagram
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=61587257972289" class="social-pill pill-fb" target="_blank" rel="noopener" data-fb-link>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z"/>
+                </svg>
+                Facebook
+              </a>
+            </div>
+
+            <!-- Mapa de ubicación -->
+            <div class="map-wrapper">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126199.23520987044!2d-77.35120815!3d5.6971697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e49f3e2651cb991%3A0x43ded7de6c88fe22!2sNuqu%C3%AD%2C%20Choc%C3%B3!5e0!3m2!1ses!2sco!4v1709400000000!5m2!1ses!2sco"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Mapa de Nuquí, Chocó, Colombia">
+              </iframe>
+              <div class="map-caption">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+                Nuquí, Chocó — Costa Pacífica Colombiana
+              </div>
+            </div>
+
+          </div><!-- /contact-info-col -->
+
+          <!-- ── COLUMNA DERECHA: FORMULARIO ── -->
+          <div class="contact-form-col">
+            <h2>Envíanos un mensaje</h2>
+            <p class="subtitle">Cuéntanos qué plan tienes en mente y te respondemos a la brevedad.</p>
+
+            <div class="contact-form-card">
+              <form id="contact-form" novalidate>
+
+                <div class="cf-row-2">
+                  <div class="cf-group">
+                    <label for="cf-nombre">Nombre *</label>
+                    <input type="text" id="cf-nombre" name="nombre" placeholder="Tu nombre" required>
+                  </div>
+                  <div class="cf-group">
+                    <label for="cf-apellido">Apellido *</label>
+                    <input type="text" id="cf-apellido" name="apellido" placeholder="Tu apellido" required>
+                  </div>
+                </div>
+
+                <div class="cf-group">
+                  <label for="cf-email">Correo electrónico *</label>
+                  <input type="email" id="cf-email" name="email" placeholder="correo@ejemplo.com" required>
+                </div>
+
+                <div class="cf-group">
+                  <label for="cf-telefono">Teléfono / WhatsApp</label>
+                  <input type="tel" id="cf-telefono" name="telefono" placeholder="+57 300 000 0000">
+                </div>
+
+                <div class="cf-group">
+                  <label for="cf-interes">¿Qué te interesa?</label>
+                  <select id="cf-interes" name="interes">
+                    <option value="">— Selecciona una opción —</option>
+                    <option value="avistamiento-ballenas">Avistamiento de ballenas</option>
+                    <option value="planes-nuqui">Planes a Nuquí</option>
+                    <option value="experiencias">Experiencias en el Pacífico</option>
+                    <option value="hoteles">Hoteles y alojamiento</option>
+                    <option value="fotografia">Fotografía y naturaleza</option>
+                    <option value="personalizado">Viaje personalizado</option>
+                    <option value="otro">Otro</option>
+                  </select>
+                </div>
+
+                <div class="cf-group">
+                  <label for="cf-mensaje">Mensaje *</label>
+                  <textarea id="cf-mensaje" name="mensaje" rows="5"
+                    placeholder="¿En qué fechas planeas viajar? ¿Cuántas personas? ¿Tienes alguna preferencia especial?" required></textarea>
+                </div>
+
+                <button type="submit" class="cf-submit" id="cf-submit-btn">
+                  <span id="cf-btn-text">Enviar mensaje</span>
+                  <div class="cf-spinner" id="cf-spinner"></div>
+                </button>
+              </form>
+
+              <div class="cf-feedback" id="cf-success">
+                ✅ ¡Mensaje enviado con éxito! Te responderemos en menos de 24 horas. También puedes contactarnos por
+                <a href="https://wa.me/573225225582" target="_blank" data-wa-link>WhatsApp</a> para una respuesta más rápida.
+              </div>
+              <div class="cf-feedback" id="cf-error">
+                ❌ Hubo un problema al enviar tu mensaje. Por favor intenta de nuevo o escríbenos directamente a
+                <a href="mailto:vivewayra@gmail.com" data-email-link>vivewayra@gmail.com</a>.
+              </div>
+
+              <div class="contact-divider">
+                <p>¿Prefieres respuesta inmediata? <a href="https://wa.me/573225225582" target="_blank" data-wa-link>Escríbenos por WhatsApp →</a></p>
+              </div>
+            </div>
+          </div><!-- /contact-form-col -->
+
+        </div><!-- /contact-grid -->
+      </div><!-- /container -->
+    </section>
+  </main>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-logo-area">
+          <img id="site-logo" src="assets/img/unicologo.png" alt="vivewayra Logo">
+          <p class="footer-rnt">
+            Expertos en experiencias auténticas en el Pacífico Colombiano.<br>
+            <strong>"El viaje que se queda"</strong>
+          </p>
+          <div class="footer-contact-quick">
+            <a href="tel:+573225225582" class="contact-item" data-phone-link>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              +57 322 5225582
+            </a>
+            <a href="mailto:vivewayra@gmail.com" class="contact-item" data-email-link>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+              vivewayra@gmail.com
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>Servicios</h3>
+          <ul class="footer-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="plans-nuqui.html">Planes a Nuquí</a></li>
+            <li><a href="experiencias.html">Experiencias</a></li>
+            <li><a href="hoteles.html">Hoteles</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Información</h3>
+          <ul class="footer-list">
+            <li><a href="#" onclick="abrirQuienesSomos(event)">Quiénes somos</a></li>
+            <li><a href="contacto.html">Contáctanos</a></li>
+            <li><a href="politicas.html">Política de Privacidad</a></li>
+            <li><a href="politicas.html?tab=terminos">Términos y Condiciones</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Horarios</h3>
+          <div class="footer-hours">
+            <p><span>Lunes a Viernes:</span> 8:00 AM - 6:00 PM</p>
+            <p><span>Sábados:</span> 9:00 AM - 5:00 PM</p>
+            <p><span>Domingos:</span> 10:00 AM - 4:00 PM</p>
+          </div>
+          <div class="footer-social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61587257972289" class="footer-social-icon facebook"
+              aria-label="Facebook" target="_blank" rel="noopener" data-fb-link title="Facebook">
+              <svg viewBox="0 0 24 24">
+                <path d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z"/>
+              </svg>
+            </a>
+            <a href="https://wa.me/573225225582" class="footer-social-icon whatsapp" aria-label="WhatsApp"
+              target="_blank" rel="noopener" data-wa-link title="WhatsApp">
+              <svg viewBox="0 0 24 24">
+                <path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/vivewayra/" class="footer-social-icon instagram" aria-label="Instagram"
+              target="_blank" rel="noopener" data-ig-link title="Instagram">
+              <svg viewBox="0 0 24 24">
+                <path d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-badges">
+        <div class="badge">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>100% Seguro</span>
+        </div>
+        <div class="badge">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span>Agencia Certificada</span>
+        </div>
+        <div class="badge">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22C6.48 22 2 17.52 2 12s4.48-10 10-10 10 4.48 10 10-4.48 10-10 10z"/>
+            <path d="m9 16 5-5 5 5"/>
+          </svg>
+          <span>Soporte 24/7</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> WAYRA - Agencia de Viajes Responsable. Todos los derechos reservados.<br>
+          Diseñado con
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="display:inline;vertical-align:middle;margin:0 2px;">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+          por el equipo WAYRA |
+          <a href="politicas.html">Política de Privacidad</a> • <a href="politicas.html?tab=terminos">Términos de Uso</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botón flotante WhatsApp -->
+  <a href="https://wa.me/573225225582?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20planes%20a%20Nuqu%C3%AD"
+    class="wa-float" target="_blank" rel="noopener" aria-label="Contáctanos por WhatsApp" data-wa-link>
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+      <path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z"/>
+    </svg>
+    <span class="wa-float-text">¿Hablamos?</span>
+  </a>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ── Formulario de contacto ── */
+    (function () {
+      const form = document.getElementById('contact-form');
+      const btnText = document.getElementById('cf-btn-text');
+      const spinner = document.getElementById('cf-spinner');
+      const submitBtn = document.getElementById('cf-submit-btn');
+      const successEl = document.getElementById('cf-success');
+      const errorEl = document.getElementById('cf-error');
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        successEl.style.display = 'none';
+        errorEl.style.display = 'none';
+
+        // Validación básica
+        const nombre = document.getElementById('cf-nombre').value.trim();
+        const email = document.getElementById('cf-email').value.trim();
+        const mensaje = document.getElementById('cf-mensaje').value.trim();
+
+        if (!nombre || !email || !mensaje) {
+          errorEl.textContent = '❌ Por favor completa los campos obligatorios (Nombre, Correo y Mensaje).';
+          errorEl.style.display = 'block';
+          return;
+        }
+
+        // Mostrar spinner
+        btnText.style.display = 'none';
+        spinner.style.display = 'block';
+        submitBtn.disabled = true;
+
+        const payload = {
+          nombre: nombre,
+          apellido: document.getElementById('cf-apellido').value.trim(),
+          email: email,
+          telefono: document.getElementById('cf-telefono').value.trim(),
+          interes: document.getElementById('cf-interes').value,
+          mensaje: mensaje
+        };
+
+        try {
+          // Intentar enviar al endpoint de confirmación existente
+          const res = await fetch('/api/send-confirmation', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              type: 'contact',
+              guestName: payload.nombre + ' ' + payload.apellido,
+              guestEmail: payload.email,
+              guestPhone: payload.telefono,
+              interest: payload.interes,
+              message: payload.mensaje
+            })
+          });
+
+          if (res.ok) {
+            successEl.style.display = 'block';
+            form.reset();
+          } else {
+            throw new Error('server');
+          }
+        } catch (_) {
+          // Fallback: abrir WhatsApp con los datos
+          const wa = '573225225582';
+          const txt = encodeURIComponent(
+            `Hola! Les escribo desde el formulario de contacto.\n` +
+            `Nombre: ${payload.nombre} ${payload.apellido}\n` +
+            `Correo: ${payload.email}\n` +
+            (payload.telefono ? `Teléfono: ${payload.telefono}\n` : '') +
+            (payload.interes ? `Interés: ${payload.interes}\n` : '') +
+            `Mensaje: ${payload.mensaje}`
+          );
+          // Mostramos mensaje de éxito y abrimos WA como respaldo
+          successEl.innerHTML = `✅ ¡Mensaje recibido! Te redirigimos a WhatsApp para confirmar el envío. <a href="https://wa.me/${wa}?text=${txt}" target="_blank">Haz clic aquí si no se abrió automáticamente →</a>`;
+          successEl.style.display = 'block';
+          form.reset();
+          setTimeout(() => {
+            window.open(`https://wa.me/${wa}?text=${txt}`, '_blank');
+          }, 600);
+        } finally {
+          btnText.style.display = 'inline';
+          spinner.style.display = 'none';
+          submitBtn.disabled = false;
+        }
+      });
+    })();
+
+    /* ── Quiénes somos stub (por si se llama desde footer) ── */
+    function abrirQuienesSomos(e) {
+      if (e) e.preventDefault();
+      window.location.href = 'index.html#quienes-somos';
+    }
+  </script>
+
+  <script src="wayra-data.js"></script>
+  <script src="wayra-analytics.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>

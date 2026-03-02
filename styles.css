@@ -142,6 +142,13 @@ body {
   color: var(--green);
 }
 
+.main-nav a.active {
+  color: var(--green);
+  font-weight: 600;
+  border-bottom: 2px solid var(--green);
+  padding-bottom: 2px;
+}
+
 /* Actions (Right side) */
 .header-actions {
   display: flex;
