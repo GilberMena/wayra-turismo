@@ -65,7 +65,7 @@ body {
 }
 
 #site-logo {
-  height: 90px !important;
+  height: 120px !important;
   width: auto !important;
   max-height: none !important;
   max-width: none !important;
@@ -86,7 +86,7 @@ body {
 }
 
 .wayra-logo {
-  width: 200px;
+  width: 250px;
   height: auto;
   display: block;
   transition: transform 0.3s ease;
@@ -1262,7 +1262,7 @@ body {
 }
 
 .footer-logo-area img {
-  height: 45px;
+  height: 70px;
   width: auto;
   margin-bottom: 10px;
   filter: brightness(0.95) drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
