@@ -1,9 +1,12 @@
 # Dependencias de Node
 node_modules/
 
-# Variables de entorno
+# Variables de entorno (NUNCA subir claves/secretos)
 .env
 .env.local
+.env.development
+.env.production
+.env.*.local
 
 # Laravel (no lo necesitamos en el sitio principal)
 laravel-project/vendor/
@@ -19,3 +22,18 @@ desktop.ini
 
 # VS Code
 .vscode/
+# Build / caché generados
+dist/
+build/
+.cache/
+.netlify/
+.vercel/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Archivos sensibles
+*.pem
+*.key
+assets/uploads/

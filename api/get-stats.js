@@ -1,7 +1,7 @@
 // API Route: get-stats (Vercel/Node.js)
 // Calcula estadísticas desde las reservas almacenadas en Airtable
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' });
   }

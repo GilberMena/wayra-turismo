@@ -13,6 +13,356 @@
         href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Montserrat:wght@300;400;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ══ HERO EXPERIENCIAS ══ */
+        .exp-hero {
+            background: linear-gradient(155deg, #0a2a1e 0%, #1a5040 45%, #0d3052 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: 430px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            color: #fff;
+        }
+
+        .exp-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 15% 50%, rgba(0,200,120,.12) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 30%, rgba(0,120,200,.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .exp-hero-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 75px 20px 36px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .exp-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,.1);
+            border: 1px solid rgba(255,255,255,.2);
+            backdrop-filter: blur(6px);
+            color: #9ff5d3;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 18px;
+        }
+
+        .exp-hero h1 {
+            font-family: Merriweather, serif;
+            font-size: 50px;
+            margin: 0 0 14px;
+            line-height: 1.15;
+            text-shadow: 0 2px 20px rgba(0,0,0,.4);
+        }
+
+        .exp-hero p.exp-lead {
+            font-size: 17.5px;
+            opacity: .88;
+            max-width: 560px;
+            margin: 0 auto 28px;
+            line-height: 1.8;
+        }
+
+        .exp-hero-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .exp-btn-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, #25d366, #1aa050);
+            color: #fff;
+            padding: 13px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: 0 6px 22px rgba(37,211,102,.35);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .exp-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37,211,102,.42);
+        }
+
+        .exp-btn-outline {
+            display: inline-block;
+            background: rgba(255,255,255,.1);
+            border: 1.5px solid rgba(255,255,255,.4);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            padding: 13px 26px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: background .2s;
+        }
+
+        .exp-btn-outline:hover { background: rgba(255,255,255,.2); }
+
+        /* ══ STATS BAR ══ */
+        .exp-stats-bar {
+            background: rgba(0,0,0,.22);
+            border-top: 1px solid rgba(255,255,255,.1);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .exp-stat {
+            flex: 0 0 auto;
+            padding: 14px 32px;
+            text-align: center;
+            border-right: 1px solid rgba(255,255,255,.1);
+            color: #fff;
+        }
+
+        .exp-stat:last-child { border-right: none; }
+
+        .exp-stat strong {
+            display: block;
+            font-size: 22px;
+            font-family: Merriweather, serif;
+            color: #7fffd4;
+        }
+
+        .exp-stat span {
+            font-size: 11px;
+            opacity: .7;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+        }
+
+        /* ══ INTRO ══ */
+        .exp-intro {
+            background: #fff;
+            padding: 50px 0 24px;
+            text-align: center;
+        }
+
+        .exp-intro h2 {
+            font-family: Merriweather, serif;
+            font-size: 28px;
+            color: #0a2a1e;
+            margin: 0 0 12px;
+        }
+
+        .exp-intro p {
+            font-size: 16px;
+            color: #4a6a5a;
+            max-width: 620px;
+            margin: 0 auto 32px;
+            line-height: 1.85;
+        }
+
+        /* ══ FILTROS ══ */
+        .exp-filters {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0 0 36px;
+        }
+
+        .exp-filter-btn {
+            background: #f0f7f4;
+            border: 1.5px solid #c8e6d8;
+            color: #1a5040;
+            padding: 8px 18px;
+            border-radius: 22px;
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .exp-filter-btn:hover,
+        .exp-filter-btn.active {
+            background: #1a5040;
+            border-color: #1a5040;
+            color: #fff;
+        }
+
+        /* ══ GRID EXPERIENCIAS ══ */
+        .exp-section {
+            background: linear-gradient(180deg, #f6fdf9, #fff);
+            padding: 12px 0 56px;
+        }
+
+        .exp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 8px;
+        }
+
+        .exp-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,.07);
+            transition: transform .22s, box-shadow .22s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .exp-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 36px rgba(0,0,0,.12);
+        }
+
+        .exp-card-img {
+            height: 210px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .exp-card-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(0,0,0,.52);
+            color: #7fffd4;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .7px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            backdrop-filter: blur(4px);
+        }
+
+        .exp-card-body {
+            padding: 22px 22px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .exp-card-body h3 {
+            font-family: Merriweather, serif;
+            font-size: 17px;
+            color: #0a2a1e;
+            margin: 0 0 10px;
+        }
+
+        .exp-card-body p {
+            font-size: 14px;
+            color: #5a7a68;
+            line-height: 1.7;
+            margin: 0 0 18px;
+            flex: 1;
+        }
+
+        .exp-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .exp-card-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #1a5040, #0d3a2e);
+            color: #fff;
+            padding: 9px 20px;
+            border-radius: 22px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            transition: opacity .2s;
+        }
+
+        .exp-card-link:hover { opacity: .88; }
+
+        .exp-card-wa {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #25d366, #1aa050);
+            color: #fff;
+            padding: 9px 16px;
+            border-radius: 22px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            transition: opacity .2s;
+        }
+
+        .exp-card-wa:hover { opacity: .88; }
+
+        /* ══ CTA FINAL ══ */
+        .exp-cta {
+            background: linear-gradient(135deg, #0a2a1e 0%, #1a5040 50%, #0d3052 100%);
+            padding: 64px 20px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exp-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(0,200,120,.15) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .exp-cta h2 {
+            font-family: Merriweather, serif;
+            font-size: 30px;
+            margin: 0 0 14px;
+            position: relative;
+        }
+
+        .exp-cta p {
+            font-size: 16px;
+            opacity: .82;
+            max-width: 520px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .exp-cta-btns {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        @media (max-width: 600px) {
+            .exp-hero h1 { font-size: 34px; }
+            .exp-stat { padding: 12px 18px; }
+        }
+    </style>
 </head>
 
 <body>
@@ -63,33 +413,58 @@
     </header>
 
     <main>
-        <header id="experiences-hero" class="hero-section"
-            style="background-image: url('assets/img/hero-experiencias.jpg');">
-            <div class="hero-overlay"></div>
-            <div class="container hero-content">
+        <!-- ══ HERO ══ -->
+        <div class="exp-hero">
+            <div class="exp-hero-content">
+                <div class="exp-hero-badge">🌿 Costa Pacífica Colombiana</div>
                 <h1>Experiencias en Nuquí</h1>
-                <p class="lead">Conexión profunda con la naturaleza y la cultura del Pacífico.</p>
+                <p class="exp-lead">Conexión profunda con la naturaleza y la cultura del Pacífico.<br>Cada salida es irrepetible.</p>
+                <div class="exp-hero-actions">
+                    <a class="exp-btn-primary" href="https://wa.me/573225225582?text=Hola%20WAYRA%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20experiencias%20en%20Nuqu%C3%AD" target="_blank">💬 Consultar una experiencia</a>
+                    <a class="exp-btn-outline" href="#exp-grid-section">Ver experiencias ↓</a>
+                </div>
             </div>
-        </header>
+            <div class="exp-stats-bar">
+                <div class="exp-stat"><strong>6</strong><span>Experiencias únicas</span></div>
+                <div class="exp-stat"><strong>🐋</strong><span>Temporada Jul – Oct</span></div>
+                <div class="exp-stat"><strong>100%</strong><span>Guías locales</span></div>
+                <div class="exp-stat"><strong>★ 4.9</strong><span>Valoración viajeros</span></div>
+            </div>
+        </div>
 
-        <section class="section">
+        <!-- ══ INTRO + FILTROS ══ -->
+        <div class="exp-intro">
             <div class="container">
                 <h2>Lo que vivirás con nosotros</h2>
-                <p class="subtitle">Cada salida es una oportunidad para descubrir la magia de la selva y el mar.</p>
-
-                <div id="experiences-grid" class="grid">
-                    <!-- Content loaded dynamically from data/experiences.json -->
-                    <div style="grid-column:1/-1;text-align:center;padding:40px">
-                        <p class="muted">Cargando experiencias...</p>
-                    </div>
+                <p>Desde el avistamiento de ballenas jorobadas hasta la gastronomía del Pacífico. WAYRA te conecta con lo auténtico de Nuquí con guías locales y salidas responsables.</p>
+                <div class="exp-filters">
+                    <button class="exp-filter-btn active" data-filter="all">Todas</button>
+                    <button class="exp-filter-btn" data-filter="ballenas">🐋 Ballenas</button>
+                    <button class="exp-filter-btn" data-filter="naturaleza">🌿 Naturaleza</button>
+                    <button class="exp-filter-btn" data-filter="fotografía">📸 Fotografía</button>
+                    <button class="exp-filter-btn" data-filter="aventura">🚣 Aventura</button>
+                    <button class="exp-filter-btn" data-filter="cultura">🍽️ Cultura</button>
+                    <button class="exp-filter-btn" data-filter="surf">🌊 Surf</button>
                 </div>
+            </div>
+        </div>
 
-                <div style="margin-top:40px; text-align:center;">
-                    <p class="lead" style="font-size:1.2em; color:var(--text);">¿Quieres vivir alguna de estas
-                        experiencias?</p>
-                    <!-- <a href="#" class="btn-primary open-reserve" data-plan-title="Experiencia Personalizada"
-                        data-plan-price="" data-plan-id="exp-general">Contáctanos para armar tu plan</a> -->
+        <!-- ══ GRID ══ -->
+        <section id="exp-grid-section" class="exp-section">
+            <div class="container">
+                <div id="experiences-grid" class="exp-grid">
+                    <p class="muted" style="text-align:center;grid-column:1/-1;padding:40px;">Cargando experiencias…</p>
                 </div>
+            </div>
+        </section>
+
+        <!-- ══ CTA ══ -->
+        <section class="exp-cta">
+            <h2>¿No encuentras lo que buscas?</h2>
+            <p>Armamos experiencias a la medida según tus fechas, grupo e intereses. Cuéntanos qué quieres vivir.</p>
+            <div class="exp-cta-btns">
+                <a class="exp-btn-primary" href="https://wa.me/573225225582?text=Hola%20WAYRA%2C%20quiero%20armar%20una%20experiencia%20personalizada%20en%20Nuqu%C3%AD" target="_blank">💬 Armar mi experiencia</a>
+                <a class="exp-btn-outline" href="plans-nuqui.html">Ver planes turísticos</a>
             </div>
         </section>
     </main>
@@ -226,12 +601,70 @@
 
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.main-nav');
+        if (navToggle) navToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
     </script>
     <script src="wayra-data.js"></script>
     <script>
+        let allExps = [];
+
+        function renderExpCards(exps) {
+            const container = document.getElementById('experiences-grid');
+            if (!container) return;
+            if (!exps || !exps.length) {
+                container.innerHTML = '<p class="muted" style="text-align:center;grid-column:1/-1;padding:40px;">No hay experiencias disponibles.</p>';
+                return;
+            }
+            const gradients = [
+                'linear-gradient(135deg,#0a3a28,#1a6040)',
+                'linear-gradient(135deg,#0d2a4a,#1a4a6e)',
+                'linear-gradient(135deg,#2a1a0a,#5a3010)',
+                'linear-gradient(135deg,#1a0a2a,#4a1a6e)',
+                'linear-gradient(135deg,#0a2a2a,#1a5050)',
+                'linear-gradient(135deg,#2a0a1a,#6e1a40)',
+            ];
+            container.innerHTML = exps.map((exp, i) => {
+                const bg = exp.image ? `url('${exp.image}')` : gradients[i % gradients.length];
+                const waText = encodeURIComponent(`Hola WAYRA, quiero saber más sobre la experiencia: ${exp.title}`);
+                return `<article class="exp-card">
+                    <div class="exp-card-img" style="background-image:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.35)),${bg};">
+                        ${exp.badge ? `<span class="exp-card-badge">${exp.badge}</span>` : ''}
+                    </div>
+                    <div class="exp-card-body">
+                        <h3>${exp.title || ''}</h3>
+                        <p>${exp.description || ''}</p>
+                        <div class="exp-card-footer">
+                            <a class="exp-card-link" href="detail.html?type=exp&id=${exp.id}">Ver detalle →</a>
+                            <a class="exp-card-wa" href="https://wa.me/573225225582?text=${waText}" target="_blank">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z"/></svg>
+                                Consultar
+                            </a>
+                        </div>
+                    </div>
+                </article>`;
+            }).join('');
+        }
+
+        function setupExpFilters(exps) {
+            document.querySelectorAll('.exp-filter-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    document.querySelectorAll('.exp-filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    const filter = this.dataset.filter;
+                    const filtered = filter === 'all' ? exps : exps.filter(e =>
+                        (e.title + ' ' + e.description + ' ' + (e.badge || '')).toLowerCase().includes(filter.toLowerCase())
+                    );
+                    renderExpCards(filtered.length ? filtered : exps);
+                });
+            });
+        }
+
         loadExperiences(function (exps) {
             if (exps) {
-                renderExperienciasPage(exps, 'experiences-grid');
+                allExps = exps;
+                renderExpCards(exps);
+                setupExpFilters(exps);
             } else {
                 document.getElementById('experiences-grid').innerHTML =
                     '<p class="muted" style="text-align:center;grid-column:1/-1;padding:40px;">No se pudieron cargar las experiencias.</p>';

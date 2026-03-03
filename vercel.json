@@ -1,4 +1,13 @@
 {
-    "version": 2,
-    "cleanUrls": true
+  "version": 2,
+  "cleanUrls": true,
+  "functions": {
+    "api/*.js": {
+      "runtime": "@vercel/node"
+    }
+  },
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
 }

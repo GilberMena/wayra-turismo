@@ -18,6 +18,7 @@
       "notIncluded": [
         "comida"
       ],
+      "tags": ["ballenas", "playa", "naturaleza", "cultura"],
       "notes": "llevar ropa deportiva",
       "pricing": [
         {
@@ -86,6 +87,7 @@
         "Equipo de snorkel"
       ],
       "notIncluded": [],
+      "tags": ["ballenas", "fotografía", "snorkel", "playa"],
       "notes": "",
       "image": "",
       "active": true
@@ -106,6 +108,7 @@
         "Alojamiento 1 noche"
       ],
       "notIncluded": [],
+      "tags": ["pesca", "naturaleza", "kayak", "manglares"],
       "notes": "",
       "image": "",
       "active": true

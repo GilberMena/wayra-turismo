@@ -37,7 +37,11 @@ exports.handler = async function (event, context) {
   };
 
   try {
-    const resp = await fetch('https://sandbox.wompi.co/v1/transactions', {
+    // WOMPI_ENV=production → usa producción; cualquier otro valor (o no definido) → sandbox
+    const wompiBase = process.env.WOMPI_ENV === 'production'
+      ? 'https://production.wompi.co/v1'
+      : 'https://sandbox.wompi.co/v1';
+    const resp = await fetch(`${wompiBase}/transactions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

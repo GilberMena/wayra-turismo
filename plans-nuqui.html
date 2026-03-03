@@ -9,10 +9,562 @@
     content="Planes y paquetes para Nuquí: avistamiento de ballenas, fotografía y experiencias a medida en la costa Pacífica colombiana.">
   <link rel="icon" href="assets/img/unicologo.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/img/unicologo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Montserrat:wght@300;400;600&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ══ HERO PLANES ══ */
+    .plans-hero-wrap {
+      background: linear-gradient(155deg, #0a2a1e 0%, #1a5040 40%, #0d3052 100%);
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+      padding: 90px 20px 100px;
+      text-align: center;
+    }
+
+    .plans-hero-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 50%, rgba(37,211,162,.14) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 30%, rgba(255,180,60,.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* Wave SVG decoration */
+    .plans-hero-wave {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      line-height: 0;
+    }
+
+    .plans-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      backdrop-filter: blur(6px);
+      color: #7fffd4;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .plans-hero-wrap h1 {
+      font-family: Merriweather, serif;
+      font-size: 52px;
+      margin: 0 0 16px;
+      line-height: 1.15;
+      text-shadow: 0 2px 20px rgba(0,0,0,.3);
+    }
+
+    .plans-hero-wrap .lead {
+      font-size: 19px;
+      opacity: .88;
+      max-width: 600px;
+      margin: 0 auto 32px;
+      line-height: 1.75;
+    }
+
+    .plans-hero-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .plans-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #25d366, #1aa050);
+      color: #fff;
+      padding: 14px 30px;
+      border-radius: 32px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      box-shadow: 0 6px 24px rgba(37,211,102,.35);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .plans-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(37,211,102,.45);
+    }
+
+    .plans-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.1);
+      border: 1.5px solid rgba(255,255,255,.4);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      padding: 14px 26px;
+      border-radius: 32px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: background .2s;
+    }
+
+    .plans-btn-secondary:hover { background: rgba(255,255,255,.2); }
+
+    /* Stats strip inside hero */
+    .plans-hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .plans-hero-stat {
+      flex: 1;
+      min-width: 130px;
+      padding: 16px 20px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,.1);
+    }
+
+    .plans-hero-stat:last-child { border-right: none; }
+
+    .plans-hero-stat strong {
+      display: block;
+      font-size: 22px;
+      font-family: Merriweather, serif;
+      color: #7fffd4;
+    }
+
+    .plans-hero-stat span {
+      font-size: 11px;
+      opacity: .65;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+
+    /* ══ FILTROS PLANES ══ */
+    .plans-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px 0 8px;
+    }
+
+    .plans-filter-btn {
+      padding: 8px 20px;
+      border-radius: 24px;
+      border: 1.5px solid #c0d8c8;
+      background: #fff;
+      color: #2a5a3a;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .18s ease;
+      font-family: Montserrat, sans-serif;
+    }
+
+    .plans-filter-btn:hover,
+    .plans-filter-btn.active {
+      background: linear-gradient(135deg, #1a5040, #0d3052);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 3px 12px rgba(26,80,64,.28);
+    }
+
+    /* ══ PLAN CARD MEJORADA ══ */
+    .plan-card {
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 6px 24px rgba(0,0,0,.07);
+      display: flex;
+      flex-direction: column;
+      transition: transform .22s ease, box-shadow .22s ease;
+      border: 1px solid rgba(0,0,0,.05);
+    }
+
+    .plan-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 40px rgba(0,0,0,.12);
+    }
+
+    .plan-image {
+      height: 200px;
+      position: relative;
+      background-color: #1a3a2a;
+    }
+
+    .plan-header {
+      padding: 20px 22px 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .plan-header h3 {
+      font-family: Merriweather, serif;
+      font-size: 18px;
+      margin: 0;
+      color: #0a2a1e;
+      line-height: 1.3;
+    }
+
+    .plan-header .price {
+      font-size: 15px;
+      font-weight: 800;
+      color: #1a6a3e;
+      white-space: nowrap;
+      background: linear-gradient(135deg, #e4f9ee, #ccf0dc);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-top: 2px;
+    }
+
+    .plan-card > .muted {
+      padding: 0 22px;
+      font-size: 12.5px;
+      color: #7a9a80;
+      margin: 4px 0 8px;
+    }
+
+    .plan-card > p:not(.muted) {
+      padding: 0 22px;
+      font-size: 13.5px;
+      color: #4a6050;
+      line-height: 1.7;
+      flex: 1;
+      margin: 0 0 12px;
+    }
+
+    .plan-actions {
+      display: flex;
+      gap: 8px;
+      padding: 0 22px 22px;
+    }
+
+    .plan-actions .btn-outline {
+      flex: 1;
+      text-align: center;
+      padding: 11px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1.5px solid #1a8050;
+      color: #1a6040;
+      transition: all .18s;
+    }
+
+    .plan-actions .btn-outline:hover {
+      background: #1a8050;
+      color: #fff;
+    }
+
+    .plan-actions .btn-whatsapp {
+      flex: 1;
+      background: linear-gradient(135deg, #25d366, #1aa050);
+      color: #fff;
+      border: none;
+      padding: 11px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: all .18s;
+      box-shadow: 0 3px 10px rgba(37,211,102,.22);
+    }
+
+    .plan-actions .btn-whatsapp:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(37,211,102,.35);
+    }
+
+    /* ══ PERSONALIZED PACKAGE MEJORADO ══ */
+    .personalized-package-card {
+      background: linear-gradient(135deg, #0a2a1e 0%, #1a5040 50%, #0d3052 100%);
+      color: #fff;
+      border-radius: 24px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      padding: 44px;
+      position: relative;
+    }
+
+    .personalized-package-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 80% 20%, rgba(255,180,60,.12) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    .personalized-content { position: relative; }
+
+    .personalized-package-card h2 {
+      font-family: Merriweather, serif;
+      font-size: 26px;
+      margin: 0 0 12px;
+      color: #fff;
+    }
+
+    .personalized-package-card > .personalized-content > p {
+      opacity: .87;
+      font-size: 15px;
+      line-height: 1.75;
+      margin: 0 0 20px;
+    }
+
+    .personalized-features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .personalized-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      opacity: .9;
+    }
+
+    .personalized-features li svg {
+      flex-shrink: 0;
+      color: #7fffd4;
+    }
+
+    .personalized-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      min-width: 180px;
+      position: relative;
+    }
+
+    .btn-custom.btn-white {
+      background: #fff;
+      color: #0a2a1e;
+      padding: 14px 24px;
+      border-radius: 32px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      text-align: center;
+      white-space: nowrap;
+      box-shadow: 0 6px 20px rgba(0,0,0,.18);
+      transition: transform .2s, box-shadow .2s;
+      display: block;
+    }
+
+    .btn-custom.btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(0,0,0,.25);
+    }
+
+    @media (max-width: 700px) {
+      .personalized-package-card {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+      }
+      .personalized-features { grid-template-columns: 1fr; }
+      .plans-hero-wrap h1 { font-size: 34px; }
+    }
+
+    /* ══ TESTIMONIOS ══ */
+    .plans-testimonials {
+      background: #f8fdf9;
+      padding: 56px 0;
+    }
+
+    .plans-testimonials h2 {
+      font-family: Merriweather, serif;
+      font-size: 26px;
+      text-align: center;
+      color: #0a2a1e;
+      margin: 0 0 8px;
+    }
+
+    .plans-testimonials .test-sub {
+      text-align: center;
+      color: #5a7a60;
+      font-size: 15px;
+      margin: 0 0 36px;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .testimonial-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 28px 26px;
+      box-shadow: 0 4px 18px rgba(0,0,0,.06);
+      border: 1px solid rgba(26,100,60,.08);
+    }
+
+    .testimonial-stars {
+      color: #f5a623;
+      font-size: 16px;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+    }
+
+    .testimonial-text {
+      font-size: 14px;
+      color: #3a5040;
+      line-height: 1.75;
+      margin: 0 0 16px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1a5040, #0d3052);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .testimonial-name {
+      font-weight: 700;
+      font-size: 14px;
+      color: #0a2a1e;
+    }
+
+    .testimonial-origin {
+      font-size: 12px;
+      color: #7a9a80;
+    }
+
+    /* ══ FORMULARIO COTIZACIÓN MEJORADO ══ */
+    .quote-form {
+      background: linear-gradient(135deg, #f0faf6, #e8f4fc);
+      padding: 56px 0;
+    }
+
+    .quote-form h3 {
+      font-family: Merriweather, serif;
+      font-size: 26px;
+      color: #0a2a1e;
+      text-align: center;
+      margin: 0 0 6px;
+    }
+
+    .quote-form-sub {
+      text-align: center;
+      color: #5a7a60;
+      font-size: 15px;
+      margin: 0 0 36px;
+    }
+
+    .quote-form-card {
+      background: #fff;
+      border-radius: 22px;
+      padding: 40px;
+      box-shadow: 0 8px 36px rgba(0,0,0,.08);
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .form-row label {
+      display: flex;
+      flex-direction: column;
+      font-size: 13px;
+      font-weight: 700;
+      color: #0a2a1e;
+      gap: 6px;
+    }
+
+    .form-row input, .form-row select, .form-row textarea {
+      padding: 12px 14px;
+      border: 1.5px solid #d0ddd8;
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: Montserrat, sans-serif;
+      color: #1a2a22;
+      transition: border-color .18s, box-shadow .18s;
+      outline: none;
+    }
+
+    .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+      border-color: #1a8050;
+      box-shadow: 0 0 0 3px rgba(26,128,80,.12);
+    }
+
+    .form-row.two-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #1a8050, #0d5030);
+      color: #fff;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 32px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 16px rgba(26,128,80,.28);
+      font-family: Montserrat, sans-serif;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(26,128,80,.38);
+    }
+
+    @media (max-width: 600px) {
+      .form-row.two-cols { grid-template-columns: 1fr; }
+      .quote-form-card { padding: 28px 20px; }
+      .nh-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
 
 <body>
@@ -65,72 +617,95 @@
 
 
   <main>
-    <!-- ── ÁREA VIBRANTE DE PLANES ── -->
-    <div class="whale-vivid-area" id="vivid-plans-section">
-      <section class="hero" id="plans-hero" style="background-image:none;">
-        <div class="hero-overlay" style="background:transparent;"></div>
-        <div class="container hero-content">
-          <h1>Planes en Nuquí</h1>
-          <p class="lead">Experiencias en la costa Pacífica: avistamiento de ballenas, manglares y cultura local.</p>
-          <!-- <p><a class="btn-primary" href="#planes-nuqui">Ver planes</a></p> -->
+    <!-- ══ HERO PLANES ══ -->
+    <div class="plans-hero-wrap">
+      <div style="position:relative;z-index:1;">
+        <div class="plans-hero-badge">🐋  Costa Pacífica Colombiana</div>
+        <h1>Planes en Nuquí</h1>
+        <p class="lead">Ballenas jorobadas, selva vígen, playas desiertas y cultura pacífica.<br>Vive la naturaleza que pocos conocen.</p>
+        <div class="plans-hero-actions">
+          <a class="plans-btn-primary" href="https://wa.me/573225225582?text=Hola%20WAYRA%2C%20quiero%20informaci%C3%B3n%20sobre%20planes%20a%20Nuqu%C3%AD" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z"/></svg>
+            Cotizar mi viaje
+          </a>
+          <a class="plans-btn-secondary" href="#planes-nuqui">Ver planes ↓</a>
         </div>
-      </section>
+        <div class="plans-hero-stats">
+          <div class="plans-hero-stat"><strong>Jul – Oct</strong><span>Temporada ballenas</span></div>
+          <div class="plans-hero-stat"><strong>+6</strong><span>Planes disponibles</span></div>
+          <div class="plans-hero-stat"><strong>4.9 ★</strong><span>Calificación viajeros</span></div>
+          <div class="plans-hero-stat"><strong>Todo Inc.</strong><span>Vuelo + hotel + tours</span></div>
+        </div>
+      </div>
+      <div class="plans-hero-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none" style="width:100%;height:60px;">
+          <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#ffffff"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- ══ ÁREA PLANES ══ -->
+    <div id="vivid-plans-section">
 
       <!-- SECCIÓN 1: Grid dinámico de planes -->
-      <section id="planes-nuqui" class="section pale" style="background:transparent;box-shadow:none;">
+      <section id="planes-nuqui" class="section pale" style="background:linear-gradient(180deg,#f6fdf9,#fff);">
         <div class="container">
-          <h2>Planes turísticos en Nuquí</h2>
-          <p class="subtitle">Seleccionamos opciones para distintos viajeros. Todos los planes pueden personalizarse.
-          </p>
+          <h2 style="text-align:center;font-family:Merriweather,serif;color:#0a2a1e;">Planes turísticos en Nuquí</h2>
+          <p class="subtitle" style="text-align:center;">Seleccionamos opciones para distintos viajeros. Todos los planes pueden personalizarse.</p>
+
+          <!-- Filtros -->
+          <div class="plans-filters">
+            <button class="plans-filter-btn active" data-filter="all">Todos los planes</button>
+            <button class="plans-filter-btn" data-filter="ballenas">🐋 Ballenas</button>
+            <button class="plans-filter-btn" data-filter="fotograf">📸 Fotografía</button>
+            <button class="plans-filter-btn" data-filter="pesca">🎣 Pesca</button>
+            <button class="plans-filter-btn" data-filter="naturaleza">🌿 Naturaleza</button>
+            <button class="plans-filter-btn" data-filter="playa">🏖️ Playa</button>
+          </div>
 
           <div id="planes-grid" class="grid plan-grid">
             <p class="muted" style="text-align:center;grid-column:1/-1;padding:30px;">Cargando planes…</p>
           </div>
 
-          <p class="muted" style="margin-top:18px">Los precios son indicativos por persona y pueden variar según
-            temporada y número de personas. Contáctanos para cotizar fechas específicas.</p>
+          <p class="muted" style="margin-top:18px;text-align:center;">Los precios son indicativos por persona y pueden variar según temporada y número de personas.<br>Contáctanos para cotizar fechas específicas.</p>
         </div>
       </section>
 
       <!-- SECCIÓN 2: Crea Tu Paquete Ideal -->
-      <section class="section light" style="background:transparent;box-shadow:none;">
+      <section class="section" style="background:#fff;">
         <div class="container">
           <div class="personalized-package-card">
             <div class="personalized-content">
-              <h2>Crea Tu Paquete Ideal</h2>
+              <h2>🌟 Crea Tu Paquete Ideal</h2>
               <p>¿No encuentras el paquete perfecto? No te preocupes. Nuestro equipo está listo para diseñar una
                 experiencia 100% personalizada que se ajuste a tu presupuesto, tiempo y preferencias.</p>
               <ul class="personalized-features">
-                <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                     stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg> Asesoría personalizada sin costo</li>
-                <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                     stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg> Combinaciones de actividades flexibles</li>
-                <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                     stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg> Opciones para todos los presupuestos</li>
-                <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                     stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg> Atención 24/7 durante tu viaje</li>
               </ul>
             </div>
             <div class="personalized-actions">
-              <a href="https://wa.me/573225225582" class="btn-custom btn-white" target="_blank">Solicitar Paquete
+              <a href="https://wa.me/573225225582" class="btn-custom btn-white" target="_blank">💬 Solicitar Paquete
                 Personalizado</a>
-
-              <!-- Redes sociales estilo inicio -->
-              <div class="header-actions" style="margin-top: 15px; justify-content: flex-start;">
+              <div style="display:flex;gap:12px;margin-top:4px;">
                 <a href="https://www.facebook.com/profile.php?id=61587257972289" class="social-brand-link fb-link"
                   aria-label="Síguenos en Facebook" target="_blank" rel="noopener">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true">
-                    <path
-                      d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z">
-                    </path>
+                    <path d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z"></path>
                   </svg>
                   <span>Síguenos</span>
                 </a>
@@ -138,15 +713,13 @@
                   aria-label="Síguenos en Instagram" target="_blank" rel="noopener">
                   <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
                     <defs>
-                      <linearGradient id="ig-grad-plans-fix" x1="0%" y1="100%" x2="100%" y2="0%">
+                      <linearGradient id="ig-grad-plans-fix2" x1="0%" y1="100%" x2="100%" y2="0%">
                         <stop offset="0%" stop-color="#f09433"></stop>
-                        <stop offset="25%" stop-color="#e6683c"></stop>
                         <stop offset="50%" stop-color="#dc2743"></stop>
-                        <stop offset="75%" stop-color="#cc2366"></stop>
                         <stop offset="100%" stop-color="#bc1888"></stop>
                       </linearGradient>
                     </defs>
-                    <path fill="url(#ig-grad-plans-fix)"
+                    <path fill="url(#ig-grad-plans-fix2)"
                       d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z">
                     </path>
                   </svg>
@@ -157,7 +730,50 @@
           </div>
         </div>
       </section>
-    </div>
+    </div> <!-- cierre personalizó -->
+
+    <!-- ══ TESTIMONIOS ══ -->
+    <section class="plans-testimonials">
+      <div class="container">
+        <h2>Lo que dicen nuestros viajeros</h2>
+        <p class="test-sub">Personas reales que vivieron el Pacífico con WAYRA.</p>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">“Ver una ballena jorobada a tres metros del bote fue lo más increíble que he vivido. WAYRA organizó todo perfecto, desde el vuelo hasta la última actividad.”</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">👩</div>
+              <div>
+                <div class="testimonial-name">María Camila R.</div>
+                <div class="testimonial-origin">Medellín, Colombia</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">“Fui solo al plan de fotografía y regresé con las mejores fotos de mi vida. El equipo de WAYRA siempre estuvo pendiente de nosotros. 100% recomendado.”</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">👨</div>
+              <div>
+                <div class="testimonial-name">Andrés Felipe G.</div>
+                <div class="testimonial-origin">Bogotá, Colombia</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">“Nuquí me cambió la perspectiva del mundo. Silencio, naturaleza y comunidades amazones. WAYRA pensó en cada detalle para que el viaje fuera perfecto.”</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">👩</div>
+              <div>
+                <div class="testimonial-name">Laura T.</div>
+                <div class="testimonial-origin">Cali, Colombia</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- SECCIÓN 3: Cómo llegar a Nuquí -->
     <section id="temporada" class="section light">
@@ -215,24 +831,26 @@
 
 
     <!-- Formulario de cotización -->
-    <section id="contacto" class="quote-form" style="margin-top:40px;">
+    <section id="contacto" class="quote-form">
       <div class="container">
-        <h3>Realizar cotización</h3>
+        <h3>Solicita tu cotización</h3>
+        <p class="quote-form-sub">Cuéntanos sobre tu viaje ideal y te respondemos en menos de 24 horas.🌿</p>
+        <div class="quote-form-card">
         <form>
-          <div class="form-row">
-            <label>E-mail<input type="email" required></label>
+          <div class="form-row" style="margin-bottom:16px;">
+            <label>Correo electrónico<input type="email" placeholder="tu@correo.com" required></label>
           </div>
-          <div class="form-row two-cols">
-            <label>Nombre<input type="text" required></label>
-            <label>Apellidos<input type="text" required></label>
+          <div class="form-row two-cols" style="margin-bottom:16px;">
+            <label>Nombre<input type="text" placeholder="Tu nombre" required></label>
+            <label>Apellidos<input type="text" placeholder="Tus apellidos" required></label>
           </div>
-          <div class="form-row two-cols">
-            <label>Teléfono<input type="tel" placeholder="+57 3xx..." required></label>
+          <div class="form-row two-cols" style="margin-bottom:16px;">
+            <label>Teléfono / WhatsApp<input type="tel" placeholder="+57 3xx xxx xxxx" required></label>
             <label>Número de personas<input type="number" min="1" value="2" required></label>
           </div>
-          <div class="form-row two-cols">
+          <div class="form-row two-cols" style="margin-bottom:16px;">
             <label>Fecha de viaje (aprox)<input type="date"></label>
-            <label>Destino/Plan de interés
+            <label>Destino / Plan de interés
               <select>
                 <option value="">Selecciona una opción</option>
                 <option value="nuqui-gral">Nuquí (General)</option>
@@ -244,13 +862,14 @@
               </select>
             </label>
           </div>
-          <div class="form-row">
-            <label>Comentarios / Dudas<textarea rows="3"></textarea></label>
+          <div class="form-row" style="margin-bottom:22px;">
+            <label>Comentarios / Dudas<textarea rows="3" placeholder="Cuéntanos qué tipo de experiencia buscas, presupuesto aproximado o cualquier duda..."></textarea></label>
           </div>
           <div class="form-row">
-            <button type="submit" class="btn-primary">Solicitar cotización</button>
+            <button type="submit" class="btn-primary">🚀 Enviar cotización</button>
           </div>
         </form>
+        </div>
       </div>
     </section>
 
@@ -389,14 +1008,38 @@
     <span class="wa-float-text">¿Hablamos?</span>
   </a>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.main-nav');
+    if (navToggle) navToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
+  </script>
   <script src="wayra-data.js"></script>
   <script src="wayra-analytics.js"></script>
   <script src="script.js"></script>
   <script>
+    let allPlanes = [];
     loadPlanes(function (planes) {
-      if (planes) renderPlanes(planes, 'planes-grid');
+      if (planes) {
+        allPlanes = planes;
+        renderPlanes(planes, 'planes-grid');
+        setupPlanFilters(planes);
+      }
     });
+
+    function setupPlanFilters(planes) {
+      document.querySelectorAll('.plans-filter-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('.plans-filter-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          const filter = this.dataset.filter;
+          const filtered = filter === 'all' ? planes : planes.filter(p =>
+            (p.title + ' ' + p.description + ' ' + (p.tags || []).join(' ')).toLowerCase().includes(filter.toLowerCase())
+          );
+          renderPlanes(filtered.length ? filtered : planes, 'planes-grid');
+        });
+      });
+    }
   </script>
 </body>
 

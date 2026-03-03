@@ -257,6 +257,11 @@ document.addEventListener('DOMContentLoaded', function(){
   if(btnWhatsappReserve){
     btnWhatsappReserve.addEventListener('click', function(){
       const d = collectReserveData();
+      // Guardar en Airtable (backend) antes de abrir WhatsApp
+      if(d.name || d.phone || d.email){
+        saveLocalReservation(d);
+        sendReservationToBackend(d);
+      }
       const text = `Solicitud de reserva: ${d.title}\nNombre: ${d.name}\nTeléfono: ${d.phone}\nEmail: ${d.email}\nFechas: ${d.start} - ${d.end}\nPersonas: ${d.guests}\nComentarios: ${d.comments}\n\nPor favor confirme disponibilidad y pasos para confirmar la reserva.`;
       window.open(whatsappUrlFor(text), '_blank');
     });
@@ -269,13 +274,52 @@ document.addEventListener('DOMContentLoaded', function(){
         showToast('Por favor completa tu nombre y teléfono antes de enviar la solicitud.', 'error');
         return;
       }
+      // Guardar en servidor (Airtable) y también localmente como respaldo
+      saveLocalReservation(d);
+      sendReservationToBackend(d);
       const subject = `Solicitud de reserva: ${d.title} - ${d.name}`;
       const body = `Plan: ${d.title}\nPrecio estimado: ${d.price}\nNombre: ${d.name}\nTeléfono: ${d.phone}\nEmail: ${d.email}\nFechas: ${d.start} - ${d.end}\nPersonas: ${d.guests}\nComentarios:\n${d.comments}`;
-  window.location.href = `mailto:vivewayra@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = `mailto:vivewayra@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
   }
 
-  // ------------ Helpers: toast y guardado local -------------
+  // ------------ Helpers: envío a backend, toast y guardado local -------------
+
+  /**
+   * Envía los datos de reserva a la función serverless de Netlify → Airtable.
+   * No bloquea el flujo (fire-and-forget); si falla, igual funciona el mailto/WhatsApp.
+   */
+  function sendReservationToBackend(data){
+    try{
+      const payload = {
+        plan:     data.id || data.title || '',
+        price:    data.price || '',
+        name:     data.name || '',
+        phone:    data.phone || '',
+        email:    data.email || '',
+        start:    data.start || '',
+        end:      data.end || '',
+        guests:   data.guests || '',
+        comments: data.comments || ''
+      };
+      fetch('/.netlify/functions/create-reservation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function(res){
+        if(res.ok){
+          console.log('[Wayra] Reserva guardada en servidor correctamente.');
+        } else {
+          console.warn('[Wayra] El servidor devolvió error al guardar reserva:', res.status);
+        }
+      }).catch(function(err){
+        console.warn('[Wayra] No se pudo conectar al servidor para guardar reserva:', err);
+      });
+    }catch(e){
+      console.warn('[Wayra] sendReservationToBackend error:', e);
+    }
+  }
+
   function showToast(message, type){
     const t = document.createElement('div');
     t.className = `toast ${type||''}`.trim();

@@ -16,49 +16,230 @@
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
+        /* ══ HERO ══ */
         .hotel-hero {
-            background-image: linear-gradient(180deg, rgba(0, 0, 0, .48), rgba(0, 0, 0, .18)), url('assets/hero.svg');
-            background-size: cover;
-            background-position: center;
-            min-height: 340px;
+            background: linear-gradient(155deg, #0d3a4a 0%, #1a5c6e 40%, #0f4a2e 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: 420px;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: space-between;
             text-align: center;
             color: #fff;
-            padding: 60px 20px 48px;
+        }
+
+        .hotel-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 40%, rgba(255,255,255,.05) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 60%, rgba(0,180,140,.15) 0%, transparent 55%);
+            pointer-events: none;
+        }
+
+        .hotel-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.22);
+            backdrop-filter: blur(6px);
+            color: #b8f0d8;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 18px;
         }
 
         .hotel-hero h1 {
             font-family: Merriweather, serif;
-            font-size: 46px;
-            margin: 0 0 10px;
+            font-size: 52px;
+            margin: 0 0 14px;
+            line-height: 1.15;
+            text-shadow: 0 2px 18px rgba(0,0,0,.35);
         }
 
         .hotel-hero p {
             font-size: 18px;
-            opacity: .9;
-            max-width: 560px;
-            margin: 0 auto;
-            line-height: 1.7;
+            opacity: .88;
+            max-width: 580px;
+            margin: 0 auto 28px;
+            line-height: 1.75;
         }
 
+        .hotel-hero-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, #25d366, #1aa050);
+            color: #fff;
+            padding: 13px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: 0 6px 22px rgba(37,211,102,.35);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .hero-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37,211,102,.42);
+        }
+
+        .hero-btn-outline {
+            display: inline-block;
+            background: rgba(255,255,255,.12);
+            border: 1.5px solid rgba(255,255,255,.45);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            padding: 13px 26px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: background .2s;
+        }
+
+        .hero-btn-outline:hover { background: rgba(255,255,255,.22); }
+
+        /* ══ STATS BAR ══ */
+        .hero-stats-bar {
+            background: rgba(0,0,0,.25);
+            border-top: 1px solid rgba(255,255,255,.12);
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+        }
+
+        .hero-stat {
+            flex: 0 0 auto;
+            padding: 14px 32px;
+            text-align: center;
+            border-right: 1px solid rgba(255,255,255,.1);
+            color: #fff;
+        }
+
+        .hero-stat:last-child { border-right: none; }
+
+        .hero-stat strong {
+            display: block;
+            font-size: 22px;
+            font-family: Merriweather, serif;
+            color: #7fffd4;
+        }
+
+        .hero-stat span {
+            font-size: 11.5px;
+            opacity: .7;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+        }
+
+        /* ══ INTRO + FILTROS ══ */
         .hotel-intro {
-            background: linear-gradient(180deg, #fff8f5, #f7ede8);
-            padding: 44px 0 36px;
+            background: #fff;
+            padding: 48px 0 20px;
             text-align: center;
         }
 
-        .hotel-intro p {
-            max-width: 680px;
-            margin: 0 auto;
-            font-size: 16px;
-            line-height: 1.8;
+        .hotel-intro-lead {
+            max-width: 700px;
+            margin: 0 auto 32px;
+            font-size: 16.5px;
+            line-height: 1.85;
             color: var(--text);
         }
 
-        .hotel-intro strong {
-            color: #7a5c3e;
+        .hotel-intro strong { color: #1a5c6e; }
+
+        .hotel-feats {
+            display: flex;
+            gap: 0;
+            justify-content: center;
+            flex-wrap: wrap;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            margin: 0 0 36px;
+        }
+
+        .hotel-feat {
+            flex: 1;
+            min-width: 160px;
+            padding: 22px 18px;
+            text-align: center;
+            border-right: 1px solid #eee;
+        }
+
+        .hotel-feat:last-child { border-right: none; }
+
+        .hotel-feat-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #e8f5ef, #c8ead8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 22px;
+        }
+
+        .hotel-feat h4 {
+            font-size: 13.5px;
+            font-weight: 700;
+            margin: 0 0 4px;
+            color: #1a3a2a;
+        }
+
+        .hotel-feat p {
+            font-size: 12px;
+            color: #7a8a80;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* ══ FILTROS ══ */
+        .hotel-filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 0 0 40px;
+        }
+
+        .hotel-filter-btn {
+            padding: 8px 20px;
+            border-radius: 24px;
+            border: 1.5px solid #d0ddd8;
+            background: #fff;
+            color: #3a5a4a;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .18s ease;
+            font-family: Montserrat, sans-serif;
+        }
+
+        .hotel-filter-btn:hover,
+        .hotel-filter-btn.active {
+            background: linear-gradient(135deg, #1a5c6e, #0f4a2e);
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 3px 12px rgba(26,92,110,.28);
         }
 
         .hotel-grid {
@@ -150,19 +331,23 @@
         .hotel-body h2 {
             font-family: Merriweather, serif;
             font-size: 19px;
-            margin: 0 0 6px;
+            margin: 0 0 4px;
+            color: #0d2a36;
         }
 
         .hotel-location {
             font-size: 13px;
-            color: var(--muted);
+            color: #6080a0;
             margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
         .hotel-body p {
             font-size: 14px;
-            color: #5a5050;
-            line-height: 1.7;
+            color: #5a6060;
+            line-height: 1.75;
             margin: 0 0 14px;
             flex: 1;
         }
@@ -175,12 +360,24 @@
         }
 
         .hotel-tag {
-            background: linear-gradient(180deg, #f6f0e8, #ece0d0);
-            color: #6b5040;
+            background: linear-gradient(135deg, #e8f5ef, #d0ead8);
+            color: #1a5a30;
             font-size: 11px;
-            font-weight: 600;
-            padding: 3px 10px;
+            font-weight: 700;
+            padding: 4px 11px;
             border-radius: 20px;
+            letter-spacing: .3px;
+        }
+
+        .hotel-price-hint {
+            font-size: 12.5px;
+            color: #1a6a3e;
+            font-weight: 700;
+            margin-bottom: 14px;
+            background: linear-gradient(135deg, #e8f9ee, #d8f0e2);
+            padding: 6px 12px;
+            border-radius: 8px;
+            display: inline-block;
         }
 
         .hotel-actions {
@@ -211,20 +408,89 @@
         .hotel-actions .btn-wa {
             flex: 1;
             text-align: center;
-            background: linear-gradient(180deg, #eef9ef, #dff3e5);
-            border: 1px solid rgba(0, 0, 0, .06);
-            color: var(--text);
-            padding: 10px 14px;
+            background: linear-gradient(135deg, #25d366, #1aa050);
+            color: #fff;
+            padding: 11px 14px;
             border-radius: 10px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 13px;
             transition: all .18s ease;
+            box-shadow: 0 3px 10px rgba(37,211,102,.25);
         }
 
         .hotel-actions .btn-wa:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+            box-shadow: 0 6px 18px rgba(37,211,102,.38);
+        }
+
+        /* ══ TRUST SECTION ══ */
+        .hotel-trust {
+            background: linear-gradient(135deg, #f4faf7, #eaf4ef);
+            padding: 56px 20px;
+            text-align: center;
+        }
+
+        .hotel-trust h2 {
+            font-family: Merriweather, serif;
+            font-size: 26px;
+            margin: 0 0 10px;
+            color: #0d2a1e;
+        }
+
+        .hotel-trust .trust-sub {
+            color: #5a7a60;
+            font-size: 15px;
+            max-width: 520px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .trust-item {
+            background: #fff;
+            border-radius: 16px;
+            padding: 28px 22px;
+            box-shadow: 0 4px 18px rgba(0,0,0,.06);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .trust-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(0,0,0,.1);
+        }
+
+        .trust-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #1a5c6e, #0f4a2e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+            font-size: 26px;
+        }
+
+        .trust-item h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin: 0 0 6px;
+            color: #0d2a1e;
+        }
+
+        .trust-item p {
+            font-size: 13px;
+            color: #5a7060;
+            margin: 0;
+            line-height: 1.6;
         }
 
         /* LIGHTBOX */
@@ -406,44 +672,82 @@
         }
 
         .hotel-cta {
-            background: linear-gradient(135deg, #3a5a6e, #2b4555);
+            background: linear-gradient(135deg, #0d3a4a 0%, #0f4a2e 100%);
+            position: relative;
+            overflow: hidden;
             color: #fff;
-            padding: 56px 20px;
+            padding: 72px 20px;
             text-align: center;
-            margin-top: 64px;
+        }
+
+        .hotel-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 70% 50%, rgba(37,211,102,.12) 0%, transparent 60%);
+            pointer-events: none;
         }
 
         .hotel-cta h2 {
             font-family: Merriweather, serif;
-            font-size: 28px;
-            margin: 0 0 12px;
+            font-size: 32px;
+            margin: 0 0 14px;
+            position: relative;
         }
 
         .hotel-cta p {
-            font-size: 16px;
+            font-size: 17px;
             opacity: .85;
             max-width: 520px;
-            margin: 0 auto 28px;
-            line-height: 1.7;
+            margin: 0 auto 32px;
+            line-height: 1.75;
+            position: relative;
+        }
+
+        .hotel-cta-btns {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
         }
 
         .btn-cta-wa {
-            display: inline-block;
-            background: linear-gradient(180deg, #e8f7e9, #d4f0d8);
-            color: #1a4a1e;
-            padding: 14px 32px;
-            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background: linear-gradient(135deg, #25d366, #1aa050);
+            color: #fff;
+            padding: 15px 32px;
+            border-radius: 32px;
             text-decoration: none;
             font-weight: 700;
             font-size: 16px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, .15);
+            box-shadow: 0 6px 24px rgba(37,211,102,.38);
             transition: transform .2s ease, box-shadow .2s ease;
         }
 
         .btn-cta-wa:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 28px rgba(0, 0, 0, .2);
+            box-shadow: 0 10px 32px rgba(37,211,102,.48);
         }
+
+        .btn-cta-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background: rgba(255,255,255,.1);
+            border: 1.5px solid rgba(255,255,255,.4);
+            color: #fff;
+            padding: 15px 28px;
+            border-radius: 32px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background .2s;
+        }
+
+        .btn-cta-outline:hover { background: rgba(255,255,255,.2); }
 
         .hotel-nota {
             background: linear-gradient(180deg, #fdf8f4, #f5ece4);
@@ -531,19 +835,55 @@
 
     <main>
         <div id="hotels-hero" class="hotel-hero">
-            <div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:72px 20px 36px;position:relative;z-index:1;">
+                <div class="hotel-hero-badge">🏨 Alojamientos verificados por WAYRA</div>
                 <h1>Hoteles en Nuquí</h1>
-                <p>Selva, mar y hospitalidad genuina. Alojamientos únicos en la costa Pacífica colombiana.</p>
+                <p>Selva, mar y hospitalidad genuina. Alojamientos únicos<br>en la costa Pacífica colombiana.</p>
+                <div class="hotel-hero-actions">
+                    <a class="hero-btn-primary" href="https://wa.me/573225225582?text=Hola%20WAYRA%2C%20quiero%20reservar%20hospedaje%20en%20Nuqu%C3%AD" target="_blank">💬 Consultar disponibilidad</a>
+                    <a class="hero-btn-outline" href="#hotel-grid">Ver hoteles ↓</a>
+                </div>
+            </div>
+            <div class="hero-stats-bar">
+                <div class="hero-stat"><strong id="stat-hotels">+10</strong><span>Hoteles verificados</span></div>
+                <div class="hero-stat"><strong>100%</strong><span>Seleccionados por expertos</span></div>
+                <div class="hero-stat"><strong>24/7</strong><span>Soporte WAYRA</span></div>
+                <div class="hero-stat"><strong>★ 4.8</strong><span>Satisfacción de viajeros</span></div>
             </div>
         </div>
 
         <div class="hotel-intro">
             <div class="container">
-                <p>Nuquí cuenta con alojamientos que van desde <strong>ecolodges de lujo rodeados de naturaleza</strong>
-                    hasta <strong>posadas familiares con encanto local</strong>. Cada hotel ha sido elegido por su
-                    autenticidad, ubicación privilegiada y compromiso con el territorio.<br><br>
-                    En WAYRA te ayudamos a encontrar el hospedaje que mejor se adapte a tu viaje y presupuesto.
-                    Escríbenos por WhatsApp y organizamos todo por ti.</p>
+                <p class="hotel-intro-lead">Nuquí reúne alojamientos que van desde <strong>ecolodges de lujo rodeados
+                de selva</strong> hasta <strong>posadas familiares con encanto local</strong>. Cada hotel ha sido
+                seleccionado por WAYRA por su autenticidad, ubicación privilegiada y compromiso con el territorio
+                y la comunidad.</p>
+
+                <div class="hotel-feats">
+                    <div class="hotel-feat">
+                        <div class="hotel-feat-icon">🌿</div>
+                        <h4>Ecolodges únicos</h4>
+                        <p>Inmersión total en naturaleza virgen</p>
+                    </div>
+                    <div class="hotel-feat">
+                        <div class="hotel-feat-icon">🐋</div>
+                        <h4>Temporada ballenas</h4>
+                        <p>Jul–Oct, desde la orilla</p>
+                    </div>
+                    <div class="hotel-feat">
+                        <div class="hotel-feat-icon">🛡️</div>
+                        <h4>Reserva segura</h4>
+                        <p>Con la garantía y respaldo de WAYRA</p>
+                    </div>
+                </div>
+
+                <div class="hotel-filters">
+                    <button class="hotel-filter-btn active" data-filter="all">Todos</button>
+                    <button class="hotel-filter-btn" data-filter="Ecolodge">🌿 Ecolodge</button>
+                    <button class="hotel-filter-btn" data-filter="Hotel">🏨 Hotel</button>
+                    <button class="hotel-filter-btn" data-filter="Hostal">🏡 Hostal</button>
+                    <button class="hotel-filter-btn" data-filter="Posada">🌺 Posada</button>
+                </div>
             </div>
         </div>
 
@@ -559,13 +899,45 @@
             </div>
         </section>
 
+        <!-- ══ SECCIÓN DE CONFIANZA ══ -->
+        <section class="hotel-trust">
+            <h2>¿Por qué reservar con WAYRA?</h2>
+            <p class="trust-sub">No somos un directorio de hoteles. Somos tus aliados en el Pacífico colombiano, con presencia local y atención personalizada.</p>
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <div class="trust-icon">🤝</div>
+                    <h3>Relación directa</h3>
+                    <p>Contacto directo con cada hotel, sin intermediarios, tarifas y condiciones reales.</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">📍</div>
+                    <h3>Conocimiento local</h3>
+                    <p>Vivimos y conocemos Nuquí. Te decimos qué alojamiento es mejor según tu viaje.</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">🗓️</div>
+                    <h3>Gestión completa</h3>
+                    <p>Coordinamos vuelos, traslados, actividades y hospedaje en un solo paquete.</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">💬</div>
+                    <h3>Soporte 24/7</h3>
+                    <p>Estamos contigo desde que reservas hasta que regresas a casa, sin sorpresas.</p>
+                </div>
+            </div>
+        </section>
+
         <div class="hotel-cta">
             <h2>¿Listo para hospedarte en Nuquí?</h2>
-            <p>Cuéntanos tus fechas, cuántas personas son y qué tipo de experiencia buscas. Te recomendamos el
-                alojamiento perfecto.</p>
-            <!-- <a class="btn-cta-wa"
-                href="https://wa.me/573225225582?text=Hola%20WAYRA,%20quiero%20reservar%20hospedaje%20en%20Nuquí"
-                target="_blank">💬 Reservar por WhatsApp</a> -->
+            <p>Cuéntanos tus fechas, cuántas personas son y qué tipo de experiencia buscas. Te recomendamos el alojamiento perfecto.</p>
+            <div class="hotel-cta-btns">
+                <a class="btn-cta-wa" href="https://wa.me/573225225582?text=Hola%20WAYRA%2C%20quiero%20reservar%20hospedaje%20en%20Nuqu%C3%AD" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z"/></svg>
+                    Reservar por WhatsApp
+                </a>
+                <a class="btn-cta-outline" href="contacto.html">✉️ Enviar cotización</a>
+            </div>
+        </div>
         </div>
     </main>
 
@@ -704,81 +1076,11 @@
         <div class="lb-thumbs" id="lb-thumbs"></div>
     </div>
 
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col footer-logo-area">
-                    <div class="wayra-brand-container">
-                        <img id="site-logo" src="assets/img/unicologo.png" alt="vivewayra Logo">
-                    </div>
-                    <p class="footer-rnt">
-                        Expertos en experiencias auténticas en el Pacífico Colombiano.<br>
-                        <strong>"El viaje que se queda"</strong>
-                    </p>
-                </div>
-
-                <div class="footer-col">
-                    <h3>Servicios</h3>
-                    <ul class="footer-list">
-                        <li><a href="index.html">Inicio</a></li>
-                        <li><a href="plans-nuqui.html">Planes turísticos a Nuquí</a></li>
-                        <li><a href="experiencias.html">Experiencias y actividades</a></li>
-                        <li><a href="hoteles.html">Mejores Hoteles</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h3>Empresarial</h3>
-                    <ul class="footer-list">
-                        <li><a href="contacto.html">Contacto</a></li>
-                        <li><a href="admin/index.html">Acceso Admin</a></li>
-                        <li><a href="mailto:vivewayra@gmail.com" data-email-link>P.Q.R.S.</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h3>Redes Sociales</h3>
-                    <div class="footer-social-icons">
-                        <a href="https://www.facebook.com/profile.php?id=61587257972289"
-                            class="footer-social-icon facebook" aria-label="Facebook" target="_blank" rel="noopener"
-                            data-fb-link>
-                            <svg viewBox="0 0 24 24">
-                                <path
-                                    d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z" />
-                            </svg>
-                        </a>
-                        <a href="https://wa.me/573225225582" class="footer-social-icon whatsapp" aria-label="WhatsApp"
-                            target="_blank" rel="noopener" data-wa-link>
-                            <svg viewBox="0 0 24 24">
-                                <path
-                                    d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z" />
-                            </svg>
-                        </a>
-                        <a href="https://www.instagram.com/vivewayra/" class="footer-social-icon instagram"
-                            aria-label="Instagram" target="_blank" rel="noopener" data-ig-link>
-                            <svg viewBox="0 0 24 24">
-                                <path
-                                    d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; <span id="year"></span> WAYRA. Todos los derechos reservados.<br>
-                    Sitio Web Diseñado Por WAYRA</p>
-            </div>
-        </div>
-    </footer>
-
-
     <!-- Botón flotante WhatsApp -->
     <a href="https://wa.me/573225225582?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20hoteles%20en%20Nuqu%C3%AD"
         class="wa-float" target="_blank" rel="noopener" aria-label="Contáctanos por WhatsApp" data-wa-link>
         <svg width="30" height="30" viewBox="0 0 24 24" fill="white" aria-hidden="true">
-            <path
-                d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z" />
+            <path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z" />
         </svg>
         <span class="wa-float-text">¿Hablamos?</span>
     </a>
@@ -800,11 +1102,29 @@
         loadHotels(function (hotels) {
             if (hotels) {
                 hotelsData = hotels;
+                // Actualizar contador
+                const statEl = document.getElementById('stat-hotels');
+                if (statEl) statEl.textContent = '+' + hotels.length;
                 renderHotels(hotelsData);
+                setupFilters(hotelsData);
             } else {
                 document.getElementById('hotel-grid').innerHTML = '<p style="color:#999;text-align:center;grid-column:1/-1">No se pudo cargar la información de hoteles. Intenta recargar la página.</p>';
             }
         });
+
+        function setupFilters(hotels) {
+            document.querySelectorAll('.hotel-filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.hotel-filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    const filter = this.dataset.filter;
+                    const filtered = filter === 'all' ? hotels : hotels.filter(h =>
+                        (h.category || '').toLowerCase().includes(filter.toLowerCase())
+                    );
+                    renderHotels(filtered);
+                });
+            });
+        }
 
         function renderHotels(hotels) {
             const grid = document.getElementById('hotel-grid');
@@ -813,12 +1133,13 @@
             grid.innerHTML = hotels.map(h => {
                 const coverBg = h.coverImage
                     ? `url('${h.coverImage}')`
-                    : `linear-gradient(135deg,#2a5a6e,#1e3d50)`;
+                    : `linear-gradient(135deg,#0d3a4a,#1a5c6e)`;
                 const tagsHtml = (h.tags || []).map(t => `<span class="hotel-tag">${t}</span>`).join('');
+                const priceHint = h.priceFrom ? `<div class="hotel-price-hint">💚 Desde ${h.priceFrom}</div>` : '';
                 return `
         <article class="hotel-card">
           <div class="hotel-img"
-            style="background-image:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.3)),${coverBg}; background-size:cover; background-position:center;"
+            style="background-image:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.32)),${coverBg}; background-size:cover; background-position:center;"
             onclick="abrirGaleria('${h.id}')" role="button" tabindex="0" aria-label="Ver galería ${h.name}">
             <span class="hotel-category">${h.category || ''}</span>
             <span class="hotel-stars">${h.stars || ''}</span>
@@ -828,6 +1149,7 @@
             <div class="hotel-location">📍 ${h.location || ''}</div>
             <p>${h.description || ''}</p>
             <div class="hotel-tags">${tagsHtml}</div>
+            ${priceHint}
             <div class="hotel-actions">
               <button class="btn-gallery" onclick="abrirGaleria('${h.id}')">🖼️ Ver galería</button>
               <a class="btn-wa" href="https://wa.me/${WA_NUM}?text=${encodeURIComponent(h.waText || 'Hola, quiero información sobre ' + h.name)}" target="_blank">💬 Consultar</a>
