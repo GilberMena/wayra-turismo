@@ -19,10 +19,12 @@
   <style>
     /* ══ HERO PLANES ══ */
     .plans-hero-wrap {
-      background: linear-gradient(155deg, #f0faf5 0%, #e8f5ee 40%, #eef6ff 100%);
+      background: linear-gradient(155deg, #0a2a1e 0%, #1a5040 45%, #0d3052 100%);
+      background-size: cover;
+      background-position: center;
       position: relative;
       overflow: hidden;
-      color: #0a2a1e;
+      color: #fff;
       padding: 90px 20px 100px;
       text-align: center;
     }
@@ -31,29 +33,24 @@
       content: '';
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(ellipse at 15% 50%, rgba(37,211,162,.08) 0%, transparent 55%),
-        radial-gradient(ellipse at 85% 30%, rgba(26,160,80,.06) 0%, transparent 50%);
+      background: linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.35) 100%);
       pointer-events: none;
+      z-index: 0;
     }
 
+    .plans-hero-wrap > * { position: relative; z-index: 1; }
+
     /* Wave SVG decoration */
-    .plans-hero-wave {
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      right: 0;
-      line-height: 0;
-    }
+    .plans-hero-wave { display: none; }
 
     .plans-hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(26,160,80,.1);
-      border: 1px solid rgba(26,160,80,.3);
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
       backdrop-filter: blur(6px);
-      color: #1a5040;
+      color: #fff;
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 1.2px;
@@ -68,17 +65,17 @@
       font-size: 52px;
       margin: 0 0 16px;
       line-height: 1.15;
-      text-shadow: none;
-      color: #0a2a1e;
+      color: #fff;
+      text-shadow: 0 2px 24px rgba(0,0,0,.5);
     }
 
     .plans-hero-wrap .lead {
       font-size: 19px;
-      opacity: .8;
+      color: rgba(255,255,255,.9);
       max-width: 600px;
       margin: 0 auto 32px;
       line-height: 1.75;
-      color: #2a4a38;
+      text-shadow: 0 1px 8px rgba(0,0,0,.4);
     }
 
     .plans-hero-actions {
@@ -113,10 +110,10 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(26,80,64,.06);
-      border: 1.5px solid rgba(26,80,64,.4);
+      background: rgba(255,255,255,.15);
+      border: 1.5px solid rgba(255,255,255,.55);
       backdrop-filter: blur(4px);
-      color: #1a5040;
+      color: #fff;
       padding: 14px 26px;
       border-radius: 32px;
       text-decoration: none;
@@ -125,16 +122,17 @@
       transition: background .2s;
     }
 
-    .plans-btn-secondary:hover { background: rgba(26,80,64,.12); }
+    .plans-btn-secondary:hover { background: rgba(255,255,255,.25); }
 
-    /* Stats strip inside hero */
+    /* Stats box inside hero */
     .plans-hero-stats {
       display: flex;
       justify-content: center;
       gap: 0;
       flex-wrap: wrap;
-      background: rgba(255,255,255,.7);
-      border: 1px solid rgba(26,80,64,.15);
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.25);
+      backdrop-filter: blur(8px);
       border-radius: 16px;
       max-width: 700px;
       margin: 0 auto;
@@ -145,7 +143,8 @@
       min-width: 130px;
       padding: 16px 20px;
       text-align: center;
-      border-right: 1px solid rgba(26,80,64,.1);
+      border-right: 1px solid rgba(255,255,255,.15);
+      color: #fff;
     }
 
     .plans-hero-stat:last-child { border-right: none; }
@@ -154,15 +153,14 @@
       display: block;
       font-size: 22px;
       font-family: Merriweather, serif;
-      color: #1a5040;
+      color: #fff;
     }
 
     .plans-hero-stat span {
       font-size: 11px;
-      opacity: .6;
+      color: rgba(255,255,255,.75);
       letter-spacing: .5px;
       text-transform: uppercase;
-      color: #2a4a38;
     }
 
     /* ══ FILTROS PLANES ══ */
