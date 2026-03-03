@@ -2533,7 +2533,7 @@
         }
 
         async function saveConfigFile() {
-            if (!configFileHandle) { toast('error', '❌ Primero abre config.json'); return; }
+            if (!configData || !configData.config) { toast('error', '❌ Primero carga los datos del sitio'); return; }
 
             const c = configData.config;
             const getVal = (id) => document.getElementById(id)?.value?.trim();
