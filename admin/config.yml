@@ -72,6 +72,7 @@ collections:
               - {label: "Título hero (inicio)", name: "heroTitle", widget: "string"}
               - {label: "Subtítulo hero (inicio)", name: "heroSubtitle", widget: "string"}
               - {label: "Imagen hero — Planes Nuquí", name: "plansHeroImage", widget: "image", required: false}
+              - {label: "🖼️ Fondo sección Planes Nuquí", name: "plansBgImage", widget: "image", required: false}
               - {label: "Imagen hero — Experiencias", name: "experiencesHeroImage", widget: "image", required: false}
               - {label: "Imagen hero — Hoteles", name: "hotelsHeroImage", widget: "image", required: false}
               - {label: "🗺️ Imagen de fondo — Página Contacto", name: "contactoHeroImage", widget: "image", required: false}
