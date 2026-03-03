@@ -1,9 +1,4 @@
 {
   "version": 2,
-  "cleanUrls": true,
-  "functions": {
-    "api/*.js": {
-      "runtime": "@vercel/node@3"
-    }
-  }
+  "cleanUrls": true
 }
