@@ -232,7 +232,6 @@ body {
   display: flex;
   align-items: center;
   position: relative;
-  background-image: url('assets/hero.svg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -292,6 +291,25 @@ body {
 /* SECCIONES */
 .section {
   padding: 64px 0
+}
+
+/* Fachada lazy del iframe de YouTube */
+.yt-lazy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+.yt-play-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .15s;
+}
+.yt-lazy:hover .yt-play-btn {
+  transform: scale(1.1);
 }
 
 .pale {

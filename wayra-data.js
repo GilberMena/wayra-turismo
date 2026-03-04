@@ -14,11 +14,16 @@ const DATA_PATH = (() => {
 })();
 
 /**
- * fetch con caché desactivado. Añade ?_t=timestamp para
- * que el navegador nunca devuelva una versión cacheada.
+ * fetch con caché inteligente:
+ * - Admin: siempre fresco (no-store + timestamp) para ver cambios al instante.
+ * - Público: caché por defecto del navegador (respeta Cache-Control del servidor).
  */
 function freshFetch(url) {
-  return fetch(url + '?_t=' + Date.now(), { cache: 'no-store' });
+  const isAdmin = window.location.pathname.includes('/admin/');
+  if (isAdmin) {
+    return fetch(url + '?_t=' + Date.now(), { cache: 'no-store' });
+  }
+  return fetch(url);
 }
 
 /* ════════════════════════════════════════════════════
