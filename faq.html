@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preguntas Frecuentes – WAYRA Turismo en Nuquí</title>
+  <meta name="description" content="Resolvemos las dudas más comunes sobre viajes a Nuquí: documentos, clima, avistamiento de ballenas, planes y formas de pago. Agencia WAYRA.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Preguntas Frecuentes sobre Nuquí | WAYRA">
+  <meta property="og:description" content="¿Cuándo llegan las ballenas? ¿Qué llevar a Nuquí? ¿Cuánto cuesta? Respondemos todo sobre tu viaje al Pacífico.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://wayra-turismo.vercel.app/assets/img/unicologo.png">
+  <meta property="og:url" content="https://wayra-turismo.vercel.app/faq">
+  <meta property="og:site_name" content="WAYRA Turismo">
+  <meta property="og:locale" content="es_CO">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="FAQ Nuquí | WAYRA">
+  <meta name="twitter:description" content="Todo lo que necesitas saber antes de viajar a Nuquí con WAYRA.">
+  <link rel="icon" href="assets/img/unicologo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Montserrat, sans-serif; color: #1a2e1e; background: #f8fcf9; }
+
+    /* NAV */
+    .faq-nav {
+      background: #0a2a1e;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .faq-nav a.back {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: rgba(255,255,255,.8); text-decoration: none;
+      font-size: 13px; font-weight: 600; transition: color .2s;
+    }
+    .faq-nav a.back:hover { color: #fff; }
+    .faq-nav img { height: 34px; margin-left: auto; }
+
+    /* HERO */
+    .faq-hero {
+      background: linear-gradient(135deg, #0a2a1e 0%, #1a5040 60%, #0d3052 100%);
+      padding: 52px 24px 44px;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .faq-hero::before {
+      content:''; position:absolute; inset:0;
+      background: linear-gradient(180deg,rgba(0,0,0,.3),rgba(0,0,0,.1));
+      pointer-events:none;
+    }
+    .faq-hero > * { position:relative; z-index:1; }
+    .faq-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25);
+      color:#fff; font-size:11px; font-weight:700; letter-spacing:1.3px;
+      text-transform:uppercase; padding:5px 16px; border-radius:20px; margin-bottom:16px;
+    }
+    .faq-hero h1 {
+      font-family: Merriweather, serif; font-size: 40px;
+      line-height: 1.2; margin-bottom: 12px;
+      text-shadow: 0 2px 20px rgba(0,0,0,.4);
+    }
+    .faq-hero p { font-size:17px; color:rgba(255,255,255,.88); max-width:540px; margin:0 auto; line-height:1.7; }
+
+    /* CATEGORÍAS */
+    .faq-cats {
+      background:#fff; border-bottom:1px solid #e0ede5;
+      padding:16px 24px;
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
+    }
+    .faq-cat-btn {
+      padding:8px 20px; border-radius:24px;
+      border:1.5px solid #c0d8c8; background:#fff;
+      color:#2a5a3a; font-size:13px; font-weight:600;
+      cursor:pointer; transition:all .18s; font-family:Montserrat,sans-serif;
+    }
+    .faq-cat-btn:hover, .faq-cat-btn.active {
+      background:linear-gradient(135deg,#1a5040,#0d3052);
+      color:#fff; border-color:transparent;
+      box-shadow:0 3px 12px rgba(26,80,64,.28);
+    }
+
+    /* BUSCADOR */
+    .faq-search-wrap {
+      max-width:560px; margin:32px auto 0;
+      padding:0 24px;
+    }
+    .faq-search {
+      width:100%; padding:13px 18px 13px 46px;
+      border:1.5px solid #c8dfd0; border-radius:50px;
+      font-family:Montserrat,sans-serif; font-size:14px; color:#1a2e1e;
+      background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%234a8a68' stroke-width='2' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E") 16px center/18px no-repeat;
+      outline:none; transition:border .2s, box-shadow .2s;
+    }
+    .faq-search:focus { border-color:#1a5040; box-shadow:0 0 0 3px rgba(26,80,64,.1); }
+
+    /* CONTENIDO */
+    .faq-main {
+      max-width:860px; margin:0 auto; padding:36px 24px 64px;
+    }
+
+    .faq-group { margin-bottom:36px; }
+    .faq-group-title {
+      font-family: Merriweather, serif; font-size:16px; color:#0a2a1e;
+      margin-bottom:14px; display:flex; align-items:center; gap:10px;
+    }
+    .faq-group-title span { font-size:20px; }
+
+    /* ACCORDION */
+    .faq-item {
+      background:#fff; border:1px solid #d8ece0;
+      border-radius:14px; margin-bottom:10px; overflow:hidden;
+      transition:box-shadow .2s;
+    }
+    .faq-item:hover { box-shadow:0 4px 16px rgba(26,80,64,.08); }
+    .faq-item[data-hidden="true"] { display:none; }
+
+    .faq-q {
+      width:100%; background:none; border:none; padding:18px 22px;
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      cursor:pointer; text-align:left; font-family:Montserrat,sans-serif;
+      font-size:14px; font-weight:700; color:#0a2a1e; line-height:1.45;
+    }
+    .faq-q:hover { background:#f4fbf7; }
+    .faq-q .arrow {
+      flex-shrink:0; width:22px; height:22px; border-radius:50%;
+      background:#e8f5ee; display:flex; align-items:center; justify-content:center;
+      color:#1a5040; transition:transform .25s;
+    }
+    .faq-item.open .faq-q .arrow { transform:rotate(180deg); background:#1a5040; color:#fff; }
+
+    .faq-a {
+      max-height:0; overflow:hidden;
+      transition:max-height .35s ease, padding .25s;
+      padding:0 22px;
+    }
+    .faq-item.open .faq-a { max-height:600px; padding:0 22px 20px; }
+    .faq-a p, .faq-a ul, .faq-a ol { font-size:14px; color:#3a5a48; line-height:1.75; margin-bottom:10px; }
+    .faq-a ul, .faq-a ol { padding-left:20px; }
+    .faq-a li { margin-bottom:6px; }
+    .faq-a strong { color:#0a2a1e; }
+    .faq-a a { color:#1a5040; font-weight:600; }
+    .faq-a .tip {
+      background:#e8f5ee; border-left:3px solid #1a5040;
+      border-radius:0 8px 8px 0; padding:10px 14px;
+      font-size:13px; color:#1a4030; margin-top:10px;
+    }
+
+    /* CTA FINAL */
+    .faq-cta {
+      background:linear-gradient(135deg,#0a2a1e,#1a5040);
+      border-radius:20px; padding:36px 28px; text-align:center;
+      color:#fff; margin-top:16px;
+    }
+    .faq-cta h3 { font-family:Merriweather,serif; font-size:22px; margin-bottom:10px; }
+    .faq-cta p { font-size:15px; color:rgba(255,255,255,.88); margin-bottom:24px; line-height:1.65; }
+    .faq-cta-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+    .btn-wa { display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg,#25d366,#1aa050); color:#fff; padding:13px 28px; border-radius:32px; text-decoration:none; font-weight:700; font-size:14px; }
+    .btn-outline-w { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.12); border:1.5px solid rgba(255,255,255,.45); color:#fff; padding:13px 24px; border-radius:32px; text-decoration:none; font-weight:600; font-size:14px; }
+
+    /* SIN RESULTADOS */
+    .faq-no-results { display:none; text-align:center; padding:48px 24px; color:#6a8a78; font-size:15px; }
+
+    /* FOOTER */
+    .faq-footer { background:#0a2a1e; color:rgba(255,255,255,.6); text-align:center; padding:20px 24px; font-size:12px; line-height:1.6; }
+    .faq-footer a { color:rgba(255,255,255,.7); }
+
+    @media(max-width:600px){
+      .faq-hero h1 { font-size:28px; }
+      .faq-q { font-size:13px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="faq-nav">
+    <a class="back" href="index.html">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      Volver al inicio
+    </a>
+    <img src="assets/img/unicologo.png" alt="WAYRA" id="site-logo">
+  </nav>
+
+  <section class="faq-hero">
+    <div class="faq-badge">❓ Centro de ayuda</div>
+    <h1>Preguntas Frecuentes</h1>
+    <p>Todo lo que necesitas saber antes de viajar a Nuquí con WAYRA. Si no encuentras tu respuesta, escríbenos al instante.</p>
+  </section>
+
+  <!-- Filtros por categoría -->
+  <div class="faq-cats">
+    <button class="faq-cat-btn active" data-cat="all">Todas</button>
+    <button class="faq-cat-btn" data-cat="destino">🌿 El destino</button>
+    <button class="faq-cat-btn" data-cat="planes">📦 Planes</button>
+    <button class="faq-cat-btn" data-cat="ballenas">🐋 Ballenas</button>
+    <button class="faq-cat-btn" data-cat="transporte">✈️ Cómo llegar</button>
+    <button class="faq-cat-btn" data-cat="reservas">💳 Reservas y pagos</button>
+    <button class="faq-cat-btn" data-cat="equipo">🎒 Qué llevar</button>
+  </div>
+
+  <!-- Buscador -->
+  <div class="faq-search-wrap">
+    <input class="faq-search" type="search" placeholder="Busca una pregunta…" id="faqSearch">
+  </div>
+
+  <main class="faq-main">
+    <div class="faq-no-results" id="faqNoResults">😔 No encontramos preguntas que coincidan. <a href="https://wa.me/573225225582">Pregúntanos directamente por WhatsApp →</a></div>
+
+    <!-- ══ GRUPO: EL DESTINO ══ -->
+    <div class="faq-group" data-cat="destino">
+      <h2 class="faq-group-title"><span>🌿</span> El destino – Nuquí</h2>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Dónde queda Nuquí?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>Nuquí es un municipio del departamento del Chocó, ubicado en la Costa Pacífica colombiana, a orillas del Océano Pacífico. Está rodeado de selva húmeda tropical, ríos, manglares y playas casi desiertas. No hay carretera que lo conecte con el interior del país, por lo que solo se llega por vía aérea o fluvial.</p>
+          <div class="tip">📍 Coordenadas: 5°42'N 77°16'O — a unos 500 km al suroeste de Medellín en línea recta.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Cuál es la mejor época para visitar Nuquí?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>El Pacífico es un destino de lluvia todo el año, pero hay meses con cielos más despejados:</p>
+          <ul>
+            <li><strong>Diciembre – Febrero:</strong> menos lluvias, mares más calmosos, ideal para playa y snorkel.</li>
+            <li><strong>Julio – Octubre:</strong> temporada de avistamiento de ballenas jorobadas (Jul–Oct), el evento más esperado del año.</li>
+            <li><strong>Marzo – Mayo:</strong> temporada de anidación de tortugas en algunas playas cercanas.</li>
+          </ul>
+          <div class="tip">💡 La lluvia es parte de la magia del Pacífico. Nunca llueve todo el día; generalmente cae en la tarde o noche.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Es seguro viajar a Nuquí?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>El municipio de Nuquí es considerado un destino turístico seguro. La comunidad local está altamente orientada al turismo responsable y recibe visitantes de todo el mundo. WAYRA trabaja exclusivamente con guías locales de confianza y realiza todas las actividades dentro de zonas establecidas.</p>
+          <p>Como en cualquier destino de naturaleza, recomendamos:</p>
+          <ul>
+            <li>No alejarse solo en zonas de selva.</li>
+            <li>Atender las indicaciones del guía en todo momento.</li>
+            <li>No fotografiar instalaciones militares o policiales.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Qué moneda se usa en Nuquí? ¿Hay cajeros o banco?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>La moneda oficial es el <strong>peso colombiano (COP)</strong>. En Nuquí hay corresponsales bancarios (Efecty, Bancolombia) pero <strong>no hay cajero ATM confiable</strong>. Se recomienda llegar con el efectivo necesario para gastos en el destino. Algunos hospedajes y restaurantes aceptan Nequi o Daviplata.</p>
+          <div class="tip">💡 Sugerimos llevar el dinero de los gastos menores en efectivo. Todo lo del plan WAYRA (alojamiento, tours, traslados) se paga antes de viajar.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Hay señal de celular e internet en Nuquí?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>La cobertura celular es limitada. <strong>Claro</strong> tiene la mejor señal en el casco urbano, aunque es inestable. En playas y zonas de selva la señal desaparece. Algunos hoteles ofrecen WiFi satelital básico.</p>
+          <div class="tip">🌿 Una de las razones por las que los viajeros aman Nuquí es precisamente el <em>desconectarse</em>. ¡Aprovéchalo!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ GRUPO: PLANES ══ -->
+    <div class="faq-group" data-cat="planes">
+      <h2 class="faq-group-title"><span>📦</span> Planes turísticos</h2>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Qué incluye un plan WAYRA?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>Dependiendo del plan, generalmente incluye:</p>
+          <ul>
+            <li>✅ Tiquetes aéreos ida y regreso (desde Medellín u otras ciudades)</li>
+            <li>✅ Traslados aeropuerto–hotel en lancha o mototaxi</li>
+            <li>✅ Alojamiento (noches según el plan)</li>
+            <li>✅ Alimentación (algunos planes: desayuno o pensión completa)</li>
+            <li>✅ Tours y actividades con guía local</li>
+            <li>✅ Acompañamiento permanente de WAYRA</li>
+          </ul>
+          <p>Cada plan tiene su detalle exacto en la página del plan. También puedes solicitar una cotización personalizada.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Puedo personalizar el plan?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>¡Sí! Todos nuestros planes son base personalizable. Puedes ajustar:</p>
+          <ul>
+            <li>Número de noches</li>
+            <li>Ciudad de origen del vuelo</li>
+            <li>Actividades (agregar o quitar tours)</li>
+            <li>Tipo de alojamiento (básico, confort o premium)</li>
+            <li>Fechas de viaje</li>
+          </ul>
+          <div class="tip">💬 Escríbenos por WhatsApp con el plan que te gustó y te enviamos una cotización a tu medida en menos de 24 horas.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Los precios incluyen el IVA?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>Los precios publicados en la web son <strong>precios base por persona</strong>. Al momento de confirmar la cotización te detallaremos el desglose completo incluyendo impuestos (IVA sobre servicios turísticos), tasas de aeropuerto y cualquier cargo adicional. No hay sorpresas al final.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Viajan grupos o puedo ir solo?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>Manejamos ambas modalidades:</p>
+          <ul>
+            <li><strong>Grupos salida fija:</strong> salidas programadas con fechas definidas donde te unes a otros viajeros. Más económico.</li>
+            <li><strong>Plan privado:</strong> solo tú, tu pareja o tu grupo en fechas de tu elección. Mayor flexibilidad y privacidad.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Tienen planes para familias con niños?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>Sí. Tenemos planes familiares aptos para niños mayores de 6 años. Las actividades se adaptan al rango de edad del grupo. Los niños menores de 12 años viajan con tarifa diferencial. Consúltanos por el plan familiar específico.</p>
+          <div class="tip">👶 Para menores de 2 años en vuelo doméstico (avioneta) se requiere autorización de los padres y certificado médico. Aplican las normas de la aerolínea.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ GRUPO: BALLENAS ══ -->
+    <div class="faq-group" data-cat="ballenas">
+      <h2 class="faq-group-title"><span>🐋</span> Avistamiento de ballenas</h2>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Cuándo exactamente están las ballenas en Nuquí?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>Las ballenas jorobadas (<em>Megaptera novaeangliae</em>) migran desde la Antártida a las costas colombianas del Pacífico entre <strong>julio y octubre</strong>, con el pico de mayor avistamiento en <strong>agosto y septiembre</strong>. Vienen a aparearse, parir y amamantar a sus crías en aguas cálidas.</p>
+          <ul>
+            <li><strong>Julio:</strong> primeras llegadas, principalmente adultos.</li>
+            <li><strong>Agosto – Septiembre:</strong> máxima concentración, avistamiento de crías y comportamientos acrobáticos (breeching).</li>
+            <li><strong>Octubre:</strong> últimas salidas, inicio de la migración de regreso.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Está garantizado ver ballenas?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>Ninguna agencia responsable puede garantizar avistamientos de animales salvajes, ya que son seres vivos con comportamientos impredecibles. Sin embargo, la tasa histórica de avistamiento en temporada en Nuquí es <strong>superior al 95%</strong>. Nuestros guías llevan años en estas rutas y conocen las zonas y horarios de mayor actividad.</p>
+          <div class="tip">🐋 En años normales hacemos entre 1 y 4 salidas en lancha hasta encontrar el grupo. Si no avistamos en el primer intento, repetimos al día siguiente sin costo adicional.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">¿A qué distancia se pueden ver? ¿Se puede nadar con ellas?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>La Resolución 0531 de 2013 del Ministerio de Ambiente de Colombia establece una <strong>distancia mínima de 200 metros</strong> para las embarcaciones y <strong>prohibe nadar con las ballenas</strong>. Nuestros guías respetan estrictamente estas normas para proteger a los animales.</p>
+          <p>A esa distancia, ver el salto completo de una ballena de 40 toneladas es una experiencia absolutamente impresionante y única.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Qué equipo fotográfico recomiendan para fotografiar ballenas?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <ul>
+            <li><strong>Cámara réflex/mirrorless:</strong> objetivo de 200–400mm para capturas nítidas a distancia.</li>
+            <li><strong>Celular:</strong> funciona bien para el ambiente general, usa el modo ráfaga.</li>
+            <li><strong>GoPro o cámara acuática:</strong> para capturas desde el borde de la lancha. Lleva funda impermeable.</li>
+          </ul>
+          <div class="tip">☀️ La mejor luz es en las mañanas (7–10am). Las ballenas saltan más seguido al amanecer. ¡Madruga!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ GRUPO: TRANSPORTE ══ -->
+    <div class="faq-group" data-cat="transporte">
+      <h2 class="faq-group-title"><span>✈️</span> Cómo llegar a Nuquí</h2>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Cómo se llega a Nuquí desde Medellín?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>La ruta más común es en <strong>avioneta desde Medellín (Aeropuerto Olaya Herrera - EOH)</strong>:</p>
+          <ul>
+            <li><strong>Aero Chocó / Satena / otras operadoras:</strong> vuelos de ~45–55 minutos en avionetas de entre 8 y 19 pasajeros.</li>
+            <li><strong>Frecuencia:</strong> generalmente 1–2 vuelos diarios dependiendo la temporada.</li>
+            <li><strong>Desde otras ciudades:</strong> Bogotá, Cali, Pereira → conexión en Medellín/EOH.</li>
+          </ul>
+          <div class="tip">✈️ WAYRA gestiona tu tiquete de avioneta como parte del plan. Podemos coordinar conexiones desde cualquier ciudad.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Qué documentos se piden para tomar la avioneta?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <ul>
+            <li><strong>Colombianos:</strong> Cédula de ciudadanía (física o digital) o pasaporte vigente. Los menores de edad llevan tarjeta de identidad o registro civil.</li>
+            <li><strong>Extranjeros:</strong> pasaporte vigente + visa (si aplica). No se requiere permiso especial para turismo.</li>
+            <li><strong>Equipaje:</strong> el límite en avioneta es de <strong>10 kg</strong> entre equipaje de mano + bodega. Pesa tu maleta antes de salir.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Se puede llegar en barco o por carretera?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p><strong>Por carretera:</strong> No existe carretera que llegue a Nuquí.</p>
+          <p><strong>Por vía fluvial/marítima:</strong> Es posible desde Bahía Solano o Quibdó en lancha rápida (2–5 horas según el punto de origen). Es la opción más económica pero también la más larga y sujeta a condiciones del mar.</p>
+          <p>Para la mayoría de los planes turísticos recomendamos la avioneta por comodidad y seguridad.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ GRUPO: RESERVAS ══ -->
+    <div class="faq-group" data-cat="reservas">
+      <h2 class="faq-group-title"><span>💳</span> Reservas y pagos</h2>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Cómo hago una reserva con WAYRA?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <ol>
+            <li>Selecciona el plan que te interesa en nuestra web.</li>
+            <li>Completa el formulario de reserva o escríbenos por WhatsApp.</li>
+            <li>Recibimos tu solicitud y te enviamos cotización formal con todos los detalles.</li>
+            <li>Confirmas la reserva con el pago del <strong>anticipo del 50%</strong>.</li>
+            <li>Te enviamos los tiquetes y el itinerario completo por correo.</li>
+            <li>¡A viajar!</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Cuáles son los métodos de pago disponibles?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <ul>
+            <li>Transferencia bancaria (Bancolombia, Davivienda, etc.)</li>
+            <li>Nequi / Daviplata</li>
+            <li>Tarjeta de crédito o débito (Visa, Mastercard) a través de pasarela segura</li>
+            <li>PSE (pagos en línea desde cuenta bancaria)</li>
+          </ul>
+          <p>Te confirmamos los datos exactos al momento de la reserva.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Cuál es la política de cancelación?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <ul>
+            <li><strong>Más de 30 días antes:</strong> reembolso del 100% del anticipo.</li>
+            <li><strong>15–30 días antes:</strong> reembolso del 70%.</li>
+            <li><strong>7–14 días antes:</strong> reembolso del 50%.</li>
+            <li><strong>Menos de 7 días:</strong> sin reembolso, pero se puede reprogramar la fecha sin costo (sujeto a disponibilidad).</li>
+            <li><strong>Cancelación por fuerza mayor o condiciones climáticas:</strong> reprogramación sin penalidad o reembolso total.</li>
+          </ul>
+          <div class="tip">📋 Consulta nuestra <a href="politicas.html">Política de Cancelaciones completa</a> para más detalles.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Necesito seguro de viaje?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>No es obligatorio para viajes nacionales, pero lo <strong>recomendamos ampliamente</strong>, especialmente para viajes a destinos de naturaleza. Un buen seguro debe cubrir:</p>
+          <ul>
+            <li>Asistencia médica en viaje</li>
+            <li>Evacuación de emergencia</li>
+            <li>Cancelación de vuelos</li>
+            <li>Pérdida de equipaje</li>
+          </ul>
+          <p>WAYRA puede coordinarte una opción de seguro de viaje al momento de la reserva.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ GRUPO: QUÉ LLEVAR ══ -->
+    <div class="faq-group" data-cat="equipo">
+      <h2 class="faq-group-title"><span>🎒</span> Qué llevar al viaje</h2>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Qué ropa recomiendas para Nuquí?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <ul>
+            <li>Ropa ligera y de secado rápido (la humedad es del 90%+)</li>
+            <li>Impermeable o capa de lluvia (aguacero puede caer cualquier tarde)</li>
+            <li>Camisetas de manga larga para protección solar y mosquitos</li>
+            <li>Zapatos de agua o sandalias resistentes</li>
+            <li>Botas de caucho (si vas a caminar en selva)</li>
+            <li>Traje de baño (varios, se demoran en secar)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Qué productos de cuidado personal son seguros para el Pacífico?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>Para proteger los arrecifes y el ecosistema marino del Pacífico, recomendamos usar solo:</p>
+          <ul>
+            <li><strong>Bloqueador solar mineral</strong> (con dióxido de titanio o zinc, NO oxibenzona ni octinoxato)</li>
+            <li>Repelente ecológico de base natural</li>
+            <li>Shampoo y jabón biodegradables</li>
+          </ul>
+          <div class="tip">🌊 Los bloqueadores químicos convencionales dañan los corales y afectan la fauna marina. ¡Ayúdanos a cuidar el Pacífico!</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Hay farmacias o centros médicos en Nuquí?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>Hay un centro de salud básico en el casco urbano. Para casos graves, la evacuación se hace por avioneta a Medellín o Quibdó. Recomendamos llevar un <strong>botiquín personal</strong> con:</p>
+          <ul>
+            <li>Analgésicos y antinflamatorios</li>
+            <li>Antihistamínico (picaduras de insectos)</li>
+            <li>Antidiarreico</li>
+            <li>Sales de rehidratación oral</li>
+            <li>Repelente y bloqueador solar</li>
+            <li>Medicamentos de uso continuo en cantidad suficiente</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">¿Se necesita vacuna para viajar a Nuquí?
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <p>El Ministerio de Salud de Colombia recomienda vacunarse contra la <strong>fiebre amarilla</strong> al menos 10 días antes de viajar a zonas de selva del Pacífico y Amazonia. Es gratuita en los centros de vacunación públicos (pide el carnet de vacunación).</p>
+          <p>Además recomendamos estar al día con las vacunas de: tétano, hepatitis A y hepatitis B.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Final -->
+    <div class="faq-cta">
+      <h3>¿Tienes más preguntas?</h3>
+      <p>Nuestro equipo responde en minutos. Cuéntanos qué necesitas saber sobre tu viaje a Nuquí.</p>
+      <div class="faq-cta-btns">
+        <a class="btn-wa" href="https://wa.me/573225225582?text=Hola%20WAYRA%2C%20tengo%20una%20pregunta%20sobre%20el%20viaje%20a%20Nuqu%C3%AD" target="_blank">
+          💬 Preguntar por WhatsApp
+        </a>
+        <a class="btn-outline-w" href="plans-nuqui.html">Ver planes →</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="faq-footer">
+    <p>
+      <strong style="color:rgba(255,255,255,.9);">WAYRA – Agencia de Viajes Responsable</strong><br>
+      vivewayra@gmail.com · +57 322 5225582<br>
+      <a href="politicas.html">Política de Privacidad</a> · <a href="politicas.html?tab=terminos">Términos y Condiciones</a> · <a href="pqrs.html">PQRS</a>
+    </p>
+  </footer>
+
+  <script>
+    // Accordion
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        // Cierra todos
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // Filtro por categoría
+    document.querySelectorAll('.faq-cat-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.faq-cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.dataset.cat;
+        document.querySelectorAll('.faq-group').forEach(g => {
+          g.style.display = (cat === 'all' || g.dataset.cat === cat) ? '' : 'none';
+        });
+        checkNoResults();
+      });
+    });
+
+    // Buscador
+    const searchInput = document.getElementById('faqSearch');
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase().trim();
+      // Reset categoría
+      document.querySelectorAll('.faq-cat-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector('[data-cat="all"]').classList.add('active');
+      document.querySelectorAll('.faq-group').forEach(g => g.style.display = '');
+
+      document.querySelectorAll('.faq-item').forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.dataset.hidden = q && !text.includes(q) ? 'true' : 'false';
+      });
+      checkNoResults();
+    });
+
+    function checkNoResults() {
+      const visible = [...document.querySelectorAll('.faq-item')].filter(i => i.dataset.hidden !== 'true' && i.closest('.faq-group').style.display !== 'none');
+      document.getElementById('faqNoResults').style.display = visible.length === 0 ? 'block' : 'none';
+    }
+  </script>
+  <script src="cookie-banner.js" defer></script>
+</body>
+</html>

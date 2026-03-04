@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /reservas-admin.html
+Disallow: /confirmacion.html
+Disallow: /api/
+
+Sitemap: https://wayra-turismo.vercel.app/sitemap.xml
