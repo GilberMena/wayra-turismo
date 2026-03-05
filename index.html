@@ -538,32 +538,6 @@
 
   <footer class="site-footer">
     <div class="container">
-      <!-- Mini-strip galería -->
-      <div class="footer-gallery-strip" id="footer-gallery-strip">
-        <a class="fgs-label" href="galeria.html">📸 Galería de fotos</a>
-        <div class="fgs-track" id="fgs-track">
-          <!-- Las miniaturas se inyectan desde JS con datos de gallery.json -->
-        </div>
-        <a class="fgs-cta" href="galeria.html">Ver galería completa →</a>
-      </div>
-      <script>
-      (function(){
-        if (typeof loadGallery !== 'function') return;
-        loadGallery(function(fotos){
-          if (!fotos || !fotos.length) return;
-          var withImg = fotos.filter(function(f){ return f.src; });
-          if (!withImg.length) return;
-          var track = document.getElementById('fgs-track');
-          if (!track) return;
-          var sample = withImg.slice(0, 6);
-          track.innerHTML = sample.map(function(f){
-            return '<a href="galeria.html" class="fgs-thumb" title="' + f.title + '" style="background-image:url(\'' + f.src + '\');"></a>';
-          }).join('');
-          document.getElementById('footer-gallery-strip').style.display = 'flex';
-        });
-      })();
-      </script>
-
       <!-- Main Footer Content -->
       <div class="footer-grid">
         <!-- Columna 1: Marca y Descripción -->
