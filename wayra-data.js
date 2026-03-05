@@ -67,6 +67,16 @@ function loadConfig(callback) {
 }
 
 /* ════════════════════════════════════════════════════
+   GALLERY
+════════════════════════════════════════════════════ */
+function loadGallery(callback) {
+  freshFetch(DATA_PATH + 'gallery.json')
+    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(json => callback(json.gallery || []))
+    .catch(err => { console.warn('[wayra-data] gallery.json:', err.message); callback(null); });
+}
+
+/* ════════════════════════════════════════════════════
    RENDER: 3 tarjetas destacadas en index.html
 ════════════════════════════════════════════════════ */
 function renderExperienceCards(experiences, containerId, maxCards) {

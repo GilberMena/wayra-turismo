@@ -1010,6 +1010,9 @@
             <a class="nav-item" id="nav-stats" onclick="showSection('stats')">
                 <span class="icon">📊</span> Estadísticas
             </a>
+            <a class="nav-item" id="nav-gallery" onclick="showSection('gallery')">
+                <span class="icon">📸</span> Galería
+            </a>
             <div class="sidebar-footer">
                 <div class="nav-item" id="btn-open-file" style="cursor:pointer;" onclick="openFileForSection()">
                     <span class="icon">📂</span> Abrir archivo
@@ -1040,6 +1043,9 @@
                     </button>
                     <button class="btn btn-primary" id="btn-new-plan" onclick="openPlanModal()" style="display:none;">
                         ＋ Nuevo plan
+                    </button>
+                    <button class="btn btn-primary" id="btn-new-gallery" onclick="openGalleryItemModal(-1)" style="display:none;">
+                        ＋ Nueva foto
                     </button>
                 </div>
             </div>
@@ -1576,6 +1582,22 @@
                     </div>
                 </div>
 
+                <!-- GALLERY SCREEN -->
+                <div id="screen-gallery" style="display:none;">
+                    <div id="screen-gallery-welcome" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;text-align:center;gap:20px;">
+                        <div class="welcome-icon">📸</div>
+                        <h2>Gestionar Galería</h2>
+                        <p style="color:var(--muted);font-size:15px;max-width:380px;line-height:1.6;">Administra las fotos de la galería del sitio. Carga <strong>gallery.json</strong>, edita las fotos y guárdalo.</p>
+                        <div style="display:flex;gap:10px;">
+                            <button class="btn btn-primary" onclick="autoLoadFromCloud()">&#x2601;️ Cargar datos del sitio</button>
+                            <button class="btn btn-ghost" onclick="openGalleryFile()">&#x1F4C2; Abrir archivo local</button>
+                        </div>
+                    </div>
+                    <div id="screen-gallery-editor" style="display:none;">
+                        <div class="exp-grid" id="gallery-admin-grid"></div>
+                    </div>
+                </div>
+
             </div>
 
             <!-- STATUS BAR -->
@@ -1874,6 +1896,64 @@
         </div>
     </div>
 
+    <!-- MODAL: EDIT/NEW GALLERY ITEM -->
+    <div class="modal-overlay" id="modal-gallery">
+        <div class="modal" style="max-width:560px;">
+            <div class="modal-header">
+                <h3 id="g-modal-title">Nueva foto</h3>
+                <button class="modal-close" onclick="closeGalleryModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="field">
+                    <label>URL de la imagen (ImgBB, Cloudinary, etc.)</label>
+                    <input class="input" id="g-field-src" type="url" placeholder="https://i.ibb.co/xxxxx/foto.jpg"
+                        oninput="const p=document.getElementById('g-img-preview');p.src=this.value;document.getElementById('g-img-preview-wrap').style.display=this.value?'block':'none';" />
+                </div>
+                <div id="g-img-preview-wrap" style="display:none;" class="img-preview" style="height:120px;">
+                    <img id="g-img-preview" src="" alt="" style="width:100%;height:120px;object-fit:cover;border-radius:8px;">
+                </div>
+                <div class="field">
+                    <label>Título</label>
+                    <input class="input" id="g-field-title" type="text" placeholder="Ej: Playa Jurubidá al amanecer" />
+                </div>
+                <div class="field">
+                    <label>Descripción</label>
+                    <textarea class="input" id="g-field-desc" rows="2" placeholder="Descripción breve de la foto..."></textarea>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 80px;gap:12px;">
+                    <div class="field">
+                        <label>Categoría</label>
+                        <select class="input" id="g-field-cat">
+                            <option value="playa">🏖️ Playas</option>
+                            <option value="ballenas">🐋 Ballenas</option>
+                            <option value="selva">🌿 Selva</option>
+                            <option value="experiencias">🏄 Experiencias</option>
+                            <option value="cultura">🎭 Cultura</option>
+                            <option value="hoteles">🏨 Hotel</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Proporción</label>
+                        <select class="input" id="g-field-aspect">
+                            <option value="4/3">4:3 (horizontal)</option>
+                            <option value="3/4">3:4 (vertical)</option>
+                            <option value="16/9">16:9 (panorámica)</option>
+                            <option value="1/1">1:1 (cuadrada)</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Emoji</label>
+                        <input class="input" id="g-field-emoji" type="text" placeholder="📷" style="text-align:center;font-size:20px;" maxlength="4" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" onclick="closeGalleryModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="saveGalleryItem()">💾 Guardar foto</button>
+            </div>
+        </div>
+    </div>
+
     <!-- TOAST CONTAINER -->
     <div class="toast-container" id="toast-container"></div>
 
@@ -2041,22 +2121,27 @@
         let pendingCfgHotelsHeroImage = null;
         let pendingCfgLogoImage = null;
 
+        // Gallery
+        let galleryFileHandle = null;
+        let galleryData = { gallery: [] };
+        let editingGalleryIndex = null;
+
         // ── SECTION SWITCHER ───────────────────────────────────────
         function showSection(section) {
             currentSection = section;
             // Nav highlight
-            ['experiences', 'hotels', 'planes', 'config', 'stats'].forEach(s => {
+            ['experiences', 'hotels', 'planes', 'config', 'stats', 'gallery'].forEach(s => {
                 const el = document.getElementById('nav-' + s);
                 if (el) el.classList.toggle('active', s === section);
             });
 
             // Hide all top-level content screens
-            ['screen-welcome', 'screen-editor', 'screen-hotels', 'screen-planes', 'screen-config', 'screen-stats'].forEach(id => {
+            ['screen-welcome', 'screen-editor', 'screen-hotels', 'screen-planes', 'screen-config', 'screen-stats', 'screen-gallery'].forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.style.display = 'none';
             });
             // Hide all action buttons
-            ['btn-new', 'btn-new-hotel', 'btn-new-plan'].forEach(id => {
+            ['btn-new', 'btn-new-hotel', 'btn-new-plan', 'btn-new-gallery'].forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.style.display = 'none';
             });
@@ -2116,6 +2201,20 @@
                 document.getElementById('topbar-title').textContent = 'Estadísticas';
                 document.getElementById('topbar-subtitle').textContent = 'Métricas de reservas y analytics web';
                 loadStats();
+
+            } else if (section === 'gallery') {
+                document.getElementById('screen-gallery').style.display = 'block';
+                if (galleryFileHandle) {
+                    document.getElementById('btn-new-gallery').style.display = 'flex';
+                    document.getElementById('btn-save').style.display = 'flex';
+                    document.getElementById('count-badge').style.display = 'inline-flex';
+                    document.getElementById('count-badge').textContent = galleryData.gallery.length + ' foto' + (galleryData.gallery.length !== 1 ? 's' : '');
+                } else {
+                    document.getElementById('btn-save').style.display = 'none';
+                    document.getElementById('count-badge').style.display = 'none';
+                }
+                document.getElementById('topbar-title').textContent = 'Galería';
+                document.getElementById('topbar-subtitle').textContent = 'Gestiona las fotos de la galería';
             }
         }
 
@@ -2123,6 +2222,7 @@
             if (currentSection === 'hotels') openHotelsFile();
             else if (currentSection === 'planes') openPlanesFile();
             else if (currentSection === 'config') openConfigFile();
+            else if (currentSection === 'gallery') openGalleryFile();
             else openFile();
         }
 
@@ -2135,6 +2235,8 @@
                 if (configFileHandle) await saveConfigFile();
             } else if (currentSection === 'config') {
                 await saveConfigFile();
+            } else if (currentSection === 'gallery') {
+                await saveGalleryFile();
             } else {
                 await saveFile();
             }
@@ -2202,7 +2304,8 @@
                 'experiences': '../data/experiences.json',
                 'hotels': '../data/hotels.json',
                 'planes': '../data/planes.json',
-                'config': '../data/config.json'
+                'config': '../data/config.json',
+                'gallery': '../data/gallery.json'
             };
 
             let target = currentSection;
@@ -2232,12 +2335,144 @@
                     if (!configData.config) configData.config = {};
                     showConfigEditor();
                     if (currentSection === 'planes' && planesFileHandle) showPlanesEditor();
+                } else if (target === 'gallery') {
+                    galleryData = json;
+                    if (!Array.isArray(galleryData.gallery)) galleryData.gallery = [];
+                    galleryFileHandle = true; // mark as loaded from cloud
+                    showGalleryEditor();
                 }
 
                 toast('success', `✅ ${target}.json cargado. Edita el contenido y pulsa 💾 Guardar — se descargará el JSON actualizado para que hagas git push.`);
             } catch (e) {
                 toast('error', '❌ Falló la carga: ' + e.message);
             }
+        }
+
+        // ── GALLERY FILE OPS ────────────────────────────────────
+        async function openGalleryFile() {
+            try {
+                [galleryFileHandle] = await window.showOpenFilePicker({
+                    types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+                    multiple: false
+                });
+                const file = await galleryFileHandle.getFile();
+                const text = await file.text();
+                galleryData = JSON.parse(text);
+                if (!Array.isArray(galleryData.gallery)) galleryData.gallery = [];
+                showGalleryEditor();
+                toast('success', '✅ gallery.json abierto correctamente');
+            } catch (e) {
+                if (e.name !== 'AbortError') toast('error', '❌ No se pudo abrir el archivo');
+            }
+        }
+
+        async function saveGalleryFile() {
+            const fileName = (galleryFileHandle && galleryFileHandle.name) ? galleryFileHandle.name : 'gallery.json';
+            const content = JSON.stringify(galleryData, null, 2);
+            try {
+                if (galleryFileHandle && galleryFileHandle.createWritable) {
+                    const writable = await galleryFileHandle.createWritable();
+                    await writable.write(content);
+                    await writable.close();
+                    updateStatus('gallery.json guardado localmente · ' + new Date().toLocaleTimeString());
+                    toast('success', '✅ gallery.json guardado');
+                } else {
+                    downloadContent(content, fileName);
+                    toast('success', '📥 gallery.json descargado');
+                }
+            } catch (e) {
+                downloadContent(content, fileName);
+                toast('success', '📥 Archivo descargado (Error al escribir localmente)');
+            }
+        }
+
+        function showGalleryEditor() {
+            document.getElementById('screen-gallery-welcome').style.display = 'none';
+            document.getElementById('screen-gallery-editor').style.display = 'block';
+            document.getElementById('btn-new-gallery').style.display = 'flex';
+            document.getElementById('btn-save').style.display = 'flex';
+            document.getElementById('status-dot').classList.add('online');
+            document.getElementById('count-badge').style.display = 'inline-flex';
+            renderGalleryGrid();
+            updateStatus('Archivo: gallery.json');
+        }
+
+        const CAT_LABELS = {
+            playa: '🏖️ Playas', ballenas: '🐋 Ballenas', selva: '🌿 Selva',
+            experiencias: '🏄 Experiencias', cultura: '🎭 Cultura', hoteles: '🏨 Hotel'
+        };
+
+        function renderGalleryGrid() {
+            const grid = document.getElementById('gallery-admin-grid');
+            const items = galleryData.gallery;
+            document.getElementById('count-badge').textContent = items.length + ' foto' + (items.length !== 1 ? 's' : '');
+            if (!items.length) {
+                grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><div class="e-icon">📷</div><p>No hay fotos aún. Haz clic en "＋ Nueva foto" para agregar.</p></div>`;
+                return;
+            }
+            grid.innerHTML = items.map((foto, i) => {
+                const imgHtml = foto.src
+                    ? `<div class="exp-card-img"><img src="${foto.src}" alt="${foto.title}" loading="lazy"></div>`
+                    : `<div class="exp-card-img" style="background:${foto.bg||'#1a2e1e'};font-size:36px;">${foto.emoji||'📷'}</div>`;
+                return `<div class="exp-card">
+                    ${imgHtml}
+                    <div class="exp-card-body">
+                        <div class="exp-card-tag">${CAT_LABELS[foto.cat] || foto.cat}</div>
+                        <div class="exp-card-title">${foto.title}</div>
+                        <div class="exp-card-desc">${foto.desc}</div>
+                    </div>
+                    <div class="exp-card-actions">
+                        <button class="btn btn-ghost" style="flex:1;" onclick="openGalleryItemModal(${i})">✏️ Editar</button>
+                        <button class="btn btn-danger" onclick="deleteGalleryItem(${i})">🗑️</button>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function openGalleryItemModal(idx) {
+            editingGalleryIndex = idx;
+            const isNew = idx === -1;
+            const foto = isNew ? { src: '', title: '', desc: '', cat: 'playa', aspect: '4/3', bg: 'linear-gradient(160deg,#0d3052,#1a5040)', emoji: '📷' } : galleryData.gallery[idx];
+            document.getElementById('g-modal-title').textContent = isNew ? 'Nueva foto' : 'Editar foto';
+            document.getElementById('g-field-src').value = foto.src || '';
+            document.getElementById('g-field-title').value = foto.title || '';
+            document.getElementById('g-field-desc').value = foto.desc || '';
+            document.getElementById('g-field-cat').value = foto.cat || 'playa';
+            document.getElementById('g-field-aspect').value = foto.aspect || '4/3';
+            document.getElementById('g-field-emoji').value = foto.emoji || '📷';
+            document.getElementById('g-img-preview').src = foto.src || '';
+            document.getElementById('g-img-preview-wrap').style.display = foto.src ? 'block' : 'none';
+            document.getElementById('modal-gallery').classList.add('open');
+        }
+
+        function closeGalleryModal() {
+            document.getElementById('modal-gallery').classList.remove('open');
+        }
+
+        function saveGalleryItem() {
+            const src = document.getElementById('g-field-src').value.trim();
+            const title = document.getElementById('g-field-title').value.trim();
+            const desc = document.getElementById('g-field-desc').value.trim();
+            const cat = document.getElementById('g-field-cat').value;
+            const aspect = document.getElementById('g-field-aspect').value;
+            const emoji = document.getElementById('g-field-emoji').value.trim() || '📷';
+            if (!title) { toast('error', '❌ El título es obligatorio'); return; }
+            const item = { src, title, desc, cat, aspect, bg: galleryData.gallery[editingGalleryIndex]?.bg || 'linear-gradient(160deg,#0d3052,#1a5040)', emoji };
+            if (editingGalleryIndex === -1) {
+                galleryData.gallery.push(item);
+            } else {
+                galleryData.gallery[editingGalleryIndex] = item;
+            }
+            closeGalleryModal();
+            renderGalleryGrid();
+            toast('success', '✅ Foto guardada. Recuerda pulsar 💾 Guardar para descargar el JSON.');
+        }
+
+        function deleteGalleryItem(idx) {
+            if (!confirm('¿Eliminar esta foto de la galería?')) return;
+            galleryData.gallery.splice(idx, 1);
+            renderGalleryGrid();
+            toast('success', '🗑️ Foto eliminada. Recuerda guardar.');
         }
 
         // ── HOTELS FILE OPS ─────────────────────────────────────

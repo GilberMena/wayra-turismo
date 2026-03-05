@@ -220,12 +220,12 @@
     </p>
   </footer>
 
+  <script src="wayra-data.js"></script>
   <script>
     // ─── CATÁLOGO DE IMÁGENES ──────────────────────────────────────────────
-    // Para agregar fotos reales: añade un objeto a este array con:
-    //   { src: 'URL_de_la_imagen', title: 'Título', desc: '...', cat: 'categoría', aspect: '16/9' }
-    // Las URLs pueden ser de imgbb.com, Cloudinary, Google Drive (compartido), etc.
-    const FOTOS = [
+    // Editá las fotos desde el Admin → Galería del panel en /admin/
+    // Las fotos se cargan automáticamente de data/gallery.json
+    let FOTOS = [
       {
         src: '',
         title: 'Playa Jurubidá al amanecer',
@@ -327,6 +327,17 @@
     let currentIndex = 0;
     let filtered = [...FOTOS];
 
+    // Si gallery.json tiene fotos, las usamos en lugar del array local
+    if (typeof loadGallery === 'function') {
+      loadGallery(function(fotos) {
+        if (fotos && fotos.length) {
+          FOTOS = fotos;
+          filtered = [...FOTOS];
+          renderGrid(FOTOS);
+        }
+      });
+    }
+
     // ─── RENDERIZAR GRID ──────────────────────────────────────────────────
     function renderGrid(items) {
       const grid = document.getElementById('galGrid');
@@ -422,6 +433,7 @@
     });
 
     // ─── INIT ─────────────────────────────────────────────────────────────
+    // Render inicial con datos locales; loadGallery() sobrescribe si hay JSON
     renderGrid(FOTOS);
   </script>
   <script src="cookie-banner.js" defer></script>
