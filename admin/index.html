@@ -1905,12 +1905,16 @@
             </div>
             <div class="modal-body">
                 <div class="field">
-                    <label>URL de la imagen (ImgBB, Cloudinary, etc.)</label>
-                    <input class="input" id="g-field-src" type="url" placeholder="https://i.ibb.co/xxxxx/foto.jpg"
-                        oninput="const p=document.getElementById('g-img-preview');p.src=this.value;document.getElementById('g-img-preview-wrap').style.display=this.value?'block':'none';" />
+                    <label>URL de la imagen — o sube desde tu computador</label>
+                    <div style="display:flex;gap:8px;align-items:center;">
+                        <input class="input" id="g-field-src" type="url" placeholder="https://i.ibb.co/xxxxx/foto.jpg"
+                            oninput="onGallerySrcInput(this.value);" style="flex:1;" />
+                        <button class="btn btn-ghost" type="button" onclick="triggerGalleryUpload()" title="Subir imagen a ImgBB" style="white-space:nowrap;flex-shrink:0;">📤 Subir</button>
+                    </div>
+                    <div id="g-url-warning" style="display:none;color:#f59e0b;font-size:12px;margin-top:6px;padding:6px 10px;background:rgba(245,158,11,.1);border-radius:6px;">⚠️ Esa es la URL de la <strong>página</strong> de ImgBB, no la imagen directa. Usa el botón <strong>📤 Subir</strong> o copia la URL que empieza con <code>https://i.ibb.co/…</code></div>
                 </div>
-                <div id="g-img-preview-wrap" style="display:none;" class="img-preview" style="height:120px;">
-                    <img id="g-img-preview" src="" alt="" style="width:100%;height:120px;object-fit:cover;border-radius:8px;">
+                <div id="g-img-preview-wrap" style="display:none;" class="img-preview">
+                    <img id="g-img-preview" src="" alt="" style="width:100%;height:140px;object-fit:cover;border-radius:8px;">
                 </div>
                 <div class="field">
                     <label>Título</label>
@@ -1959,6 +1963,7 @@
 
     <!-- Hidden file inputs for gallery -->
     <input type="file" id="gallery-file-input" accept="image/*" style="display:none;" />
+    <input type="file" id="gallery-img-upload" accept="image/*" style="display:none;" onchange="uploadImageToImgbb(this)" />
 
     <style>
         /* ── GALLERY EDITOR SLOT ── */
@@ -2473,6 +2478,63 @@
             galleryData.gallery.splice(idx, 1);
             renderGalleryGrid();
             toast('success', '🗑️ Foto eliminada. Recuerda guardar.');
+        }
+
+        // ── GALLERY IMAGE UPLOAD (ImgBB) ────────────────────────
+        const IMGBB_KEY_STORE = 'wayra_imgbb_key';
+
+        function onGallerySrcInput(value) {
+            const p = document.getElementById('g-img-preview');
+            p.src = value;
+            document.getElementById('g-img-preview-wrap').style.display = value ? 'block' : 'none';
+            const isPageUrl = /^https?:\/\/ibb\.co\//i.test(value);
+            document.getElementById('g-url-warning').style.display = isPageUrl ? 'block' : 'none';
+        }
+
+        function triggerGalleryUpload() {
+            let key = localStorage.getItem(IMGBB_KEY_STORE);
+            if (!key) {
+                key = prompt('Ingresa tu API key de ImgBB.\n\nObtén una GRATIS en: https://api.imgbb.com/\n(se guardará en el navegador para futuros usos)');
+                if (!key) return;
+                localStorage.setItem(IMGBB_KEY_STORE, key.trim());
+            }
+            document.getElementById('gallery-img-upload').click();
+        }
+
+        async function uploadImageToImgbb(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const key = localStorage.getItem(IMGBB_KEY_STORE);
+            if (!key) { toast('error', '❌ No hay API key de ImgBB guardada'); return; }
+            toast('info', '⬆️ Subiendo imagen, espera...');
+            try {
+                const reader = new FileReader();
+                reader.onload = async function(e) {
+                    const base64 = e.target.result.split(',')[1];
+                    const fd = new FormData();
+                    fd.append('key', key);
+                    fd.append('image', base64);
+                    fd.append('name', file.name.replace(/\.[^.]+$/, ''));
+                    const res = await fetch('https://api.imgbb.com/1/upload', { method: 'POST', body: fd });
+                    const data = await res.json();
+                    if (data.success) {
+                        const url = data.data.url;
+                        document.getElementById('g-field-src').value = url;
+                        document.getElementById('g-img-preview').src = url;
+                        document.getElementById('g-img-preview-wrap').style.display = 'block';
+                        document.getElementById('g-url-warning').style.display = 'none';
+                        toast('success', '✅ Imagen subida correctamente a ImgBB');
+                    } else {
+                        const msg = data.error?.message || 'Verifica tu API key';
+                        toast('error', '❌ Error al subir: ' + msg);
+                        if (data.error?.code === 100) { localStorage.removeItem(IMGBB_KEY_STORE); }
+                    }
+                };
+                reader.readAsDataURL(file);
+            } catch (err) {
+                toast('error', '❌ Error de red: ' + err.message);
+            }
+            input.value = '';
         }
 
         // ── HOTELS FILE OPS ─────────────────────────────────────
