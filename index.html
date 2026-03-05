@@ -327,37 +327,43 @@
               <!-- <p style="margin-top:14px"><a class="btn-primary" href="#planes">Conoce nuestros itinerarios</a></p> -->
             </div>
             <div class="how-video-wrap">
-              <!-- Fachada YouTube: el iframe se carga solo cuando el usuario baja hasta aquí -->
-              <div class="yt-lazy how-video-iframe"
-                   data-src="https://www.youtube.com/embed/K-o_eVLfA4o?autoplay=1&mute=1&loop=1&playlist=K-o_eVLfA4o&controls=0&modestbranding=1&rel=0&playsinline=1"
-                   data-title="Wayra Video"
-                   style="background:#1a1a1a url('https://i.ytimg.com/vi/K-o_eVLfA4o/hqdefault.jpg') center/cover no-repeat; cursor:pointer;">
-                <div class="yt-play-btn" aria-label="Reproducir video" role="button">
-                  <svg width="68" height="48" viewBox="0 0 68 48" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M66.5 7.7c-.8-2.9-3-5.2-5.9-6C55.9.1 34 0 34 0S12.1.1 7.4 1.7c-2.9.8-5.1 3.1-5.9 6C.1 12.4 0 24 0 24s.1 11.6 1.5 16.3c.8 2.9 3 5.2 5.9 6C12.1 47.9 34 48 34 48s21.9-.1 26.6-1.7c2.9-.8 5.1-3.1 5.9-6C68 35.6 68 24 68 24S68 12.4 66.5 7.7z" fill="#ff0000"/>
-                    <path d="M45 24 27 14v20" fill="white"/>
-                  </svg>
+              <!-- Thumbnail con botón play: el iframe carga solo al hacer clic -->
+              <div class="yt-facade" id="yt-facade" onclick="loadYTVideo()"
+                   role="button" tabindex="0" aria-label="Reproducir video WAYRA en Nuquí">
+                <img src="https://i.ytimg.com/vi/K-o_eVLfA4o/maxresdefault.jpg"
+                     onerror="this.src='https://i.ytimg.com/vi/K-o_eVLfA4o/hqdefault.jpg'"
+                     alt="Video WAYRA – Nuquí, Colombia" class="yt-thumb">
+                <div class="yt-facade-overlay">
+                  <div class="yt-facade-badge">▶ WAYRA · Turismo en el Pacífico</div>
+                  <button class="yt-big-play" tabindex="-1" aria-hidden="true">
+                    <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="36" cy="36" r="36" fill="rgba(0,0,0,0.5)"/>
+                      <circle cx="36" cy="36" r="34" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+                      <path d="M29 23L51 36L29 49V23Z" fill="white"/>
+                    </svg>
+                  </button>
+                  <div class="yt-facade-location">📍 Nuquí, Chocó · Colombia</div>
                 </div>
               </div>
+              <iframe id="yt-iframe" src="" title="WAYRA – Nuquí, Colombia"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen class="how-video-iframe" style="display:none;"></iframe>
             </div>
             <script>
-            (function() {
-              var el = document.currentScript.previousElementSibling.querySelector('.yt-lazy');
-              var obs = new IntersectionObserver(function(entries) {
-                if (entries[0].isIntersecting) {
-                  var iframe = document.createElement('iframe');
-                  iframe.src = el.dataset.src;
-                  iframe.title = el.dataset.title;
-                  iframe.frameBorder = '0';
-                  iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-                  iframe.allowFullscreen = true;
-                  iframe.className = 'how-video-iframe';
-                  el.replaceWith(iframe);
-                  obs.disconnect();
-                }
-              }, { rootMargin: '200px' });
-              obs.observe(el);
-            })();
+            function loadYTVideo() {
+              var facade = document.getElementById('yt-facade');
+              var iframe = document.getElementById('yt-iframe');
+              iframe.src = 'https://www.youtube.com/embed/K-o_eVLfA4o?autoplay=1&rel=0&modestbranding=1';
+              iframe.style.display = 'block';
+              facade.style.transition = 'opacity 0.35s';
+              facade.style.opacity = '0';
+              facade.style.pointerEvents = 'none';
+              setTimeout(function() { facade.style.display = 'none'; }, 380);
+            }
+            document.getElementById('yt-facade').addEventListener('keydown', function(e) {
+              if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); loadYTVideo(); }
+            });
             </script>
           </div>
 
@@ -389,8 +395,13 @@
       <!-- Sección Actividades (acción) -->
       <section id="actividades" class="section light">
         <div class="container">
-          <h2>Actividades en Nuquí</h2>
-          <p class="subtitle">Experiencias únicas en uno de los destinos más biodiversos del planeta.</p>
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:4px;">
+            <div>
+              <h2 style="margin-bottom:8px;">Actividades en Nuquí</h2>
+              <p class="subtitle" style="margin:0;">Experiencias únicas en uno de los destinos más biodiversos del planeta.</p>
+            </div>
+            <a href="experiencias.html" style="display:inline-flex;align-items:center;gap:6px;color:var(--accent,#2d6a4f);font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;padding-bottom:4px;">Ver todas →</a>
+          </div>
 
           <div class="grid cards act-grid" id="act-grid-home">
             <div style="grid-column:1/-1;text-align:center;padding:30px;color:var(--muted);">⏳ Cargando actividades...

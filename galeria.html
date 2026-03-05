@@ -105,9 +105,27 @@
     .g-placeholder {
       width:100%; aspect-ratio:var(--aspect,4/3); background:var(--bg,#1a3028);
       display:flex; flex-direction:column; align-items:center; justify-content:center;
-      gap:8px; color:rgba(255,255,255,.4); font-size:12px;
+      gap:10px; color:rgba(255,255,255,.38); font-size:12px;
+      border: 1.5px dashed rgba(255,255,255,.1);
+      transition: border-color .25s;
     }
-    .g-placeholder .g-ico { font-size:32px; }
+    .g-placeholder .g-ico { font-size:38px; opacity:.65; }
+    .g-placeholder .g-ph-title { font-size:11px; font-weight:600; text-align:center; padding:0 12px; line-height:1.4; }
+    .g-placeholder .g-ph-sub { font-size:10px; opacity:.45; letter-spacing:.3px; }
+    .g-item:hover .g-placeholder { border-color: rgba(255,255,255,.22); }
+
+    /* Animación de entrada de ítems */
+    @keyframes gFadeIn {
+      from { opacity:0; transform:translateY(10px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .g-item { animation: gFadeIn .4s ease both; }
+
+    /* Barra de conteo */
+    .g-count-bar {
+      text-align:center; padding:8px 24px 0;
+      color:rgba(255,255,255,.3); font-size:11px; letter-spacing:.6px; text-transform:uppercase;
+    }
 
     /* LIGHTBOX */
     .lb-overlay {
@@ -140,13 +158,18 @@
 
     /* CTA UPLOAD */
     .g-upload-cta {
-      background:rgba(255,255,255,.05); border:1.5px dashed rgba(255,255,255,.2);
-      border-radius:16px; padding:28px; text-align:center; margin-top:32px;
-      color:rgba(255,255,255,.7);
+      background: linear-gradient(135deg,rgba(26,80,64,.28),rgba(13,48,82,.28));
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:20px; padding:36px 28px; text-align:center; margin-top:44px;
+      color:rgba(255,255,255,.72);
     }
-    .g-upload-cta h4 { color:#fff; font-size:16px; margin-bottom:8px; }
-    .g-upload-cta p { font-size:13px; line-height:1.6; margin-bottom:16px; }
-    .g-upload-cta a { display:inline-block; background:linear-gradient(135deg,#1a5040,#0d3052); color:#fff; padding:10px 24px; border-radius:24px; text-decoration:none; font-size:13px; font-weight:700; }
+    .g-upload-cta h4 { color:#fff; font-size:17px; margin-bottom:10px; font-family:Merriweather,serif; }
+    .g-upload-cta p { font-size:13px; line-height:1.75; margin-bottom:22px; max-width:420px; margin-left:auto; margin-right:auto; }
+    .g-cta-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+    .g-cta-btn-main { display:inline-flex; align-items:center; gap:7px; background:linear-gradient(135deg,#1a5040,#0d3052); color:#fff; padding:11px 26px; border-radius:24px; text-decoration:none; font-size:13px; font-weight:700; transition:opacity .2s, transform .2s; }
+    .g-cta-btn-main:hover { opacity:.88; transform:translateY(-2px); }
+    .g-cta-btn-admin { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,.07); color:rgba(255,255,255,.65); padding:11px 20px; border-radius:24px; text-decoration:none; font-size:12px; font-weight:600; border:1px solid rgba(255,255,255,.11); transition:.2s; }
+    .g-cta-btn-admin:hover { background:rgba(255,255,255,.13); color:#fff; }
 
     /* FOOTER */
     .g-footer { background:#050d07; color:rgba(255,255,255,.5); text-align:center; padding:20px 24px; font-size:12px; line-height:1.6; }
@@ -187,14 +210,18 @@
   </div>
 
   <main class="g-main">
+    <div id="g-count-bar" class="g-count-bar"></div>
     <div class="g-grid" id="galGrid">
       <!-- Las imágenes se generan desde JavaScript -->
     </div>
 
     <div class="g-upload-cta">
       <h4>📷 ¿Tienes fotos de Nuquí?</h4>
-      <p>Comparte tus imágenes con nosotros. Las mejores pueden aparecer en esta galería y en nuestras redes sociales (con crédito a ti).</p>
-      <a href="https://wa.me/573225225582?text=Hola%20WAYRA%2C%20quiero%20compartir%20fotos%20de%20Nuqu%C3%AD" target="_blank">Enviar mis fotos →</a>
+      <p>Comparte tus imágenes con nosotros. Las mejores pueden aparecer en esta galería y en nuestras redes sociales, ¡con crédito a ti!</p>
+      <div class="g-cta-btns">
+        <a class="g-cta-btn-main" href="https://wa.me/573225225582?text=Hola%20WAYRA%2C%20quiero%20compartir%20fotos%20de%20Nuqu%C3%AD" target="_blank">📲 Enviar mis fotos</a>
+        <a class="g-cta-btn-admin" href="/admin/" target="_blank">⚙️ Gestionar galería</a>
+      </div>
     </div>
   </main>
 
@@ -341,9 +368,17 @@
     // ─── RENDERIZAR GRID ──────────────────────────────────────────────────
     function renderGrid(items) {
       const grid = document.getElementById('galGrid');
+      const countBar = document.getElementById('g-count-bar');
       if (items.length === 0) {
         grid.innerHTML = `<div class="g-empty" style="column-span:all;"><div class="ico">📷</div><p>No hay fotos en esta categoría aún.</p></div>`;
+        if (countBar) countBar.textContent = '';
         return;
+      }
+      const withImg = items.filter(f => f.src).length;
+      if (countBar) {
+        countBar.textContent = withImg === items.length
+          ? `${items.length} foto${items.length !== 1 ? 's' : ''}`
+          : `${withImg} foto${withImg !== 1 ? 's' : ''}  ·  ${items.length - withImg} próximamente`;
       }
       grid.innerHTML = items.map((foto, i) => {
         const aspect = foto.aspect || '4/3';
@@ -351,11 +386,11 @@
           ? `<img src="${foto.src}" alt="${foto.title}" loading="lazy">`
           : `<div class="g-placeholder" style="--aspect:${aspect};--bg:${foto.bg};">
                <div class="g-ico">${foto.emoji}</div>
-               <span>${foto.title}</span>
-               <small style="font-size:10px;margin-top:4px;opacity:.6;">Foto próximamente</small>
+               <span class="g-ph-title">${foto.title}</span>
+               <small class="g-ph-sub">Próximamente</small>
              </div>`;
         return `
-          <div class="g-item" data-index="${i}" data-cat="${foto.cat}" role="button" tabindex="0" aria-label="${foto.title}">
+          <div class="g-item" data-index="${i}" data-cat="${foto.cat}" role="button" tabindex="0" aria-label="${foto.title}" style="animation-delay:${Math.min(i,8)*45}ms">
             ${imgContent}
             <div class="g-item-cap">
               <h4>${foto.title}</h4>

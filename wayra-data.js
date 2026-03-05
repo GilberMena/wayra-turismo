@@ -90,13 +90,13 @@ function renderExperienceCards(experiences, containerId, maxCards) {
   container.innerHTML = list.map(exp => {
     const bg = exp.image ? `url('${exp.image}')` : 'linear-gradient(135deg,#2d6a4f,#1a4030)';
     return `<article class="card act-card">
-        <div class="card-image act-img" style="background-image:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.28)),${bg};background-size:cover;background-position:center;">
+        <div class="card-image act-img" style="background-image:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.22)),${bg};background-size:cover;background-position:center;">
           ${exp.badge ? `<span class="act-badge">${exp.badge}</span>` : ''}
         </div>
         <div class="act-body">
           <h3>${exp.title || ''}</h3>
           <p>${exp.description || ''}</p>
-          <a class="btn-outline" href="detail.html?type=exp&id=${exp.id}">Ver plan →</a>
+          <a class="btn-act-plan" href="detail.html?type=exp&id=${exp.id}">Ver plan <span style="font-size:15px;line-height:1">→</span></a>
         </div>
       </article>`;
   }).join('');
