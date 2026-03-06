@@ -26,7 +26,13 @@
       ],
       "notes": "llevar ropa deportiva",
       "videoUrl": "https://drive.google.com/file/d/1CCwwy5sM5kLGILIEQAGSM57dkC1jH8hK/preview",
-      "photos": [],
+      "photos": [
+        { "src": "https://i.ibb.co/XZGdhsL8/Whats-App-Image-2026-03-05-at-8-12-27-PM.jpg", "alt": "Cabaña Terco – vista exterior" },
+        { "src": "https://i.ibb.co/QjNYTMNS/Whats-App-Image-2026-03-05-at-8-12-28-PM-1.jpg", "alt": "Cabaña Terco – interior" },
+        { "src": "https://i.ibb.co/yB8k3CCH/Whats-App-Image-2026-03-05-at-8-12-28-PM-2.jpg", "alt": "Cabaña Terco – habitación" },
+        { "src": "https://i.ibb.co/Xf6tgpwk/Whats-App-Image-2026-03-05-at-8-12-28-PM-3.jpg", "alt": "Cabaña Terco – espacio común" },
+        { "src": "https://i.ibb.co/W4ZzLjSv/Whats-App-Image-2026-03-05-at-8-12-28-PM.jpg", "alt": "Cabaña Terco – entorno natural" }
+      ],
       "pricing": [
         {
           "origin": "Desde Medellín, Cali o Cartago",
