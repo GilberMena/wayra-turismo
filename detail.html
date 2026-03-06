@@ -65,6 +65,88 @@
     </div>
   </header>
 
+  <style>
+    .detail-video-wrap {
+      margin: 40px 0;
+    }
+    .detail-video-wrap h2 {
+      font-family: Merriweather, serif;
+      font-size: 22px;
+      margin-bottom: 16px;
+      color: #0a2a1e;
+    }
+    .detail-video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,.15);
+      background: #0a0f0c;
+    }
+    .detail-video-container iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .detail-photos-wrap {
+      margin: 48px 0 0;
+    }
+    .detail-photos-wrap h2 {
+      font-family: Merriweather, serif;
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #0a2a1e;
+    }
+    .detail-photos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .detail-photos-grid img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    }
+    .detail-photos-grid img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 20px rgba(0,0,0,.18);
+    }
+    /* Lightbox fotos plan */
+    .plan-lb {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.92);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+    .plan-lb.open { display: flex; }
+    .plan-lb img {
+      max-width: 92vw;
+      max-height: 88vh;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+    .plan-lb-close {
+      position: absolute;
+      top: 18px; right: 24px;
+      font-size: 32px;
+      color: #fff;
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+  </style>
+
   <main class="container section">
     <div id="detail-card" class="card" style="padding:0; overflow:hidden; display:none;">
       <!-- Main Image -->
@@ -100,6 +182,20 @@
           <div id="notesContent"></div>
         </div>
 
+        <!-- Video del lugar -->
+        <div id="section-video" class="detail-video-wrap" style="display:none;">
+          <h2>🎥 Conoce el lugar</h2>
+          <div class="detail-video-container">
+            <iframe id="detailVideo" src="" allowfullscreen allow="autoplay" loading="lazy"></iframe>
+          </div>
+        </div>
+
+        <!-- Galería de fotos del plan -->
+        <div id="section-photos" class="detail-photos-wrap" style="display:none;">
+          <h2>📸 Galería del plan</h2>
+          <div class="detail-photos-grid" id="detailPhotosGrid"></div>
+        </div>
+
         <div style="margin-top:48px; display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
           <a id="btnReserveDetail" class="btn-primary" href="#" style="padding:14px 32px;">Reservar ahora</a>
           <a id="btnWhatsappDetail" class="btn-whatsapp" href="#" target="_blank" style="padding:13px 28px;">Consultar
@@ -108,6 +204,12 @@
             style="text-decoration:none; color:var(--muted); font-weight:600;">← Volver a planes</a>
         </div>
       </div>
+    </div>
+
+    <!-- Lightbox fotos plan -->
+    <div class="plan-lb" id="planLightbox" onclick="this.classList.remove('open')">
+      <button class="plan-lb-close" onclick="document.getElementById('planLightbox').classList.remove('open')">✕</button>
+      <img src="" alt="Foto del plan">
     </div>
 
     <!-- Error container -->
@@ -312,6 +414,21 @@
         document.getElementById('detailImage').style.display = 'none';
       }
 
+      // Video
+      if (d.videoUrl) {
+        document.getElementById('section-video').style.display = 'block';
+        document.getElementById('detailVideo').src = d.videoUrl;
+      }
+
+      // Photos gallery
+      if (d.photos && d.photos.length) {
+        document.getElementById('section-photos').style.display = 'block';
+        const grid = document.getElementById('detailPhotosGrid');
+        grid.innerHTML = d.photos.map((p, i) =>
+          `<img src="${p.src}" alt="${p.alt || 'Foto ' + (i+1)}" loading="lazy" onclick="openPlanLb('${p.src}')">`
+        ).join('');
+      }
+
       // Notes
       if (d.notes) {
         document.getElementById('detailNotes').style.display = 'block';
@@ -324,6 +441,16 @@
       document.getElementById('btnWhatsappDetail').href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
       document.getElementById('btnReserveDetail').href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
     }
+
+    function openPlanLb(src) {
+      const lb = document.getElementById('planLightbox');
+      lb.querySelector('img').src = src;
+      lb.classList.add('open');
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') document.getElementById('planLightbox').classList.remove('open');
+    });
 
     function showError() {
       document.getElementById('detail-error').style.display = 'block';
