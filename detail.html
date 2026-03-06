@@ -68,21 +68,49 @@
   <style>
     .detail-video-wrap {
       margin: 40px 0;
+      background: linear-gradient(135deg, #0a2a1e 0%, #0d3052 100%);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.12);
+    }
+    .detail-video-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .detail-video-badge {
+      background: rgba(255,255,255,.15);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.25);
     }
     .detail-video-wrap h2 {
       font-family: Merriweather, serif;
-      font-size: 22px;
-      margin-bottom: 16px;
-      color: #0a2a1e;
+      font-size: 20px;
+      margin: 0;
+      color: #fff;
+    }
+    .detail-video-sub {
+      color: rgba(255,255,255,.65);
+      font-size: 14px;
+      margin: 0 0 20px;
     }
     .detail-video-container {
       position: relative;
       width: 100%;
-      padding-bottom: 56.25%;
-      border-radius: 16px;
+      max-width: 560px;
+      margin: 0 auto;
+      padding-bottom: min(56.25%, 315px);
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,.15);
-      background: #0a0f0c;
+      box-shadow: 0 12px 40px rgba(0,0,0,.4);
+      background: #000;
     }
     .detail-video-container iframe {
       position: absolute;
@@ -97,12 +125,17 @@
     .detail-photos-wrap h2 {
       font-family: Merriweather, serif;
       font-size: 22px;
-      margin-bottom: 20px;
+      margin-bottom: 8px;
       color: #0a2a1e;
+    }
+    .detail-photos-sub {
+      color: #7a9a80;
+      font-size: 14px;
+      margin: 0 0 20px;
     }
     .detail-photos-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 12px;
     }
     .detail-photos-grid img {
@@ -118,6 +151,19 @@
       transform: scale(1.03);
       box-shadow: 0 6px 20px rgba(0,0,0,.18);
     }
+    .detail-photo-placeholder {
+      aspect-ratio: 4/3;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #e8f0eb, #d0e4d8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: #7a9a80;
+      font-size: 13px;
+    }
+    .detail-photo-placeholder span { font-size: 28px; }
     /* Lightbox fotos plan */
     .plan-lb {
       display: none;
@@ -184,15 +230,20 @@
 
         <!-- Video del lugar -->
         <div id="section-video" class="detail-video-wrap" style="display:none;">
-          <h2>🎥 Conoce el lugar</h2>
+          <div class="detail-video-header">
+            <span class="detail-video-badge">🎥 Video</span>
+            <h2>Conoce el lugar</h2>
+          </div>
+          <p class="detail-video-sub">Una mirada al destino antes de que llegues</p>
           <div class="detail-video-container">
             <iframe id="detailVideo" src="" allowfullscreen allow="autoplay" loading="lazy"></iframe>
           </div>
         </div>
 
         <!-- Galería de fotos del plan -->
-        <div id="section-photos" class="detail-photos-wrap" style="display:none;">
-          <h2>📸 Galería del plan</h2>
+        <div id="section-photos" class="detail-photos-wrap">
+          <h2>📸 Imágenes del lugar</h2>
+          <p class="detail-photos-sub">Fotos reales del alojamiento y los espacios que vivirás</p>
           <div class="detail-photos-grid" id="detailPhotosGrid"></div>
         </div>
 
@@ -421,11 +472,20 @@
       }
 
       // Photos gallery
+      const grid = document.getElementById('detailPhotosGrid');
       if (d.photos && d.photos.length) {
-        document.getElementById('section-photos').style.display = 'block';
-        const grid = document.getElementById('detailPhotosGrid');
         grid.innerHTML = d.photos.map((p, i) =>
           `<img src="${p.src}" alt="${p.alt || 'Foto ' + (i+1)}" loading="lazy" onclick="openPlanLb('${p.src}')">`
+        ).join('');
+      } else {
+        const placeholders = [
+          { emoji: '🏖️', label: 'Playa' },
+          { emoji: '🏨', label: 'Alojamiento' },
+          { emoji: '🌊', label: 'Mar' },
+          { emoji: '🌿', label: 'Entorno' }
+        ];
+        grid.innerHTML = placeholders.map(p =>
+          `<div class="detail-photo-placeholder"><span>${p.emoji}</span>${p.label}</div>`
         ).join('');
       }
 
