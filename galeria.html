@@ -22,182 +22,260 @@
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Montserrat, sans-serif; color: #1a2e1e; background: #0a0f0c; }
-
-    /* NAV */
-    .g-nav {
-      background: #0a2a1e; padding: 14px 24px;
-      display: flex; align-items: center; gap: 16px;
-      position: sticky; top: 0; z-index: 100;
-    }
-    .g-nav a.back { display:inline-flex; align-items:center; gap:6px; color:rgba(255,255,255,.8); text-decoration:none; font-size:13px; font-weight:600; }
-    .g-nav a.back:hover { color:#fff; }
-    .g-nav img { height: 34px; margin-left: auto; }
-
-    /* HERO */
-    .g-hero {
-      background: linear-gradient(135deg,#0a2a1e 0%,#1a5040 60%,#0d3052 100%);
-      padding: 56px 24px 48px; text-align: center; color: #fff;
+    /* ══ HERO GALERÍA ══ */
+    .g-hero-wrap {
+      background: linear-gradient(155deg, #0a2a1e 0%, #1a5040 45%, #0d3052 100%);
       position: relative; overflow: hidden;
+      color: #fff; padding: 90px 20px 100px; text-align: center;
     }
-    .g-hero::before {
-      content:''; position:absolute; inset:0;
-      background:radial-gradient(ellipse at 30% 70%,rgba(127,255,212,.06),transparent 60%);
-      pointer-events:none;
+    .g-hero-wrap::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,.3) 100%);
+      pointer-events: none; z-index: 0;
     }
-    .g-hero > * { position:relative; z-index:1; }
-    .g-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25); color:#fff; font-size:11px; font-weight:700; letter-spacing:1.3px; text-transform:uppercase; padding:5px 16px; border-radius:20px; margin-bottom:16px; }
-    .g-hero h1 { font-family:Merriweather,serif; font-size:40px; margin-bottom:12px; line-height:1.2; }
-    .g-hero p { font-size:17px; color:rgba(255,255,255,.88); max-width:520px; margin:0 auto; line-height:1.7; }
+    .g-hero-wrap > * { position: relative; z-index: 1; }
+    .g-hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
+      backdrop-filter: blur(6px); color: #fff; font-size: 12px; font-weight: 700;
+      letter-spacing: 1.2px; text-transform: uppercase; padding: 5px 16px;
+      border-radius: 20px; margin-bottom: 20px;
+    }
+    .g-hero-wrap h1 {
+      font-family: Merriweather, serif; font-size: 52px; margin: 0 0 16px;
+      line-height: 1.15; text-shadow: 0 2px 24px rgba(0,0,0,.5);
+    }
+    .g-hero-wrap .lead {
+      font-size: 19px; color: rgba(255,255,255,.9); max-width: 600px;
+      margin: 0 auto 32px; line-height: 1.75; text-shadow: 0 1px 8px rgba(0,0,0,.4);
+    }
+    .g-hero-actions {
+      display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px;
+    }
+    .g-btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #25d366, #1aa050); color: #fff;
+      padding: 14px 30px; border-radius: 32px; text-decoration: none;
+      font-weight: 700; font-size: 15px; box-shadow: 0 6px 24px rgba(37,211,102,.35);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .g-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(37,211,102,.45); }
+    .g-btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.15); border: 1.5px solid rgba(255,255,255,.55);
+      backdrop-filter: blur(4px); color: #fff; padding: 14px 26px; border-radius: 32px;
+      text-decoration: none; font-weight: 600; font-size: 15px; transition: background .2s;
+    }
+    .g-btn-secondary:hover { background: rgba(255,255,255,.25); }
+    .g-hero-stats {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25);
+      backdrop-filter: blur(8px); border-radius: 16px; max-width: 640px; margin: 0 auto;
+    }
+    .g-hero-stat {
+      flex: 1; min-width: 120px; padding: 16px 20px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,.15); color: #fff;
+    }
+    .g-hero-stat:last-child { border-right: none; }
+    .g-hero-stat strong { display: block; font-size: 22px; font-family: Merriweather, serif; }
+    .g-hero-stat span { font-size: 11px; color: rgba(255,255,255,.75); letter-spacing: .5px; text-transform: uppercase; }
 
-    /* FILTROS */
+    /* ══ FILTROS ══ */
     .g-filtros {
-      background:#111a14; padding:18px 24px;
-      display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
-      position:sticky; top:62px; z-index:50;
-      border-bottom:1px solid rgba(255,255,255,.07);
+      background: #fff; border-bottom: 1px solid #e8f0eb;
+      padding: 18px 24px; display: flex; gap: 8px; flex-wrap: wrap;
+      justify-content: center; position: sticky; top: 64px; z-index: 50;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
     }
     .g-fil-btn {
-      display:inline-flex; align-items:center; gap:6px;
-      background:rgba(255,255,255,.07); border:1.5px solid rgba(255,255,255,.15);
-      color:rgba(255,255,255,.7); padding:7px 18px; border-radius:20px;
-      font-size:12px; font-weight:600; cursor:pointer; transition:.2s;
+      padding: 8px 20px; border-radius: 24px; border: 1.5px solid #c0d8c8;
+      background: #fff; color: #2a5a3a; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all .18s ease; font-family: Montserrat, sans-serif;
     }
     .g-fil-btn:hover, .g-fil-btn.active {
-      background:linear-gradient(135deg,#1a5040,#0d3052);
-      border-color:transparent; color:#fff;
+      background: linear-gradient(135deg, #1a5040, #0d3052);
+      color: #fff; border-color: transparent;
+      box-shadow: 0 3px 12px rgba(26,80,64,.28);
     }
 
-    /* GRID GALERÍA */
-    .g-main { max-width:1200px; margin:0 auto; padding:32px 20px 60px; }
-    .g-grid {
-      columns: 3; column-gap:12px;
-    }
+    /* ══ GRID ══ */
+    .g-main { max-width: 1200px; margin: 0 auto; padding: 32px 20px 60px; background: #f6fdf9; }
+    .g-grid { columns: 3; column-gap: 14px; }
     .g-item {
-      display:block; width:100%; break-inside:avoid;
-      margin-bottom:12px; border-radius:12px; overflow:hidden;
-      position:relative; cursor:pointer;
-      background:#1a2a1e;
+      display: block; width: 100%; break-inside: avoid; margin-bottom: 14px;
+      border-radius: 14px; overflow: hidden; position: relative; cursor: pointer;
+      background: #fff; box-shadow: 0 4px 16px rgba(0,0,0,.08);
+      transition: transform .22s ease, box-shadow .22s ease;
     }
-    .g-item img {
-      width:100%; height:auto; display:block;
-      transition:transform .4s ease, filter .3s;
-    }
-    .g-item:hover img { transform:scale(1.04); filter:brightness(.85); }
+    .g-item:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,.14); }
+    .g-item img { width: 100%; height: auto; display: block; transition: transform .4s ease, filter .3s; }
+    .g-item:hover img { transform: scale(1.04); filter: brightness(.88); }
     .g-item-cap {
-      position:absolute; inset:0; padding:16px;
-      display:flex; flex-direction:column; justify-content:flex-end;
-      background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 50%);
-      opacity:0; transition:opacity .3s;
+      position: absolute; inset: 0; padding: 16px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      background: linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 55%);
+      opacity: 0; transition: opacity .3s;
     }
-    .g-item:hover .g-item-cap { opacity:1; }
-    .g-item-cap h4 { color:#fff; font-size:14px; font-weight:700; margin-bottom:4px; }
-    .g-item-cap p { color:rgba(255,255,255,.75); font-size:12px; }
+    .g-item:hover .g-item-cap { opacity: 1; }
+    .g-item-cap h4 { color: #fff; font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .g-item-cap p { color: rgba(255,255,255,.8); font-size: 12px; }
     .g-cat-tag {
-      position:absolute; top:10px; left:10px;
-      background:rgba(0,0,0,.55); backdrop-filter:blur(4px);
-      color:#fff; font-size:10px; font-weight:700; letter-spacing:.5px;
-      text-transform:uppercase; padding:4px 10px; border-radius:10px;
+      position: absolute; top: 10px; left: 10px;
+      background: rgba(0,0,0,.5); backdrop-filter: blur(4px);
+      color: #fff; font-size: 10px; font-weight: 700; letter-spacing: .5px;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 10px;
     }
 
-    /* Placeholder cuando no hay imagen real */
+    /* Placeholder */
     .g-placeholder {
-      width:100%; aspect-ratio:var(--aspect,4/3); background:var(--bg,#1a3028);
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      gap:10px; color:rgba(255,255,255,.38); font-size:12px;
-      border: 1.5px dashed rgba(255,255,255,.1);
-      transition: border-color .25s;
+      width: 100%; aspect-ratio: var(--aspect,4/3); background: var(--bg,#1a3028);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; color: rgba(255,255,255,.4); font-size: 12px;
+      border: 1.5px dashed rgba(255,255,255,.15); transition: border-color .25s;
     }
-    .g-placeholder .g-ico { font-size:38px; opacity:.65; }
-    .g-placeholder .g-ph-title { font-size:11px; font-weight:600; text-align:center; padding:0 12px; line-height:1.4; }
-    .g-placeholder .g-ph-sub { font-size:10px; opacity:.45; letter-spacing:.3px; }
-    .g-item:hover .g-placeholder { border-color: rgba(255,255,255,.22); }
+    .g-placeholder .g-ico { font-size: 38px; opacity: .65; }
+    .g-placeholder .g-ph-title { font-size: 11px; font-weight: 600; text-align: center; padding: 0 12px; line-height: 1.4; }
+    .g-placeholder .g-ph-sub { font-size: 10px; opacity: .45; letter-spacing: .3px; }
+    .g-item:hover .g-placeholder { border-color: rgba(255,255,255,.3); }
 
-    /* Animación de entrada de ítems */
-    @keyframes gFadeIn {
-      from { opacity:0; transform:translateY(10px); }
-      to   { opacity:1; transform:translateY(0); }
-    }
+    /* Animación entrada */
+    @keyframes gFadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
     .g-item { animation: gFadeIn .4s ease both; }
 
     /* Barra de conteo */
     .g-count-bar {
-      text-align:center; padding:8px 24px 0;
-      color:rgba(255,255,255,.3); font-size:11px; letter-spacing:.6px; text-transform:uppercase;
+      text-align: center; padding: 0 24px 16px;
+      color: #7a9a80; font-size: 12px; letter-spacing: .6px; text-transform: uppercase;
     }
 
     /* LIGHTBOX */
     .lb-overlay {
-      position:fixed; inset:0; background:rgba(0,0,0,.95); z-index:1000;
-      display:none; align-items:center; justify-content:center;
-      flex-direction:column; gap:16px; padding:20px;
+      position: fixed; inset: 0; background: rgba(0,0,0,.95); z-index: 1000;
+      display: none; align-items: center; justify-content: center;
+      flex-direction: column; gap: 16px; padding: 20px;
     }
-    .lb-overlay.open { display:flex; }
-    .lb-img-wrap { max-width:min(900px,90vw); max-height:75vh; position:relative; }
-    .lb-img-wrap img { width:100%; height:100%; object-fit:contain; border-radius:10px; }
-    .lb-cap { color:rgba(255,255,255,.8); text-align:center; font-size:14px; max-width:600px; }
-    .lb-cap strong { color:#fff; font-size:16px; display:block; margin-bottom:4px; }
+    .lb-overlay.open { display: flex; }
+    .lb-img-wrap { max-width: min(900px,90vw); max-height: 75vh; position: relative; }
+    .lb-img-wrap img { width: 100%; height: 100%; object-fit: contain; border-radius: 10px; }
+    .lb-cap { color: rgba(255,255,255,.8); text-align: center; font-size: 14px; max-width: 600px; }
+    .lb-cap strong { color: #fff; font-size: 16px; display: block; margin-bottom: 4px; }
     .lb-close {
-      position:fixed; top:20px; right:24px;
-      background:rgba(255,255,255,.12); border:none; color:#fff;
-      width:40px; height:40px; border-radius:50%; font-size:20px;
-      cursor:pointer; display:flex; align-items:center; justify-content:center;
+      position: fixed; top: 20px; right: 24px;
+      background: rgba(255,255,255,.12); border: none; color: #fff;
+      width: 40px; height: 40px; border-radius: 50%; font-size: 20px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
     }
     .lb-prev, .lb-next {
-      position:fixed; top:50%; transform:translateY(-50%);
-      background:rgba(255,255,255,.12); border:none; color:#fff;
-      width:44px; height:44px; border-radius:50%; font-size:20px;
-      cursor:pointer; display:flex; align-items:center; justify-content:center;
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,.12); border: none; color: #fff;
+      width: 44px; height: 44px; border-radius: 50%; font-size: 20px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
     }
-    .lb-prev { left:16px; } .lb-next { right:16px; }
+    .lb-prev { left: 16px; } .lb-next { right: 16px; }
 
-    /* SIN RESULTADOS */
-    .g-empty { text-align:center; padding:60px 24px; color:rgba(255,255,255,.4); }
-    .g-empty .ico { font-size:48px; margin-bottom:16px; }
+    /* Sin resultados */
+    .g-empty { text-align: center; padding: 60px 24px; color: #7a9a80; }
+    .g-empty .ico { font-size: 48px; margin-bottom: 16px; }
 
-    /* CTA UPLOAD */
+    /* CTA */
     .g-upload-cta {
-      background: linear-gradient(135deg,rgba(26,80,64,.28),rgba(13,48,82,.28));
-      border:1px solid rgba(255,255,255,.09);
-      border-radius:20px; padding:36px 28px; text-align:center; margin-top:44px;
-      color:rgba(255,255,255,.72);
+      background: linear-gradient(135deg, #0a2a1e 0%, #1a5040 50%, #0d3052 100%);
+      border-radius: 24px; padding: 44px 32px; text-align: center; margin-top: 44px;
+      color: rgba(255,255,255,.85); position: relative; overflow: hidden;
     }
-    .g-upload-cta h4 { color:#fff; font-size:17px; margin-bottom:10px; font-family:Merriweather,serif; }
-    .g-upload-cta p { font-size:13px; line-height:1.75; margin-bottom:22px; max-width:420px; margin-left:auto; margin-right:auto; }
-    .g-cta-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-    .g-cta-btn-main { display:inline-flex; align-items:center; gap:7px; background:linear-gradient(135deg,#1a5040,#0d3052); color:#fff; padding:11px 26px; border-radius:24px; text-decoration:none; font-size:13px; font-weight:700; transition:opacity .2s, transform .2s; }
-    .g-cta-btn-main:hover { opacity:.88; transform:translateY(-2px); }
-    .g-cta-btn-admin { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,.07); color:rgba(255,255,255,.65); padding:11px 20px; border-radius:24px; text-decoration:none; font-size:12px; font-weight:600; border:1px solid rgba(255,255,255,.11); transition:.2s; }
-    .g-cta-btn-admin:hover { background:rgba(255,255,255,.13); color:#fff; }
-
-    /* FOOTER */
-    .g-footer { background:#050d07; color:rgba(255,255,255,.5); text-align:center; padding:20px 24px; font-size:12px; line-height:1.6; }
-    .g-footer a { color:rgba(255,255,255,.6); }
+    .g-upload-cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 80% 20%,rgba(255,180,60,.1) 0%,transparent 55%);
+      pointer-events: none;
+    }
+    .g-upload-cta h4 { color: #fff; font-size: 22px; margin-bottom: 12px; font-family: Merriweather, serif; position: relative; }
+    .g-upload-cta p { font-size: 14px; line-height: 1.8; margin-bottom: 26px; max-width: 440px; margin-left: auto; margin-right: auto; position: relative; }
+    .g-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; }
+    .g-cta-btn-main {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #25d366, #1aa050); color: #fff;
+      padding: 14px 30px; border-radius: 32px; text-decoration: none;
+      font-weight: 700; font-size: 15px; box-shadow: 0 6px 20px rgba(37,211,102,.35);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .g-cta-btn-main:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(37,211,102,.45); }
 
     @media(max-width:768px) {
-      .g-grid { columns:2; }
-      .g-hero h1 { font-size:28px; }
-      .lb-prev, .lb-next { display:none; }
+      .g-grid { columns: 2; }
+      .g-hero-wrap h1 { font-size: 30px; }
+      .lb-prev, .lb-next { display: none; }
     }
-    @media(max-width:480px) { .g-grid { columns:1; } }
+    @media(max-width:480px) { .g-grid { columns: 1; } }
   </style>
 </head>
 <body>
 
-  <nav class="g-nav">
-    <a class="back" href="index.html">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-      Inicio
-    </a>
-    <img src="assets/img/unicologo.png" alt="WAYRA" id="site-logo">
-  </nav>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img id="site-logo" src="assets/img/unicologo.png" alt="vivewayra Logo">
+      </a>
 
-  <section class="g-hero">
-    <div class="g-badge">📸 Colección visual</div>
-    <h1>Nuquí en imágenes</h1>
-    <p>Cada imagen es un argumento. Selva, océano, ballenas, atardeceres imposibles y la calidez de la gente del Pacífico.</p>
-  </section>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="experiencias.html">Experiencias</a>
+        <a href="hoteles.html">Hoteles</a>
+        <a href="galeria.html" class="active">Galería</a>
+        <a href="plans-nuqui.html">Planes turísticos en Nuquí</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="https://www.facebook.com/profile.php?id=61587257972289" class="social-brand-link fb-link"
+          aria-label="Síguenos en Facebook" target="_blank" rel="noopener" data-fb-link>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true">
+            <path d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z"/>
+          </svg>
+          <span>Síguenos</span>
+        </a>
+        <a href="https://www.instagram.com/vivewayra/" class="social-brand-link ig-link"
+          aria-label="Síguenos en Instagram" target="_blank" rel="noopener" data-ig-link>
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+            <defs>
+              <linearGradient id="ig-grad-gal" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#f09433"/>
+                <stop offset="25%" stop-color="#e6683c"/>
+                <stop offset="50%" stop-color="#dc2743"/>
+                <stop offset="75%" stop-color="#cc2366"/>
+                <stop offset="100%" stop-color="#bc1888"/>
+              </linearGradient>
+            </defs>
+            <path fill="url(#ig-grad-gal)" d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z"/>
+          </svg>
+          <span>Síguenos</span>
+        </a>
+        <button class="nav-toggle" aria-label="Abrir navegación">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ══ HERO GALERÍA ══ -->
+    <div class="g-hero-wrap">
+      <div>
+        <div class="g-hero-badge">📸 Colección visual · Pacífico Colombiano</div>
+        <h1>Nuquí en imágenes</h1>
+        <p class="lead">Cada foto es un argumento. Selva, océano, ballenas,<br>atardeceres imposibles y la calidez del Pacífico.</p>
+        <div class="g-hero-actions">
+          <a class="g-btn-primary" href="https://wa.me/573225225582?text=Hola%20WAYRA%2C%20quiero%20compartir%20fotos%20de%20Nuqu%C3%AD" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z"/></svg>
+            Enviar mis fotos
+          </a>
+          <a class="g-btn-secondary" href="#galGrid">Ver galería ↓</a>
+        </div>
+        <div class="g-hero-stats">
+          <div class="g-hero-stat"><strong>Jul – Oct</strong><span>Ballenas jorobadas</span></div>
+          <div class="g-hero-stat"><strong>6</strong><span>Categorías</span></div>
+          <div class="g-hero-stat"><strong>Pacífico</strong><span>Chocó, Colombia</span></div>
+          <div class="g-hero-stat"><strong>100%</strong><span>Naturaleza real</span></div>
+        </div>
+      </div>
+    </div>
 
   <div class="g-filtros">
     <button class="g-fil-btn active" data-cat="all">🌊 Todas</button>
@@ -209,7 +287,7 @@
     <button class="g-fil-btn" data-cat="hoteles">🏨 Alojamiento</button>
   </div>
 
-  <main class="g-main">
+  <div class="g-main">
     <div id="g-count-bar" class="g-count-bar"></div>
     <div class="g-grid" id="galGrid">
       <!-- Las imágenes se generan desde JavaScript -->
@@ -219,9 +297,14 @@
       <h4>📷 ¿Tienes fotos de Nuquí?</h4>
       <p>Comparte tus imágenes con nosotros. Las mejores pueden aparecer en esta galería y en nuestras redes sociales, ¡con crédito a ti!</p>
       <div class="g-cta-btns">
-        <a class="g-cta-btn-main" href="https://wa.me/573225225582?text=Hola%20WAYRA%2C%20quiero%20compartir%20fotos%20de%20Nuqu%C3%AD" target="_blank">📲 Enviar mis fotos</a>
+        <a class="g-cta-btn-main" href="https://wa.me/573225225582?text=Hola%20WAYRA%2C%20quiero%20compartir%20fotos%20de%20Nuqu%C3%AD" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z"/></svg>
+          📲 Enviar mis fotos
+        </a>
       </div>
     </div>
+  </div>
+
   </main>
 
   <!-- LIGHTBOX -->
@@ -238,13 +321,70 @@
     <button class="lb-next" id="lbNext" aria-label="Siguiente">›</button>
   </div>
 
-  <footer class="g-footer">
-    <p>
-      <strong style="color:rgba(255,255,255,.85);">WAYRA – Turismo responsable en el Pacífico</strong><br>
-      vivewayra@gmail.com · +57 322 5225582<br>
-      <a href="politicas.html">Privacidad</a> · <a href="faq.html">FAQ</a> · <a href="pqrs.html">PQRS</a>
-    </p>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-logo-area">
+          <img id="site-logo-ft" src="assets/img/unicologo.png" alt="vivewayra Logo">
+          <p class="footer-rnt">
+            Expertos en experiencias auténticas en el Pacífico Colombiano.<br>
+            <strong>"El viaje que se queda"</strong>
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h3>Servicios</h3>
+          <ul class="footer-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="plans-nuqui.html">Planes turísticos a Nuquí</a></li>
+            <li><a href="experiencias.html">Experiencias y actividades</a></li>
+            <li><a href="hoteles.html">Mejores Hoteles</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Empresarial</h3>
+          <ul class="footer-list">
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="faq.html">❓ Preguntas frecuentes</a></li>
+            <li><a href="como-llegar.html">✈️ Cómo llegar a Nuquí</a></li>
+            <li><a href="pqrs.html" style="color:#7fffd4;font-weight:700;">📋 Radica tu PQRS</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Redes Sociales</h3>
+          <div class="footer-social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61587257972289" class="footer-social-icon facebook"
+              aria-label="Facebook" target="_blank" rel="noopener" data-fb-link>
+              <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z"/></svg>
+            </a>
+            <a href="https://wa.me/573225225582" class="footer-social-icon whatsapp" aria-label="WhatsApp"
+              target="_blank" rel="noopener" data-wa-link>
+              <svg viewBox="0 0 24 24"><path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/vivewayra/" class="footer-social-icon instagram" aria-label="Instagram"
+              target="_blank" rel="noopener" data-ig-link>
+              <svg viewBox="0 0 24 24"><path d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> WAYRA. Todos los derechos reservados.</p>
+      </div>
+    </div>
   </footer>
+
+  <!-- Botón flotante WhatsApp -->
+  <a href="https://wa.me/573225225582?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20planes%20a%20Nuqu%C3%AD"
+    class="wa-float" target="_blank" rel="noopener" aria-label="Contáctanos por WhatsApp" data-wa-link>
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+      <path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z"/>
+    </svg>
+    <span class="wa-float-text">¿Hablamos?</span>
+  </a>
 
   <script src="wayra-data.js"></script>
   <script>
@@ -469,7 +609,13 @@
     // ─── INIT ─────────────────────────────────────────────────────────────
     // Render inicial con datos locales; loadGallery() sobrescribe si hay JSON
     renderGrid(FOTOS);
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.main-nav');
+    if (navToggle) navToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
   </script>
+  <script src="wayra-analytics.js" defer></script>
+  <script src="script.js"></script>
   <script src="cookie-banner.js" defer></script>
 </body>
 </html>
