@@ -11,26 +11,26 @@
     },
     {
       "src": "https://i.ibb.co/JRPDxPGh/Whats-App-Image-2026-03-05-at-7-24-47-PM.jpg",
-      "title": "Playa El Almejal",
-      "desc": "Arena oscura, palmeras y el rumor constante del Pacífico. El Almejal es la postal más reconocida de Nuquí.",
+      "title": "Cielo pintado en playa Termales",
+      "desc": "El cielo de Termales se convierte en un lienzo al caer la tarde. Naranjas, rojos y violetas sobre el Pacífico.",
       "cat": "playa",
       "aspect": "4/3",
-      "bg": "linear-gradient(160deg,#6a3a00,#0d3052)",
+      "bg": "linear-gradient(160deg,#8a3a00,#0d3052)",
       "emoji": "🌅"
     },
     {
       "src": "https://i.ibb.co/j9qF0FbJ/Whats-App-Image-2026-03-05-at-7-25-20-PM.jpg",
-      "title": "Tarde en la orilla de Nuquí",
-      "desc": "Las horas doradas en las playas de Nuquí tienen una luz única. El mar calmo y el cielo encendido son la norma.",
+      "title": "Los morros de Guachalito",
+      "desc": "Las imponentes rocas que vigilan la playa de Guachalito son una de las imágenes más icónicas del Pacífico colombiano.",
       "cat": "playa",
       "aspect": "4/3",
-      "bg": "linear-gradient(160deg,#8a4a00,#0d3052)",
-      "emoji": "🏖️"
+      "bg": "linear-gradient(160deg,#0d3052,#1a4030)",
+      "emoji": "🏔️"
     },
     {
       "src": "https://i.ibb.co/WRZnQjj/Whats-App-Image-2026-03-05-at-7-27-00-PM.jpg",
-      "title": "Atardecer en Nuquí",
-      "desc": "Los atardeceres del Pacífico no tienen comparación. Cada tarde es una obra de arte diferente.",
+      "title": "Termales: cielo y arena",
+      "desc": "Playa Termales al atardecer. El cielo se pinta de colores imposibles y la arena negra refleja los últimos rayos del sol.",
       "cat": "playa",
       "aspect": "16/9",
       "bg": "linear-gradient(160deg,#6a1a00,#0d3052)",
