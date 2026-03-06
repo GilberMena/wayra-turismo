@@ -2897,6 +2897,20 @@
                     const writable = await configFileHandle.createWritable();
                     await writable.write(content);
                     await writable.close();
+                } else if (window.showSaveFilePicker) {
+                    try {
+                        const saveHandle = await window.showSaveFilePicker({
+                            suggestedName: 'config.json',
+                            types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }]
+                        });
+                        configFileHandle = saveHandle;
+                        const writable = await saveHandle.createWritable();
+                        await writable.write(content);
+                        await writable.close();
+                    } catch (saveErr) {
+                        if (saveErr.name === 'AbortError') return;
+                        downloadContent(content, 'config.json');
+                    }
                 } else {
                     downloadContent(content, 'config.json');
                 }
