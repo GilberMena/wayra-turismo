@@ -24,6 +24,7 @@
         <a href="index.html#quienes-somos">Quiénes somos</a>
         <a href="experiencias.html">Experiencias</a>
         <a href="plans-nuqui.html">Planes turísticos en Nuquí</a>
+        <a href="galeria.html">Galería</a>
         <a href="https://wa.me/573225225582" target="_blank">Contacto</a>
       </nav>
 
@@ -410,14 +411,15 @@
 
       try {
         let item = null;
-        if (type === 'plan') {
-          const response = await fetch('data/planes.json?_t=' + Date.now());
-          const data = await response.json();
-          item = data.planes.find(p => p.id === id);
-        } else {
+        if (type === 'exp') {
           const response = await fetch('data/experiences.json?_t=' + Date.now());
           const data = await response.json();
           item = data.experiences.find(e => e.id === id);
+        } else {
+          // type === 'plan' o sin type: busca en planes.json
+          const response = await fetch('data/planes.json?_t=' + Date.now());
+          const data = await response.json();
+          item = data.planes.find(p => p.id === id);
         }
 
         if (!item) {
@@ -462,7 +464,8 @@
       if (d.image) {
         document.getElementById('detailImage').style.backgroundImage = `linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.05)), url('${d.image}')`;
       } else {
-        document.getElementById('detailImage').style.display = 'none';
+        const imgEl = document.getElementById('detailImage');
+        imgEl.style.display = 'none';
       }
 
       // Video
