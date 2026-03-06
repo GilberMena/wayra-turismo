@@ -67,59 +67,6 @@
   </header>
 
   <style>
-    .detail-video-wrap {
-      margin: 40px 0;
-      background: #fff;
-      border-radius: 16px;
-      padding: 28px 28px 24px;
-      border: 1px solid #e8f0e9;
-      box-shadow: 0 4px 20px rgba(0,0,0,.07);
-    }
-    .detail-video-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 6px;
-    }
-    .detail-video-badge {
-      background: #e6f4ea;
-      color: #1a6b3a;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .07em;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 20px;
-    }
-    .detail-video-wrap h2 {
-      font-family: Merriweather, serif;
-      font-size: 19px;
-      margin: 0;
-      color: #0a2a1e;
-    }
-    .detail-video-sub {
-      color: #6b8f72;
-      font-size: 13px;
-      margin: 0 0 18px;
-    }
-    .detail-video-container {
-      position: relative;
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
-      padding-bottom: min(56.25%, 338px);
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 6px 24px rgba(0,0,0,.15);
-      background: #000;
-    }
-    .detail-video-container iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
     .detail-photos-wrap {
       margin: 48px 0 0;
     }
@@ -227,18 +174,6 @@
         <div id="detailNotes" class="detail-notes" style="display:none;">
           <strong>Notas importantes</strong>
           <div id="notesContent"></div>
-        </div>
-
-        <!-- Video del lugar -->
-        <div id="section-video" class="detail-video-wrap" style="display:none;">
-          <div class="detail-video-header">
-            <span class="detail-video-badge">🎥 Video</span>
-            <h2>Conoce el lugar</h2>
-          </div>
-          <p class="detail-video-sub">Una mirada al destino antes de que llegues</p>
-          <div class="detail-video-container">
-            <iframe id="detailVideo" src="" allowfullscreen allow="autoplay" loading="lazy"></iframe>
-          </div>
         </div>
 
         <!-- Galería de fotos del plan -->
@@ -466,12 +401,6 @@
       } else {
         const imgEl = document.getElementById('detailImage');
         imgEl.style.display = 'none';
-      }
-
-      // Video
-      if (d.videoUrl) {
-        document.getElementById('section-video').style.display = 'block';
-        document.getElementById('detailVideo').src = d.videoUrl;
       }
 
       // Photos gallery
