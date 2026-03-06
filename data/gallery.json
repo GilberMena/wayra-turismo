@@ -1,13 +1,76 @@
 {
   "gallery": [
     {
-      "src": "",
-      "title": "Playa Jurubidá al amanecer",
-      "desc": "La arena negra y la bruma mañanera hacen de Jurubidá uno de los paisajes más únicos de Colombia.",
+      "src": "https://i.ibb.co/MDGSZXpL/94cede05-cd1f-4203-8f36-ebe7953f32f6.jpg",
+      "title": "Atardecer en Guachalito",
+      "desc": "El sol se cuela entre los morros mientras la gente disfruta la orilla. Guachalito, uno de los rincones más hermosos del Pacífico colombiano.",
       "cat": "playa",
-      "aspect": "3/4",
-      "bg": "linear-gradient(160deg,#0d3052,#1a5040)",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#6a3a00,#0d3052)",
       "emoji": "🏖️"
+    },
+    {
+      "src": "https://i.ibb.co/JRPDxPGh/Whats-App-Image-2026-03-05-at-7-24-47-PM.jpg",
+      "title": "Playa El Almejal",
+      "desc": "Arena oscura, palmeras y el rumor constante del Pacífico. El Almejal es la postal más reconocida de Nuquí.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#6a3a00,#0d3052)",
+      "emoji": "🌅"
+    },
+    {
+      "src": "https://i.ibb.co/j9qF0FbJ/Whats-App-Image-2026-03-05-at-7-25-20-PM.jpg",
+      "title": "Tarde en la orilla de Nuquí",
+      "desc": "Las horas doradas en las playas de Nuquí tienen una luz única. El mar calmo y el cielo encendido son la norma.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#8a4a00,#0d3052)",
+      "emoji": "🏖️"
+    },
+    {
+      "src": "https://i.ibb.co/WRZnQjj/Whats-App-Image-2026-03-05-at-7-27-00-PM.jpg",
+      "title": "Atardecer en Nuquí",
+      "desc": "Los atardeceres del Pacífico no tienen comparación. Cada tarde es una obra de arte diferente.",
+      "cat": "playa",
+      "aspect": "16/9",
+      "bg": "linear-gradient(160deg,#6a1a00,#0d3052)",
+      "emoji": "🌅"
+    },
+    {
+      "src": "https://i.ibb.co/PGdF3Ppf/Whats-App-Image-2026-03-05-at-7-27-04-PM.jpg",
+      "title": "Mar abierto en el Pacífico",
+      "desc": "Horizonte infinito frente a las playas de Nuquí. Un recordatorio de lo pequeños que somos ante el océano.",
+      "cat": "playa",
+      "aspect": "16/9",
+      "bg": "linear-gradient(160deg,#0d3052,#6a3a00)",
+      "emoji": "🌊"
+    },
+    {
+      "src": "https://i.ibb.co/Pzxk6gS7/Whats-App-Image-2026-03-05-at-7-28-36-PM.jpg",
+      "title": "Playa tranquila en Nuquí",
+      "desc": "Entre semana las playas de Nuquí son casi desiertas. Arena, selva y océano para ti solo.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#1a4a2e,#0d3052)",
+      "emoji": "🏖️"
+    },
+    {
+      "src": "https://i.ibb.co/qFDXzYgk/Whats-App-Image-2026-03-05-at-7-29-58-PM-1.jpg",
+      "title": "Puesta de sol sobre el Pacífico",
+      "desc": "El cielo de Nuquí se incendia cada tarde. Una experiencia que no se olvida y que solo el Pacífico colombiano puede ofrecer.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#7a2a00,#0d2040)",
+      "emoji": "🌅"
+    },
+    {
+      "src": "https://i.ibb.co/fRScGpf/Whats-App-Image-2026-03-05-at-7-29-58-PM.jpg",
+      "title": "Olas del Pacífico, Nuquí",
+      "desc": "Las olas del Pacífico llegan poderosas y constantes. Ideal para surf, bodyboard o simplemente contemplar.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#0d3052,#1a5040)",
+      "emoji": "🌊"
     },
     {
       "src": "",
@@ -20,42 +83,6 @@
     },
     {
       "src": "",
-      "title": "Selva del Chocó Biogeográfico",
-      "desc": "La selva más biodiversa del planeta. Más de 600 especies de aves a menos de 30 minutos de caminata.",
-      "cat": "selva",
-      "aspect": "3/4",
-      "bg": "linear-gradient(160deg,#0a2a1e,#1a5040)",
-      "emoji": "🌿"
-    },
-    {
-      "src": "",
-      "title": "Surf en Termales",
-      "desc": "Olas consistentes, 28°C en el agua y la selva como fondo. El sueño de todo surfista.",
-      "cat": "experiencias",
-      "aspect": "16/9",
-      "bg": "linear-gradient(160deg,#0d3052,#1a5040)",
-      "emoji": "🏄‍♂️"
-    },
-    {
-      "src": "",
-      "title": "Artesanías de la comunidad Embera",
-      "desc": "Las comunidades indígenas Embera-Katío elaboran artesanías únicas con materiales locales de gran valor cultural.",
-      "cat": "cultura",
-      "aspect": "1/1",
-      "bg": "linear-gradient(160deg,#3a1a00,#1a5040)",
-      "emoji": "🎭"
-    },
-    {
-      "src": "",
-      "title": "Atardecer en Nuquí",
-      "desc": "Los atardeceres del Pacífico no tienen comparación. Cada tarde es una obra de arte diferente.",
-      "cat": "playa",
-      "aspect": "16/9",
-      "bg": "linear-gradient(160deg,#6a1a00,#0d3052)",
-      "emoji": "🌅"
-    },
-    {
-      "src": "",
       "title": "Avistamiento de ballenas en lancha",
       "desc": "A solo 15–20 minutos del muelle, las ballenas se acercan tanto que las puedes escuchar respirar.",
       "cat": "ballenas",
@@ -65,30 +92,12 @@
     },
     {
       "src": "",
-      "title": "Cabañas sobre el mar",
-      "desc": "Hospedajes únicos construidos sobre pilotes al borde del Pacífico, donde escuchas las olas toda la noche.",
-      "cat": "hoteles",
+      "title": "Selva del Chocó Biogeográfico",
+      "desc": "La selva más biodiversa del planeta. Más de 600 especies de aves a menos de 30 minutos de caminata.",
+      "cat": "selva",
       "aspect": "3/4",
-      "bg": "linear-gradient(160deg,#0d3052,#0a2a1e)",
-      "emoji": "🏨"
-    },
-    {
-      "src": "",
-      "title": "Piscinas naturales de La Aguada",
-      "desc": "Pozos naturales de agua caliente en plena selva. Uno de los secretos mejor guardados de Nuquí.",
-      "cat": "experiencias",
-      "aspect": "4/3",
-      "bg": "linear-gradient(160deg,#0a2a1e,#2a6040)",
-      "emoji": "♨️"
-    },
-    {
-      "src": "",
-      "title": "Danza afropacífica",
-      "desc": "La música y los bailes del Pacífico son Patrimonio Cultural de Colombia. Pureza y energía en cada movimiento.",
-      "cat": "cultura",
-      "aspect": "3/4",
-      "bg": "linear-gradient(160deg,#2a0a0a,#0d3052)",
-      "emoji": "💃"
+      "bg": "linear-gradient(160deg,#0a2a1e,#1a5040)",
+      "emoji": "🌿"
     },
     {
       "src": "",
@@ -101,12 +110,57 @@
     },
     {
       "src": "",
+      "title": "Surf en Termales",
+      "desc": "Olas consistentes, 28°C en el agua y la selva como fondo. El sueño de todo surfista.",
+      "cat": "experiencias",
+      "aspect": "16/9",
+      "bg": "linear-gradient(160deg,#0d3052,#1a5040)",
+      "emoji": "🏄‍♂️"
+    },
+    {
+      "src": "",
+      "title": "Piscinas naturales de La Aguada",
+      "desc": "Pozos naturales de agua caliente en plena selva. Uno de los secretos mejor guardados de Nuquí.",
+      "cat": "experiencias",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#0a2a1e,#2a6040)",
+      "emoji": "♨️"
+    },
+    {
+      "src": "",
+      "title": "Artesanías de la comunidad Embera",
+      "desc": "Las comunidades indígenas Embera-Katío elaboran artesanías únicas con materiales locales de gran valor cultural.",
+      "cat": "cultura",
+      "aspect": "1/1",
+      "bg": "linear-gradient(160deg,#3a1a00,#1a5040)",
+      "emoji": "🎭"
+    },
+    {
+      "src": "",
+      "title": "Danza afropacífica",
+      "desc": "La música y los bailes del Pacífico son Patrimonio Cultural de Colombia. Pureza y energía en cada movimiento.",
+      "cat": "cultura",
+      "aspect": "3/4",
+      "bg": "linear-gradient(160deg,#2a0a0a,#0d3052)",
+      "emoji": "💃"
+    },
+    {
+      "src": "",
       "title": "Gastronomía del Pacífico",
       "desc": "Cocina de mar: encocado de pescado, arroz con coco, patacón. Los sabores auténticos de la gente del Chocó.",
       "cat": "cultura",
       "aspect": "1/1",
       "bg": "linear-gradient(160deg,#2a1a00,#0a2a1e)",
       "emoji": "🍽️"
+    },
+    {
+      "src": "",
+      "title": "Cabañas sobre el mar",
+      "desc": "Hospedajes únicos construidos sobre pilotes al borde del Pacífico, donde escuchas las olas toda la noche.",
+      "cat": "hoteles",
+      "aspect": "3/4",
+      "bg": "linear-gradient(160deg,#0d3052,#0a2a1e)",
+      "emoji": "🏨"
     }
   ]
 }
