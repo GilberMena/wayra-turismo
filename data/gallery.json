@@ -145,12 +145,12 @@
       "emoji": "🎭"
     },
     {
-      "src": "",
+      "src": "https://i.ibb.co/gbq1fwNT/Whats-App-Image-2026-03-06-at-3-45-58-PM.jpg",
       "title": "Danza afropacífica",
-      "desc": "La música y los bailes del Pacífico son Patrimonio Cultural de Colombia. Pureza y energía en cada movimiento.",
+      "desc": "El ritmo del Pacífico vive en el cuerpo de su gente. La danza afropacífica es expresión pura de identidad, alegría y resistencia cultural del Chocó.",
       "cat": "cultura",
-      "aspect": "3/4",
-      "bg": "linear-gradient(160deg,#2a0a0a,#0d3052)",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#2a0a1a,#0d1a38)",
       "emoji": "💃"
     },
     {
@@ -170,6 +170,78 @@
       "aspect": "3/4",
       "bg": "linear-gradient(160deg,#0d3052,#0a2a1e)",
       "emoji": "🏨"
+    },
+    {
+      "src": "https://i.ibb.co/KcdpGNNv/Whats-App-Image-2026-03-06-at-3-26-30-PM-1.jpg",
+      "title": "Nuquí, Pacífico colombiano",
+      "desc": "Rincones únicos del Pacífico colombiano. Un paisaje que solo se puede vivir estando aquí.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#0d3052,#1a5040)",
+      "emoji": "🌊"
+    },
+    {
+      "src": "https://i.ibb.co/zW0XwTNL/Whats-App-Image-2026-03-06-at-3-26-30-PM.jpg",
+      "title": "Nuquí, Pacífico colombiano",
+      "desc": "La magia del Pacífico en estado puro. Naturaleza, silencio y autenticidad.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#1a5040,#0d3052)",
+      "emoji": "🏖️"
+    },
+    {
+      "src": "https://i.ibb.co/MkXfwnjX/Whats-App-Image-2026-03-06-at-3-34-26-PM-1.jpg",
+      "title": "Nuquí, Pacífico colombiano",
+      "desc": "Paisajes únicos del Pacífico colombiano donde la selva se encuentra con el océano.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#0a2a1e,#0d3052)",
+      "emoji": "🌊"
+    },
+    {
+      "src": "https://i.ibb.co/1fYddsDK/Whats-App-Image-2026-03-06-at-3-34-26-PM-2.jpg",
+      "title": "Nuquí, Pacífico colombiano",
+      "desc": "El Pacífico colombiano, un lugar donde cada imagen es irrepetible.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#0d3052,#1a4030)",
+      "emoji": "🏖️"
+    },
+    {
+      "src": "https://i.ibb.co/wNnfKsk1/Whats-App-Image-2026-03-06-at-3-34-26-PM.jpg",
+      "title": "Nuquí, Pacífico colombiano",
+      "desc": "Naturaleza salvaje y auténtica en el corazón del Pacífico. Un destino que transforma.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#1a5040,#0a2a1e)",
+      "emoji": "🌿"
+    },
+    {
+      "src": "https://i.ibb.co/qFCtG4mN/Whats-App-Image-2026-03-06-at-3-34-44-PM.jpg",
+      "title": "Nuquí, Pacífico colombiano",
+      "desc": "Cada rincón de Nuquí guarda una historia. Descúbrela con WAYRA.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#0d3052,#1a5040)",
+      "emoji": "✨"
+    },
+    {
+      "src": "https://i.ibb.co/8nW56BFF/Whats-App-Image-2026-03-06-at-3-41-19-PM.jpg",
+      "title": "Festival del Tamborito en Nuquí",
+      "desc": "Una noche de tambores, cantos y danza afropacífica. El Festival del Tamborito es el alma festiva de Nuquí, Patrimonio Cultural del Chocó.",
+      "cat": "cultura",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#2a0a0a,#0d1a38)",
+      "emoji": "🥁"
+    },
+    {
+      "src": "https://i.ibb.co/ZP9cp3G/Whats-App-Image-2026-03-06-at-3-41-20-PM.jpg",
+      "title": "Viche Curao de Nuquí",
+      "desc": "El viche curao es el licor ancestral del Pacífico. Preparado con caña artesanal y plantas medicinales, es símbolo de identidad y tradición del Chocó.",
+      "cat": "cultura",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#2a1a00,#0a2a1e)",
+      "emoji": "🌿"
     }
   ]
 }

@@ -348,6 +348,14 @@ function applyConfig(cfg) {
     if (overlay) overlay.style.background = 'rgba(0,0,0,0.2)';
   }
 
+  // Gallery Hero (same image as plans)
+  const galleryHero = document.getElementById('gallery-hero');
+  if (galleryHero && cfg.plansHeroImage) {
+    galleryHero.style.backgroundImage = `url('${cfg.plansHeroImage}')`;
+    galleryHero.style.backgroundSize = 'cover';
+    galleryHero.style.backgroundPosition = 'center';
+  }
+
   // Experiences Hero
   const expHero = document.getElementById('experiences-hero');
   if (expHero && cfg.experiencesHeroImage) {

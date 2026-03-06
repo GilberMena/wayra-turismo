@@ -231,111 +231,222 @@
 
         /* ══ GRID EXPERIENCIAS ══ */
         .exp-section {
-            background: linear-gradient(180deg, #f6fdf9, #fff);
-            padding: 12px 0 56px;
+            background: #0c1810;
+            padding: 40px 0 80px;
         }
 
         .exp-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 24px;
-            margin-top: 8px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 0;
         }
 
+        /* Tarjeta — ventana inmersiva a la experiencia */
         .exp-card {
-            background: #fff;
-            border-radius: 16px;
+            position: relative;
+            border-radius: 22px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,.07);
-            transition: transform .22s, box-shadow .22s;
-            display: flex;
-            flex-direction: column;
+            height: 380px;
+            cursor: pointer;
+            transition: transform .38s ease, box-shadow .38s ease;
+            box-shadow: 0 8px 36px rgba(0,0,0,.45);
         }
+
+        .exp-card--featured {
+            grid-column: span 2;
+            height: 430px;
+        }
+
+        /* Tarjeta que se adapta al formato natural de la imagen */
+        .exp-card--imgfit {
+            height: auto;
+        }
+
+        .exp-card--imgfit .exp-card-photo {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            background: #04100a;
+        }
+
+        .exp-card--imgfit:hover .exp-card-img { transform: none; }
 
         .exp-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 36px rgba(0,0,0,.12);
+            transform: translateY(-7px);
+            box-shadow: 0 24px 70px rgba(0,0,0,.6);
         }
 
         .exp-card-img {
-            height: 210px;
+            position: absolute;
+            inset: 0;
             background-size: cover;
             background-position: center;
-            position: relative;
+            transition: transform .65s ease;
         }
 
-        .exp-card-badge {
+        .exp-card:hover .exp-card-img {
+            transform: scale(1.07);
+        }
+
+        /* Gradiente oscuro natural — sube desde el fondo */
+        .exp-card-overlay {
             position: absolute;
-            top: 12px;
-            left: 12px;
-            background: rgba(0,0,0,.52);
-            color: #7fffd4;
-            font-size: 11px;
+            inset: 0;
+            background: linear-gradient(
+                0deg,
+                rgba(4,16,10,.92) 0%,
+                rgba(4,16,10,.52) 38%,
+                rgba(4,16,10,.08) 68%,
+                transparent 100%
+            );
+            z-index: 1;
+            transition: background .38s;
+        }
+
+        .exp-card:hover .exp-card-overlay {
+            background: linear-gradient(
+                0deg,
+                rgba(4,16,10,.94) 0%,
+                rgba(4,16,10,.65) 48%,
+                rgba(4,16,10,.18) 78%,
+                transparent 100%
+            );
+        }
+
+        /* Etiqueta de momento — esquina superior derecha */
+        .exp-card-moment {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255,255,255,.14);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,.26);
+            color: #fff;
+            font-size: 10.5px;
             font-weight: 700;
-            letter-spacing: .7px;
-            padding: 4px 10px;
-            border-radius: 12px;
-            backdrop-filter: blur(4px);
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            padding: 5px 13px;
+            border-radius: 14px;
+            z-index: 3;
         }
 
-        .exp-card-body {
-            padding: 22px 22px 20px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
+        /* Contenido superpuesto en la parte inferior */
+        .exp-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            padding: 24px 28px 30px;
+            color: #fff;
         }
 
-        .exp-card-body h3 {
+        .exp-card-content h3 {
             font-family: Merriweather, serif;
-            font-size: 17px;
-            color: #0a2a1e;
-            margin: 0 0 10px;
+            font-size: 20px;
+            color: #fff;
+            margin: 0 0 7px;
+            line-height: 1.28;
+            text-shadow: 0 2px 16px rgba(0,0,0,.7);
         }
 
-        .exp-card-body p {
-            font-size: 14px;
-            color: #5a7a68;
-            line-height: 1.7;
-            margin: 0 0 18px;
-            flex: 1;
+        .exp-card--featured .exp-card-content h3 {
+            font-size: 26px;
         }
 
-        .exp-card-footer {
+        /* Descripción: visible resumida, se expande al hover */
+        .exp-card-desc {
+            font-size: 13.5px;
+            color: rgba(255,255,255,.8);
+            line-height: 1.65;
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            transition: all .35s ease;
+        }
+
+        .exp-card:hover .exp-card-desc {
+            -webkit-line-clamp: 5;
+            margin-bottom: 18px;
+        }
+
+        /* Acciones: se revelan al hacer hover */
+        .exp-card-actions {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 8px;
+            gap: 10px;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height .35s ease, opacity .28s ease;
         }
 
-        .exp-card-link {
+        .exp-card:hover .exp-card-actions {
+            max-height: 60px;
+            opacity: 1;
+        }
+
+        .exp-card-cta {
             display: inline-block;
-            background: linear-gradient(135deg, #1a5040, #0d3a2e);
+            background: rgba(255,255,255,.16);
+            border: 1.5px solid rgba(255,255,255,.42);
+            backdrop-filter: blur(8px);
             color: #fff;
             padding: 9px 20px;
             border-radius: 22px;
             text-decoration: none;
             font-size: 13px;
             font-weight: 700;
-            transition: opacity .2s;
+            transition: background .2s, border-color .2s;
+            white-space: nowrap;
         }
 
-        .exp-card-link:hover { opacity: .88; }
+        .exp-card-cta:hover {
+            background: rgba(255,255,255,.30);
+            border-color: rgba(255,255,255,.65);
+        }
 
         .exp-card-wa {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            background: linear-gradient(135deg, #25d366, #1aa050);
-            color: #fff;
-            padding: 9px 16px;
-            border-radius: 22px;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background: #25d366;
+            border-radius: 50%;
             text-decoration: none;
-            font-size: 13px;
-            font-weight: 700;
-            transition: opacity .2s;
+            font-size: 18px;
+            flex-shrink: 0;
+            transition: transform .2s, box-shadow .2s;
         }
 
-        .exp-card-wa:hover { opacity: .88; }
+        .exp-card-wa:hover {
+            transform: scale(1.12);
+            box-shadow: 0 4px 18px rgba(37,211,102,.5);
+        }
+
+        /* Dispositivos táctiles: mostrar contenido sin necesidad de hover */
+        @media (hover: none) {
+            .exp-card-desc { -webkit-line-clamp: 3; margin-bottom: 14px; }
+            .exp-card-actions { max-height: 60px; opacity: 1; }
+        }
+
+        @media (max-width: 900px) {
+            .exp-grid { grid-template-columns: repeat(2, 1fr); }
+            .exp-card--featured { grid-column: span 2; }
+        }
+
+        @media (max-width: 580px) {
+            .exp-grid { grid-template-columns: 1fr; }
+            .exp-card--featured { grid-column: span 1; height: 340px; }
+            .exp-card { height: 310px; }
+        }
 
         /* ══ CTA FINAL ══ */
         .exp-cta {
@@ -440,7 +551,7 @@
             <div class="exp-hero-content">
                 <div class="exp-hero-badge">🌿 Costa Pacífica Colombiana</div>
                 <h1>Experiencias en Nuquí</h1>
-                <p class="exp-lead">Conexión profunda con la naturaleza y la cultura del Pacífico.<br>Cada salida es irrepetible.</p>
+                <p class="exp-lead">Sentir el Pacífico con todos los sentidos.<br>No son tours — son momentos que te cambian.</p>
                 <div class="exp-hero-actions">
                     <a class="exp-btn-primary" href="https://wa.me/573225225582?text=Hola%20WAYRA%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20experiencias%20en%20Nuqu%C3%AD" target="_blank">💬 Consultar una experiencia</a>
                     <a class="exp-btn-outline" href="#exp-grid-section">Ver experiencias ↓</a>
@@ -457,8 +568,8 @@
         <!-- ══ INTRO + FILTROS ══ -->
         <div class="exp-intro">
             <div class="container">
-                <h2>Lo que vivirás con nosotros</h2>
-                <p>Desde el avistamiento de ballenas jorobadas hasta la gastronomía del Pacífico. WAYRA te conecta con lo auténtico de Nuquí con guías locales y salidas responsables.</p>
+                <h2>Momentos que se quedan para siempre</h2>
+                <p>El bramido del oleaje, el salto de una ballena al amanecer, el silencio verde de la selva. Cada salida con WAYRA es irrepetible, guiada por personas del territorio que conocen cada rincón del Pacífico.</p>
                 <div class="exp-filters">
                     <button class="exp-filter-btn active" data-filter="all">Todas</button>
                     <button class="exp-filter-btn" data-filter="ballenas">🐋 Ballenas</button>
@@ -629,33 +740,36 @@
             const container = document.getElementById('experiences-grid');
             if (!container) return;
             if (!exps || !exps.length) {
-                container.innerHTML = '<p class="muted" style="text-align:center;grid-column:1/-1;padding:40px;">No hay experiencias disponibles.</p>';
+                container.innerHTML = '<p style="text-align:center;grid-column:1/-1;padding:40px;color:rgba(255,255,255,.55);">No hay experiencias disponibles.</p>';
                 return;
             }
             const gradients = [
-                'linear-gradient(135deg,#0a3a28,#1a6040)',
-                'linear-gradient(135deg,#0d2a4a,#1a4a6e)',
-                'linear-gradient(135deg,#2a1a0a,#5a3010)',
-                'linear-gradient(135deg,#1a0a2a,#4a1a6e)',
-                'linear-gradient(135deg,#0a2a2a,#1a5050)',
-                'linear-gradient(135deg,#2a0a1a,#6e1a40)',
+                'linear-gradient(160deg,#0a3a28 0%,#0d4a34 60%,#082a1e 100%)',
+                'linear-gradient(160deg,#0d2a4a 0%,#1a4060 60%,#0a1e38 100%)',
+                'linear-gradient(160deg,#2a1a0a 0%,#4a3015 60%,#1e1008 100%)',
+                'linear-gradient(160deg,#1a0a2a 0%,#3a1a52 60%,#120818 100%)',
+                'linear-gradient(160deg,#0a2a2a 0%,#1a4a48 60%,#081e1e 100%)',
+                'linear-gradient(160deg,#1a2a0a 0%,#304a18 60%,#101e08 100%)',
             ];
             container.innerHTML = exps.map((exp, i) => {
                 const bg = exp.image ? `url('${exp.image}')` : gradients[i % gradients.length];
                 const waText = encodeURIComponent(`Hola WAYRA, quiero saber más sobre la experiencia: ${exp.title}`);
-                return `<article class="exp-card">
-                    <div class="exp-card-img" style="background-image:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.35)),${bg};">
-                        ${exp.badge ? `<span class="exp-card-badge">${exp.badge}</span>` : ''}
-                    </div>
-                    <div class="exp-card-body">
+                const featured = i === 0 ? ' exp-card--featured' : '';
+                const fitCard = exp.id === 'whale-watching' && exp.image;
+                const imgBlock = fitCard
+                    ? `<img class="exp-card-photo" src="${exp.image}" alt="${exp.title}">`
+                    : `<div class="exp-card-img" style="background-image:${bg};"></div>`;
+                const fitClass = fitCard ? ' exp-card--imgfit' : '';
+                return `<article class="exp-card${featured}${fitClass}">
+                    ${imgBlock}
+                    <div class="exp-card-overlay"></div>
+                    ${exp.badge ? `<span class="exp-card-moment">${exp.badge}</span>` : ''}
+                    <div class="exp-card-content">
                         <h3>${exp.title || ''}</h3>
-                        <p>${exp.description || ''}</p>
-                        <div class="exp-card-footer">
-                            <a class="exp-card-link" href="detail.html?type=exp&id=${exp.id}">Ver detalle →</a>
-                            <a class="exp-card-wa" href="https://wa.me/573225225582?text=${waText}" target="_blank">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z"/></svg>
-                                Consultar
-                            </a>
+                        <p class="exp-card-desc">${exp.description || ''}</p>
+                        <div class="exp-card-actions">
+                            <a class="exp-card-cta" href="detail.html?type=exp&id=${exp.id}">✦ Vivir esta experiencia</a>
+                            <a class="exp-card-wa" href="https://wa.me/573225225582?text=${waText}" target="_blank" rel="noopener" aria-label="Consultar por WhatsApp">💬</a>
                         </div>
                     </div>
                 </article>`;
