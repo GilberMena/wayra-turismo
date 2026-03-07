@@ -159,8 +159,11 @@ function renderPlanes(planes, containerId) {
   }
   container.innerHTML = planes.map(plan => {
     const bg = plan.image ? `url('${plan.image}')` : 'linear-gradient(135deg,#1a4030,#0d2118)';
+    const bgPos = plan.imagePosition || 'center';
+    const bgSize = plan.imageFit || 'cover';
+    const bgColor = plan.imageFit === 'contain' ? 'background-color:#0f2a1a;' : '';
     return `<article class="plan-card">
-        <div class="plan-image" style="background-image:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.12)),${bg};background-size:cover;background-position:center;"></div>
+        <div class="plan-image" style="${bgColor}background-image:${bgSize==='contain'?'':' linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.12)),'}${bg};background-size:${bgSize};background-position:${bgPos};background-repeat:no-repeat;"></div>
         <div class="plan-header">
           <h3>${plan.title || ''}</h3>
           <div class="price">${plan.price || ''}</div>
