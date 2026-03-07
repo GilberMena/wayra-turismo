@@ -223,9 +223,46 @@
     }
 
     .plan-image {
-      height: 200px;
+      height: 240px;
       position: relative;
       background-color: #1a3a2a;
+      overflow: hidden;
+    }
+
+    .plan-img-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: radial-gradient(ellipse at 50% 35%, #2d6b49 0%, #0d2118 75%);
+    }
+
+    .plan-img-ico {
+      font-size: 56px;
+      line-height: 1;
+      filter: drop-shadow(0 4px 18px rgba(0,0,0,.45));
+      animation: planFloat 3.2s ease-in-out infinite;
+    }
+
+    .plan-img-badge {
+      background: rgba(255,255,255,.13);
+      color: rgba(255,255,255,.88);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.22);
+      backdrop-filter: blur(4px);
+    }
+
+    @keyframes planFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
     }
 
     .plan-header {
@@ -851,37 +888,43 @@
         <h3>Solicita tu cotización</h3>
         <p class="quote-form-sub">Cuéntanos sobre tu viaje ideal y te respondemos en menos de 24 horas.🌿</p>
         <div class="quote-form-card">
-        <form>
+        <form id="quoteForm" name="cotizacion" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="cotizacion">
+          <p style="display:none;"><label>No rellenar: <input name="bot-field"></label></p>
           <div class="form-row" style="margin-bottom:16px;">
-            <label>Correo electrónico<input type="email" placeholder="tu@correo.com" required></label>
+            <label>E-mail <span style="color:#c0392b">*</span><input id="qEmail" type="email" name="email" placeholder="tu@correo.com" required></label>
           </div>
           <div class="form-row two-cols" style="margin-bottom:16px;">
-            <label>Nombre<input type="text" placeholder="Tu nombre" required></label>
-            <label>Apellidos<input type="text" placeholder="Tus apellidos" required></label>
+            <label>Nombre <span style="color:#c0392b">*</span><input id="qNombre" type="text" name="nombre" placeholder="Tu nombre" required></label>
+            <label>Apellidos <span style="color:#c0392b">*</span><input id="qApellidos" type="text" name="apellidos" placeholder="Tus apellidos" required></label>
           </div>
           <div class="form-row two-cols" style="margin-bottom:16px;">
-            <label>Teléfono / WhatsApp<input type="tel" placeholder="+57 3xx xxx xxxx" required></label>
-            <label>Número de personas<input type="number" min="1" value="2" required></label>
+            <label>Teléfono / WhatsApp <span style="color:#c0392b">*</span><input id="qTelefono" type="tel" name="telefono" placeholder="+57 3xx xxx xxxx" required></label>
+            <label>Número de personas<input id="qPersonas" type="number" name="personas" min="1" value="2" required></label>
           </div>
           <div class="form-row two-cols" style="margin-bottom:16px;">
-            <label>Fecha de viaje (aprox)<input type="date"></label>
+            <label>Fecha de viaje (aprox)<input id="qFecha" type="date" name="fecha"></label>
             <label>Destino / Plan de interés
-              <select>
+              <select id="qPlan" name="plan">
                 <option value="">Selecciona una opción</option>
-                <option value="nuqui-gral">Nuquí (General)</option>
-                <option value="ballenas">Avistamiento de Ballenas</option>
-                <option value="fotografia">Plan Fotografía</option>
-                <option value="pesca">Pesca y Manglares</option>
-                <option value="bienestar">Retiro Naturaleza y Bienestar</option>
-                <option value="a-medida">A tu Medida</option>
+                <option value="Plan Playa Terco">Plan Playa Terco</option>
+                <option value="SurfNuquí">SurfNuquí</option>
+                <option value="Senderos y Manglares">Senderos y Manglares</option>
+                <option value="Vive la Danza y el Tamborito">Vive la Danza y el Tamborito</option>
+                <option value="Nuquí (General)">Nuquí (General)</option>
+                <option value="A tu Medida">A tu Medida</option>
               </select>
             </label>
           </div>
           <div class="form-row" style="margin-bottom:22px;">
-            <label>Comentarios / Dudas<textarea rows="3" placeholder="Cuéntanos qué tipo de experiencia buscas, presupuesto aproximado o cualquier duda..."></textarea></label>
+            <label>Comentarios / Dudas<textarea id="qComentarios" name="comentarios" rows="3" placeholder="Cuéntanos qué tipo de experiencia buscas, presupuesto aproximado o cualquier duda..."></textarea></label>
           </div>
           <div class="form-row">
-            <button type="submit" class="btn-primary">🚀 Enviar cotización</button>
+            <button type="submit" id="quoteSubmitBtn" class="btn-primary">🚀 Solicitar cotización</button>
+          </div>
+          <!-- Mensaje de éxito -->
+          <div id="quoteSuccess" style="display:none;margin-top:18px;padding:16px 20px;background:linear-gradient(135deg,#e4f9ee,#ccf0dc);border-radius:12px;border:1px solid #6fcf97;color:#0a5c30;font-weight:600;text-align:center;">
+            ✅ ¡Cotización enviada! Te contactaremos en menos de 24 horas. Revisa también tu WhatsApp.
           </div>
         </form>
         </div>
@@ -1059,6 +1102,96 @@
     }
   </script>
   <script src="cookie-banner.js" defer></script>
+  <script>
+  (function() {
+    var form = document.getElementById('quoteForm');
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      var email       = document.getElementById('qEmail').value.trim();
+      var nombre      = document.getElementById('qNombre').value.trim();
+      var apellidos   = document.getElementById('qApellidos').value.trim();
+      var telefono    = document.getElementById('qTelefono').value.trim();
+      var personas    = document.getElementById('qPersonas').value;
+      var fecha       = document.getElementById('qFecha').value;
+      var plan        = document.getElementById('qPlan').value;
+      var comentarios = document.getElementById('qComentarios').value.trim();
+
+      if (!email || !nombre || !apellidos || !telefono) {
+        alert('Por favor completa los campos obligatorios: E-mail, Nombre, Apellidos y Teléfono.');
+        return;
+      }
+
+      // Construir mensaje WhatsApp ANTES de cualquier async
+      var fechaText = fecha ? fecha : 'por definir';
+      var planText  = plan  ? plan  : 'por definir';
+      var msg = '🌿 *Nueva cotización WAYRA*\n\n'
+        + '👤 Nombre: ' + nombre + ' ' + apellidos + '\n'
+        + '📧 Email: ' + email + '\n'
+        + '📱 Teléfono: ' + telefono + '\n'
+        + '👥 Personas: ' + personas + '\n'
+        + '📅 Fecha aprox: ' + fechaText + '\n'
+        + '🗺️ Plan/Destino: ' + planText + '\n'
+        + (comentarios ? '💬 Comentarios: ' + comentarios : '');
+
+      var waUrl = 'https://wa.me/573225225582?text=' + encodeURIComponent(msg);
+
+      // 1) Abrir WhatsApp de forma sincrónica (evita bloqueo de popups)
+      var waLink = document.createElement('a');
+      waLink.href = waUrl;
+      waLink.target = '_blank';
+      waLink.rel = 'noopener';
+      document.body.appendChild(waLink);
+      waLink.click();
+      document.body.removeChild(waLink);
+
+      // 2) Enviar email via Web3Forms → llega a vivewayra@gmail.com
+      // IMPORTANTE: reemplaza WEB3FORMS_KEY por tu clave de https://web3forms.com
+      var WEB3FORMS_KEY = 'WEB3FORMS_KEY';
+      if (WEB3FORMS_KEY !== 'WEB3FORMS_KEY') {
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_KEY,
+            subject: '🌿 Nueva cotización WAYRA - ' + planText,
+            from_name: nombre + ' ' + apellidos,
+            email: email,
+            telefono: telefono,
+            personas: personas,
+            fecha: fechaText,
+            plan: planText,
+            comentarios: comentarios || '—',
+            replyto: email
+          })
+        }).catch(function(){});
+      }
+
+      // 3) También guardar en Netlify Forms (backup, funciona al estar desplegado)
+      var formData = new FormData();
+      formData.append('form-name', 'cotizacion');
+      formData.append('email', email);
+      formData.append('nombre', nombre);
+      formData.append('apellidos', apellidos);
+      formData.append('telefono', telefono);
+      formData.append('personas', personas);
+      formData.append('fecha', fecha);
+      formData.append('plan', plan);
+      formData.append('comentarios', comentarios);
+      fetch('/', { method: 'POST', body: formData }).catch(function(){});
+
+      // 3) Mostrar éxito y bloquear formulario
+      var btn = document.getElementById('quoteSubmitBtn');
+      btn.style.display = 'none';
+      document.getElementById('quoteSuccess').style.display = 'block';
+      form.querySelectorAll('input, textarea, select').forEach(function(el) {
+        el.disabled = true;
+      });
+    });
+  })();
+  </script>
 </body>
 
 </html>

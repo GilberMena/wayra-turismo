@@ -157,13 +157,28 @@ function renderPlanes(planes, containerId) {
     container.innerHTML = '<p class="muted" style="text-align:center;grid-column:1/-1;padding:30px;">No hay planes disponibles.</p>';
     return;
   }
+  const PLAN_ICONS = {
+    'surf': '🏄', 'senderos': '🌿', 'manglares': '🛶', 'danza': '💃',
+    'tamborito': '🥁', 'playa': '🏖️', 'ballena': '🐋', 'pesca': '🎣', 'foto': '📸'
+  };
+  function planIcon(id) {
+    if (!id) return '🌊';
+    const k = id.toLowerCase();
+    for (const [word, ico] of Object.entries(PLAN_ICONS)) {
+      if (k.includes(word)) return ico;
+    }
+    return '🌊';
+  }
   container.innerHTML = planes.map(plan => {
-    const bg = plan.image ? `url('${plan.image}')` : 'linear-gradient(135deg,#1a4030,#0d2118)';
+    const bg = plan.image ? `url('${plan.image}')` : 'none';
     const bgPos = plan.imagePosition || 'center';
     const bgSize = plan.imageFit || 'cover';
     const bgColor = plan.imageFit === 'contain' ? 'background-color:#0f2a1a;' : '';
+    const emptyOverlay = !plan.image
+      ? `<div class="plan-img-placeholder"><span class="plan-img-ico">${planIcon(plan.id)}</span>${plan.badge ? `<span class="plan-img-badge">${plan.badge}</span>` : ''}</div>`
+      : '';
     return `<article class="plan-card">
-        <div class="plan-image" style="${bgColor}background-image:${bgSize==='contain'?'':' linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.12)),'}${bg};background-size:${bgSize};background-position:${bgPos};background-repeat:no-repeat;"></div>
+        <div class="plan-image" style="${bgColor}${plan.image ? `background-image:${bgSize==='contain'?'':' linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.12)),'}${bg};background-size:${bgSize};background-position:${bgPos};background-repeat:no-repeat;` : ''}">${emptyOverlay}</div>
         <div class="plan-header">
           <h3>${plan.title || ''}</h3>
           <div class="price">${plan.price || ''}</div>
