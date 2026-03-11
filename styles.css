@@ -153,7 +153,7 @@ body {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 }
 
 .social-icon-link {
@@ -220,6 +220,37 @@ body {
 
   .nav-toggle {
     display: block;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-inner {
+    gap: 10px;
+    padding: 8px 0;
+  }
+
+  .logo img {
+    height: 38px;
+    width: auto;
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
+
+  .header-actions .social-brand-link {
+    width: 36px;
+    height: 36px;
+  }
+
+  .header-actions .social-brand-link svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .nav-toggle {
+    font-size: 22px;
+    padding: 2px 4px;
   }
 }
 
@@ -1539,6 +1570,12 @@ body {
   border-color: #f08;
 }
 
+.footer-social-icon.tiktok { color: #f5f5f5; }
+.footer-social-icon.tiktok:hover {
+  background: rgba(255,255,255,.12);
+  border-color: #f5f5f5;
+}
+
 .footer-social-icon svg { width: 18px; height: 18px; fill: currentColor; }
 
 /* ── Trust Badges ── */
@@ -1608,20 +1645,44 @@ body {
 .social-brand-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   text-decoration: none;
   font-size: 13px;
   font-weight: 600;
-  padding: 8px 14px;
+  padding: 7px 12px;
   border-radius: 25px;
   transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s;
   border: 1.5px solid transparent;
 }
 
+.social-brand-link svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
 .social-brand-link span {
   display: inline;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.02em;
+}
+
+.header-actions .social-brand-link {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 999px;
+  justify-content: center;
+  gap: 0;
+}
+
+.header-actions .social-brand-link span {
+  display: none;
+}
+
+.header-actions .social-brand-link svg {
+  width: 18px;
+  height: 18px;
 }
 
 /* Facebook */
@@ -1652,6 +1713,20 @@ body {
   border-color: transparent;
   transform: translateY(-2px);
   box-shadow: 0 4px 14px #dc274340;
+}
+
+.tt-link {
+  color: #111;
+  border-color: rgba(17,17,17,.14);
+  background: rgba(17,17,17,.04);
+}
+
+.tt-link:hover {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(17,17,17,.22);
 }
 
 /* ── Botón flotante WhatsApp ── */
@@ -1995,9 +2070,16 @@ select:focus {
 }
 
 .act-grid {
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  margin-top: 28px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+  align-items: stretch;
+}
+
+@media (max-width: 1180px) {
+  .act-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 820px) {
@@ -2024,11 +2106,11 @@ select:focus {
 }
 
 .act-img {
-  height: 230px;
+  height: 190px;
   position: relative;
   display: flex;
   align-items: flex-start;
-  padding: 14px;
+  padding: 16px;
   margin: 0;
   border-radius: 0;
   overflow: hidden;
@@ -2068,10 +2150,25 @@ select:focus {
 }
 
 .act-body {
-  padding: 20px 22px 24px;
+  padding: 18px 20px 22px;
   display: flex;
   flex-direction: column;
   flex: 1;
+}
+
+.act-body h3 {
+  font-size: clamp(1.65rem, 1vw + 1.1rem, 2rem);
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+.act-body p {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .act-body h3 {

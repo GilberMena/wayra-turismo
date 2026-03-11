@@ -203,6 +203,17 @@ function renderPlanes(planes, containerId) {
 ════════════════════════════════════════════════════ */
 function applyConfig(cfg) {
   if (!cfg) return;
+  const formatWhatsAppDisplay = (num) => {
+    const digits = String(num || '').replace(/\D+/g, '');
+    if (digits.length === 12 && digits.startsWith('57')) {
+      return `+${digits.slice(0, 2)} ${digits.slice(2, 5)} ${digits.slice(5)}`;
+    }
+    if (digits.length === 10) {
+      return `+57 ${digits.slice(0, 3)} ${digits.slice(3)}`;
+    }
+    return num || '';
+  };
+
   // Hero
   const heroTitle = document.getElementById('hero-title');
   const heroSubtitle = document.getElementById('hero-subtitle');
@@ -243,6 +254,11 @@ function applyConfig(cfg) {
   if (cfg.instagram) {
     document.querySelectorAll('[data-ig-link]').forEach(el => {
       el.href = cfg.instagram;
+    });
+  }
+  if (cfg.tiktok) {
+    document.querySelectorAll('[data-tt-link]').forEach(el => {
+      el.href = cfg.tiktok;
     });
   }
   if (cfg.facebook) {
@@ -406,7 +422,7 @@ function applyConfig(cfg) {
   const contactAddress = document.getElementById('contact-address');
   if (contactAddress && cfg.contactoAddress) contactAddress.textContent = cfg.contactoAddress;
   const contactWaNumber = document.getElementById('contact-wa-number');
-  if (contactWaNumber && cfg.phone) contactWaNumber.textContent = cfg.phone;
+  if (contactWaNumber && cfg.whatsapp) contactWaNumber.textContent = formatWhatsAppDisplay(cfg.whatsapp);
   const contactEmailText = document.getElementById('contact-email-text');
   if (contactEmailText && cfg.email) contactEmailText.textContent = cfg.email;
 
