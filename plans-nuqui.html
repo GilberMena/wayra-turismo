@@ -712,16 +712,6 @@
           <h2 style="text-align:center;font-family:Merriweather,serif;color:#0a2a1e;">Planes turísticos en Nuquí</h2>
           <p class="subtitle" style="text-align:center;">Seleccionamos opciones para distintos viajeros. Todos los planes pueden personalizarse.</p>
 
-          <!-- Filtros -->
-          <div class="plans-filters">
-            <button class="plans-filter-btn active" data-filter="all">Todos los planes</button>
-            <button class="plans-filter-btn" data-filter="ballenas">🐋 Ballenas</button>
-            <button class="plans-filter-btn" data-filter="fotograf">📸 Fotografía</button>
-            <button class="plans-filter-btn" data-filter="pesca">🎣 Pesca</button>
-            <button class="plans-filter-btn" data-filter="naturaleza">🌿 Naturaleza</button>
-            <button class="plans-filter-btn" data-filter="playa">🏖️ Playa</button>
-          </div>
-
           <div id="planes-grid" class="grid plan-grid">
             <p class="muted" style="text-align:center;grid-column:1/-1;padding:30px;">Cargando planes…</p>
           </div>
@@ -851,12 +841,11 @@
           <h2 class="dep-title">SALIDAS EN AVIÓN DESDE:</h2>
           <div class="dep-grid">
 
-            <div class="dep-item">
+            <div class="dep-item dep-takeoff">
               <div class="dep-icon-wrap">
-                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="#1e508b"
+                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24"
                   aria-hidden="true">
-                  <path
-                    d="M2.5 19h19v2h-19zm7.18-1.73L21.43 8.2a2 2 0 0 0-1.06-3.73H16.5L6.5 2l-1 1.73 7.72 4.46L9.26 12H5.5l-2-2-1.44.84 2 3.46 1 1.73 3.46 2z" />
+                  <path d="M21 16v-2l-8-5V3.5C13 2.67 12.33 2 11.5 2S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
                 </svg>
                 <div class="dep-underline"></div>
               </div>
@@ -864,12 +853,11 @@
               <p>Todos los días.</p>
             </div>
 
-            <div class="dep-item">
+            <div class="dep-item dep-cruise">
               <div class="dep-icon-wrap">
-                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="#1e508b"
+                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24"
                   aria-hidden="true">
-                  <path
-                    d="M21 16v-2l-8-5V3.5C13 2.67 12.33 2 11.5 2S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
+                  <path d="M11 2.5c.6 0 1 .4 1 1v6.4l7.2 4.1c.5.3.7.9.4 1.4l-.3.5-7.3-2v4.2l2 1.6v.9L11.5 20 9 21.1v-.9l2-1.6v-4.2l-7.3 2-.3-.5c-.3-.5-.1-1.1.4-1.4L11 9.9V3.5c0-.6.4-1 1-1z" />
                 </svg>
                 <div class="dep-underline"></div>
               </div>
@@ -877,12 +865,11 @@
               <p>Todos los días, con escala.</p>
             </div>
 
-            <div class="dep-item">
+            <div class="dep-item dep-landing">
               <div class="dep-icon-wrap">
-                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="#1e508b"
+                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24"
                   aria-hidden="true">
-                  <path
-                    d="M2.5 19h19v2h-19zM20 8.94a1.993 1.993 0 0 0-2.44-1.41l-3.96 1.06L8.5 4 7 4.4l3.65 5.02-3.81 1.02-1.95-1.7L3.5 9.2l2.1 3.64 1 1.72 3.63-.97 4.07-1.09 3.96-1.06A2 2 0 0 0 20 8.94z" />
+                  <path d="M2.5 19h19v2h-19zM20 8.94a1.993 1.993 0 0 0-2.44-1.41l-3.96 1.06L8.5 4 7 4.4l3.65 5.02-3.81 1.02-1.95-1.7L3.5 9.2l2.1 3.64 1 1.72 3.63-.97 4.07-1.09 3.96-1.06A2 2 0 0 0 20 8.94z" />
                 </svg>
                 <div class="dep-underline"></div>
               </div>
@@ -1108,9 +1095,11 @@
     });
 
     function setupPlanFilters(planes) {
-      document.querySelectorAll('.plans-filter-btn').forEach(btn => {
+      const filterButtons = document.querySelectorAll('.plans-filter-btn');
+      if (!filterButtons.length) return;
+      filterButtons.forEach(btn => {
         btn.addEventListener('click', function () {
-          document.querySelectorAll('.plans-filter-btn').forEach(b => b.classList.remove('active'));
+          filterButtons.forEach(b => b.classList.remove('active'));
           this.classList.add('active');
           const filter = this.dataset.filter;
           const filtered = filter === 'all' ? planes : planes.filter(p =>
