@@ -139,6 +139,78 @@
       border: none;
       line-height: 1;
     }
+    /* Tabla de precios */
+    .price-table-wrap {
+      margin: 28px 0 8px;
+    }
+    .price-tabs-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid #d0e4d8;
+      margin-bottom: 0;
+    }
+    .price-tab-btn {
+      padding: 10px 22px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #6b8f7a;
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      cursor: pointer;
+      transition: color .15s, border-color .15s;
+      font-family: inherit;
+    }
+    .price-tab-btn.active {
+      color: #1a3028;
+      border-bottom-color: #6b8f7a;
+    }
+    .price-tab-btn:hover { color: #1a3028; }
+    .price-tab-panel { display: none; }
+    .price-tab-panel.active { display: block; }
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 0 0 10px 10px;
+      overflow: hidden;
+      font-size: 15px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    }
+    .price-table thead tr {
+      background: #1a3028;
+      color: #fff;
+    }
+    .price-table thead th {
+      padding: 14px 22px;
+      font-weight: 600;
+      font-size: 14px;
+      text-align: center;
+    }
+    .price-table thead th:first-child {
+      text-align: left;
+      width: 36%;
+    }
+    .price-table tbody tr {
+      border-bottom: 1px solid #e8f0eb;
+    }
+    .price-table tbody tr:last-child { border-bottom: none; }
+    .price-table tbody td {
+      padding: 13px 22px;
+      color: #333;
+      text-align: center;
+    }
+    .price-table tbody td:first-child {
+      font-weight: 700;
+      color: #1a2e1a;
+      text-align: left;
+      background: #f5f8f5;
+    }
+    .price-val {
+      font-weight: 700;
+      color: #1a3028;
+      font-size: 16px;
+    }
   </style>
 
   <main class="container section">
@@ -153,10 +225,13 @@
             </h1>
             <p id="detailSubtitle" class="muted" style="font-size:18px;"></p>
           </div>
-          <div id="detailPrice" style="font-size:28px; font-weight:700; color:var(--green);"></div>
+          <div id="detailPrice" style="font-size:20px; font-weight:700; color:var(--green);"></div>
         </div>
 
         <div id="detailShortDesc" style="font-size:18px; line-height:1.6; margin-top:24px; color:#555;"></div>
+
+        <!-- Tabla de precios -->
+        <div id="detailPriceTable"></div>
 
         <!-- Detailed Content -->
         <div id="detailBody" class="detail-description-long" style="margin-top:32px;"></div>
@@ -187,8 +262,8 @@
           <a id="btnReserveDetail" class="btn-primary" href="#" style="padding:14px 32px;">Reservar ahora</a>
           <a id="btnWhatsappDetail" class="btn-whatsapp" href="#" target="_blank" style="padding:13px 28px;">Consultar
             por WhatsApp</a>
-          <a href="plans-nuqui.html" class="btn-secondary"
-            style="text-decoration:none; color:var(--muted); font-weight:600;">← Volver a planes</a>
+          <a id="btnBack" href="index.html#actividades" class="btn-secondary"
+            style="text-decoration:none; color:var(--muted); font-weight:600;">← Volver a inicio</a>
         </div>
       </div>
     </div>
@@ -362,6 +437,14 @@
         }
 
         renderDetail(item, type);
+
+        // Botón "volver" dinámico
+        const btnBack = document.getElementById('btnBack');
+        if (type === 'plan' || !type) {
+          btnBack.textContent = '← Volver a planes';
+          btnBack.href = 'plans-nuqui.html';
+        }
+        // type === 'exp' queda con el texto e href por defecto (← Volver a inicio → index.html#actividades)
       } catch (err) {
         console.error("Error loading detail:", err);
         showError();
@@ -371,7 +454,28 @@
     function renderDetail(d, type) {
       document.getElementById('detail-card').style.display = 'block';
       document.getElementById('detailTitle').textContent = d.title || 'Sin título';
-      document.getElementById('detailPrice').textContent = d.price || '';
+      document.getElementById('detailPrice').textContent = d.price ? 'Desde ' + d.price : '';
+
+      // Tabla de precios con tabs por ciudad de salida (solo planes)
+      const priceTableEl = document.getElementById('detailPriceTable');
+      if (d.priceTabs && d.priceTabs.length) {
+        const dur = d.duration || 'Plan';
+        const tabsNav = d.priceTabs.map((t, i) =>
+          `<button class="price-tab-btn${i===0?' active':''}" onclick="switchPriceTab(this,${i})">${t.tab}</button>`
+        ).join('');
+        const panels = d.priceTabs.map((t, i) =>
+          `<div class="price-tab-panel${i===0?' active':''}" data-tab="${i}">` +
+          `<table class="price-table">` +
+          `<thead><tr><th></th><th>${dur}</th><th>Noche adicional</th></tr></thead>` +
+          `<tbody>` +
+          `<tr><td>Adulto</td><td class="price-val">${t.adult||'&#8212;'}</td><td class="price-val">${t.nightAdult||'&#8212;'}</td></tr>` +
+          `<tr><td>Ni&#241;o (2 &#8211; 10 a&#241;os)</td><td class="price-val">${t.child||'&#8212;'}</td><td class="price-val">${t.nightChild||'&#8212;'}</td></tr>` +
+          `</tbody></table></div>`
+        ).join('');
+        priceTableEl.innerHTML = `<div class="price-table-wrap"><div class="price-tabs-nav">${tabsNav}</div>${panels}</div>`;
+      } else {
+        priceTableEl.innerHTML = '';
+      }
       document.getElementById('detailSubtitle').textContent = (d.duration || '') + (d.subtitle ? ' · ' + d.subtitle : '');
       document.getElementById('detailShortDesc').textContent = d.description || '';
 
@@ -431,6 +535,14 @@
       const msg = `Hola, estoy interesado en ${d.title}. Quisiera más información y disponibilidad, por favor.`;
       document.getElementById('btnWhatsappDetail').href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
       document.getElementById('btnReserveDetail').href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
+    }
+
+    function switchPriceTab(btn, idx) {
+      const wrap = btn.closest('.price-table-wrap');
+      wrap.querySelectorAll('.price-tab-btn').forEach(b => b.classList.remove('active'));
+      wrap.querySelectorAll('.price-tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      wrap.querySelector(`.price-tab-panel[data-tab="${idx}"]`).classList.add('active');
     }
 
     function openPlanLb(src) {

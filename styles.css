@@ -1997,7 +1997,7 @@ select:focus {
 /* ── Salidas en avión desde ── */
 .air-departures {
   text-align: center;
-  padding: 24px 0 10px;
+  padding: 2px 0 0;
 }
 
 .dep-title {
@@ -2006,7 +2006,7 @@ select:focus {
   font-weight: 900;
   letter-spacing: 0.3px;
   color: var(--text, #1a1a1a);
-  margin: 0 0 20px;
+  margin: 0 0 10px;
   text-transform: uppercase;
 }
 
@@ -2014,45 +2014,45 @@ select:focus {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 30px;
+  gap: clamp(20px, 4vw, 52px);
   flex-wrap: wrap;
 }
 
 .dep-item {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  min-width: 140px;
-  text-align: left;
+  align-items: center;
+  min-width: 132px;
+  text-align: center;
 }
 
 .dep-icon-wrap {
-  width: 76px;
-  height: 62px;
-  margin-bottom: 12px;
+  width: 78px;
+  height: 46px;
+  margin-bottom: 5px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-end;
-  gap: 7px;
-  padding: 8px 10px 8px;
-  background: linear-gradient(180deg, rgba(30, 80, 139, 0.06), rgba(30, 80, 139, 0.015));
-  border: 1px solid rgba(30, 80, 139, 0.08);
-  border-radius: 16px;
+  gap: 4px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
 }
 
 .dep-underline {
-  width: 36px;
-  height: 3px;
+  width: 56px;
+  height: 4px;
   background: #1e508b;
   border-radius: 999px;
-  opacity: 0.9;
+  opacity: 1;
 }
 
 .dep-item svg {
   fill: #1e508b;
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
   transform-origin: center;
 }
 
@@ -2069,7 +2069,7 @@ select:focus {
 }
 
 .dep-cruise .dep-underline {
-  width: 26px;
+  width: 58px;
 }
 
 .dep-landing .dep-icon-wrap svg {
@@ -2079,26 +2079,28 @@ select:focus {
 .dep-item strong {
   display: block;
   font-family: Montserrat, sans-serif;
-  font-weight: 700;
-  font-size: 15px;
-  color: var(--text, #1a1a1a);
-  margin-bottom: 2px;
+  font-weight: 800;
+  font-size: clamp(20px, 2.1vw, 26px);
+  line-height: 1.15;
+  color: #000;
+  margin-bottom: 3px;
 }
 
 .dep-item p {
   margin: 0;
-  font-size: 12px;
-  color: var(--muted, #888);
+  font-size: clamp(11px, 1.05vw, 14px);
+  line-height: 1.25;
+  color: #7b7f87;
 }
 
 @media (max-width: 540px) {
   .air-departures {
-    padding: 14px 0 8px;
+    padding: 2px 0 0;
   }
 
   .dep-title {
     font-size: clamp(15px, 6vw, 18px);
-    margin: 0 auto 16px;
+    margin: 0 auto 8px;
     line-height: 1.12;
     max-width: 240px;
   }
@@ -2106,7 +2108,7 @@ select:focus {
   .dep-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
+    gap: 8px;
     align-items: start;
   }
 
@@ -2117,30 +2119,29 @@ select:focus {
   }
 
   .dep-icon-wrap {
-    width: 64px;
-    height: 54px;
-    align-items: center;
-    margin-bottom: 6px;
-    padding: 6px 8px 7px;
+    width: 56px;
+    height: 38px;
+    margin-bottom: 4px;
   }
 
   .dep-item strong {
-    font-size: 12px;
-    margin-bottom: 4px;
+    font-size: 16px;
+    margin-bottom: 3px;
   }
 
   .dep-item p {
     font-size: 10px;
-    line-height: 1.35;
+    line-height: 1.25;
   }
 
   .dep-item svg {
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
   }
 
   .dep-underline {
-    width: 28px;
+    width: 36px;
+    height: 3px;
   }
 }
 
@@ -2151,20 +2152,20 @@ select:focus {
   }
 
   .dep-grid {
-    gap: 10px;
+    gap: 8px 4px;
   }
 
   .dep-item strong {
-    font-size: 11px;
+    font-size: 15px;
   }
 
   .dep-item p {
-    font-size: 9.5px;
+    font-size: 9px;
   }
 
   .dep-item svg {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
   }
 }
 

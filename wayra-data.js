@@ -15,13 +15,15 @@ const DATA_PATH = (() => {
 
 /**
  * fetch con caché inteligente:
- * - Admin: siempre fresco (no-store + timestamp) para ver cambios al instante.
- * - Público: caché por defecto del navegador (respeta Cache-Control del servidor).
+ * - Admin: siempre fresco.
+ * - Público: permite forzar frescura para recursos sensibles como config y gallery.
  */
-function freshFetch(url) {
+function freshFetch(url, options = {}) {
   const isAdmin = window.location.pathname.includes('/admin/');
-  if (isAdmin) {
-    return fetch(url + '?_t=' + Date.now(), { cache: 'no-store' });
+  const alwaysFresh = Boolean(options.alwaysFresh);
+  if (isAdmin || alwaysFresh) {
+    const bustUrl = url + (url.includes('?') ? '&' : '?') + '_t=' + Date.now();
+    return fetch(bustUrl, { cache: 'no-store' });
   }
   return fetch(url);
 }
@@ -60,7 +62,7 @@ function loadPlanes(callback) {
    CONFIG GENERAL (hero, textos, contacto)
 ════════════════════════════════════════════════════ */
 function loadConfig(callback) {
-  freshFetch(DATA_PATH + 'config.json')
+  freshFetch(DATA_PATH + 'config.json', { alwaysFresh: true })
     .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(json => callback(json.config || {}))
     .catch(err => { console.warn('[wayra-data] config.json:', err.message); callback(null); });
@@ -70,7 +72,7 @@ function loadConfig(callback) {
    GALLERY
 ════════════════════════════════════════════════════ */
 function loadGallery(callback) {
-  freshFetch(DATA_PATH + 'gallery.json')
+  freshFetch(DATA_PATH + 'gallery.json', { alwaysFresh: true })
     .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(json => callback(json.gallery || []))
     .catch(err => { console.warn('[wayra-data] gallery.json:', err.message); callback(null); });
@@ -382,10 +384,11 @@ function applyConfig(cfg) {
     if (overlay) overlay.style.background = 'rgba(0,0,0,0.2)';
   }
 
-  // Gallery Hero (same image as plans)
+  // Gallery Hero
   const galleryHero = document.getElementById('gallery-hero');
-  if (galleryHero && cfg.plansHeroImage) {
-    galleryHero.style.backgroundImage = `url('${cfg.plansHeroImage}')`;
+  const galleryHeroImage = cfg.galleryHeroImage || cfg.plansHeroImage;
+  if (galleryHero && galleryHeroImage) {
+    galleryHero.style.backgroundImage = `url('${galleryHeroImage}')`;
     galleryHero.style.backgroundSize = 'cover';
     galleryHero.style.backgroundPosition = 'center';
   }

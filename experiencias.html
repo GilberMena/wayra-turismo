@@ -31,9 +31,11 @@
     <style>
         /* ══ HERO EXPERIENCIAS ══ */
         .exp-hero {
-            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://i.ibb.co/XZZVGTNx/f83dd5c7-ad0c-4202-9fe7-78b72f40484b.jpg');
-            background-size: cover;
-            background-position: center;
+            background-color: #0a3a28;
+            background-image: url('https://i.ibb.co/1f61PGzN/94cede05-cd1f-4203-8f36-ebe7953f32f6.jpg') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
             position: relative;
             overflow: hidden;
             padding: 90px 20px 100px;
@@ -577,15 +579,6 @@
             <div class="container">
                 <h2>Momentos que se quedan para siempre</h2>
                 <p>El bramido del oleaje, el salto de una ballena al amanecer, el silencio verde de la selva. Cada salida con WAYRA es irrepetible, guiada por personas del territorio que conocen cada rincón del Pacífico.</p>
-                <div class="exp-filters">
-                    <button class="exp-filter-btn active" data-filter="all">Todas</button>
-                    <button class="exp-filter-btn" data-filter="ballenas">🐋 Ballenas</button>
-                    <button class="exp-filter-btn" data-filter="naturaleza">🌿 Naturaleza</button>
-                    <button class="exp-filter-btn" data-filter="fotografía">📸 Fotografía</button>
-                    <button class="exp-filter-btn" data-filter="aventura">🚣 Aventura</button>
-                    <button class="exp-filter-btn" data-filter="cultura">🍽️ Cultura</button>
-                    <button class="exp-filter-btn" data-filter="surf">🌊 Surf</button>
-                </div>
             </div>
         </div>
 
@@ -745,7 +738,7 @@
         const navMenu = document.querySelector('.main-nav');
         if (navToggle) navToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
     </script>
-    <script src="wayra-data.js"></script>
+    <script src="wayra-data.js?v=3"></script>
     <script>
         let allExps = [];
 
@@ -790,9 +783,11 @@
         }
 
         function setupExpFilters(exps) {
-            document.querySelectorAll('.exp-filter-btn').forEach(btn => {
+            const filterButtons = document.querySelectorAll('.exp-filter-btn');
+            if (!filterButtons.length) return;
+            filterButtons.forEach(btn => {
                 btn.addEventListener('click', function () {
-                    document.querySelectorAll('.exp-filter-btn').forEach(b => b.classList.remove('active'));
+                    filterButtons.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                     const filter = this.dataset.filter;
                     const filtered = filter === 'all' ? exps : exps.filter(e =>

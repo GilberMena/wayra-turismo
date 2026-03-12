@@ -1,68 +1,156 @@
-{
-  "experiences": [
-    {
-      "id": "whale-watching",
-      "title": "Avistamiento de Ballenas",
-      "badge": "⭐ Imperdible",
-      "price": "",
-      "duration": "",
-      "subtitle": "",
-      "description": "Entre julio y octubre, las ballenas jorobadas visitan la bahía. Salidas al amanecer en bote, a distancia respetuosa, para vivir uno de los espectáculos más emocionantes de la naturaleza.",
-      "descriptionLong": "",
-      "includes": [],
-      "notIncluded": [],
-      "notes": "",
-      "pricing": [],
-      "image": "https://i.ibb.co/zWwwDFn1/imagen-2026-03-06-141426052.png",
-      "active": true
-    },
-    {
-      "id": "hiking",
-      "title": "Senderismo, Manglares y Avistamiento de Aves",
-      "badge": "🌿 Naturaleza",
-      "price": "",
-      "duration": "",
-      "subtitle": "",
-      "description": "Intérnate en la selva húmeda del Chocó para descubrir cascadas escondidas y piscinas naturales. Rutas guiadas por conocedores del territorio que comparten su historia y biodiversidad.",
-      "descriptionLong": "",
-      "includes": [],
-      "notIncluded": [],
-      "notes": "",
-      "pricing": [],
-      "image": "https://i.ibb.co/KccZQ3bT/4.jpg",
-      "active": true
-    },
-    {
-      "id": "water-sports",
-      "title": "Deportes Acuáticos",
-      "badge": "📸 Fotografía",
-      "price": "",
-      "duration": "",
-      "subtitle": "",
-      "description": "Rutas especialmente diseñadas para capturar la biodiversidad del Pacífico: aves endémicas, manglares, flora exótica y paisajes costeros únicos en el mundo.",
-      "descriptionLong": "",
-      "includes": [],
-      "notIncluded": [],
-      "notes": "",
-      "pricing": [],
-      "image": "https://i.ibb.co/3YCsW8k4/Whats-App-Image-2026-03-06-at-8-25-41-PM.jpg",
-      "active": true
-    },
-    {
-      "id": "sport-fishing",
-      "title": "Pesca Deportiva",
-      "badge": "🎣 Aventura",
-      "price": "",
-      "duration": "",
-      "subtitle": "",
-      "description": "Lanza tu señuelo en las aguas ricas del Pacífico colombiano y compite con peces vela, marlín y dorado. Salidas en embarcación local con guías expertos, equipo disponible y la posibilidad de practicar pesca y liberación.",
-      "descriptionLong": "",
-      "includes": [],
-      "notIncluded": [],
-      "notes": "",
-      "pricing": [],
-      "image": "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=1200&q=80&auto=format&fit=crop",
-      "active": true
-    }
-  ]
+﻿{
+    "experiences":  [
+                        {
+                            "id":  "whale-watching",
+                            "title":  "Avistamiento de Ballenas",
+                            "badge":  "⭐ Imperdible",
+                            "price":  "",
+                            "duration":  "",
+                            "subtitle":  "",
+                            "description":  "Entre julio y octubre, las ballenas jorobadas visitan la bahía. Salidas al amanecer en bote, a distancia respetuosa, para vivir uno de los espectáculos más emocionantes de la naturaleza.",
+                            "descriptionLong":  "",
+                            "includes":  [
+
+                                         ],
+                            "notIncluded":  [
+
+                                            ],
+                            "notes":  "",
+                            "pricing":  [
+
+                                        ],
+                            "image":  "https://i.ibb.co/zWwwDFn1/imagen-2026-03-06-141426052.png",
+                            "active":  true,
+                            "priceTabs":  [
+                                              {
+                                                  "tab":  "Desde Medellín, Cali o Cartago",
+                                                  "adult":  "Consultar",
+                                                  "child":  "Consultar",
+                                                  "nightAdult":  "Consultar",
+                                                  "nightChild":  "Consultar"
+                                              },
+                                              {
+                                                  "tab":  "Desde Bogotá",
+                                                  "adult":  "Consultar",
+                                                  "child":  "Consultar",
+                                                  "nightAdult":  "Consultar",
+                                                  "nightChild":  "Consultar"
+                                              }
+                                          ]
+                        },
+                        {
+                            "id":  "hiking",
+                            "title":  "Senderismo, Manglares y Avistamiento de Aves",
+                            "badge":  "🌿 Naturaleza",
+                            "price":  "",
+                            "duration":  "",
+                            "subtitle":  "",
+                            "description":  "Intérnate en la selva húmeda del Chocó para descubrir cascadas escondidas y piscinas naturales. Rutas guiadas por conocedores del territorio que comparten su historia y biodiversidad.",
+                            "descriptionLong":  "",
+                            "includes":  [
+
+                                         ],
+                            "notIncluded":  [
+
+                                            ],
+                            "notes":  "",
+                            "pricing":  [
+
+                                        ],
+                            "image":  "https://i.ibb.co/KccZQ3bT/4.jpg",
+                            "active":  true,
+                            "priceTabs":  [
+                                              {
+                                                  "tab":  "Desde Medellín, Cali o Cartago",
+                                                  "adult":  "Consultar",
+                                                  "child":  "Consultar",
+                                                  "nightAdult":  "Consultar",
+                                                  "nightChild":  "Consultar"
+                                              },
+                                              {
+                                                  "tab":  "Desde Bogotá",
+                                                  "adult":  "Consultar",
+                                                  "child":  "Consultar",
+                                                  "nightAdult":  "Consultar",
+                                                  "nightChild":  "Consultar"
+                                              }
+                                          ]
+                        },
+                        {
+                            "id":  "water-sports",
+                            "title":  "Deportes Acuáticos",
+                            "badge":  "📸 Fotografía",
+                            "price":  "",
+                            "duration":  "",
+                            "subtitle":  "",
+                            "description":  "Rutas especialmente diseñadas para capturar la biodiversidad del Pacífico: aves endémicas, manglares, flora exótica y paisajes costeros únicos en el mundo.",
+                            "descriptionLong":  "",
+                            "includes":  [
+
+                                         ],
+                            "notIncluded":  [
+
+                                            ],
+                            "notes":  "",
+                            "pricing":  [
+
+                                        ],
+                            "image":  "https://i.ibb.co/3YCsW8k4/Whats-App-Image-2026-03-06-at-8-25-41-PM.jpg",
+                            "active":  true,
+                            "priceTabs":  [
+                                              {
+                                                  "tab":  "Desde Medellín, Cali o Cartago",
+                                                  "adult":  "Consultar",
+                                                  "child":  "Consultar",
+                                                  "nightAdult":  "Consultar",
+                                                  "nightChild":  "Consultar"
+                                              },
+                                              {
+                                                  "tab":  "Desde Bogotá",
+                                                  "adult":  "Consultar",
+                                                  "child":  "Consultar",
+                                                  "nightAdult":  "Consultar",
+                                                  "nightChild":  "Consultar"
+                                              }
+                                          ]
+                        },
+                        {
+                            "id":  "sport-fishing",
+                            "title":  "Pesca Deportiva",
+                            "badge":  "🎣 Aventura",
+                            "price":  "",
+                            "duration":  "",
+                            "subtitle":  "",
+                            "description":  "Lanza tu señuelo en las aguas ricas del Pacífico colombiano y compite con peces vela, marlín y dorado. Salidas en embarcación local con guías expertos, equipo disponible y la posibilidad de practicar pesca y liberación.",
+                            "descriptionLong":  "",
+                            "includes":  [
+
+                                         ],
+                            "notIncluded":  [
+
+                                            ],
+                            "notes":  "",
+                            "pricing":  [
+
+                                        ],
+                            "image":  "https://i.ibb.co/60YyXfzP/ab739d2a-5b4b-4747-8e58-8fafb61e59af.jpg",
+                            "active":  true,
+                            "priceTabs":  [
+                                              {
+                                                  "tab":  "Desde Medellín, Cali o Cartago",
+                                                  "adult":  "Consultar",
+                                                  "child":  "Consultar",
+                                                  "nightAdult":  "Consultar",
+                                                  "nightChild":  "Consultar"
+                                              },
+                                              {
+                                                  "tab":  "Desde Bogotá",
+                                                  "adult":  "Consultar",
+                                                  "child":  "Consultar",
+                                                  "nightAdult":  "Consultar",
+                                                  "nightChild":  "Consultar"
+                                              }
+                                          ]
+                        }
+                    ]
 }

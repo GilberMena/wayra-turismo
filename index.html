@@ -505,12 +505,22 @@
             <div class="form-row two-cols">
               <label>Fecha de viaje (aprox)<input type="date"></label>
               <label>Destino/Plan de interés
-                <select>
+                <select name="plan">
                   <option value="">Selecciona una opción</option>
-                  <option value="nuqui-gral">Nuquí (General)</option>
-                  <option value="ballenas">Temporada de Ballenas</option>
-                  <option value="fotografia">Plan Fotografía</option>
-                  <option value="a-medida">A tu Medida</option>
+                  <optgroup label="🗺️ Planes">
+                    <option value="Plan Playa Terco">Plan Playa Terco</option>
+                    <option value="SurfNuqui">SurfNuqui</option>
+                    <option value="Vive La Danza Y El Tamborito">Vive La Danza Y El Tamborito</option>
+                  </optgroup>
+                  <optgroup label="🌿 Experiencias">
+                    <option value="Avistamiento de Ballenas">Avistamiento de Ballenas</option>
+                    <option value="Senderismo, Manglares y Aves">Senderismo, Manglares y Aves</option>
+                    <option value="Deportes Acuáticos">Deportes Acuáticos</option>
+                    <option value="Pesca Deportiva">Pesca Deportiva</option>
+                  </optgroup>
+                  <optgroup label="✨ Otro">
+                    <option value="A tu medida">A tu medida</option>
+                  </optgroup>
                 </select>
               </label>
             </div>
@@ -518,7 +528,7 @@
               <label>Comentarios / Dudas<textarea rows="3"></textarea></label>
             </div>
             <div class="form-row">
-              <button type="submit" class="btn-primary">Solicitar cotización</button>
+              <button type="submit" class="btn-primary">Enviar</button>
             </div>
           </form>
         </div>
