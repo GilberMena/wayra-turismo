@@ -235,12 +235,12 @@ body {
   }
 
   .header-actions {
-    gap: 6px;
+    gap: 8px;
   }
 
   .header-actions .social-brand-link {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
   }
 
   .header-actions .social-brand-link svg {
@@ -250,7 +250,20 @@ body {
 
   .nav-toggle {
     font-size: 22px;
-    padding: 2px 4px;
+    padding: 4px 6px;
+    margin-left: 6px;
+  }
+
+  .wa-float {
+    width: 50px;
+    height: 50px;
+    right: 18px;
+    bottom: 20px;
+  }
+
+  .wa-float svg {
+    width: 24px;
+    height: 24px;
   }
 }
 
