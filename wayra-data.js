@@ -299,22 +299,53 @@ function applyConfig(cfg) {
   // Vibrant Hero Area (on main page)
   const vividHero = document.getElementById('vivid-hero-section');
   if (vividHero && cfg.bannerImage) {
-    vividHero.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${cfg.bannerImage}')`;    
-    vividHero.style.backgroundSize = 'cover';
-    vividHero.style.backgroundPosition = 'center';
-    vividHero.style.backgroundAttachment = bgAttachment;
+    const heroSection = vividHero.querySelector('.hero');
+    const reasonsSection = vividHero.querySelector('#porque-nuqui');
+    const heroBg = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${cfg.bannerImage}')`;
 
-    const innerSecs = vividHero.querySelectorAll('section');
-    innerSecs.forEach(s => {
-      s.style.background = 'transparent';
-      const textEls = s.querySelectorAll('h2, .subtitle, p, li, strong, h3, .razones-eyebrow, .razones-titulo');
-      textEls.forEach(el => {
-        if (!el.closest('.razon-card')) {
-          el.style.color = '#ffffff';
-          el.style.textShadow = '0 2px 4px rgba(0,0,0,0.3)';
-        }
+    if (isMobileDevice && heroSection) {
+      vividHero.style.backgroundImage = 'none';
+      vividHero.style.backgroundColor = 'transparent';
+
+      heroSection.style.backgroundImage = heroBg;
+      heroSection.style.backgroundSize = 'cover';
+      heroSection.style.backgroundPosition = 'center';
+      heroSection.style.backgroundAttachment = 'scroll';
+
+      const heroTextEls = heroSection.querySelectorAll('h1, h2, .subtitle, p, li, strong, h3, .lead');
+      heroTextEls.forEach(el => {
+        el.style.color = '#ffffff';
+        el.style.textShadow = '0 2px 4px rgba(0,0,0,0.3)';
       });
-    });
+
+      if (reasonsSection) {
+        reasonsSection.style.background = '#ffffff';
+        reasonsSection.style.color = '';
+
+        const reasonsTextEls = reasonsSection.querySelectorAll('.razones-eyebrow, .razones-titulo, .razones-sub');
+        reasonsTextEls.forEach(el => {
+          el.style.color = '';
+          el.style.textShadow = 'none';
+        });
+      }
+    } else {
+      vividHero.style.backgroundImage = heroBg;
+      vividHero.style.backgroundSize = 'cover';
+      vividHero.style.backgroundPosition = 'center';
+      vividHero.style.backgroundAttachment = bgAttachment;
+
+      const innerSecs = vividHero.querySelectorAll('section');
+      innerSecs.forEach(s => {
+        s.style.background = 'transparent';
+        const textEls = s.querySelectorAll('h2, .subtitle, p, li, strong, h3, .razones-eyebrow, .razones-titulo');
+        textEls.forEach(el => {
+          if (!el.closest('.razon-card')) {
+            el.style.color = '#ffffff';
+            el.style.textShadow = '0 2px 4px rgba(0,0,0,0.3)';
+          }
+        });
+      });
+    }
   }
 
   // Vibrant Whale Background Area
