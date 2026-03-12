@@ -2575,10 +2575,17 @@ select:focus {
 }
 
 @media (max-width: 640px) {
+  #modal-quienes-somos {
+    z-index: 1400;
+    align-items: flex-start;
+    padding: 12px;
+  }
+
   .qs-modal {
     max-height: 90vh;
     padding: 28px 24px 24px;
     width: 95%;
+    margin-top: 8px;
   }
 
   .qs-modal h2 {

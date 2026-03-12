@@ -388,6 +388,10 @@ function abrirQuienesSomos(event) {
   if (event) {
     event.preventDefault();
   }
+  const nav = document.querySelector('.main-nav');
+  if (nav && nav.classList.contains('open')) {
+    nav.classList.remove('open');
+  }
   const modal = document.getElementById('modal-quienes-somos');
   if (modal) {
     modal.setAttribute('aria-hidden', 'false');
