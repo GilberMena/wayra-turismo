@@ -475,8 +475,21 @@
       .plans-filter-btn { flex: 0 0 auto; white-space: nowrap; font-size: 12px; padding: 7px 14px; }
       .plan-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
       .plan-image { height: 200px; }
-      .plan-header h3 { font-size: 16px; }
-      .plan-actions { flex-direction: column; gap: 8px; }
+      .plan-header {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 16px 16px 4px;
+      }
+      .plan-header h3 { font-size: 15px; flex: 1 1 60%; min-width: 0; }
+      .plan-header .price {
+        font-size: 13px;
+        padding: 4px 10px;
+        flex-shrink: 0;
+        align-self: flex-start;
+      }
+      .plan-card > .muted { padding: 0 16px; }
+      .plan-card > p:not(.muted) { padding: 0 16px; }
+      .plan-actions { flex-direction: column; gap: 8px; padding: 0 16px 16px; }
       .plan-actions .btn-outline,
       .plan-actions .btn-whatsapp { text-align: center; }
       .plans-testimonials { padding: 32px 0; }

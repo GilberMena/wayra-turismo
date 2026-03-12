@@ -2247,6 +2247,13 @@ select:focus {
   transition: background 0.5s ease;
 }
 
+/* En móviles, background-attachment:fixed no funciona en iOS/Safari — se usa scroll */
+@media (max-width: 768px) {
+  .whale-vivid-area {
+    background-attachment: scroll !important;
+  }
+}
+
 .act-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;

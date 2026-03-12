@@ -292,13 +292,17 @@ function applyConfig(cfg) {
     qsText.innerHTML = cfg.quienesSomosText.split('\n').filter(p => p.trim()).map(p => `<p>${p}</p>`).join('');
   }
 
+  // Detectar dispositivo móvil: background-attachment:fixed no funciona en iOS/Safari
+  const isMobileDevice = /iPhone|iPad|iPod|Android|webOS|BlackBerry|Windows Phone/i.test(navigator.userAgent) || window.innerWidth < 768;
+  const bgAttachment = isMobileDevice ? 'scroll' : 'fixed';
+
   // Vibrant Hero Area (on main page)
   const vividHero = document.getElementById('vivid-hero-section');
   if (vividHero && cfg.bannerImage) {
-    vividHero.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${cfg.bannerImage}')`;
+    vividHero.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${cfg.bannerImage}')`;    
     vividHero.style.backgroundSize = 'cover';
     vividHero.style.backgroundPosition = 'center';
-    vividHero.style.backgroundAttachment = 'fixed';
+    vividHero.style.backgroundAttachment = bgAttachment;
 
     const innerSecs = vividHero.querySelectorAll('section');
     innerSecs.forEach(s => {
@@ -319,7 +323,7 @@ function applyConfig(cfg) {
     vividSection.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('${cfg.whaleBgImage}')`;
     vividSection.style.backgroundSize = 'cover';
     vividSection.style.backgroundPosition = 'center';
-    vividSection.style.backgroundAttachment = 'fixed';
+    vividSection.style.backgroundAttachment = bgAttachment;
 
     const innerSections = vividSection.querySelectorAll('.section');
     innerSections.forEach(s => {
@@ -340,7 +344,7 @@ function applyConfig(cfg) {
     vividPlans.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${cfg.plansBgImage}')`;
     vividPlans.style.backgroundSize = 'cover';
     vividPlans.style.backgroundPosition = 'center';
-    vividPlans.style.backgroundAttachment = 'fixed';
+    vividPlans.style.backgroundAttachment = bgAttachment;
 
     const innerSections = vividPlans.querySelectorAll('.section');
     innerSections.forEach(s => {
