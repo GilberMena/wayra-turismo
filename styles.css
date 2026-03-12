@@ -25,6 +25,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 .container {
   max-width: 1100px;
   margin: 0 auto;

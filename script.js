@@ -3,7 +3,12 @@ document.addEventListener('DOMContentLoaded', function(){
   // Smooth scroll for internal links
   document.querySelectorAll('a[href^="#"]').forEach(function(anchor){
     anchor.addEventListener('click', function(e){
-      const target = document.querySelector(this.getAttribute('href'));
+      const href = this.getAttribute('href');
+      if (!href || href === '#') {
+        return;
+      }
+
+      const target = document.querySelector(href);
       if(target){
         e.preventDefault();
         target.scrollIntoView({behavior:'smooth', block:'start'});
@@ -396,6 +401,7 @@ function abrirQuienesSomos(event) {
   if (modal) {
     modal.setAttribute('aria-hidden', 'false');
   }
+  document.body.classList.add('modal-open');
 }
 
 function cerrarQuienesSomos() {
@@ -403,4 +409,5 @@ function cerrarQuienesSomos() {
   if (modal) {
     modal.setAttribute('aria-hidden', 'true');
   }
+  document.body.classList.remove('modal-open');
 }
