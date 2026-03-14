@@ -164,23 +164,108 @@
       background: #fff;
       border: 1px solid #e8e4dc;
       border-radius: 14px;
-      padding: 28px 32px;
-      margin-bottom: 20px;
+      margin-bottom: 14px;
+      overflow: hidden;
       scroll-margin-top: 80px;
+      transition: box-shadow .2s ease, border-color .2s ease;
     }
 
-    @media (max-width: 500px) {
-      .pol-article { padding: 20px 18px; }
+    .pol-article:hover {
+      border-color: #d9d3c8;
+      box-shadow: 0 10px 30px rgba(32, 54, 45, .08);
     }
 
     .pol-article h2 {
       font-family: Merriweather, serif;
       font-size: 18px;
-      margin: 0 0 14px;
+      margin: 0;
       color: var(--text);
       display: flex;
       align-items: center;
       gap: 10px;
+    }
+
+    .pol-acc-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 22px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      cursor: pointer;
+      text-align: left;
+      color: inherit;
+      font: inherit;
+    }
+
+    .pol-acc-trigger:hover {
+      background: #fcfbf8;
+    }
+
+    .pol-acc-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .pol-acc-icons {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+      color: #1a4e38;
+    }
+
+    .pol-acc-plus {
+      font-size: 28px;
+      font-weight: 300;
+      line-height: 1;
+      transition: transform .25s ease;
+    }
+
+    .pol-acc-chevron {
+      font-size: 24px;
+      line-height: 1;
+      transition: transform .25s ease;
+    }
+
+    .pol-article.open .pol-acc-plus {
+      transform: rotate(45deg);
+    }
+
+    .pol-article.open .pol-acc-chevron {
+      transform: rotate(90deg);
+    }
+
+    .pol-acc-body {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 24px;
+      transition: max-height .35s ease, padding .25s ease;
+    }
+
+    .pol-article.open .pol-acc-body {
+      max-height: 2000px;
+      padding: 0 24px 24px;
+    }
+
+    @media (max-width: 500px) {
+      .pol-acc-trigger {
+        padding: 18px 16px;
+      }
+
+      .pol-article.open .pol-acc-body,
+      .pol-acc-body {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .pol-article.open .pol-acc-body {
+        padding-bottom: 18px;
+      }
     }
 
     .pol-art-num {
@@ -198,26 +283,26 @@
       flex-shrink: 0;
     }
 
-    .pol-article p, .pol-article li {
+    .pol-acc-body p, .pol-acc-body li {
       font-size: 14.5px;
       color: #444;
       line-height: 1.8;
     }
 
-    .pol-article ul, .pol-article ol {
+    .pol-acc-body ul, .pol-acc-body ol {
       padding-left: 22px;
       margin: 10px 0;
     }
 
-    .pol-article ul li, .pol-article ol li {
+    .pol-acc-body ul li, .pol-acc-body ol li {
       margin-bottom: 6px;
     }
 
-    .pol-article strong {
+    .pol-acc-body strong {
       color: var(--text);
     }
 
-    .pol-article a {
+    .pol-acc-body a {
       color: var(--green);
     }
 
@@ -832,6 +917,13 @@
       function activateTab(targetId) {
         buttons.forEach(b => b.classList.toggle('active', b.dataset.target === targetId));
         sections.forEach(s => s.classList.toggle('active', s.id === targetId));
+        const activeSection = document.getElementById(targetId);
+        const firstArticle = activeSection ? activeSection.querySelector('.pol-article') : null;
+        if (firstArticle && !activeSection.querySelector('.pol-article.open')) {
+          firstArticle.classList.add('open');
+          const firstButton = firstArticle.querySelector('.pol-acc-trigger');
+          if (firstButton) firstButton.setAttribute('aria-expanded', 'true');
+        }
         // Actualizar URL sin recargar
         history.replaceState(null, '', '#' + targetId);
       }
@@ -850,6 +942,63 @@
       } else if (hashRaw === 'tab-privacidad') {
         activateTab('tab-privacidad');
       }
+    })();
+
+    /* ── Accordion de artículos ── */
+    (function () {
+      const articles = document.querySelectorAll('.pol-article');
+
+      articles.forEach((article, index) => {
+        const heading = article.querySelector('h2');
+        if (!heading) return;
+
+        const trigger = document.createElement('button');
+        trigger.type = 'button';
+        trigger.className = 'pol-acc-trigger';
+        trigger.setAttribute('aria-expanded', index === 0 ? 'true' : 'false');
+
+        const label = document.createElement('span');
+        label.className = 'pol-acc-label';
+        label.innerHTML = heading.innerHTML;
+
+        const icons = document.createElement('span');
+        icons.className = 'pol-acc-icons';
+        icons.innerHTML = '<span class="pol-acc-plus" aria-hidden="true">+</span><span class="pol-acc-chevron" aria-hidden="true">›</span>';
+
+        trigger.append(label, icons);
+
+        const body = document.createElement('div');
+        body.className = 'pol-acc-body';
+
+        const nodes = Array.from(article.childNodes).filter(node => node !== heading);
+        nodes.forEach(node => body.appendChild(node));
+
+        article.innerHTML = '';
+        article.append(trigger, body);
+
+        const section = article.closest('.pol-section');
+        if (section?.classList.contains('active') && article === section.querySelector('.pol-article')) {
+          article.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+
+        trigger.addEventListener('click', () => {
+          const section = article.closest('.pol-section');
+          if (!section) return;
+
+          const isOpen = article.classList.contains('open');
+          section.querySelectorAll('.pol-article.open').forEach(item => {
+            item.classList.remove('open');
+            const btn = item.querySelector('.pol-acc-trigger');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+          });
+
+          if (!isOpen) {
+            article.classList.add('open');
+            trigger.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
     })();
 
     /* ── Quiénes somos stub ── */

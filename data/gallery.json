@@ -55,15 +55,6 @@
       "emoji": "🏖️"
     },
     {
-      "src": "https://i.ibb.co/qFDXzYgk/Whats-App-Image-2026-03-05-at-7-29-58-PM-1.jpg",
-      "title": "Puesta de sol sobre el Pacífico",
-      "desc": "El cielo de Nuquí se incendia cada tarde. Una experiencia que no se olvida y que solo el Pacífico colombiano puede ofrecer.",
-      "cat": "playa",
-      "aspect": "4/3",
-      "bg": "linear-gradient(160deg,#7a2a00,#0d2040)",
-      "emoji": "🌅"
-    },
-    {
       "src": "https://i.ibb.co/fRScGpf/Whats-App-Image-2026-03-05-at-7-29-58-PM.jpg",
       "title": "Olas del Pacífico, Nuquí",
       "desc": "Las olas del Pacífico llegan poderosas y constantes. Ideal para surf, bodyboard o simplemente contemplar.",
@@ -161,6 +152,33 @@
       "aspect": "4/3",
       "bg": "linear-gradient(160deg,#2a1a00,#0a2a1e)",
       "emoji": "🌿"
+    },
+    {
+      "src": "https://i.ibb.co/My6PyBC0/Whats-App-Image-2026-03-13-at-7-06-34-PM-1.jpg",
+      "title": "NuquÃ­, PacÃ­fico colombiano",
+      "desc": "Otro instante del PacÃ­fico colombiano: naturaleza viva, horizonte abierto y la energÃ­a tranquila de NuquÃ­.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#0d3052,#1a5040)",
+      "emoji": "ðŸŒŠ"
+    },
+    {
+      "src": "https://i.ibb.co/FLYwJHjm/Whats-App-Image-2026-03-13-at-7-06-34-PM.jpg",
+      "title": "Paisajes de NuquÃ­",
+      "desc": "Una postal mÃ¡s del PacÃ­fico: selva, playa y esa atmÃ³sfera Ãºnica que hace de NuquÃ­ un destino irrepetible.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#1a5040,#0d3052)",
+      "emoji": "ðŸ–ï¸"
+    },
+    {
+      "src": "https://i.ibb.co/4gDcvDn3/Whats-App-Image-2026-03-13-at-7-06-35-PM.jpg",
+      "title": "RincÃ³n del PacÃ­fico",
+      "desc": "Una imagen que resume la esencia de NuquÃ­: belleza natural, autenticidad y conexiÃ³n total con el PacÃ­fico colombiano.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#0a2a1e,#0d3052)",
+      "emoji": "âœ¨"
     }
   ]
 }

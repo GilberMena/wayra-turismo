@@ -130,11 +130,22 @@
     }
     .faq-q:hover { background:#f4fbf7; }
     .faq-q .arrow {
-      flex-shrink:0; width:22px; height:22px; border-radius:50%;
-      background:#e8f5ee; display:flex; align-items:center; justify-content:center;
-      color:#1a5040; transition:transform .25s;
+      flex-shrink:0; display:flex; align-items:center; gap:14px;
+      color:#1a5040;
     }
-    .faq-item.open .faq-q .arrow { transform:rotate(180deg); background:#1a5040; color:#fff; }
+    .faq-q .plus {
+      font-size:28px;
+      font-weight:300;
+      line-height:1;
+      transition:transform .25s ease;
+    }
+    .faq-q .chevron {
+      font-size:24px;
+      line-height:1;
+      transition:transform .25s ease;
+    }
+    .faq-item.open .faq-q .plus { transform:rotate(45deg); }
+    .faq-item.open .faq-q .chevron { transform:rotate(90deg); }
 
     .faq-a {
       max-height:0; overflow:hidden;
@@ -219,7 +230,7 @@
 
       <div class="faq-item">
         <button class="faq-q">¿Dónde queda Nuquí?
-          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+          <span class="arrow"><span class="plus" aria-hidden="true">+</span><span class="chevron" aria-hidden="true">›</span></span>
         </button>
         <div class="faq-a">
           <p>Nuquí es un municipio del departamento del Chocó, ubicado en la Costa Pacífica colombiana, a orillas del Océano Pacífico. Está rodeado de selva húmeda tropical, ríos, manglares y playas casi desiertas. No hay carretera que lo conecte con el interior del país, por lo que solo se llega por vía aérea o fluvial.</p>
@@ -600,6 +611,10 @@
   </footer>
 
   <script>
+    document.querySelectorAll('.faq-q .arrow').forEach(icon => {
+      icon.innerHTML = '<span class="plus" aria-hidden="true">+</span><span class="chevron" aria-hidden="true">›</span>';
+    });
+
     // Accordion
     document.querySelectorAll('.faq-q').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -610,6 +625,9 @@
         if (!isOpen) item.classList.add('open');
       });
     });
+
+    const firstFaqItem = document.querySelector('.faq-item');
+    if (firstFaqItem) firstFaqItem.classList.add('open');
 
     // Filtro por categoría
     document.querySelectorAll('.faq-cat-btn').forEach(btn => {
