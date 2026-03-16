@@ -1,6 +1,6 @@
 ﻿// script.js â€” manejo de formulario, smooth scroll y menÃº mÃ³vil
 document.addEventListener('DOMContentLoaded', function(){
-  const BACKEND_BASE_URL = (window.WAYRA_BACKEND_BASE_URL || 'https://wayra-turismo.vercel.app').replace(/\/$/, '');
+  const BACKEND_BASE_URL = (window.WAYRA_BACKEND_BASE_URL || 'https://wayra-turismo-git-main-gilbermenas-projects.vercel.app').replace(/\/$/, '');
   function backendUrl(path){
     return `${BACKEND_BASE_URL}${path.startsWith('/') ? path : `/${path}`}`;
   }
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function(){
     chooser.innerHTML = `
       <div class="chooser-header">
         <div class="chooser-title">Contactar para reservar</div>
-        <button id="chooserClose" aria-label="Cerrar" style="background:transparent;border:0;font-size:18px">Ã—</button>
+        <button id="chooserClose" aria-label="Cerrar" style="background:transparent;border:0;font-size:18px">X</button>
       </div>
       <div class="chooser-actions">
         <a id="chooserWhatsapp" class="btn-whatsapp" href="#" target="_blank">WhatsApp</a>
@@ -214,7 +214,6 @@ document.addEventListener('DOMContentLoaded', function(){
     chooser.setAttribute('aria-hidden','true');
   }
 
-  // Handler: al pulsar 'Reservar' mostrar chooser con info del plan
   // Handler: al pulsar 'Reservar' mostrar chooser con info del plan
   document.addEventListener('click', function(e){
     const btn = e.target.closest('.open-reserve, #btnReserveDetail, [data-reserve]');
