@@ -783,6 +783,7 @@
   </a>
 
   <script>
+    const BACKEND_BASE_URL = (window.WAYRA_BACKEND_BASE_URL || 'https://wayra-turismo-git-main-gilbermenas-projects.vercel.app').replace(/\/$/, '');
     document.getElementById('year').textContent = new Date().getFullYear();
 
     /* ── Formulario de contacto ── */
@@ -826,7 +827,7 @@
 
         try {
           // Intentar enviar al endpoint de confirmación existente
-          const res = await fetch('/api/send-confirmation', {
+          const res = await fetch(`${BACKEND_BASE_URL}/api/send-confirmation`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

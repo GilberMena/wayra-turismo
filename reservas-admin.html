@@ -826,11 +826,13 @@
   </a>
 
   <script>
+    const BACKEND_BASE_URL = (window.WAYRA_BACKEND_BASE_URL || 'https://wayra-turismo-git-main-gilbermenas-projects.vercel.app').replace(/\/$/, '');
+    const ADMIN_SESSION_KEY = 'wayra_admin_session';
+
     // Simple client-side admin check
     (function checkAuth() {
-      const cookies = document.cookie.split('; ');
-      const token = cookies.find(row => row.startsWith('wayra_admin_token='));
-      if (!token) {
+      const session = localStorage.getItem(ADMIN_SESSION_KEY);
+      if (!session) {
         window.location.href = "admin-login.html?next=" + encodeURIComponent(window.location.pathname);
       }
     })();
@@ -843,7 +845,7 @@
         tbody.innerHTML = '';
         // Try serverless list first
         try {
-          const resp = await fetch('/api/list-reservations');
+          const resp = await fetch(`${BACKEND_BASE_URL}/api/list-reservations`);
           if (resp.ok) {
             const json = await resp.json();
             if (json && json.records) {
@@ -956,7 +958,7 @@
       let reservationsChart = null;
 
       try {
-        const resp = await fetch('/api/get-stats');
+        const resp = await fetch(`${BACKEND_BASE_URL}/api/get-stats`);
         if (!resp.ok) throw new Error('API error');
         
         const json = await resp.json();
@@ -1103,7 +1105,7 @@
       let hourlyChart = null;
 
       try {
-        const resp = await fetch('/api/get-analytics');
+        const resp = await fetch(`${BACKEND_BASE_URL}/api/get-analytics`);
         if (!resp.ok) throw new Error('API error');
         
         const json = await resp.json();

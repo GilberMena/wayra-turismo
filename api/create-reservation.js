@@ -1,4 +1,12 @@
 module.exports = async function handler(req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
@@ -37,10 +45,15 @@ module.exports = async function handler(req, res) {
                 return res.status(500).json({ error: 'Airtable error', details: json });
             }
 
-            // Trigger email (background-ish in Vercel)
-            const siteUrl = process.env.SITE_URL || '';
-            if (siteUrl) {
-                fetch(`${siteUrl.replace(/\/$/, '')}/api/send-confirmation`, {
+            // Trigger email against the same Vercel deployment handling this request.
+            const forwardedProto = req.headers['x-forwarded-proto'] || 'https';
+            const forwardedHost = req.headers['x-forwarded-host'] || req.headers.host || process.env.VERCEL_URL || '';
+            const functionBaseUrl = forwardedHost
+                ? `${forwardedProto}://${forwardedHost.replace(/^https?:\/\//, '')}`
+                : '';
+
+            if (functionBaseUrl) {
+                fetch(`${functionBaseUrl.replace(/\/$/, '')}/api/send-confirmation`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ record: json, reservation: body })

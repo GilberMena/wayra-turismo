@@ -4,7 +4,8 @@
 (function() {
   'use strict';
 
-  const ANALYTICS_ENDPOINT = '/api/track-event';
+  const BACKEND_BASE_URL = (window.WAYRA_BACKEND_BASE_URL || 'https://wayra-turismo-git-main-gilbermenas-projects.vercel.app').replace(/\/$/, '');
+  const ANALYTICS_ENDPOINT = `${BACKEND_BASE_URL}/api/track-event`;
   const SESSION_KEY = 'wayra_session';
   const VISITOR_KEY = 'wayra_visitor_id';
 

@@ -2080,18 +2080,19 @@
     </style>
 
     <script>
+        const BACKEND_BASE_URL = (window.WAYRA_BACKEND_BASE_URL || 'https://wayra-turismo-git-main-gilbermenas-projects.vercel.app').replace(/\/$/, '');
+        const ADMIN_SESSION_KEY = 'wayra_admin_session';
         // ── AUTH & SESSION ───────────────────────────────────────────
         (function checkAuth() {
-            const cookies = document.cookie.split('; ');
-            const token = cookies.find(row => row.startsWith('wayra_admin_token='));
-            // Si no hay token, redirigir al login
-            if (!token) {
-                console.warn('Acceso denegado: Token no encontrado.');
+            const session = localStorage.getItem(ADMIN_SESSION_KEY);
+            if (!session) {
+                console.warn('Acceso denegado: sesion local no encontrada.');
                 window.location.href = "../admin-login.html?next=" + encodeURIComponent(window.location.pathname);
             }
         })();
 
         function doLogout() {
+            localStorage.removeItem(ADMIN_SESSION_KEY);
             // Borramos la cookie de sesión expirándola
             document.cookie = "wayra_admin_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
             location.href = "/admin-login.html";
@@ -3858,7 +3859,7 @@
 
             try {
                 // Load reservation stats
-                const statsResp = await fetch('/api/get-stats');
+                const statsResp = await fetch(`${BACKEND_BASE_URL}/api/get-stats`);
                 if (!statsResp.ok) throw new Error('Stats API error');
                 const statsData = await statsResp.json();
                 
@@ -3868,7 +3869,7 @@
 
                 // Try to load analytics (may fail if not configured)
                 try {
-                    const analyticsResp = await fetch('/api/get-analytics');
+                    const analyticsResp = await fetch(`${BACKEND_BASE_URL}/api/get-analytics`);
                     if (analyticsResp.ok) {
                         const analyticsData = await analyticsResp.json();
                         if (analyticsData.success) {

@@ -270,9 +270,11 @@
     </div>
 
     <script>
+        const BACKEND_BASE_URL = (window.WAYRA_BACKEND_BASE_URL || 'https://wayra-turismo-git-main-gilbermenas-projects.vercel.app').replace(/\/$/, '');
+        const ADMIN_SESSION_KEY = 'wayra_admin_session';
         // Redirige al destino si ya tiene sesión válida (la edge function redirige aquí si no la tiene)
         const params = new URLSearchParams(location.search);
-        const next = params.get('next') || '/admin/';
+        const next = params.get('next') || '/reservas-admin.html';
 
         async function doLogin() {
             const user = document.getElementById('inp-user').value.trim();
@@ -301,12 +303,7 @@
 
             try {
                 const hostname = window.location.hostname;
-                const isNetlify = hostname.includes('netlify.app') || hostname.includes('netlify.com');
-
-                // Lista de rutas posibles para intentar
-                const endpoints = isNetlify
-                    ? ['/.netlify/functions/admin-verify', '/api/admin-verify', '/api/admin-verify.js']
-                    : ['/api/admin-verify', '/api/admin-verify.js', '/.netlify/functions/admin-verify'];
+                const endpoints = [`${BACKEND_BASE_URL}/api/admin-verify`];
 
                 let res = null;
                 let lastTriedUrl = '';
@@ -347,6 +344,10 @@
                 const data = await res.json();
 
                 if (res.ok && data.ok) {
+                    localStorage.setItem(ADMIN_SESSION_KEY, JSON.stringify({
+                        authenticated: true,
+                        at: new Date().toISOString()
+                    }));
                     // ✅ Login correcto → redirige al panel
                     window.location.href = next;
                 } else {

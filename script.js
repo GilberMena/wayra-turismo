@@ -1,5 +1,9 @@
 // script.js — manejo de formulario, smooth scroll y menú móvil
 document.addEventListener('DOMContentLoaded', function(){
+  const BACKEND_BASE_URL = (window.WAYRA_BACKEND_BASE_URL || 'https://wayra-turismo-git-main-gilbermenas-projects.vercel.app').replace(/\/$/, '');
+  function backendUrl(path){
+    return `${BACKEND_BASE_URL}${path.startsWith('/') ? path : `/${path}`}`;
+  }
   // Smooth scroll for internal links
   document.querySelectorAll('a[href^="#"]').forEach(function(anchor){
     anchor.addEventListener('click', function(e){
@@ -115,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function(){
   // En el flujo actual preferimos que el usuario nos contacte por WhatsApp, correo o teléfono.
   const formspreeEndpoint = '';
   // Endpoint serverless para guardar reservas (Netlify function). Se mantiene como opción, pero no es obligatorio.
-  const serverlessReservationUrl = '/.netlify/functions/create-reservation';
+  const serverlessReservationUrl = backendUrl('/api/create-reservation');
 
   // Modal de reserva (se comparte en index y plans-nuqui)
   const reserveModal = document.getElementById('reserveModal');
@@ -307,7 +311,7 @@ document.addEventListener('DOMContentLoaded', function(){
         guests:   data.guests || '',
         comments: data.comments || ''
       };
-      fetch('/.netlify/functions/create-reservation', {
+      fetch(serverlessReservationUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

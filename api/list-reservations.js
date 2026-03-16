@@ -1,4 +1,12 @@
 module.exports = async function handler(req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+
     const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
     const AIRTABLE_BASE = process.env.AIRTABLE_BASE;
     const AIRTABLE_TABLE = process.env.AIRTABLE_TABLE || 'Reservas';
