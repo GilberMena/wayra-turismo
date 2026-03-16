@@ -264,7 +264,7 @@
         </div>
 
         <div style="margin-top:48px; display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
-          <a id="btnReserveDetail" class="btn-primary" href="#" style="padding:14px 32px;">Reservar ahora</a>
+          <a id="btnReserveDetail" class="btn-primary open-reserve" href="#" style="padding:14px 32px;">Reservar ahora</a>
           <a id="btnWhatsappDetail" class="btn-whatsapp" href="#" target="_blank" style="padding:13px 28px;">Consultar
             por WhatsApp</a>
           <a id="btnBack" href="index.html#actividades" class="btn-secondary"
@@ -539,7 +539,12 @@
       const whatsappNumber = '573225225582';
       const msg = `Hola, estoy interesado en ${d.title}. Quisiera más información y disponibilidad, por favor.`;
       document.getElementById('btnWhatsappDetail').href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
-      document.getElementById('btnReserveDetail').href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
+      const reserveBtn = document.getElementById('btnReserveDetail');
+      reserveBtn.href = '#';
+      reserveBtn.dataset.planId = d.id || '';
+      reserveBtn.dataset.planTitle = d.title || '';
+      reserveBtn.dataset.planPrice = d.price || '';
+      reserveBtn.dataset.planEmail = 'vivewayra@gmail.com';
     }
 
     function switchPriceTab(btn, idx) {
@@ -565,6 +570,7 @@
       document.getElementById('detail-card').style.display = 'none';
     }
   </script>
+  <script src="script.js"></script>
   <script src="wayra-analytics.js"></script>
   <script src="cookie-banner.js" defer></script>
 </body>

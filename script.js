@@ -1,6 +1,6 @@
-// script.js — manejo de formulario, smooth scroll y menú móvil
+﻿// script.js â€” manejo de formulario, smooth scroll y menÃº mÃ³vil
 document.addEventListener('DOMContentLoaded', function(){
-  const BACKEND_BASE_URL = (window.WAYRA_BACKEND_BASE_URL || 'https://wayra-turismo-git-main-gilbermenas-projects.vercel.app').replace(/\/$/, '');
+  const BACKEND_BASE_URL = (window.WAYRA_BACKEND_BASE_URL || 'https://wayra-turismo.vercel.app').replace(/\/$/, '');
   function backendUrl(path){
     return `${BACKEND_BASE_URL}${path.startsWith('/') ? path : `/${path}`}`;
   }
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function(){
   document.querySelectorAll('a[href*="plans-nuqui.html"]').forEach(function(link){
     link.addEventListener('click', function(e){
       const current = window.location.pathname.split('/').pop();
-      // Si ya estamos en plans-nuqui.html, prevenimos la navegación y hacemos scroll al ancla
+      // Si ya estamos en plans-nuqui.html, prevenimos la navegaciÃ³n y hacemos scroll al ancla
       if(current === 'plans-nuqui.html'){
         e.preventDefault();
         const target = document.getElementById('planes-nuqui');
@@ -55,14 +55,14 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   // Nota: los enlaces 'Ver plan' y 'Ver experiencias' ahora navegan a detail.html
-  // Si venimos con ?reserve=plan-id en la URL abrimos el modal automáticamente.
+  // Si venimos con ?reserve=plan-id en la URL abrimos el modal automÃ¡ticamente.
   const plansData = {
     'plan-explorador': { title: 'Plan Explorador', price: '$1.250.000', image: 'assets/card1.svg' },
-    'plan-fotografo': { title: 'Plan Fotógrafo', price: '$1.800.000', image: 'assets/card2.svg' },
+    'plan-fotografo': { title: 'Plan FotÃ³grafo', price: '$1.800.000', image: 'assets/card2.svg' },
     'plan-a-tu-medida': { title: 'Plan A tu Medida', price: 'Desde $2.200.000', image: 'assets/card3.svg' },
-    'nuqui-esencial': { title: 'Nuquí Esencial', price: '$1.100.000', image: 'assets/card1.svg' },
-    'nuqui-fotografico': { title: 'Nuquí Fotografico', price: '$1.750.000', image: 'assets/card2.svg' },
-    'nuqui-a-tu-medida': { title: 'Nuquí A tu Medida', price: 'Desde $2.200.000', image: 'assets/card3.svg' }
+    'nuqui-esencial': { title: 'NuquÃ­ Esencial', price: '$1.100.000', image: 'assets/card1.svg' },
+    'nuqui-fotografico': { title: 'NuquÃ­ Fotografico', price: '$1.750.000', image: 'assets/card2.svg' },
+    'nuqui-a-tu-medida': { title: 'NuquÃ­ A tu Medida', price: 'Desde $2.200.000', image: 'assets/card3.svg' }
   };
 
   // Si la URL contiene ?reserve=plan-id abrimos el modal con esos datos
@@ -71,9 +71,9 @@ document.addEventListener('DOMContentLoaded', function(){
     if(params.has('reserve')){
       const id = params.get('reserve');
       const p = plansData[id] || {};
-      // Intent: cuando la página recibe ?reserve=plan-id mostramos el chooser de contacto
+      // Intent: cuando la pÃ¡gina recibe ?reserve=plan-id mostramos el chooser de contacto
       // en lugar del modal, para priorizar el flujo contact-first.
-      // Buscamos un elemento en la página que represente ese plan para posicionar el chooser.
+      // Buscamos un elemento en la pÃ¡gina que represente ese plan para posicionar el chooser.
       let anchor = document.querySelector(`[data-plan-id="${id}"]`);
       if(!anchor){
         // fallback por compatibilidad: elemento con id 'plan-'+id o id 'plan-ballena'
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
 
-  // Botón para enviar el formulario por WhatsApp
+  // BotÃ³n para enviar el formulario por WhatsApp
   const sendWaFromForm = document.getElementById('sendWaFromForm');
   const contactForm = document.querySelector('.contact-form');
   if(sendWaFromForm && contactForm){
@@ -116,9 +116,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
   // ----------------- Reserva (contact-only) -----------------
   // Opcional: endpoint de Formspree para recibir reservas (ej: https://formspree.io/f/xxxx)
-  // En el flujo actual preferimos que el usuario nos contacte por WhatsApp, correo o teléfono.
+  // En el flujo actual preferimos que el usuario nos contacte por WhatsApp, correo o telÃ©fono.
   const formspreeEndpoint = '';
-  // Endpoint serverless para guardar reservas (Netlify function). Se mantiene como opción, pero no es obligatorio.
+  // Endpoint serverless para guardar reservas (Netlify function). Se mantiene como opciÃ³n, pero no es obligatorio.
   const serverlessReservationUrl = backendUrl('/api/create-reservation');
 
   // Modal de reserva (se comparte en index y plans-nuqui)
@@ -137,8 +137,8 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   }
 
-  // Cuando se presiona 'Reservar' en un plan: mostrar un selector con opciones (WhatsApp / Correo / Llamar)
-  // Creamos dinámicamente un pequeño chooser y lo mostramos posicionado cerca del botón
+  // Cuando se presiona 'Reservar' en un plan: mostrar un selector con opciones (WhatsApp / Correo)
+  // Creamos dinÃ¡micamente un pequeÃ±o chooser y lo mostramos posicionado cerca del botÃ³n
   function ensureContactChooser(){
     let chooser = document.getElementById('contactChooser');
     if(chooser) return chooser;
@@ -149,12 +149,11 @@ document.addEventListener('DOMContentLoaded', function(){
     chooser.innerHTML = `
       <div class="chooser-header">
         <div class="chooser-title">Contactar para reservar</div>
-        <button id="chooserClose" aria-label="Cerrar" style="background:transparent;border:0;font-size:18px">×</button>
+        <button id="chooserClose" aria-label="Cerrar" style="background:transparent;border:0;font-size:18px">Ã—</button>
       </div>
       <div class="chooser-actions">
         <a id="chooserWhatsapp" class="btn-whatsapp" href="#" target="_blank">WhatsApp</a>
         <a id="chooserMail" class="btn-primary" href="#">Enviar por correo</a>
-        <a id="chooserCall" class="btn-outline" href="#">Llamar</a>
       </div>
     `;
     document.body.appendChild(chooser);
@@ -174,22 +173,18 @@ document.addEventListener('DOMContentLoaded', function(){
     const chooser = ensureContactChooser();
     const wa = chooser.querySelector('#chooserWhatsapp');
     const mail = chooser.querySelector('#chooserMail');
-    const call = chooser.querySelector('#chooserCall');
 
     const title = opts.title || '';
     const price = opts.price || '';
     const id = opts.id || '';
-    const phoneForCall = opts.phone || whatsappNumber;
-  const emailTarget = opts.email || 'vivewayra@gmail.com';
+    const emailTarget = opts.email || 'vivewayra@gmail.com';
 
-    const message = `Hola, estoy interesado en reservar *${title}* ${price ? `(${price})` : ''}. ¿Podrían confirmarme disponibilidad y pasos para reservar? Referencia: ${id}`;
+    const message = `Hola, quiero mas informacion para reservar ${title ? `*${title}*` : 'este plan'}${price ? ` (${price})` : ''}.${id ? ` Referencia: ${id}.` : ''}`;
     wa.href = whatsappUrlFor(message);
 
-    const subject = `Solicitud de reserva: ${title}`;
-    const body = `Plan: ${title}\nPrecio estimado: ${price}\nReferencia: ${id}\n\nPor favor confirmen disponibilidad y pasos para reservar.`;
+    const subject = `Solicitud de reserva: ${title || 'Plan ViveWayra'}`;
+    const body = `Hola, quiero mas informacion para reservar ${title || 'este plan'}.\n${price ? `Precio estimado: ${price}\n` : ''}${id ? `Referencia: ${id}\n` : ''}\nQuedo atento a la informacion y disponibilidad.`;
     mail.href = `mailto:${emailTarget}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    call.href = `tel:${phoneForCall}`;
 
     // Position chooser: try to place near anchorRect (below it), else center-bottom on small screens
     const cw = 300;
@@ -220,19 +215,19 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   // Handler: al pulsar 'Reservar' mostrar chooser con info del plan
-  document.querySelectorAll('.open-reserve').forEach(function(btn){
-    btn.addEventListener('click', function(e){
-      e.preventDefault();
-      // Evitar que el click burbujee al document y cierre inmediatamente el chooser
-      e.stopPropagation();
-      const title = this.dataset.planTitle || this.getAttribute('data-plan-title') || this.textContent || '';
-      const price = this.dataset.planPrice || this.getAttribute('data-plan-price') || '';
-      const id = this.dataset.planId || this.getAttribute('data-plan-id') || '';
-      const rect = this.getBoundingClientRect();
-      showContactChooser({id:id, title:title, price:price}, rect);
-    });
+  // Handler: al pulsar 'Reservar' mostrar chooser con info del plan
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest('.open-reserve, #btnReserveDetail, [data-reserve]');
+    if(!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const title = btn.dataset.planTitle || btn.getAttribute('data-plan-title') || btn.textContent || '';
+    const price = btn.dataset.planPrice || btn.getAttribute('data-plan-price') || '';
+    const id = btn.dataset.planId || btn.getAttribute('data-plan-id') || '';
+    const email = btn.dataset.planEmail || btn.getAttribute('data-plan-email') || 'vivewayra@gmail.com';
+    const rect = btn.getBoundingClientRect();
+    showContactChooser({ id, title, price, email }, rect);
   });
-
   // Cerrar modal de reserva
   if(reserveModal){
     reserveModal.querySelector('.modal-close').addEventListener('click', function(){
@@ -271,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function(){
         saveLocalReservation(d);
         sendReservationToBackend(d);
       }
-      const text = `Solicitud de reserva: ${d.title}\nNombre: ${d.name}\nTeléfono: ${d.phone}\nEmail: ${d.email}\nFechas: ${d.start} - ${d.end}\nPersonas: ${d.guests}\nComentarios: ${d.comments}\n\nPor favor confirme disponibilidad y pasos para confirmar la reserva.`;
+      const text = `Solicitud de reserva: ${d.title}\nNombre: ${d.name}\nTelÃ©fono: ${d.phone}\nEmail: ${d.email}\nFechas: ${d.start} - ${d.end}\nPersonas: ${d.guests}\nComentarios: ${d.comments}\n\nPor favor confirme disponibilidad y pasos para confirmar la reserva.`;
       window.open(whatsappUrlFor(text), '_blank');
     });
   }
@@ -280,22 +275,22 @@ document.addEventListener('DOMContentLoaded', function(){
     btnReserveMail.addEventListener('click', function(){
       const d = collectReserveData();
       if(!d.name || !d.phone){
-        showToast('Por favor completa tu nombre y teléfono antes de enviar la solicitud.', 'error');
+        showToast('Por favor completa tu nombre y telÃ©fono antes de enviar la solicitud.', 'error');
         return;
       }
-      // Guardar en servidor (Airtable) y también localmente como respaldo
+      // Guardar en servidor (Airtable) y tambiÃ©n localmente como respaldo
       saveLocalReservation(d);
       sendReservationToBackend(d);
       const subject = `Solicitud de reserva: ${d.title} - ${d.name}`;
-      const body = `Plan: ${d.title}\nPrecio estimado: ${d.price}\nNombre: ${d.name}\nTeléfono: ${d.phone}\nEmail: ${d.email}\nFechas: ${d.start} - ${d.end}\nPersonas: ${d.guests}\nComentarios:\n${d.comments}`;
+      const body = `Plan: ${d.title}\nPrecio estimado: ${d.price}\nNombre: ${d.name}\nTelÃ©fono: ${d.phone}\nEmail: ${d.email}\nFechas: ${d.start} - ${d.end}\nPersonas: ${d.guests}\nComentarios:\n${d.comments}`;
       window.location.href = `mailto:vivewayra@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
   }
 
-  // ------------ Helpers: envío a backend, toast y guardado local -------------
+  // ------------ Helpers: envÃ­o a backend, toast y guardado local -------------
 
   /**
-   * Envía los datos de reserva a la función serverless de Netlify → Airtable.
+   * EnvÃ­a los datos de reserva a la funciÃ³n serverless de Netlify â†’ Airtable.
    * No bloquea el flujo (fire-and-forget); si falla, igual funciona el mailto/WhatsApp.
    */
   function sendReservationToBackend(data){
@@ -319,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function(){
         if(res.ok){
           console.log('[Wayra] Reserva guardada en servidor correctamente.');
         } else {
-          console.warn('[Wayra] El servidor devolvió error al guardar reserva:', res.status);
+          console.warn('[Wayra] El servidor devolviÃ³ error al guardar reserva:', res.status);
         }
       }).catch(function(err){
         console.warn('[Wayra] No se pudo conectar al servidor para guardar reserva:', err);
@@ -379,7 +374,7 @@ document.addEventListener('DOMContentLoaded', function(){
       // Open mailto
   const mailto = `mailto:vivewayra@gmail.com?subject=${subject}&body=${body}`;
       window.location.href = mailto;
-      // también preparar mensaje para WhatsApp en caso que el usuario quiera usarlo
+      // tambiÃ©n preparar mensaje para WhatsApp en caso que el usuario quiera usarlo
     });
   }
 
@@ -392,7 +387,7 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 });
 
-// Funciones para el modal Quiénes somos
+// Funciones para el modal QuiÃ©nes somos
 function abrirQuienesSomos(event) {
   if (event) {
     event.preventDefault();
@@ -415,3 +410,4 @@ function cerrarQuienesSomos() {
   }
   document.body.classList.remove('modal-open');
 }
+
