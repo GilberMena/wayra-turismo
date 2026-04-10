@@ -8,6 +8,41 @@
   const ANALYTICS_ENDPOINT = `${BACKEND_BASE_URL}/api/track-event`;
   const SESSION_KEY = 'wayra_session';
   const VISITOR_KEY = 'wayra_visitor_id';
+  const CONSENT_KEY = 'wayra_cookie_consent';
+  let analyticsStarted = false;
+
+  function readCookieConsent() {
+    try {
+      const raw = localStorage.getItem(CONSENT_KEY);
+      if (!raw) return null;
+      if (raw === 'accepted') return { analytics: true, legacy: true };
+      if (raw === 'essential') return { analytics: false, legacy: true };
+      const obj = JSON.parse(raw);
+      if (!obj || typeof obj !== 'object') return null;
+      if (typeof obj.analytics !== 'boolean') return null;
+      return obj;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function analyticsAllowed() {
+    const consent = readCookieConsent();
+    return !!(consent && consent.analytics === true);
+  }
+
+  function maybeInit() {
+    if (analyticsStarted) return;
+    if (document.readyState === 'loading') return;
+    if (!analyticsAllowed()) return;
+    analyticsStarted = true;
+    init();
+  }
+
+  // Si el usuario acepta después, inicializamos sin recargar.
+  window.addEventListener('WAYRA:cookie-consent', function () {
+    maybeInit();
+  });
 
   // Generar ID único
   function generateId() {
@@ -107,6 +142,7 @@
 
   // Enviar evento al servidor
   async function trackEvent(eventType, eventData = {}) {
+    if (!analyticsAllowed()) return;
     const session = getSession();
     const traffic = getTrafficSource();
     
@@ -306,9 +342,9 @@
 
   // Auto-track cuando DOM esté listo
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', maybeInit);
   } else {
-    init();
+    maybeInit();
   }
 
   function init() {
@@ -324,3 +360,4 @@
   }
 
 })();
+

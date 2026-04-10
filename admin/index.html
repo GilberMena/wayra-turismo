@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
 
 <head>
@@ -987,6 +987,23 @@
             }
         }
     </style>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2179158445822195');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2179158445822195&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 
 <body>
@@ -998,7 +1015,7 @@
         <aside class="sidebar">
             <div class="sidebar-logo">
                 <div class="logo-icon">✈️</div>
-                <span>Wayra Admin</span>
+                <span>VIVE WAYRA Admin</span>
             </div>
             <a class="nav-item active" id="nav-experiences" onclick="showSection('experiences')">
                 <span class="icon">🗺️</span> Experiencias
@@ -1036,7 +1053,7 @@
             <div class="topbar">
                 <div>
                     <h1 id="topbar-title">Panel de Administración</h1>
-                    <div class="subtitle" id="topbar-subtitle">Gestiona el contenido de tu sitio Wayra</div>
+                    <div class="subtitle" id="topbar-subtitle">Gestiona el contenido de tu sitio VIVE WAYRA</div>
                 </div>
                 <div class="topbar-actions">
                     <span class="badge" id="count-badge" style="display:none;">0 items</span>
@@ -1065,8 +1082,8 @@
                             <div style="font-weight:700;font-size:15px;color:#7ddf64;margin-bottom:8px;">Archivo descargado — ahora publica los cambios</div>
                             <ol style="color:#c8e6c0;font-size:13px;line-height:1.9;margin:0;padding-left:18px;">
                                 <li>Busca el archivo descargado en tu carpeta <strong>Descargas</strong>.</li>
-                                <li>Cópialo (reemplaza) en <code style="background:#0d1f0d;padding:1px 6px;border-radius:4px;">wayra/data/</code> dentro de tu repositorio local.</li>
-                                <li>Abre una terminal <strong>en la carpeta raíz <code style="background:#0d1f0d;padding:1px 6px;border-radius:4px;">wayra/</code></strong> (no dentro de <code style="background:#0d1f0d;padding:1px 6px;border-radius:4px;">data/</code>) y ejecuta:<br>
+                                <li>Cópialo (reemplaza) en <code style="background:#0d1f0d;padding:1px 6px;border-radius:4px;">WAYRA/data/</code> dentro de tu repositorio local.</li>
+                                <li>Abre una terminal <strong>en la carpeta raíz <code style="background:#0d1f0d;padding:1px 6px;border-radius:4px;">WAYRA/</code></strong> (no dentro de <code style="background:#0d1f0d;padding:1px 6px;border-radius:4px;">data/</code>) y ejecuta:<br>
                                     <code style="background:#0d1f0d;padding:3px 8px;border-radius:4px;display:inline-block;margin-top:4px;">git add .; git commit -m "actualizar contenido"; git push</code>
                                 </li>
                                 <li>Vercel detecta el push y redespliega automáticamente en ~1 minuto.</li>
@@ -1255,7 +1272,7 @@
                                 style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;">
                                 <h3 style="margin:0 0 16px;font-size:15px;font-weight:700;">🏠 Sección Hero</h3>
                                 <div class="field"><label>Título principal</label><input class="input"
-                                        id="cfg-hero-title" type="text" placeholder="WAYRA" /></div>
+                                        id="cfg-hero-title" type="text" placeholder="VIVE WAYRA" /></div>
                                 <div class="field"><label>Subtítulo / tagline</label><input class="input"
                                         id="cfg-hero-subtitle" type="text" placeholder="El viaje que se queda." /></div>
                                 <div class="field"><label>Texto del botón CTA</label><input class="input"
@@ -2443,7 +2460,7 @@
         function openGalleryItemModal(idx) {
             editingGalleryIndex = idx;
             const isNew = idx === -1;
-            const foto = isNew ? { src: '', title: '', desc: '', cat: 'playa', aspect: '4/3', bg: 'linear-gradient(160deg,#0d3052,#1a5040)', emoji: '📷' } : galleryData.gallery[idx];
+            const foto = isNew ? { src: '', title: '', desc: '', cat: 'playa', aspect: '4/3', bg: 'linear-gradient(160deg,#0d3052,#164a8a)', emoji: '📷' } : galleryData.gallery[idx];
             document.getElementById('g-modal-title').textContent = isNew ? 'Nueva foto' : 'Editar foto';
             document.getElementById('g-field-src').value = foto.src || '';
             document.getElementById('g-field-title').value = foto.title || '';
@@ -2468,7 +2485,7 @@
             const aspect = document.getElementById('g-field-aspect').value;
             const emoji = document.getElementById('g-field-emoji').value.trim() || '📷';
             if (!title) { toast('error', '❌ El título es obligatorio'); return; }
-            const item = { src, title, desc, cat, aspect, bg: galleryData.gallery[editingGalleryIndex]?.bg || 'linear-gradient(160deg,#0d3052,#1a5040)', emoji };
+            const item = { src, title, desc, cat, aspect, bg: galleryData.gallery[editingGalleryIndex]?.bg || 'linear-gradient(160deg,#0d3052,#164a8a)', emoji };
             if (editingGalleryIndex === -1) {
                 galleryData.gallery.push(item);
             } else {
@@ -4063,3 +4080,9 @@
 </body>
 
 </html>
+
+
+
+
+
+

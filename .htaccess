@@ -1,0 +1,29 @@
+﻿SetEnv RECAPTCHA_SECRET_KEY 6LdZfI8sAAAAAG7gnJ4mIBYi_jy4TqaYPzXt2Gae
+SetEnv RECAPTCHA_MIN_SCORE 0.5
+
+RewriteEngine On
+
+# Force UTF-8 to avoid mojibake in text files.
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .html .css .js .json .xml .txt
+
+# Avoid aggressive cache on JSON so updates are visible immediately.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(json)$">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+</IfModule>
+
+# Serve existing files and directories as-is.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Allow extensionless URLs like /contacto -> /contacto.html
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+)$ $1.html [L]
+
+# Use the custom 404 page.
+ErrorDocument 404 /404.html

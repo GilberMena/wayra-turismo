@@ -1,4 +1,4 @@
-{
+﻿{
   "gallery": [
     {
       "src": "https://i.ibb.co/MDGSZXpL/94cede05-cd1f-4203-8f36-ebe7953f32f6.jpg",
@@ -129,7 +129,7 @@
     {
       "src": "https://i.ibb.co/qFCtG4mN/Whats-App-Image-2026-03-06-at-3-34-44-PM.jpg",
       "title": "Nuquí, Pacífico colombiano",
-      "desc": "Cada rincón de Nuquí guarda una historia. Descúbrela con WAYRA.",
+      "desc": "Cada rincón de Nuquí guarda una historia. Descúbrela con VIVE WAYRA.",
       "cat": "playa",
       "aspect": "4/3",
       "bg": "linear-gradient(160deg,#0d3052,#1a5040)",
@@ -155,30 +155,33 @@
     },
     {
       "src": "https://i.ibb.co/My6PyBC0/Whats-App-Image-2026-03-13-at-7-06-34-PM-1.jpg",
-      "title": "NuquÃ­, PacÃ­fico colombiano",
-      "desc": "Otro instante del PacÃ­fico colombiano: naturaleza viva, horizonte abierto y la energÃ­a tranquila de NuquÃ­.",
+      "title": "Nuquí, Pacífico colombiano",
+      "desc": "Otro instante del Pacífico colombiano: naturaleza viva, horizonte abierto y la energía tranquila de Nuquí.",
       "cat": "playa",
       "aspect": "4/3",
       "bg": "linear-gradient(160deg,#0d3052,#1a5040)",
-      "emoji": "ðŸŒŠ"
+      "emoji": "🌿"
     },
     {
       "src": "https://i.ibb.co/FLYwJHjm/Whats-App-Image-2026-03-13-at-7-06-34-PM.jpg",
-      "title": "Paisajes de NuquÃ­",
-      "desc": "Una postal mÃ¡s del PacÃ­fico: selva, playa y esa atmÃ³sfera Ãºnica que hace de NuquÃ­ un destino irrepetible.",
+      "title": "Paisajes de Nuquí",
+      "desc": "Una postal más del Pacífico: selva, playa y esa atmósfera única que hace de Nuquí un destino irrepetible.",
       "cat": "playa",
       "aspect": "4/3",
       "bg": "linear-gradient(160deg,#1a5040,#0d3052)",
-      "emoji": "ðŸ–ï¸"
+      "emoji": "🌿"
     },
     {
       "src": "https://i.ibb.co/4gDcvDn3/Whats-App-Image-2026-03-13-at-7-06-35-PM.jpg",
-      "title": "RincÃ³n del PacÃ­fico",
-      "desc": "Una imagen que resume la esencia de NuquÃ­: belleza natural, autenticidad y conexiÃ³n total con el PacÃ­fico colombiano.",
+      "title": "Rincón del Pacífico",
+      "desc": "Una imagen que resume la esencia de Nuquí: belleza natural, autenticidad y conexión total con el Pacífico colombiano.",
       "cat": "playa",
       "aspect": "4/3",
       "bg": "linear-gradient(160deg,#0a2a1e,#0d3052)",
-      "emoji": "âœ¨"
+      "emoji": "🌿"
     }
   ]
 }
+
+
+

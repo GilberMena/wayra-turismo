@@ -1,0 +1,1038 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Políticas de Privacidad y Términos de Uso — vivewayra</title>
+  <meta name="description"
+    content="Política de privacidad, tratamiento de datos personales y términos de uso de vivewayra, agencia de viajes responsable en Nuquí, Colombia.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Políticas de Privacidad y Términos de Uso | VIVE WAYRA">
+  <meta property="og:description" content="Política de privacidad y términos de uso de VIVE WAYRA, agencia de turismo responsable en Nuquí.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://vivewayra.com.co/assets/img/unicologo.png">
+  <meta property="og:url" content="https://vivewayra.com.co/politicas.html">
+  <meta property="og:site_name" content="VIVE WAYRA Turismo">
+  <meta property="og:locale" content="es_CO">
+  <link rel="icon" href="assets/img/favicon.ico" sizes="any">
+  <link rel="icon" href="assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/img/unicologo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* ----------------------------------
+       HERO
+    ---------------------------------- */
+    .pol-hero {
+      background: linear-gradient(135deg, #12345d 0%, #1e508b 60%, #4b82bd 100%);
+      padding: 70px 20px 50px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .pol-hero h1 {
+      font-family: Merriweather, serif;
+      font-size: clamp(26px, 4vw, 42px);
+      margin: 0 0 12px;
+      font-weight: 700;
+    }
+
+    .pol-hero p {
+      font-size: 15px;
+      opacity: .82;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .pol-updated {
+      display: inline-block;
+      margin-top: 14px;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      letter-spacing: .05em;
+    }
+
+    /* ----------------------------------
+       NAVEGACIÓN INTERNA (tabs)
+    ---------------------------------- */
+    .pol-tabs {
+      background: #fff;
+      border-bottom: 2px solid #f0ece4;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .pol-tabs-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      gap: 0;
+    }
+
+    .pol-tab-btn {
+      padding: 16px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: Montserrat, sans-serif;
+      color: var(--muted);
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      transition: color .2s, border-color .2s;
+      white-space: nowrap;
+      margin-bottom: -2px;
+    }
+
+    .pol-tab-btn:hover { color: var(--green); }
+
+    .pol-tab-btn.active {
+      color: var(--green);
+      border-bottom-color: var(--green);
+    }
+
+    /* ----------------------------------
+       CONTENIDO
+    ---------------------------------- */
+    .pol-body {
+      background: #fafaf8;
+      min-height: 60vh;
+      padding: 48px 0 80px;
+    }
+
+    .pol-section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: none;
+    }
+
+    .pol-section.active { display: block; }
+
+    /* Índice de secciones */
+    .pol-index {
+      background: #fff;
+      border: 1px solid #e8e4dc;
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 36px;
+    }
+
+    .pol-index p {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 10px;
+    }
+
+    .pol-index ol {
+      margin: 0;
+      padding-left: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 20px;
+    }
+
+    @media (max-width: 560px) {
+      .pol-index ol { grid-template-columns: 1fr; }
+    }
+
+    .pol-index ol li a {
+      font-size: 13px;
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .pol-index ol li a:hover { text-decoration: underline; }
+
+    /* Artículos */
+    .pol-article {
+      background: #fff;
+      border: 1px solid #e8e4dc;
+      border-radius: 14px;
+      margin-bottom: 14px;
+      overflow: hidden;
+      scroll-margin-top: 80px;
+      transition: box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .pol-article:hover {
+      border-color: #d3deeb;
+      box-shadow: 0 10px 30px rgba(24, 62, 104, .12);
+    }
+
+    .pol-article h2 {
+      font-family: Merriweather, serif;
+      font-size: 18px;
+      margin: 0;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pol-acc-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 22px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      cursor: pointer;
+      text-align: left;
+      color: inherit;
+      font: inherit;
+    }
+
+    .pol-acc-trigger:hover {
+      background: #fcfbf8;
+    }
+
+    .pol-acc-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .pol-acc-icons {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+      color: var(--logo-blue-dark);
+    }
+
+    .pol-acc-plus {
+      font-size: 28px;
+      font-weight: 300;
+      line-height: 1;
+      transition: transform .25s ease;
+    }
+
+    .pol-acc-chevron {
+      font-size: 24px;
+      line-height: 1;
+      transition: transform .25s ease;
+    }
+
+    .pol-article.open .pol-acc-plus {
+      transform: rotate(45deg);
+    }
+
+    .pol-article.open .pol-acc-chevron {
+      transform: rotate(90deg);
+    }
+
+    .pol-acc-body {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 24px;
+      transition: max-height .35s ease, padding .25s ease;
+    }
+
+    .pol-article.open .pol-acc-body {
+      max-height: 2000px;
+      padding: 0 24px 24px;
+    }
+
+    @media (max-width: 500px) {
+      .pol-acc-trigger {
+        padding: 18px 16px;
+      }
+
+      .pol-article.open .pol-acc-body,
+      .pol-acc-body {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .pol-article.open .pol-acc-body {
+        padding-bottom: 18px;
+      }
+    }
+
+    .pol-art-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: var(--green);
+      color: #fff;
+      border-radius: 50%;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: Montserrat, sans-serif;
+      flex-shrink: 0;
+    }
+
+    .pol-acc-body p, .pol-acc-body li {
+      font-size: 14.5px;
+      color: #444;
+      line-height: 1.8;
+    }
+
+    .pol-acc-body ul, .pol-acc-body ol {
+      padding-left: 22px;
+      margin: 10px 0;
+    }
+
+    .pol-acc-body ul li, .pol-acc-body ol li {
+      margin-bottom: 6px;
+    }
+
+    .pol-acc-body strong {
+      color: var(--text);
+    }
+
+    .pol-acc-body a {
+      color: var(--green);
+    }
+
+    .pol-highlight {
+      background: #eef5fc;
+      border-left: 4px solid var(--green);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin: 14px 0;
+      font-size: 13.5px;
+      color: #244f82;
+      line-height: 1.7;
+    }
+
+    .pol-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      margin: 14px 0;
+    }
+
+    .pol-table th {
+      background: #f5f2ec;
+      font-weight: 700;
+      text-align: left;
+      padding: 10px 14px;
+      border: 1px solid #e0ddd6;
+      color: var(--text);
+    }
+
+    .pol-table td {
+      padding: 9px 14px;
+      border: 1px solid #e0ddd6;
+      vertical-align: top;
+      color: #444;
+    }
+
+    .pol-table tr:nth-child(even) td { background: #fafaf8; }
+
+    /* Contacto DPO */
+    .pol-contact-box {
+      background: linear-gradient(135deg, #eef5fc, #e1eefb);
+      border: 1px solid #bed4ec;
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-top: 12px;
+    }
+
+    .pol-contact-box p {
+      margin: 4px 0;
+      font-size: 14px;
+      color: #2c588d;
+    }
+
+    .pol-contact-box a {
+      color: var(--logo-blue-dark);
+      font-weight: 600;
+    }
+  </style>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2179158445822195');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2179158445822195&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+</head>
+
+<body>
+  <!-- ---------- HEADER ---------- -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img id="site-logo" src="assets/img/unicologo.png" alt="vivewayra Logo">
+      </a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="#" id="btn-quienes-somos" onclick="abrirQuienesSomos(event)">Quiénes somos</a>
+        <a href="experiencias.html">Experiencias</a>
+        <a href="hoteles.html">Hoteles</a>
+        <a href="galeria.html">Galería</a>
+        <a href="plans-nuqui.html">Planes turísticos en Nuquí</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+      <div class="header-actions">
+        <a href="https://www.facebook.com/profile.php?id=61587257972289" class="social-brand-link fb-link"
+          aria-label="Facebook" target="_blank" rel="noopener" data-fb-link>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true">
+            <path d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z"/>
+          </svg>
+          <span>Síguenos</span>
+        </a>
+        <a href="https://www.instagram.com/vivewayra/" class="social-brand-link ig-link"
+          aria-label="Instagram" target="_blank" rel="noopener" data-ig-link>
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+            <defs>
+              <linearGradient id="ig-grad-pol" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#f09433"/>
+                <stop offset="50%" stop-color="#dc2743"/>
+                <stop offset="100%" stop-color="#bc1888"/>
+              </linearGradient>
+            </defs>
+            <path fill="url(#ig-grad-pol)"
+              d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z"/>
+          </svg>
+          <span>Síguenos</span>
+        </a>
+        <a href="https://www.tiktok.com/@vivewayra?_r=1&_t=ZS-94bh44eR05p" class="social-brand-link tt-link"
+          aria-label="Siguenos en TikTok" target="_blank" rel="noopener" data-tt-link>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M16.8 2H13.9v11.74a3.02 3.02 0 1 1-2.39-2.95V7.84a5.93 5.93 0 1 0 5.29 5.9V7.68A7.2 7.2 0 0 0 21 9.05V6.14a4.45 4.45 0 0 1-4.2-4.14z"/>
+          </svg>
+          <span>Siguenos</span>
+        </a>
+        <button class="nav-toggle" aria-label="Abrir navegación"><span class="nav-toggle-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ---------- HERO ---------- -->
+    <div class="pol-hero">
+      <div class="container">
+        <h1>Políticas del Sitio</h1>
+        <p>Información sobre el tratamiento de tus datos personales, privacidad y las condiciones que rigen el uso de nuestros servicios.</p>
+        <span class="pol-updated">Última actualización: 2 de marzo de 2026</span>
+      </div>
+    </div>
+
+    <!-- ---------- TABS ---------- -->
+    <div class="pol-tabs">
+      <div class="pol-tabs-inner">
+        <button class="pol-tab-btn active" data-target="tab-privacidad">🔒 Política de Privacidad</button>
+        <button class="pol-tab-btn" data-target="tab-terminos">📋 Términos de Uso</button>
+      </div>
+    </div>
+
+    <!-- ---------- CONTENIDO ---------- -->
+    <div class="pol-body">
+
+      <!-- -------- POLÍTICA DE PRIVACIDAD -------- -->
+      <section class="pol-section active" id="tab-privacidad">
+
+        <div class="pol-index">
+          <p>Contenido</p>
+          <ol>
+            <li><a href="#priv-1">Responsable del tratamiento</a></li>
+            <li><a href="#priv-2">Datos que recopilamos</a></li>
+            <li><a href="#priv-3">Finalidad del tratamiento</a></li>
+            <li><a href="#priv-4">Base legal</a></li>
+            <li><a href="#priv-5">Derechos del titular</a></li>
+            <li><a href="#priv-6">Cookies y tecnologías similares</a></li>
+            <li><a href="#priv-7">Seguridad de los datos</a></li>
+            <li><a href="#priv-8">Transferencia a terceros</a></li>
+            <li><a href="#priv-9">Menores de edad</a></li>
+            <li><a href="#priv-10">Contacto y ejercicio de derechos</a></li>
+          </ol>
+        </div>
+
+        <!-- Art. 1 -->
+        <article class="pol-article" id="priv-1">
+          <h2><span class="pol-art-num">1</span> Responsable del tratamiento</h2>
+          <p>El responsable del tratamiento de datos personales recopilados a través de este sitio web es:</p>
+          <table class="pol-table">
+            <tr><th>Razón social / Nombre</th><td>VIVEWAYRA — Agencia de Viajes Responsable</td></tr>
+            <tr><th>NIT (según RUT DIAN)</th><td>1.077.710.175-8</td></tr>
+            <tr><th>Domicilio</th><td>Nuquí, Chocó — Colombia</td></tr>
+            <tr><th>Correo electrónico</th><td><a href="mailto:reservas@vivewayra.com.co">reservas@vivewayra.com.co</a></td></tr>
+            <tr><th>Teléfono / WhatsApp</th><td>+57 322 5225582</td></tr>
+            <tr><th>Sitio web</th><td>vivewayra.com</td></tr>
+          </table>
+        </article>
+
+        <!-- Art. 2 -->
+        <article class="pol-article" id="priv-2">
+          <h2><span class="pol-art-num">2</span> Datos que recopilamos</h2>
+          <p>Dependiendo de la interacción que tengas con nuestro sitio, podemos recopilar los siguientes tipos de datos:</p>
+          <table class="pol-table">
+            <thead>
+              <tr><th>Categoría</th><th>Datos</th><th>Origen</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Identificativos</strong></td>
+                <td>Nombre, apellidos</td>
+                <td>Formularios de contacto o reserva</td>
+              </tr>
+              <tr>
+                <td><strong>Contacto</strong></td>
+                <td>Correo electrónico, teléfono / WhatsApp</td>
+                <td>Formularios de contacto o reserva</td>
+              </tr>
+              <tr>
+                <td><strong>Viaje</strong></td>
+                <td>Fechas, número de personas, preferencias de interés</td>
+                <td>Formularios de cotización o reserva</td>
+              </tr>
+              <tr>
+                <td><strong>Navegación</strong></td>
+                <td>Páginas visitadas, tiempo de sesión, clics (datos anónimos o seudonimizados)</td>
+                <td>Cookies y scripts de analítica propios</td>
+              </tr>
+              <tr>
+                <td><strong>Técnicos</strong></td>
+                <td>Dirección IP, tipo de dispositivo, navegador</td>
+                <td>Logs del servidor y analítica</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pol-highlight">
+            No recopilamos datos especialmente sensibles (datos de salud, raza, religión, biometría, etc.) a través de este sitio web.
+          </div>
+        </article>
+
+        <!-- Art. 3 -->
+        <article class="pol-article" id="priv-3">
+          <h2><span class="pol-art-num">3</span> Finalidad del tratamiento</h2>
+          <p>Utilizamos tus datos personales para las siguientes finalidades:</p>
+          <ul>
+            <li><strong>Gestión de solicitudes y reservas:</strong> procesar consultas, cotizaciones y reservas de planes y actividades.</li>
+            <li><strong>Comunicación comercial:</strong> responder a mensajes, enviar confirmaciones y proporcionar información sobre nuestros servicios.</li>
+            <li><strong>Marketing directo:</strong> enviarte, con tu autorización previa, novedades, ofertas especiales y contenido de interés relacionado con nuestros destinos. Puedes cancelar esta suscripción en cualquier momento.</li>
+            <li><strong>Mejora del sitio:</strong> analizar el comportamiento de navegación (de forma agregada y anónima) para optimizar la experiencia de usuario.</li>
+            <li><strong>Cumplimiento legal:</strong> atender requerimientos de autoridades competentes según las leyes colombianas aplicables.</li>
+          </ul>
+        </article>
+
+        <!-- Art. 4 -->
+        <article class="pol-article" id="priv-4">
+          <h2><span class="pol-art-num">4</span> Base legal del tratamiento</h2>
+          <p>El tratamiento de tus datos se fundamenta en las siguientes bases legales, conforme a la <strong>Ley 1581 de 2012</strong> (Protección de Datos Personales) y el <strong>Decreto 1377 de 2013</strong>:</p>
+          <ul>
+            <li><strong>Consentimiento informado:</strong> al completar cualquier formulario de este sitio y hacer clic en "Enviar", otorgas tu consentimiento libre, previo, expreso e informado para el tratamiento descrito.</li>
+            <li><strong>Ejecución de un contrato:</strong> cuando solicitas una reserva o cotización, el tratamiento es necesario para gestionar dicho servicio.</li>
+            <li><strong>Interés legítimo:</strong> para actividades como la seguridad del sitio y la prevención del fraude.</li>
+            <li><strong>Obligación legal:</strong> para cumplir con disposiciones de la DIAN, el Ministerio de Comercio y otras entidades reguladoras del turismo.</li>
+          </ul>
+        </article>
+
+        <!-- Art. 5 -->
+        <article class="pol-article" id="priv-5">
+          <h2><span class="pol-art-num">5</span> Derechos del titular de los datos</h2>
+          <p>De conformidad con la Ley 1581 de 2012, tienes los siguientes derechos sobre tus datos personales:</p>
+          <ul>
+            <li><strong>Conocer, actualizar y rectificar</strong> tus datos personales.</li>
+            <li><strong>Solicitar prueba</strong> de la autorización otorgada para el tratamiento.</li>
+            <li><strong>Ser informado</strong> sobre el uso que se le ha dado a tus datos.</li>
+            <li><strong>Presentar quejas</strong> ante la Superintendencia de Industria y Comercio (SIC) por infracciones a la normativa.</li>
+            <li><strong>Revocar la autorización</strong> y/o solicitar la supresión de tus datos, siempre que no exista un deber legal o contractual que obligue a conservarlos.</li>
+            <li><strong>Acceder gratuitamente</strong> a tus datos personales que hayan sido objeto de tratamiento.</li>
+          </ul>
+          <p>Para ejercer cualquiera de estos derechos escríbenos a <a href="mailto:reservas@vivewayra.com.co">reservas@vivewayra.com.co</a> indicando en el asunto <em>"Derechos HABEAS DATA"</em>. Responderemos dentro de los plazos legales establecidos (máximo 15 días hábiles para consultas y 15 días hábiles para reclamos, prorrogables 8 días hábiles adicionales).</p>
+        </article>
+
+        <!-- Art. 6 -->
+        <article class="pol-article" id="priv-6">
+          <h2><span class="pol-art-num">6</span> Cookies y tecnologías similares</h2>
+          <p>Nuestro sitio utiliza cookies y tecnologías de seguimiento similares. A continuación se detalla su uso:</p>
+          <table class="pol-table">
+            <thead>
+              <tr><th>Tipo</th><th>Propósito</th><th>Duración</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Esenciales</strong></td>
+                <td>Funcionamiento básico del sitio (navegación, sesión)</td>
+                <td>Sesión</td>
+              </tr>
+              <tr>
+                <td><strong>Analíticas</strong></td>
+                <td>Medir el tráfico, páginas visitadas y comportamiento de usuario (datos agregados)</td>
+                <td>Hasta 2 años</td>
+              </tr>
+              <tr>
+                <td><strong>Marketing</strong></td>
+                <td>Mostrar contenido y anuncios relevantes según tu interés (sólo con consentimiento)</td>
+                <td>Variable</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>Puedes configurar tu navegador para rechazar o eliminar cookies en cualquier momento. Esto puede afectar la funcionalidad del sitio.</p>
+        </article>
+
+        <!-- Art. 7 -->
+        <article class="pol-article" id="priv-7">
+          <h2><span class="pol-art-num">7</span> Seguridad de los datos</h2>
+          <p>Adoptamos medidas técnicas y organizativas razonables para proteger tus datos personales contra accesos no autorizados, pérdida, alteración o destrucción, incluyendo:</p>
+          <ul>
+            <li>Transmisión cifrada mediante protocolo HTTPS (TLS).</li>
+            <li>Acceso restringido a los datos únicamente al personal autorizado.</li>
+            <li>Almacenamiento en plataformas con certificaciones de seguridad reconocidas.</li>
+            <li>Revisión periódica de nuestras prácticas de seguridad.</li>
+          </ul>
+          <div class="pol-highlight">
+            Ningún sistema de transmisión o almacenamiento de datos es 100 % seguro. Si detectas un incidente de seguridad relacionado con tus datos, contáctanos de inmediato.
+          </div>
+        </article>
+
+        <!-- Art. 8 -->
+        <article class="pol-article" id="priv-8">
+          <h2><span class="pol-art-num">8</span> Transferencia y comunicación a terceros</h2>
+          <p>VIVEWAYRA no vende ni alquila tus datos personales a terceros. Sin embargo, podemos compartirlos en las siguientes circunstancias:</p>
+          <ul>
+            <li><strong>Proveedores de servicios:</strong> hoteles, guías locales, operadores logísticos con los que gestionamos tu reserva (únicamente los datos imprescindibles).</li>
+            <li><strong>Plataformas tecnológicas:</strong> servicios de correo transaccional, analítica web y alojamiento que actúan como encargados del tratamiento bajo nuestras instrucciones.</li>
+            <li><strong>Autoridades competentes:</strong> cuando la ley colombiana lo exija o para proteger derechos e intereses legítimos.</li>
+          </ul>
+          <p>Cuando usas el botón de WhatsApp o compartes datos a través de dicho canal, la información queda sujeta también a la <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener">Política de Privacidad de WhatsApp / Meta</a>.</p>
+        </article>
+
+        <!-- Art. 9 -->
+        <article class="pol-article" id="priv-9">
+          <h2><span class="pol-art-num">9</span> Menores de edad</h2>
+          <p>Nuestros servicios no están dirigidos a menores de 18 años. Si eres padre, madre o tutor legal y detectas que un menor ha proporcionado datos sin autorización, contáctanos a <a href="mailto:reservas@vivewayra.com.co">reservas@vivewayra.com.co</a> para eliminar dicha información de inmediato.</p>
+          <p>En el caso de reservas que incluyan menores como viajeros, los datos recopilados de ellos estarán estrictamente limitados a los requeridos para la prestación del servicio de viaje y contarán con la autorización de su representante legal.</p>
+        </article>
+
+        <!-- Art. 10 -->
+        <article class="pol-article" id="priv-10">
+          <h2><span class="pol-art-num">10</span> Contacto y ejercicio de derechos</h2>
+          <p>Para cualquier consulta, solicitud o queja relacionada con el tratamiento de tus datos personales, puedes contactarnos por cualquiera de estos medios:</p>
+          <div class="pol-contact-box">
+            <p>📧 <strong>Correo:</strong> <a href="mailto:reservas@vivewayra.com.co">reservas@vivewayra.com.co</a> — Asunto: "Derechos HABEAS DATA"</p>
+            <p>📱 <strong>WhatsApp:</strong> <a href="https://wa.me/573225225582" target="_blank">+57 322 5225582</a></p>
+            <p>🌐 <strong>Formulario web:</strong> <a href="contacto.html">Página de Contacto</a></p>
+          </div>
+          <p style="margin-top:16px; font-size:13px; color: var(--muted);">
+            Si consideras que tu solicitud no fue atendida adecuadamente, puedes acudir a la <strong>Superintendencia de Industria y Comercio (SIC)</strong> — División de Protección de Datos Personales, en <a href="https://www.sic.gov.co" target="_blank" rel="noopener">www.sic.gov.co</a>.
+          </p>
+        </article>
+
+      </section>
+      <!-- /tab-privacidad -->
+
+
+      <!-- -------- TÉRMINOS DE USO -------- -->
+      <section class="pol-section" id="tab-terminos">
+
+        <div class="pol-index">
+          <p>Contenido</p>
+          <ol>
+            <li><a href="#term-1">Aceptación de los términos</a></li>
+            <li><a href="#term-2">Descripción del servicio</a></li>
+            <li><a href="#term-3">Uso permitido del sitio</a></li>
+            <li><a href="#term-4">Reservas y pagos</a></li>
+            <li><a href="#term-5">Cancelaciones y reembolsos</a></li>
+            <li><a href="#term-6">Responsabilidades</a></li>
+            <li><a href="#term-7">Propiedad intelectual</a></li>
+            <li><a href="#term-8">Modificación de los términos</a></li>
+            <li><a href="#term-9">Ley aplicable</a></li>
+            <li><a href="#term-10">Contacto</a></li>
+          </ol>
+        </div>
+
+        <!-- Art. 1 -->
+        <article class="pol-article" id="term-1">
+          <h2><span class="pol-art-num">1</span> Aceptación de los términos</h2>
+          <p>Al acceder y usar el sitio web de <strong>VIVEWAYRA.COM.CO</strong>, el usuario acepta íntegramente los presentes Términos de Uso. Si no estás de acuerdo con alguno de ellos, te pedimos que no utilices el Sitio.</p>
+          <p>El uso continuado del Sitio después de cualquier modificación a estos términos implica la aceptación de dichas modificaciones.</p>
+        </article>
+
+        <!-- Art. 2 -->
+        <article class="pol-article" id="term-2">
+          <h2><span class="pol-art-num">2</span> Descripción del servicio</h2>
+          <p>VIVEWAYRA es una agencia de viajes colombiana especializada en experiencias de turismo responsable en el Pacífico colombiano, principalmente en <strong>Nuquí, Chocó</strong>. A través del Sitio ofrecemos:</p>
+          <ul>
+            <li>Información sobre planes turísticos, experiencias y alojamiento en la región.</li>
+            <li>Formularios de cotización y reserva en línea.</li>
+            <li>Contenido editorial y fotografía sobre el destino.</li>
+            <li>Canales de comunicación directa con nuestro equipo.</li>
+          </ul>
+          <div class="pol-highlight">
+            La información publicada en el Sitio es de carácter orientativo. Los precios, disponibilidad e itinerarios se confirman al momento de procesar tu reserva.
+          </div>
+        </article>
+
+        <!-- Art. 3 -->
+        <article class="pol-article" id="term-3">
+          <h2><span class="pol-art-num">3</span> Uso permitido del sitio</h2>
+          <p>El usuario se compromete a usar el Sitio de forma lícita y de buena fe. Está <strong>prohibido</strong>:</p>
+          <ul>
+            <li>Usar el Sitio para fines ilegales, fraudulentos o que afecten los derechos de terceros.</li>
+            <li>Introducir virus, malware o cualquier código dañino.</li>
+            <li>Realizar ingeniería inversa, descompilar o extraer datos de forma automatizada (scraping) sin autorización escrita.</li>
+            <li>Hacerse pasar por otra persona o entidad.</li>
+            <li>Interferir con el normal funcionamiento del Sitio o sus servidores.</li>
+            <li>Publicar o transmitir contenidos difamatorios, obscenos o que inciten al odio.</li>
+          </ul>
+          <p>VIVEWAYRA se reserva el derecho de bloquear el acceso a usuarios que incumplan estas condiciones.</p>
+        </article>
+
+        <!-- Art. 4 -->
+        <article class="pol-article" id="term-4">
+          <h2><span class="pol-art-num">4</span> Reservas y pagos</h2>
+          <p>Las reservas realizadas a través del Sitio o por WhatsApp/correo se regirán por las siguientes condiciones:</p>
+          <ul>
+            <li>Una reserva se considera <strong>confirmada</strong> únicamente cuando VIVEWAYRA la acepta expresamente y el usuario ha abonado el anticipo correspondiente (generalmente el 50 % del valor total).</li>
+            <li>El valor final puede incluir impuestos (IVA), tasas de aeropuerto y cargos por servicios especiales, los cuales se detallarán en la cotización.</li>
+            <li>Los métodos de pago disponibles se informarán al momento de gestionar la reserva (transferencia bancaria, Nequi, Daviplata, tarjeta de crédito u otros habilitados).</li>
+            <li>En cumplimiento de la <strong>Ley 1480 de 2011 (Estatuto del Consumidor)</strong>, se garantizan los derechos de información, calidad y atención al usuario.</li>
+          </ul>
+        </article>
+
+        <!-- Art. 5 -->
+        <article class="pol-article" id="term-5">
+          <h2><span class="pol-art-num">5</span> Cancelaciones y política de reembolsos</h2>
+          <p>Entendemos que los planes pueden cambiar. A continuación se detalla nuestra política:</p>
+          <table class="pol-table">
+            <thead>
+              <tr><th>Antelación con que se cancela</th><th>Reembolso</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Más de 30 días antes del viaje</td><td>Reembolso del 90 % del anticipo</td></tr>
+              <tr><td>Entre 15 y 30 días antes</td><td>Reembolso del 50 % del anticipo</td></tr>
+              <tr><td>Entre 7 y 14 días antes</td><td>Reembolso del 25 % del anticipo</td></tr>
+              <tr><td>Menos de 7 días antes</td><td>Sin reembolso del anticipo</td></tr>
+              <tr><td>No presentación (no-show)</td><td>Sin reembolso</td></tr>
+            </tbody>
+          </table>
+          <div class="pol-highlight">
+            En caso de cancelación por fuerza mayor debidamente acreditada (emergencia médica, desastres naturales, cierre del destino por autoridad competente), VIVEWAYRA evaluará cada caso individualmente para ofrecer alternativas como reprogramación o crédito para futuros viajes.
+          </div>
+          <p>Para cancelar una reserva, comunícate con nosotros a <a href="mailto:reservas@vivewayra.com.co">reservas@vivewayra.com.co</a> o al <a href="https://wa.me/573225225582" target="_blank">+57 322 5225582</a>.</p>
+        </article>
+
+        <!-- Art. 6 -->
+        <article class="pol-article" id="term-6">
+          <h2><span class="pol-art-num">6</span> Limitación de responsabilidades</h2>
+          <p>VIVEWAYRA no será responsable por:</p>
+          <ul>
+            <li>Interrupciones del Sitio por causas ajenas a nuestro control (fallos de red, ataques externos, mantenimiento).</li>
+            <li>Pérdidas derivadas del uso indebido de la información publicada en el Sitio.</li>
+            <li>Eventos de fuerza mayor que impidan la realización del viaje (fenómenos climáticos extremos, cierres de vías, paros, pandemias declaradas).</li>
+            <li>Daños, lesiones o pérdidas durante actividades de alto riesgo inherente a la naturaleza (avistamiento de fauna silvestre, actividades acuáticas, senderismo) cuando se hayan adoptado las medidas de seguridad estándar.</li>
+            <li>El contenido de sitios web de terceros enlazados desde el Sitio.</li>
+          </ul>
+          <p>Nuestra responsabilidad máxima en caso de reclamación fundada no excederá el valor total pagado por el servicio objeto del reclamo.</p>
+        </article>
+
+        <!-- Art. 7 -->
+        <article class="pol-article" id="term-7">
+          <h2><span class="pol-art-num">7</span> Propiedad intelectual</h2>
+          <p>Todos los contenidos del Sitio —incluyendo textos, imágenes, fotografías, logotipos, diseños, videos y código fuente— son propiedad de VIVEWAYRA o de sus licenciantes, y están protegidos por las leyes colombianas de propiedad intelectual y derechos de autor.</p>
+          <p>Queda <strong>prohibido</strong> reproducir, distribuir, modificar, comunicar públicamente o transformar cualquier contenido del Sitio sin autorización escrita previa de VIVEWAYRA, salvo para uso personal y no comercial.</p>
+          <p>El nombre comercial <strong>VIVEWAYRA</strong> y sus variaciones son marcas registradas o en trámite de registro. Su uso no autorizado puede dar lugar a acciones legales.</p>
+        </article>
+
+        <!-- Art. 8 -->
+        <article class="pol-article" id="term-8">
+          <h2><span class="pol-art-num">8</span> Modificación de los términos</h2>
+          <p>VIVEWAYRA se reserva el derecho de modificar estos Términos de Uso en cualquier momento. Las modificaciones entrarán en vigor desde su publicación en el Sitio. La versión vigente siempre estará disponible en esta página con la fecha de última actualización.</p>
+          <p>Si realizas una reserva o continúas usando el Sitio tras la publicación de los cambios, se entenderá que los aceptas.</p>
+        </article>
+
+        <!-- Art. 9 -->
+        <article class="pol-article" id="term-9">
+          <h2><span class="pol-art-num">9</span> Ley aplicable y jurisdicción</h2>
+          <p>Estos Términos de Uso se rigen por las leyes de la <strong>República de Colombia</strong>. Para cualquier controversia derivada del uso del Sitio o de los servicios prestados, las partes se someterán, en primera instancia, a una negociación directa y amigable. De no resolverse, se acudirá a los jueces y tribunales competentes del domicilio del prestador del servicio, conforme a la normativa colombiana vigente.</p>
+          <p>Normativa de referencia:</p>
+          <ul>
+            <li>Ley 1581 de 2012 — Protección de Datos Personales.</li>
+            <li>Ley 1480 de 2011 — Estatuto del Consumidor.</li>
+            <li>Ley 527 de 1999 — Comercio electrónico.</li>
+            <li>Decreto 2438 de 2010 — Reglamentación turismo.</li>
+            <li>Ley 300 de 1996 — Ley General de Turismo (y sus modificaciones).</li>
+          </ul>
+        </article>
+
+        <!-- Art. 10 -->
+        <article class="pol-article" id="term-10">
+          <h2><span class="pol-art-num">10</span> Contacto</h2>
+          <p>Si tienes dudas sobre estos Términos de Uso o sobre cualquier aspecto de nuestros servicios, estamos a tu disposición:</p>
+          <div class="pol-contact-box">
+            <p>📧 <strong>Correo:</strong> <a href="mailto:reservas@vivewayra.com.co">reservas@vivewayra.com.co</a></p>
+            <p>📱 <strong>WhatsApp:</strong> <a href="https://wa.me/573225225582" target="_blank">+57 322 5225582</a></p>
+            <p>🌐 <strong>Formulario web:</strong> <a href="contacto.html">Página de Contacto</a></p>
+          </div>
+        </article>
+
+      </section>
+      <!-- /tab-terminos -->
+
+    </div><!-- /pol-body -->
+  </main>
+
+  <!-- ---------- FOOTER ---------- -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-logo-area">
+          <img id="site-logo" src="assets/img/unicologo.png" alt="vivewayra Logo">
+          <p class="footer-rnt">
+            Expertos en experiencias auténticas en el Pacífico Colombiano.<br>
+            <strong>"El viaje que se queda"</strong>
+          </p>
+          <div class="footer-contact-quick">
+            <a href="tel:+573225225582" class="contact-item" data-phone-link>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              +57 322 5225582
+            </a>
+            <a href="mailto:reservas@vivewayra.com.co" class="contact-item" data-email-link>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+              reservas@vivewayra.com.co
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Servicios</h3>
+          <ul class="footer-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="plans-nuqui.html">Planes a Nuquí</a></li>
+            <li><a href="experiencias.html">Experiencias</a></li>
+            <li><a href="hoteles.html">Hoteles</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Información</h3>
+          <ul class="footer-list">
+            <li><a href="#" onclick="abrirQuienesSomos(event)">Quiénes somos</a></li>
+            <li><a href="contacto.html">Contáctanos</a></li>
+            <li><a href="faq.html">Preguntas frecuentes</a></li>
+            <li><a href="como-llegar.html">Cómo llegar a Nuquí</a></li>
+            <li><a href="pqrs.html" style="color:#8ec2ff;font-weight:700;">Radica tu PQRS</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Redes</h3>
+          <div class="footer-social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61587257972289" class="footer-social-icon facebook"
+              aria-label="Facebook" target="_blank" rel="noopener" data-fb-link title="Facebook">
+              <svg viewBox="0 0 24 24">
+                <path d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z"/>
+              </svg>
+            </a>
+            <a href="https://wa.me/573225225582" class="footer-social-icon whatsapp" aria-label="WhatsApp"
+              target="_blank" rel="noopener" data-wa-link title="WhatsApp">
+              <svg viewBox="0 0 24 24">
+                <path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/vivewayra/" class="footer-social-icon instagram" aria-label="Instagram"
+              target="_blank" rel="noopener" data-ig-link title="Instagram">
+              <svg viewBox="0 0 24 24">
+                <path d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z"/>
+              </svg>
+            </a>
+            <a href="https://www.tiktok.com/@vivewayra?_r=1&_t=ZS-94bh44eR05p" class="footer-social-icon tiktok"
+              aria-label="TikTok" target="_blank" rel="noopener" data-tt-link title="TikTok">
+              <svg viewBox="0 0 24 24">
+                <path d="M16.8 2H13.9v11.74a3.02 3.02 0 1 1-2.39-2.95V7.84a5.93 5.93 0 1 0 5.29 5.9V7.68A7.2 7.2 0 0 0 21 9.05V6.14a4.45 4.45 0 0 1-4.2-4.14z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-badges">
+        <div class="badge">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>100% Seguro</span>
+        </div>
+        <div class="badge">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span>Agencia Certificada</span>
+        </div>
+        <div class="badge">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22C6.48 22 2 17.52 2 12s4.48-10 10-10 10 4.48 10 10-4.48 10-10 10z"/>
+            <path d="m9 16 5-5 5 5"/>
+          </svg>
+          <span>Soporte 24/7</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> VIVE WAYRA - Agencia de Viajes Responsable. Todos los derechos reservados.<br>
+          Diseñado con
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="display:inline;vertical-align:middle;margin:0 2px;">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+          por el equipo VIVE WAYRA |
+          <a href="politicas.html">Política de Privacidad</a> • <a href="politicas.html?tab=terminos">Términos de Uso</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botón flotante WhatsApp -->
+  <a href="https://wa.me/573225225582?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20planes%20a%20Nuqu%C3%AD"
+    class="wa-float" target="_blank" rel="noopener" aria-label="Contáctanos por WhatsApp" data-wa-link>
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+      <path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z"/>
+    </svg>
+    <span class="wa-float-text">¿Hablamos?</span>
+  </a>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* -- Tabs -- */
+    (function () {
+      const buttons = document.querySelectorAll('.pol-tab-btn');
+      const sections = document.querySelectorAll('.pol-section');
+
+      function activateTab(targetId) {
+        buttons.forEach(b => b.classList.toggle('active', b.dataset.target === targetId));
+        sections.forEach(s => s.classList.toggle('active', s.id === targetId));
+        const activeSection = document.getElementById(targetId);
+        const firstArticle = activeSection ? activeSection.querySelector('.pol-article') : null;
+        if (firstArticle && !activeSection.querySelector('.pol-article.open')) {
+          firstArticle.classList.add('open');
+          const firstButton = firstArticle.querySelector('.pol-acc-trigger');
+          if (firstButton) firstButton.setAttribute('aria-expanded', 'true');
+        }
+        // Actualizar URL sin recargar
+        history.replaceState(null, '', '#' + targetId);
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => activateTab(btn.dataset.target));
+      });
+
+      // Leer hash de URL al cargar o por query param
+      const params = new URLSearchParams(window.location.search);
+      const hashRaw = window.location.hash.replace('#', '');
+      const tabParam = params.get('tab');
+
+      if (hashRaw === 'tab-terminos' || tabParam === 'terminos') {
+        activateTab('tab-terminos');
+      } else if (hashRaw === 'tab-privacidad') {
+        activateTab('tab-privacidad');
+      }
+    })();
+
+    /* -- Accordion de artículos -- */
+    (function () {
+      const articles = document.querySelectorAll('.pol-article');
+
+      articles.forEach((article, index) => {
+        const heading = article.querySelector('h2');
+        if (!heading) return;
+
+        const trigger = document.createElement('button');
+        trigger.type = 'button';
+        trigger.className = 'pol-acc-trigger';
+        trigger.setAttribute('aria-expanded', index === 0 ? 'true' : 'false');
+
+        const label = document.createElement('span');
+        label.className = 'pol-acc-label';
+        label.innerHTML = heading.innerHTML;
+
+        const icons = document.createElement('span');
+        icons.className = 'pol-acc-icons';
+        icons.innerHTML = '<span class="pol-acc-plus" aria-hidden="true">+</span><span class="pol-acc-chevron" aria-hidden="true">›</span>';
+
+        trigger.append(label, icons);
+
+        const body = document.createElement('div');
+        body.className = 'pol-acc-body';
+
+        const nodes = Array.from(article.childNodes).filter(node => node !== heading);
+        nodes.forEach(node => body.appendChild(node));
+
+        article.innerHTML = '';
+        article.append(trigger, body);
+
+        const section = article.closest('.pol-section');
+        if (section?.classList.contains('active') && article === section.querySelector('.pol-article')) {
+          article.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+
+        trigger.addEventListener('click', () => {
+          const section = article.closest('.pol-section');
+          if (!section) return;
+
+          const isOpen = article.classList.contains('open');
+          section.querySelectorAll('.pol-article.open').forEach(item => {
+            item.classList.remove('open');
+            const btn = item.querySelector('.pol-acc-trigger');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+          });
+
+          if (!isOpen) {
+            article.classList.add('open');
+            trigger.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    })();
+
+    /* -- Quiénes somos stub -- */
+    function abrirQuienesSomos(e) {
+      if (e) e.preventDefault();
+      window.location.href = 'index.html#quienes-somos';
+    }
+  </script>
+
+  <script src="wayra-data.js"></script>
+  <script src="wayra-analytics.js"></script>
+  <script src="script.js"></script>
+  <script src="cookie-banner.js" defer></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

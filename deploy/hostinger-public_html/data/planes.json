@@ -1,0 +1,256 @@
+﻿{
+    "planes":  [
+                   {
+                       "id":  "plan-playa-terco",
+                       "title":  "Plan Playa Terco",
+                       "badge":  "Popular",
+                       "price":  "$1.980.000",
+                       "duration":  "3 Noches – 4 Días",
+                       "subtitle":  "Salidas grupales",
+                       "description":  "Disfruta de un espacio de descanso frente al mar, donde la tranquilidad de la costa se combina con caminatas relajantes y una conexión real con la cultura local.",
+                       "descriptionLong":  "",
+                       "includes":  [
+                                        "Tiquete aéreo ida y vuelta",
+                                        "Recibimiento en el aeropuerto de Nuquí",
+                                        "Traslado marítimo desde Nuquí – Playa Terco – Nuquí",
+                                        "Hospedaje",
+                                        "Alimentación completa: desayuno, almuerzo y cena",
+                                        "Agua disponible para tomar",
+                                        "Acompañamiento a pozo de agua Termales, Cascada Terco, Cascada del Amor y Guachalito",
+                                        "Acceso a Internet WiFi"
+                                    ],
+                       "notIncluded":  [
+                                           "Impuesto al turismo de Nuquí ($30.000)",
+                                           "Entrada a termales ($15.000)",
+                                           "Cócteles, bebidas y licores",
+                                           "Otros no especificados"
+                                       ],
+                       "notes":  "Llevar ropa ligera de playa y de expedición en la selva: vestido de baño, pantalonetas, gorros, sombreros, gafas de sol, camisas manga larga o camibusos, sudaderas o pantalones cómodos. También bloqueador, repelente y dinero en efectivo por si deseas adquirir algo en el destino, ya que no hay cajeros automáticos en la zona.",
+                       "cityPrices":  [
+                                          {
+                                              "city":  "Medellín",
+                                              "adult":  "$1.250.000",
+                                              "child":  "Consultar"
+                                          },
+                                          {
+                                              "city":  "Cali / Cartago",
+                                              "adult":  "$1.450.000",
+                                              "child":  "Consultar"
+                                          },
+                                          {
+                                              "city":  "Bogotá",
+                                              "adult":  "$1.650.000",
+                                              "child":  "Consultar"
+                                          }
+                                      ],
+                       "imagePosition":  "center",
+                       "imageFit":  "contain",
+                       "image":  "https://i.ibb.co/xtH9JSm0/Whats-App-Image-2026-03-05-at-10-53-02-PM-1.jpg",
+                       "active":  true,
+                       "photos":  [
+                                      {
+                                          "src":  "https://i.ibb.co/Q7nXcVM3/Whats-App-Image-2026-03-05-at-8-12-27-PM.jpg",
+                                          "alt":  "Playa Terco 1"
+                                      },
+                                      {
+                                          "src":  "https://i.ibb.co/FbbxSqQX/Whats-App-Image-2026-03-05-at-8-12-28-PM-1.jpg",
+                                          "alt":  "Playa Terco 2"
+                                      },
+                                      {
+                                          "src":  "https://i.ibb.co/JR7Y4DQD/Whats-App-Image-2026-03-05-at-8-12-28-PM-2.jpg",
+                                          "alt":  "Playa Terco 3"
+                                      },
+                                      {
+                                          "src":  "https://i.ibb.co/C39X8ddG/Whats-App-Image-2026-03-05-at-8-12-28-PM-3.jpg",
+                                          "alt":  "Playa Terco 4"
+                                      },
+                                      {
+                                          "src":  "https://i.ibb.co/WvmP0H00/Whats-App-Image-2026-03-05-at-8-12-28-PM.jpg",
+                                          "alt":  "Playa Terco 5"
+                                      },
+                                      {
+                                          "src":  "https://i.ibb.co/MkCjwzV7/Whats-App-Image-2026-03-05-at-10-53-01-PM-1.jpg",
+                                          "alt":  "Playa Terco 5"
+                                      },
+                                      {
+                                          "src":  "https://i.ibb.co/35pshhzv/Whats-App-Image-2026-03-05-at-10-53-01-PM-2.jpg",
+                                          "alt":  "Playa Terco 6"
+                                      },
+                                      {
+                                          "src":  "https://i.ibb.co/N6F843v1/Whats-App-Image-2026-03-05-at-10-53-01-PM.jpg",
+                                          "alt":  "Playa Terco 7"
+                                      },
+                                      {
+                                          "src":  "https://i.ibb.co/3ymzC38x/Whats-App-Image-2026-03-05-at-10-53-02-PM-1.jpg",
+                                          "alt":  "Playa Terco 8"
+                                      },
+                                      {
+                                          "src":  "https://i.ibb.co/s94sWghk/Whats-App-Image-2026-03-05-at-10-53-02-PM-2.jpg",
+                                          "alt":  "Playa Terco 9"
+                                      },
+                                      {
+                                          "src":  "https://i.ibb.co/k2ZywC5t/Whats-App-Image-2026-03-05-at-10-53-02-PM-3.jpg",
+                                          "alt":  "Playa Terco 10"
+                                      },
+                                      {
+                                          "src":  "https://i.ibb.co/GQsQJrLs/Whats-App-Image-2026-03-05-at-10-53-02-PM-4.jpg",
+                                          "alt":  "Playa Terco 11"
+                                      },
+                                      {
+                                          "src":  "https://i.ibb.co/Q3nGw3pR/Whats-App-Image-2026-03-05-at-10-53-02-PM-5.jpg",
+                                          "alt":  "Playa Terco 12"
+                                      },
+                                      {
+                                          "src":  "https://i.ibb.co/mrsTr4QY/Whats-App-Image-2026-03-05-at-10-53-02-PM.jpg",
+                                          "alt":  "Playa Terco 13"
+                                      },
+                                      {
+                                          "src":  "https://i.ibb.co/pBsH43ZL/Whats-App-Image-2026-03-05-at-11-08-55-PM.jpg",
+                                          "alt":  "Playa Terco 14"
+                                      }
+                                  ],
+                       "nightAdditional":  {
+                                               "adult":  "$280.000",
+                                               "child":  "$200.000"
+                                           },
+                       "priceAdult":  "$1.980.000",
+                       "priceChild":  "$1.620.000",
+                       "priceTabs":  [
+                                         {
+                                             "tab":  "Desde Medellín, Cali o Cartago",
+                                             "adult":  "$1.980.000",
+                                             "child":  "$1.620.000",
+                                             "nightAdult":  "$280.000",
+                                             "nightChild":  "$200.000"
+                                         },
+                                         {
+                                             "tab":  "Desde Bogotá",
+                                             "adult":  "$2.180.000",
+                                             "child":  "$1.800.000",
+                                             "nightAdult":  "$280.000",
+                                             "nightChild":  "$200.000"
+                                         }
+                                     ]
+                   },
+                   {
+                       "id":  "surfnuqui",
+                       "title":  "SurfNuqui",
+                       "badge":  "⭐ Todo El Año",
+                       "price":  "$1.450.000",
+                       "duration":  "3 días / 2 noches",
+                       "subtitle":  "Jul – Oct",
+                       "description":  "Vive la adrenalina del surf en las olas del Pacífico colombiano. En Nuquí te esperan playas salvajes, naturaleza pura y una experiencia inolvidable.",
+                       "descriptionLong":  "",
+                       "includes":  [
+                                        "Salida en bote con guía especializado",
+                                        "Alojamiento 2 noches en cabaña eco",
+                                        "Desayunos incluidos",
+                                        "Equipo de snorkel"
+                                    ],
+                       "notIncluded":  [
+
+                                       ],
+                       "notes":  "",
+                       "image":  "",
+                       "cityPrices":  [
+                                          {
+                                              "city":  "Medellín",
+                                              "adult":  "$1.450.000",
+                                              "child":  "Consultar"
+                                          },
+                                          {
+                                              "city":  "Cali / Cartago",
+                                              "adult":  "$1.650.000",
+                                              "child":  "Consultar"
+                                          },
+                                          {
+                                              "city":  "Bogotá",
+                                              "adult":  "$1.850.000",
+                                              "child":  "Consultar"
+                                          }
+                                      ],
+                       "active":  true,
+                       "nightAdditional":  {
+                                               "adult":  "Consultar",
+                                               "child":  "Consultar"
+                                           },
+                       "priceAdult":  "$1.450.000",
+                       "priceChild":  "Consultar",
+                       "priceTabs":  [
+                                         {
+                                             "tab":  "Desde Medellín, Cali o Cartago",
+                                             "adult":  "$1.450.000",
+                                             "child":  "Consultar",
+                                             "nightAdult":  "Consultar",
+                                             "nightChild":  "Consultar"
+                                         },
+                                         {
+                                             "tab":  "Desde Bogotá",
+                                             "adult":  "$1.850.000",
+                                             "child":  "Consultar",
+                                             "nightAdult":  "Consultar",
+                                             "nightChild":  "Consultar"
+                                         }
+                                     ]
+                   },
+                   {
+                       "id":  "vive-la-danza-y-el-tamborito",
+                       "title":  "Vive La Danza Y El Tamborito",
+                       "badge":  "Tradición",
+                       "price":  "$1.250.000",
+                       "duration":  "3 días / 2 noches",
+                       "subtitle":  "",
+                       "description":  "Siente el ritmo del Pacífico. Aprende danza y tamborito junto a portadores de tradición en Nuquí, descubre la historia de estos ritmos y comparte una experiencia cultural auténtica con la comunidad.",
+                       "descriptionLong":  "",
+                       "includes":  [
+
+                                    ],
+                       "notIncluded":  [
+
+                                       ],
+                       "notes":  "",
+                       "image":  "",
+                       "cityPrices":  [
+                                          {
+                                              "city":  "Medellín",
+                                              "adult":  "$1.250.000",
+                                              "child":  "Consultar"
+                                          },
+                                          {
+                                              "city":  "Cali / Cartago",
+                                              "adult":  "$1.450.000",
+                                              "child":  "Consultar"
+                                          },
+                                          {
+                                              "city":  "Bogotá",
+                                              "adult":  "$1.650.000",
+                                              "child":  "Consultar"
+                                          }
+                                      ],
+                       "active":  true,
+                       "nightAdditional":  {
+                                               "adult":  "Consultar",
+                                               "child":  "Consultar"
+                                           },
+                       "priceAdult":  "$1.250.000",
+                       "priceChild":  "Consultar",
+                       "priceTabs":  [
+                                         {
+                                             "tab":  "Desde Medellín, Cali o Cartago",
+                                             "adult":  "$1.250.000",
+                                             "child":  "Consultar",
+                                             "nightAdult":  "Consultar",
+                                             "nightChild":  "Consultar"
+                                         },
+                                         {
+                                             "tab":  "Desde Bogotá",
+                                             "adult":  "$1.650.000",
+                                             "child":  "Consultar",
+                                             "nightAdult":  "Consultar",
+                                             "nightChild":  "Consultar"
+                                         }
+                                     ]
+                   }
+               ]
+}
+

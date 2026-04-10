@@ -1,0 +1,725 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería – Nuquí en imágenes | VIVE WAYRA</title>
+  <meta name="description" content="Galería de fotos de Nuquí, Chocó: playas, ballenas jorobadas, selva, atardeceres y cultura del Pacífico colombiano. Agencia VIVE WAYRA.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Galería de fotos – Nuquí en imágenes | VIVE WAYRA">
+  <meta property="og:description" content="Fotos de ballenas, playas de arena negra, selva tropical y cultura afropacífica. El Pacífico en toda su belleza.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://vivewayra.com.co/assets/img/unicologo.png">
+  <meta property="og:url" content="https://vivewayra.com.co/galeria.html">
+  <meta property="og:site_name" content="VIVE WAYRA Turismo">
+  <meta property="og:locale" content="es_CO">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Galería Nuquí | VIVE WAYRA">
+  <meta name="twitter:description" content="Fotos del Pacífico colombiano: ballenas, playas, selva y atardeceres.">
+  <meta name="twitter:image" content="https://vivewayra.com.co/assets/img/unicologo.png">
+  <link rel="icon" href="assets/img/unicologo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* -- HERO GALERÍA -- */
+    .g-hero-wrap {
+      background-color: #0a3a28;
+      background-image: url('https://i.ibb.co/1f61PGzN/94cede05-cd1f-4203-8f36-ebe7953f32f6.jpg') !important;
+      background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      position: relative; overflow: hidden;
+      color: #fff; padding: 90px 20px 100px; text-align: center;
+    }
+    .g-hero-wrap::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.4) 100%);
+      pointer-events: none; z-index: 0;
+    }
+    .g-hero-wrap > * { position: relative; z-index: 1; }
+    .g-hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
+      backdrop-filter: blur(6px); color: #fff; font-size: 12px; font-weight: 700;
+      letter-spacing: 1.2px; text-transform: uppercase; padding: 5px 16px;
+      border-radius: 20px; margin-bottom: 20px;
+    }
+    .g-hero-wrap h1 {
+      font-family: Merriweather, serif; font-size: 52px; margin: 0 0 16px;
+      line-height: 1.15; text-shadow: 0 2px 24px rgba(0,0,0,.5);
+    }
+    .g-hero-wrap .lead {
+      font-size: 19px; color: rgba(255,255,255,.9); max-width: 600px;
+      margin: 0 auto 32px; line-height: 1.75; text-shadow: 0 1px 8px rgba(0,0,0,.4);
+    }
+    .g-hero-actions {
+      display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px;
+    }
+    .g-btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #2f80ed, #1f5fbf); color: #fff;
+      padding: 14px 30px; border-radius: 32px; text-decoration: none;
+      font-weight: 700; font-size: 15px; box-shadow: 0 6px 24px rgba(47,128,237,.35);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .g-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(47,128,237,.45); }
+    .g-btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.15); border: 1.5px solid rgba(255,255,255,.55);
+      backdrop-filter: blur(4px); color: #fff; padding: 14px 26px; border-radius: 32px;
+      text-decoration: none; font-weight: 600; font-size: 15px; transition: background .2s;
+    }
+    .g-btn-secondary:hover { background: rgba(255,255,255,.25); }
+    .g-hero-stats {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25);
+      backdrop-filter: blur(8px); border-radius: 16px; max-width: 640px; margin: 0 auto;
+    }
+    .g-hero-stat {
+      flex: 1; min-width: 120px; padding: 16px 20px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,.15); color: #fff;
+    }
+    .g-hero-stat:last-child { border-right: none; }
+    .g-hero-stat strong { display: block; font-size: 22px; font-family: Merriweather, serif; }
+    .g-hero-stat span { font-size: 11px; color: rgba(255,255,255,.75); letter-spacing: .5px; text-transform: uppercase; }
+
+    /* -- FILTROS -- */
+    .g-filtros {
+      background: #fff; border-bottom: 1px solid #e8f0eb;
+      padding: 18px 24px; display: flex; gap: 8px; flex-wrap: wrap;
+      justify-content: center; position: sticky; top: 64px; z-index: 50;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+    .g-fil-btn {
+      padding: 8px 20px; border-radius: 24px; border: 1.5px solid #c0d8c8;
+      background: #fff; color: #2a5a3a; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all .18s ease; font-family: Montserrat, sans-serif;
+    }
+    .g-fil-btn:hover, .g-fil-btn.active {
+      background: linear-gradient(135deg, #164a8a, #0d3052);
+      color: #fff; border-color: transparent;
+      box-shadow: 0 3px 12px rgba(26,80,64,.28);
+    }
+
+    /* -- GRID -- */
+    .g-main { max-width: 1200px; margin: 0 auto; padding: 32px 20px 60px; background: #f6fdf9; }
+    .g-grid { columns: 3; column-gap: 14px; }
+    .g-item {
+      display: block; width: 100%; break-inside: avoid; margin-bottom: 14px;
+      border-radius: 14px; overflow: hidden; position: relative; cursor: pointer;
+      background: #fff; box-shadow: 0 4px 16px rgba(0,0,0,.08);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .g-item:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,.14); }
+    .g-item img { width: 100%; height: auto; display: block; transition: transform .4s ease, filter .3s; }
+    .g-item:hover img { transform: scale(1.04); filter: brightness(.88); }
+    .g-item-cap {
+      position: absolute; inset: 0; padding: 16px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      background: linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 55%);
+      opacity: 0; transition: opacity .3s;
+    }
+    .g-item:hover .g-item-cap { opacity: 1; }
+    .g-item-cap h4 { color: #fff; font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .g-item-cap p { color: rgba(255,255,255,.8); font-size: 12px; }
+    .g-cat-tag {
+      position: absolute; top: 10px; left: 10px;
+      background: rgba(0,0,0,.5); backdrop-filter: blur(4px);
+      color: #fff; font-size: 10px; font-weight: 700; letter-spacing: .5px;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 10px;
+    }
+
+    /* Placeholder */
+    .g-placeholder {
+      width: 100%; aspect-ratio: var(--aspect,4/3); background: var(--bg,#1a3028);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; color: rgba(255,255,255,.4); font-size: 12px;
+      border: 1.5px dashed rgba(255,255,255,.15); transition: border-color .25s;
+    }
+    .g-placeholder .g-ico { font-size: 38px; opacity: .65; }
+    .g-placeholder .g-ph-title { font-size: 11px; font-weight: 600; text-align: center; padding: 0 12px; line-height: 1.4; }
+    .g-placeholder .g-ph-sub { font-size: 10px; opacity: .45; letter-spacing: .3px; }
+    .g-item:hover .g-placeholder { border-color: rgba(255,255,255,.3); }
+
+    /* Animación entrada */
+    @keyframes gFadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+    .g-item { animation: gFadeIn .4s ease both; }
+
+    /* Barra de conteo */
+    .g-count-bar {
+      text-align: center; padding: 0 24px 16px;
+      color: #7a9a80; font-size: 12px; letter-spacing: .6px; text-transform: uppercase;
+    }
+
+    /* LIGHTBOX */
+    .lb-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,.95); z-index: 1000;
+      display: none; align-items: center; justify-content: center;
+      flex-direction: column; gap: 16px; padding: 20px;
+    }
+    .lb-overlay.open { display: flex; }
+    .lb-img-wrap { max-width: min(900px,90vw); max-height: 75vh; position: relative; }
+    .lb-img-wrap img { width: 100%; height: 100%; object-fit: contain; border-radius: 10px; }
+    .lb-cap { color: rgba(255,255,255,.8); text-align: center; font-size: 14px; max-width: 600px; }
+    .lb-cap strong { color: #fff; font-size: 16px; display: block; margin-bottom: 4px; }
+    .lb-close {
+      position: fixed; top: 20px; right: 24px;
+      background: rgba(255,255,255,.12); border: none; color: #fff;
+      width: 40px; height: 40px; border-radius: 50%; font-size: 20px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
+    .lb-prev, .lb-next {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,.12); border: none; color: #fff;
+      width: 44px; height: 44px; border-radius: 50%; font-size: 20px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
+    .lb-prev { left: 16px; } .lb-next { right: 16px; }
+
+    /* Sin resultados */
+    .g-empty { text-align: center; padding: 60px 24px; color: #7a9a80; }
+    .g-empty .ico { font-size: 48px; margin-bottom: 16px; }
+
+    /* CTA */
+    .g-upload-cta {
+      background: linear-gradient(135deg, #0a2a1e 0%, #164a8a 50%, #0d3052 100%);
+      border-radius: 24px; padding: 44px 32px; text-align: center; margin-top: 44px;
+      color: rgba(255,255,255,.85); position: relative; overflow: hidden;
+    }
+    .g-upload-cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 80% 20%,rgba(255,180,60,.1) 0%,transparent 55%);
+      pointer-events: none;
+    }
+    .g-upload-cta h4 { color: #fff; font-size: 22px; margin-bottom: 12px; font-family: Merriweather, serif; position: relative; }
+    .g-upload-cta p { font-size: 14px; line-height: 1.8; margin-bottom: 26px; max-width: 440px; margin-left: auto; margin-right: auto; position: relative; }
+    .g-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; }
+    .g-cta-btn-main {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #2f80ed, #1f5fbf); color: #fff;
+      padding: 14px 30px; border-radius: 32px; text-decoration: none;
+      font-weight: 700; font-size: 15px; box-shadow: 0 6px 20px rgba(47,128,237,.35);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .g-cta-btn-main:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(47,128,237,.45); }
+
+    @media(max-width:768px) {
+      .g-hero-wrap {
+        padding: 72px 16px 76px;
+      }
+      .g-hero-wrap h1 {
+        font-size: 30px;
+      }
+      .g-hero-wrap .lead {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 24px;
+      }
+      .g-hero-wrap .lead br {
+        display: none;
+      }
+      .g-hero-actions {
+        gap: 10px;
+        margin-bottom: 28px;
+      }
+      .g-btn-primary,
+      .g-btn-secondary {
+        width: 100%;
+        max-width: 360px;
+        justify-content: center;
+      }
+      .g-hero-stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 420px;
+      }
+      .g-hero-stat {
+        min-width: 0;
+        padding: 14px 12px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,.15);
+      }
+      .g-hero-stat:nth-child(odd) {
+        border-right: 1px solid rgba(255,255,255,.15);
+      }
+      .g-hero-stat:nth-last-child(-n+2) {
+        border-bottom: none;
+      }
+      .g-filtros {
+        top: 58px;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 12px 12px;
+        gap: 8px;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .g-filtros::-webkit-scrollbar {
+        display: none;
+      }
+      .g-fil-btn {
+        flex: 0 0 auto;
+        white-space: nowrap;
+      }
+      .g-main {
+        padding: 24px 14px 48px;
+      }
+      .g-grid {
+        columns: 2;
+        column-gap: 10px;
+      }
+      .g-item {
+        margin-bottom: 10px;
+        border-radius: 12px;
+      }
+      .g-upload-cta {
+        padding: 32px 20px;
+        margin-top: 28px;
+      }
+      .g-upload-cta h4 {
+        font-size: 20px;
+      }
+      .lb-prev, .lb-next { display: none; }
+    }
+    @media(max-width:480px) {
+      .g-hero-wrap {
+        padding: 64px 14px 68px;
+      }
+      .g-hero-badge {
+        font-size: 10px;
+        letter-spacing: .8px;
+        padding: 5px 12px;
+      }
+      .g-hero-wrap h1 {
+        font-size: 26px;
+      }
+      .g-hero-wrap .lead {
+        font-size: 15px;
+      }
+      .g-hero-stat strong {
+        font-size: 18px;
+      }
+      .g-hero-stat span {
+        font-size: 10px;
+      }
+      .g-grid {
+        columns: 1;
+      }
+      .lb-cap {
+        font-size: 13px;
+      }
+    }
+  </style>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2179158445822195');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2179158445822195&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img id="site-logo" src="assets/img/unicologo.png" alt="vivewayra Logo">
+      </a>
+
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="experiencias.html">Experiencias</a>
+        <a href="hoteles.html">Hoteles</a>
+        <a href="galeria.html" class="active">Galería</a>
+        <a href="plans-nuqui.html">Planes turísticos en Nuquí</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="https://www.facebook.com/profile.php?id=61587257972289" class="social-brand-link fb-link"
+          aria-label="Síguenos en Facebook" target="_blank" rel="noopener" data-fb-link>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true">
+            <path d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z"/>
+          </svg>
+          <span>Síguenos</span>
+        </a>
+        <a href="https://www.instagram.com/vivewayra/" class="social-brand-link ig-link"
+          aria-label="Síguenos en Instagram" target="_blank" rel="noopener" data-ig-link>
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+            <defs>
+              <linearGradient id="ig-grad-gal" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#f09433"/>
+                <stop offset="25%" stop-color="#e6683c"/>
+                <stop offset="50%" stop-color="#dc2743"/>
+                <stop offset="75%" stop-color="#cc2366"/>
+                <stop offset="100%" stop-color="#bc1888"/>
+              </linearGradient>
+            </defs>
+            <path fill="url(#ig-grad-gal)" d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z"/>
+          </svg>
+          <span>Síguenos</span>
+        </a>
+        <a href="https://www.tiktok.com/@vivewayra?_r=1&_t=ZS-94bh44eR05p" class="social-brand-link tt-link"
+          aria-label="Siguenos en TikTok" target="_blank" rel="noopener" data-tt-link>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M16.8 2H13.9v11.74a3.02 3.02 0 1 1-2.39-2.95V7.84a5.93 5.93 0 1 0 5.29 5.9V7.68A7.2 7.2 0 0 0 21 9.05V6.14a4.45 4.45 0 0 1-4.2-4.14z"/>
+          </svg>
+          <span>Siguenos</span>
+        </a>
+        <button class="nav-toggle" aria-label="Abrir navegación"><span class="nav-toggle-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- -- HERO GALERÍA -- -->
+    <div id="gallery-hero" class="g-hero-wrap">
+      <div>
+        <div class="g-hero-badge">Colección visual · Pacífico Colombiano</div>
+        <h1>Nuquí en imágenes</h1>
+        <p class="lead">Cada foto es un argumento. Selva, océano, ballenas,<br>atardeceres imposibles y la calidez del Pacífico.</p>
+        <div class="g-hero-actions">
+          <a class="g-btn-primary" href="https://wa.me/573225225582?text=Hola%20Vive%20Wayra%2C%20quiero%20compartir%20fotos%20de%20Nuqu%C3%AD" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z"/></svg>
+            Enviar mis fotos
+          </a>
+          <a class="g-btn-secondary" href="#galGrid">Ver galería</a>
+        </div>
+        <div class="g-hero-stats">
+          <div class="g-hero-stat"><strong>Fotos reales</strong><span>viajeros y aliados</span></div>
+          <div class="g-hero-stat"><strong>Colección visual</strong><span>de experiencias</span></div>
+          <div class="g-hero-stat"><strong>Nuquí</strong><span>Pacífico colombiano</span></div>
+          <div class="g-hero-stat"><strong>Actualizada</strong><span>constantemente</span></div>
+        </div>
+      </div>
+    </div>
+
+  <div class="g-main">
+    <div id="g-count-bar" class="g-count-bar"></div>
+    <div class="g-grid" id="galGrid">
+      <!-- Las imágenes se generan desde JavaScript -->
+    </div>
+
+    <div class="g-upload-cta">
+      <h4>¿Tienes fotos de Nuquí?</h4>
+      <p>Comparte tus imágenes con nosotros. Las mejores pueden aparecer en esta galería y en nuestras redes sociales, ¡con crédito a ti!</p>
+      <div class="g-cta-btns">
+        <a class="g-cta-btn-main" href="https://wa.me/573225225582?text=Hola%20Vive%20Wayra%2C%20quiero%20compartir%20fotos%20de%20Nuqu%C3%AD" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z"/></svg>
+          Enviar mis fotos
+        </a>
+      </div>
+    </div>
+  </div>
+
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lb-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Vista de imagen">
+    <button class="lb-close" id="lbClose" aria-label="Cerrar">×</button>
+    <button class="lb-prev" id="lbPrev" aria-label="Anterior">‹</button>
+    <div class="lb-img-wrap">
+      <img src="" alt="" id="lbImg">
+    </div>
+    <div class="lb-cap">
+      <strong id="lbTitle"></strong>
+      <span id="lbDesc"></span>
+    </div>
+    <button class="lb-next" id="lbNext" aria-label="Siguiente">›</button>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-logo-area">
+          <img id="site-logo-ft" src="assets/img/unicologo.png" alt="vivewayra Logo">
+          <p class="footer-rnt">
+            Expertos en experiencias auténticas en el Pacífico Colombiano.<br>
+            <strong>"El viaje que se queda"</strong>
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h3>Servicios</h3>
+          <ul class="footer-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="plans-nuqui.html">Planes turísticos a Nuquí</a></li>
+            <li><a href="experiencias.html">Experiencias y actividades</a></li>
+            <li><a href="hoteles.html">Mejores Hoteles</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Empresarial</h3>
+          <ul class="footer-list">
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="faq.html">Preguntas frecuentes</a></li>
+            <li><a href="como-llegar.html">Cómo llegar a Nuquí</a></li>
+            <li><a href="pqrs.html" style="color:#8ec2ff;font-weight:700;">Radica tu PQRS</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Redes Sociales</h3>
+          <div class="footer-social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61587257972289" class="footer-social-icon facebook"
+              aria-label="Facebook" target="_blank" rel="noopener" data-fb-link>
+              <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z"/></svg>
+            </a>
+            <a href="https://wa.me/573225225582" class="footer-social-icon whatsapp" aria-label="WhatsApp"
+              target="_blank" rel="noopener" data-wa-link>
+              <svg viewBox="0 0 24 24"><path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/vivewayra/" class="footer-social-icon instagram" aria-label="Instagram"
+              target="_blank" rel="noopener" data-ig-link>
+              <svg viewBox="0 0 24 24"><path d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@vivewayra?_r=1&_t=ZS-94bh44eR05p" class="footer-social-icon tiktok"
+              aria-label="TikTok" target="_blank" rel="noopener" data-tt-link>
+              <svg viewBox="0 0 24 24"><path d="M16.8 2H13.9v11.74a3.02 3.02 0 1 1-2.39-2.95V7.84a5.93 5.93 0 1 0 5.29 5.9V7.68A7.2 7.2 0 0 0 21 9.05V6.14a4.45 4.45 0 0 1-4.2-4.14z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> VIVE WAYRA. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botón flotante WhatsApp -->
+  <a href="https://wa.me/573225225582?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20planes%20a%20Nuqu%C3%AD"
+    class="wa-float" target="_blank" rel="noopener" aria-label="Contáctanos por WhatsApp" data-wa-link>
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+      <path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z"/>
+    </svg>
+    <span class="wa-float-text">¿Hablamos?</span>
+  </a>
+
+  <script src="wayra-data.js?v=3"></script>
+  <script>
+    // --- CATÁLOGO DE IMÁGENES ----------------------------------------------
+    // Editá las fotos desde el Admin ? Galería del panel en /admin/
+    // Las fotos se cargan automáticamente de data/gallery.json
+    let FOTOS = [
+      {
+        src: 'https://i.ibb.co/MDGSZXpL/94cede05-cd1f-4203-8f36-ebe7953f32f6.jpg',
+        title: 'Atardecer en Guachalito',
+        desc: 'El sol se cuela entre los morros mientras la gente disfruta la orilla. Guachalito, uno de los rincones más hermosos del Pacífico colombiano.',
+        cat: 'playa', aspect: '4/3',
+        bg: 'linear-gradient(160deg,#6a3a00,#0d3052)',
+        emoji: '🏖️'
+      },
+      {
+        src: 'https://i.ibb.co/JRPDxPGh/Whats-App-Image-2026-03-05-at-7-24-47-PM.jpg',
+        title: 'Cielo pintado en playa Termales',
+        desc: 'El cielo de Termales se convierte en un lienzo al caer la tarde. Naranjas, rojos y violetas sobre el Pacífico.',
+        cat: 'playa', aspect: '4/3',
+        bg: 'linear-gradient(160deg,#8a3a00,#0d3052)',
+        emoji: '🌅'
+      },
+      {
+        src: 'https://i.ibb.co/j9qF0FbJ/Whats-App-Image-2026-03-05-at-7-25-20-PM.jpg',
+        title: 'Los morros de Guachalito',
+        desc: 'Las imponentes rocas que vigilan la playa de Guachalito son una de las imágenes más icónicas del Pacífico colombiano.',
+        cat: 'playa', aspect: '4/3',
+        bg: 'linear-gradient(160deg,#0d3052,#1a4030)',
+        emoji: '🏝️'
+      },
+      {
+        src: 'https://i.ibb.co/WRZnQjj/Whats-App-Image-2026-03-05-at-7-27-00-PM.jpg',
+        title: 'Termales: cielo y arena',
+        desc: 'Playa Termales al atardecer. El cielo se pinta de colores imposibles y la arena negra refleja los últimos rayos del sol.',
+        cat: 'playa', aspect: '16/9',
+        bg: 'linear-gradient(160deg,#6a1a00,#0d3052)',
+        emoji: '🌊'
+      },
+      {
+        src: 'https://i.ibb.co/PGdF3Ppf/Whats-App-Image-2026-03-05-at-7-27-04-PM.jpg',
+        title: 'Mar abierto en el Pacífico',
+        desc: 'Horizonte infinito frente a las playas de Nuquí. Un recordatorio de lo pequeños que somos ante el océano.',
+        cat: 'playa', aspect: '16/9',
+        bg: 'linear-gradient(160deg,#0d3052,#6a3a00)',
+        emoji: '🌊'
+      },
+      {
+        src: 'https://i.ibb.co/Pzxk6gS7/Whats-App-Image-2026-03-05-at-7-28-36-PM.jpg',
+        title: 'Playa tranquila en Nuquí',
+        desc: 'Entre semana las playas de Nuquí son casi desiertas. Arena, selva y océano para ti solo.',
+        cat: 'playa', aspect: '4/3',
+        bg: 'linear-gradient(160deg,#1a4a2e,#0d3052)',
+        emoji: '🏖️'
+      },
+      {
+        src: 'https://i.ibb.co/fRScGpf/Whats-App-Image-2026-03-05-at-7-29-58-PM.jpg',
+        title: 'Olas del Pacífico, Nuquí',
+        desc: 'Las olas del Pacífico llegan poderosas y constantes. Ideal para surf, bodyboard o simplemente contemplar.',
+        cat: 'playa', aspect: '4/3',
+        bg: 'linear-gradient(160deg,#0d3052,#164a8a)',
+        emoji: '🌊'
+      },
+      {
+        src: 'https://i.ibb.co/vCQB4KcK/Whats-App-Image-2026-03-05-at-7-38-37-PM.jpg',
+        title: 'Anochecer en playa Termales',
+        desc: 'Cuando el día se despide en Termales, el cielo y el mar se funden en una paleta de colores que no se olvida.',
+        cat: 'playa', aspect: '4/3',
+        bg: 'linear-gradient(160deg,#1a0a2e,#0d3052)',
+        emoji: '🌅'
+      }
+    ];
+
+    let currentIndex = 0;
+    let filtered = [...FOTOS];
+
+    // Si gallery.json tiene fotos, las usamos en lugar del array local
+    if (typeof loadGallery === 'function') {
+      loadGallery(function(fotos) {
+        if (fotos && fotos.length) {
+          FOTOS = fotos;
+          filtered = [...FOTOS];
+          renderGrid(FOTOS);
+        }
+      });
+    }
+
+    // --- RENDERIZAR GRID --------------------------------------------------
+    function renderGrid(items) {
+      const grid = document.getElementById('galGrid');
+      const countBar = document.getElementById('g-count-bar');
+      if (items.length === 0) {
+        grid.innerHTML = `<div class="g-empty" style="column-span:all;"><div class="ico">🖼️</div><p>No hay fotos en esta categoría aún.</p></div>`;
+        if (countBar) countBar.textContent = '';
+        return;
+      }
+      const withImg = items.filter(f => f.src).length;
+      if (countBar) {
+        countBar.textContent = withImg === items.length
+          ? `${items.length} foto${items.length !== 1 ? 's' : ''}`
+          : `${withImg} foto${withImg !== 1 ? 's' : ''}  ·  ${items.length - withImg} próximamente`;
+      }
+      grid.innerHTML = items.map((foto, i) => {
+        const aspect = foto.aspect || '4/3';
+        const imgContent = foto.src
+          ? `<img src="${foto.src}" alt="${foto.title}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+             <div class="g-placeholder" style="--aspect:${aspect};--bg:${foto.bg};display:none">
+               <div class="g-ico">${foto.emoji}</div>
+               <span class="g-ph-title">${foto.title}</span>
+               <small class="g-ph-sub">Próximamente</small>
+             </div>`
+          : `<div class="g-placeholder" style="--aspect:${aspect};--bg:${foto.bg};">
+               <div class="g-ico">${foto.emoji}</div>
+               <span class="g-ph-title">${foto.title}</span>
+               <small class="g-ph-sub">Próximamente</small>
+             </div>`;
+        return `
+          <div class="g-item" data-index="${i}" data-cat="${foto.cat}" role="button" tabindex="0" aria-label="${foto.title}" style="animation-delay:${Math.min(i,8)*45}ms">
+            ${imgContent}
+            <div class="g-item-cap">
+              <h4>${foto.title}</h4>
+              <p>${foto.desc}</p>
+            </div>
+            <span class="g-cat-tag">${catLabel(foto.cat)}</span>
+          </div>`;
+      }).join('');
+
+      // Eventos click
+      grid.querySelectorAll('.g-item').forEach(el => {
+        el.addEventListener('click', () => openLightbox(parseInt(el.dataset.index)));
+        el.addEventListener('keydown', e => { if(e.key==='Enter') openLightbox(parseInt(el.dataset.index)); });
+      });
+    }
+
+    function catLabel(cat) {
+      const map = { playa:'Playas', ballenas:'Ballenas', selva:'Selva', experiencias:'Experiencias', cultura:'Cultura', hoteles:'Alojamiento' };
+      return map[cat] || cat;
+    }
+
+    // --- FILTROS ----------------------------------------------------------
+    document.querySelectorAll('.g-fil-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.g-fil-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.dataset.cat;
+        filtered = cat === 'all' ? [...FOTOS] : FOTOS.filter(f => f.cat === cat);
+        renderGrid(filtered);
+      });
+    });
+
+    // --- LIGHTBOX ---------------------------------------------------------
+    function openLightbox(index) {
+      currentIndex = index;
+      const foto = filtered[index];
+      const lb = document.getElementById('lightbox');
+      const img = document.getElementById('lbImg');
+      const title = document.getElementById('lbTitle');
+      const desc = document.getElementById('lbDesc');
+
+      if (foto.src) {
+        img.src = foto.src;
+        img.alt = foto.title;
+        img.style.display = '';
+      } else {
+        img.style.display = 'none';
+      }
+      title.textContent = foto.title;
+      desc.textContent = foto.desc;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('lbClose').addEventListener('click', closeLightbox);
+    document.getElementById('lightbox').addEventListener('click', e => { if(e.target.id==='lightbox') closeLightbox(); });
+    document.getElementById('lbPrev').addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + filtered.length) % filtered.length;
+      openLightbox(currentIndex);
+    });
+    document.getElementById('lbNext').addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % filtered.length;
+      openLightbox(currentIndex);
+    });
+    document.addEventListener('keydown', e => {
+      if (!document.getElementById('lightbox').classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') document.getElementById('lbPrev').click();
+      if (e.key === 'ArrowRight') document.getElementById('lbNext').click();
+    });
+
+    // --- INIT -------------------------------------------------------------
+    // Render inicial con datos locales; loadGallery() sobrescribe si hay JSON
+    renderGrid(FOTOS);
+  </script>
+  <script src="wayra-analytics.js" defer></script>
+  <script src="script.js"></script>
+  <script src="cookie-banner.js" defer></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

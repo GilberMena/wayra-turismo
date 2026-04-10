@@ -32,10 +32,10 @@ function freshFetch(url, options = {}) {
    EXPERIENCES
 ════════════════════════════════════════════════════ */
 function loadExperiences(callback) {
-  freshFetch(DATA_PATH + 'experiences.json')
+  freshFetch(DATA_PATH + 'experiences.json', { alwaysFresh: true })
     .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(json => callback(json.experiences || []))
-    .catch(err => { console.warn('[wayra-data] experiences.json:', err.message); callback(null); });
+    .catch(err => { console.warn('[WAYRA-data] experiences.json:', err.message); callback(null); });
 }
 
 /* ════════════════════════════════════════════════════
@@ -45,7 +45,7 @@ function loadHotels(callback) {
   freshFetch(DATA_PATH + 'hotels.json')
     .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(json => callback(json.hotels || []))
-    .catch(err => { console.warn('[wayra-data] hotels.json:', err.message); callback(null); });
+    .catch(err => { console.warn('[WAYRA-data] hotels.json:', err.message); callback(null); });
 }
 
 /* ════════════════════════════════════════════════════
@@ -55,7 +55,7 @@ function loadPlanes(callback) {
   freshFetch(DATA_PATH + 'planes.json')
     .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(json => callback((json.planes || []).filter(p => p.active !== false)))
-    .catch(err => { console.warn('[wayra-data] planes.json:', err.message); callback(null); });
+    .catch(err => { console.warn('[WAYRA-data] planes.json:', err.message); callback(null); });
 }
 
 /* ════════════════════════════════════════════════════
@@ -65,7 +65,7 @@ function loadConfig(callback) {
   freshFetch(DATA_PATH + 'config.json', { alwaysFresh: true })
     .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(json => callback(json.config || {}))
-    .catch(err => { console.warn('[wayra-data] config.json:', err.message); callback(null); });
+    .catch(err => { console.warn('[WAYRA-data] config.json:', err.message); callback(null); });
 }
 
 /* ════════════════════════════════════════════════════
@@ -75,7 +75,7 @@ function loadGallery(callback) {
   freshFetch(DATA_PATH + 'gallery.json', { alwaysFresh: true })
     .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(json => callback(json.gallery || []))
-    .catch(err => { console.warn('[wayra-data] gallery.json:', err.message); callback(null); });
+    .catch(err => { console.warn('[WAYRA-data] gallery.json:', err.message); callback(null); });
 }
 
 /* ════════════════════════════════════════════════════
@@ -90,6 +90,8 @@ function renderExperienceCards(experiences, containerId, maxCards) {
     return;
   }
   container.innerHTML = list.map(exp => {
+    const detailType = exp.detailType || 'exp';
+    const detailId = exp.id || exp.slug || exp._id || '';
     const bg = exp.image ? `url('${exp.image}')` : 'linear-gradient(135deg,#2d6a4f,#1a4030)';
     return `<article class="card act-card">
         <div class="card-image act-img" style="background-image:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.22)),${bg};background-size:cover;background-position:center;">
@@ -98,7 +100,7 @@ function renderExperienceCards(experiences, containerId, maxCards) {
         <div class="act-body">
           <h3>${exp.title || ''}</h3>
           <p>${exp.description || ''}</p>
-          <a class="btn-act-plan" href="detail.html?type=exp&id=${exp.id}">Ver plan <span style="font-size:15px;line-height:1">→</span></a>
+          <a class="btn-act-plan" href="detail.html?v=20260325r2&type=${detailType}&id=${encodeURIComponent(detailId)}">Ver plan</a>
         </div>
       </article>`;
   }).join('');
@@ -131,10 +133,12 @@ function renderExperienciasPage(experiences, containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
   if (!experiences || !experiences.length) {
-    container.innerHTML = '<p class="muted" style="grid-column:1/-1;text-align:center;padding:40px;">No hay experiencias registradas aún.</p>';
+    container.innerHTML = '<p class="muted" style="grid-column:1/-1;text-align:center;padding:40px;">No hay experiencias registradas aun.</p>';
     return;
   }
   container.innerHTML = experiences.map(exp => {
+    const detailType = exp.detailType || 'exp';
+    const detailId = exp.id || exp.slug || exp._id || '';
     const bg = exp.image ? `url('${exp.image}')` : 'linear-gradient(135deg,#2d6a4f,#1a4030)';
     return `<article class="card">
         <div class="card-image" style="background-image:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.3)),${bg};height:200px;background-size:cover;background-position:center;">
@@ -143,7 +147,7 @@ function renderExperienciasPage(experiences, containerId) {
         <div class="card-body" style="padding:20px;">
           <h3 style="margin:0 0 8px;font-size:17px;">${exp.title || ''}</h3>
           <p style="font-size:14px;color:var(--text-muted,#666);line-height:1.6;margin:0 0 16px;">${exp.description || ''}</p>
-          <a class="btn-outline" href="detail.html?type=exp&id=${exp.id}" style="font-size:13px;">Ver plan →</a>
+          <a class="btn-outline" href="detail.html?v=20260325r2&type=${detailType}&id=${encodeURIComponent(detailId)}" style="font-size:13px;">Ver plan</a>
         </div>
       </article>`;
   }).join('');
@@ -160,24 +164,32 @@ function renderPlanes(planes, containerId) {
     return;
   }
   const PLAN_ICONS = {
-    'surf': '🏄', 'senderos': '🌿', 'manglares': '🛶', 'danza': '💃',
-    'tamborito': '🥁', 'playa': '🏖️', 'ballena': '🐋', 'pesca': '🎣', 'foto': '📸'
+    surf: '\uD83C\uDFC4',
+    senderos: '\uD83C\uDF3F',
+    manglares: '\uD83D\uDEF6',
+    danza: '\uD83D\uDC83',
+    tamborito: '\uD83E\uDD41',
+    playa: '\uD83C\uDFD6\uFE0F',
+    ballena: '\uD83D\uDC0B',
+    pesca: '\uD83C\uDFA3',
+    foto: '\uD83D\uDCF8'
   };
   function planIcon(id) {
-    if (!id) return '🌊';
+    if (!id) return '\uD83C\uDF0A';
     const k = id.toLowerCase();
     for (const [word, ico] of Object.entries(PLAN_ICONS)) {
       if (k.includes(word)) return ico;
     }
-    return '🌊';
+    return '\uD83C\uDF0A';
   }
   container.innerHTML = planes.map(plan => {
+    const detailId = plan.id || plan.slug || plan._id || '';
     const bg = plan.image ? `url('${plan.image}')` : 'none';
     const bgPos = plan.imagePosition || 'center';
     const bgSize = plan.imageFit || 'cover';
     const bgColor = plan.imageFit === 'contain' ? 'background-color:#0f2a1a;' : '';
     const emptyOverlay = !plan.image
-      ? `<div class="plan-img-placeholder"><span class="plan-img-ico">${planIcon(plan.id)}</span>${plan.badge ? `<span class="plan-img-badge">${plan.badge}</span>` : ''}</div>`
+      ? `<div class="plan-img-placeholder"><span class="plan-img-ico">${planIcon(detailId)}</span>${plan.badge ? `<span class="plan-img-badge">${plan.badge}</span>` : ''}</div>`
       : '';
     return `<article class="plan-card">
         <div class="plan-image" style="${bgColor}${plan.image ? `background-image:${bgSize==='contain'?'':' linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.12)),'}${bg};background-size:${bgSize};background-position:${bgPos};background-repeat:no-repeat;` : ''}">${emptyOverlay}</div>
@@ -185,15 +197,15 @@ function renderPlanes(planes, containerId) {
           <h3>${plan.title || ''}</h3>
           <div class="price">${plan.price || ''}</div>
         </div>
-        <p class="muted">${plan.duration || ''}${plan.subtitle ? ' · ' + plan.subtitle : ''}</p>
+        <p class="muted">${plan.duration || ''}${plan.subtitle ? ' \u00B7 ' + plan.subtitle : ''}</p>
         <p>${plan.description || ''}</p>
         <div class="plan-actions">
-          <a href="detail.html?type=plan&id=${plan.id}" class="btn-outline btn-plan"
+          <a href="detail.html?v=20260325r2&type=plan&id=${encodeURIComponent(detailId)}" class="btn-outline btn-plan"
             data-plan-title="${plan.title}" data-plan-price="${plan.price}"
             data-plan-duration="${plan.duration}" data-plan-desc="${plan.description}"
             data-plan-image="${plan.image || ''}">Ver plan</a>
           <a href="#" class="btn-whatsapp open-reserve"
-            data-plan-id="${plan.id}" data-plan-title="${plan.title}"
+            data-plan-id="${detailId}" data-plan-title="${plan.title}"
             data-plan-price="${plan.price}" data-plan-image="${plan.image || ''}">Reservar</a>
         </div>
       </article>`;
@@ -234,7 +246,7 @@ function applyConfig(cfg) {
   }
   // WhatsApp links
   if (cfg.whatsapp) {
-    const wa = encodeURIComponent(cfg.whatsappMessage || 'Hola, quiero información');
+    const wa = encodeURIComponent(cfg.whatsappMessage || 'Hola, quiero informacion');
     document.querySelectorAll('[data-wa-link]').forEach(el => {
       el.href = `https://wa.me/${cfg.whatsapp}?text=${wa}`;
     });
@@ -319,13 +331,15 @@ function applyConfig(cfg) {
       });
 
       if (reasonsSection) {
-        reasonsSection.style.background = '#ffffff';
-        reasonsSection.style.color = '';
+        reasonsSection.style.backgroundImage = heroBg;
+        reasonsSection.style.backgroundSize = 'cover';
+        reasonsSection.style.backgroundPosition = 'center';
+        reasonsSection.style.backgroundAttachment = 'scroll';
 
         const reasonsTextEls = reasonsSection.querySelectorAll('.razones-eyebrow, .razones-titulo, .razones-sub');
         reasonsTextEls.forEach(el => {
-          el.style.color = '';
-          el.style.textShadow = 'none';
+          el.style.color = '#ffffff';
+          el.style.textShadow = '0 2px 4px rgba(0,0,0,0.3)';
         });
       }
     } else {
@@ -361,7 +375,7 @@ function applyConfig(cfg) {
       s.style.background = 'transparent';
       const textEls = s.querySelectorAll('h2, .subtitle, p, li, strong');
       textEls.forEach(el => {
-        if (!el.closest('.plan-card') && !el.closest('.personalized-package-card')) {
+        if (!el.closest('.plan-card') && !el.closest('.personalized-package-card') && !el.closest('.benefit-card')) {
           el.style.color = '#ffffff';
           el.style.textShadow = '0 2px 4px rgba(0,0,0,0.3)';
         }
@@ -392,7 +406,7 @@ function applyConfig(cfg) {
       }
       const textEls = s.querySelectorAll('h2, .subtitle, p, li, strong');
       textEls.forEach(el => {
-        if (!el.closest('.plan-card') && !el.closest('.personalized-package-card')) {
+        if (!el.closest('.plan-card') && !el.closest('.personalized-package-card') && !el.closest('.benefit-card')) {
           el.style.color = '#ffffff';
           el.style.textShadow = '0 2px 4px rgba(0,0,0,0.3)';
         }
@@ -464,6 +478,11 @@ function applyConfig(cfg) {
   const contactEmailText = document.getElementById('contact-email-text');
   if (contactEmailText && cfg.email) contactEmailText.textContent = cfg.email;
 
+  // Exponer llaves públicas para integraciones frontend.
+  if (typeof cfg.recaptchaSiteKey === 'string') {
+    window.WAYRA_RECAPTCHA_SITE_KEY = cfg.recaptchaSiteKey.trim();
+  }
+
   // Site Background Color
   if (cfg.siteBgColor) {
     document.body.style.backgroundColor = cfg.siteBgColor;
@@ -481,3 +500,6 @@ function applyConfig(cfg) {
 if (!window.location.pathname.includes('/admin/')) {
   loadConfig(applyConfig);
 }
+
+
+

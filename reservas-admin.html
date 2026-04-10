@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
 
 <head>
@@ -36,7 +36,7 @@
     }
 
     .status-handled {
-      color: green;
+      color: #2f80ed;
       font-weight: 700
     }
 
@@ -217,7 +217,7 @@
     }
 
     .funnel-step::after {
-      content: '↓';
+      content: '?';
       position: absolute;
       bottom: -15px;
       left: 50%;
@@ -372,6 +372,23 @@
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2179158445822195');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2179158445822195&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 
 <body>
@@ -416,7 +433,7 @@
           </svg>
           <span>Síguenos</span>
         </a>
-        <button class="nav-toggle" aria-label="Abrir navegación">☰</button>
+        <button class="nav-toggle" aria-label="Abrir navegación"><span class="nav-toggle-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span></button>
       </div>
     </div>
   </header>
@@ -426,9 +443,9 @@
     
     <!-- Tabs de navegación -->
     <div class="section-tabs">
-      <button class="tab-btn active" data-tab="stats">📊 Estadísticas</button>
-      <button class="tab-btn" data-tab="analytics">📈 Analytics Web</button>
-      <button class="tab-btn" data-tab="reservations">📋 Reservas</button>
+      <button class="tab-btn active" data-tab="stats">?? Estadísticas</button>
+      <button class="tab-btn" data-tab="analytics">?? Analytics Web</button>
+      <button class="tab-btn" data-tab="reservations">?? Reservas</button>
     </div>
 
     <!-- Sección de Estadísticas -->
@@ -462,13 +479,13 @@
           <!-- Gráficos -->
           <div class="charts-row">
             <div class="chart-container">
-              <h3>📈 Tendencia de Visitantes (Últimos 6 meses)</h3>
+              <h3>?? Tendencia de Visitantes (Últimos 6 meses)</h3>
               <div class="chart-wrapper">
                 <canvas id="guestsChart"></canvas>
               </div>
             </div>
             <div class="chart-container">
-              <h3>🏆 Planes Más Populares</h3>
+              <h3>?? Planes Más Populares</h3>
               <ul class="top-plans-list" id="topPlansList">
                 <li><span class="plan-name">Cargando...</span></li>
               </ul>
@@ -477,13 +494,13 @@
 
           <div class="charts-row">
             <div class="chart-container">
-              <h3>📊 Distribución por Plan</h3>
+              <h3>?? Distribución por Plan</h3>
               <div class="chart-wrapper">
                 <canvas id="plansChart"></canvas>
               </div>
             </div>
             <div class="chart-container">
-              <h3>📅 Reservas por Mes</h3>
+              <h3>?? Reservas por Mes</h3>
               <div class="chart-wrapper">
                 <canvas id="reservationsChart"></canvas>
               </div>
@@ -506,7 +523,7 @@
 
         <div id="analyticsContent" style="display:none">
           <!-- Resumen de métricas web -->
-          <h3 style="margin-bottom:15px">🌐 Métricas Web (Últimos 30 días)</h3>
+          <h3 style="margin-bottom:15px">?? Métricas Web (Últimos 30 días)</h3>
           <div class="analytics-grid">
             <div class="analytics-card">
               <div class="value" id="anUniqueVisitors">0</div>
@@ -537,10 +554,10 @@
           <!-- Embudo de conversión -->
           <div class="charts-row" style="margin-top:25px">
             <div class="chart-container">
-              <h3>🔻 Embudo de Conversión</h3>
+              <h3>?? Embudo de Conversión</h3>
               <div class="funnel-container" id="funnelContainer">
                 <div class="funnel-step" style="--funnel-color: rgba(0,119,182,0.2); --funnel-width: 100%">
-                  <span class="funnel-icon">👁️</span>
+                  <span class="funnel-icon">???</span>
                   <div class="funnel-info">
                     <div class="funnel-label">Visitas a la Web</div>
                     <div class="funnel-sublabel">Todas las páginas vistas</div>
@@ -548,7 +565,7 @@
                   <span class="funnel-value" id="funnelVisits">0</span>
                 </div>
                 <div class="funnel-step" style="--funnel-color: rgba(0,180,216,0.2); --funnel-width: 60%">
-                  <span class="funnel-icon">🎯</span>
+                  <span class="funnel-icon">??</span>
                   <div class="funnel-info">
                     <div class="funnel-label">Vieron un Plan</div>
                     <div class="funnel-sublabel">Scrollearon a ver planes</div>
@@ -557,7 +574,7 @@
                   <span class="funnel-rate" id="funnelPlanViewsRate">0%</span>
                 </div>
                 <div class="funnel-step" style="--funnel-color: rgba(72,202,228,0.2); --funnel-width: 30%">
-                  <span class="funnel-icon">🖱️</span>
+                  <span class="funnel-icon">???</span>
                   <div class="funnel-info">
                     <div class="funnel-label">Clic en Reservar</div>
                     <div class="funnel-sublabel">Interés en reservar</div>
@@ -566,7 +583,7 @@
                   <span class="funnel-rate" id="funnelReserveClicksRate">0%</span>
                 </div>
                 <div class="funnel-step" style="--funnel-color: rgba(144,224,239,0.2); --funnel-width: 15%">
-                  <span class="funnel-icon">📝</span>
+                  <span class="funnel-icon">??</span>
                   <div class="funnel-info">
                     <div class="funnel-label">Enviaron Formulario</div>
                     <div class="funnel-sublabel">Completaron reserva</div>
@@ -575,7 +592,7 @@
                   <span class="funnel-rate" id="funnelFormSubmitsRate">0%</span>
                 </div>
                 <div class="funnel-step" style="--funnel-color: rgba(40,167,69,0.2); --funnel-width: 20%">
-                  <span class="funnel-icon">💬</span>
+                  <span class="funnel-icon">??</span>
                   <div class="funnel-info">
                     <div class="funnel-label">Contacto WhatsApp</div>
                     <div class="funnel-sublabel">Escribieron por WhatsApp</div>
@@ -587,29 +604,29 @@
             </div>
 
             <div class="chart-container">
-              <h3>📱 Dispositivos</h3>
+              <h3>?? Dispositivos</h3>
               <div class="device-bars" id="deviceBars">
                 <div class="device-bar">
-                  <span class="label">💻 Desktop</span>
+                  <span class="label">?? Desktop</span>
                   <div class="bar-bg">
                     <div class="bar-fill" id="barDesktop" style="width:0%">0%</div>
                   </div>
                 </div>
                 <div class="device-bar">
-                  <span class="label">📱 Móvil</span>
+                  <span class="label">?? Móvil</span>
                   <div class="bar-bg">
                     <div class="bar-fill" id="barMobile" style="width:0%">0%</div>
                   </div>
                 </div>
                 <div class="device-bar">
-                  <span class="label">📲 Tablet</span>
+                  <span class="label">?? Tablet</span>
                   <div class="bar-bg">
                     <div class="bar-fill" id="barTablet" style="width:0%">0%</div>
                   </div>
                 </div>
               </div>
 
-              <h3 style="margin-top:25px">🔗 Fuentes de Tráfico</h3>
+              <h3 style="margin-top:25px">?? Fuentes de Tráfico</h3>
               <table class="sources-table" id="sourcesTable">
                 <thead>
                   <tr>
@@ -628,7 +645,7 @@
           <!-- Gráfico de visitas diarias -->
           <div class="charts-row" style="margin-top:20px">
             <div class="chart-container" style="grid-column: span 2">
-              <h3>📅 Visitas Diarias (Últimos 14 días)</h3>
+              <h3>?? Visitas Diarias (Últimos 14 días)</h3>
               <div class="chart-wrapper">
                 <canvas id="dailyVisitsChart"></canvas>
               </div>
@@ -638,13 +655,13 @@
           <!-- Top páginas -->
           <div class="charts-row" style="margin-top:20px">
             <div class="chart-container">
-              <h3>🏆 Páginas Más Visitadas</h3>
+              <h3>?? Páginas Más Visitadas</h3>
               <ul class="top-plans-list" id="topPagesList">
                 <li><span class="plan-name">Cargando...</span></li>
               </ul>
             </div>
             <div class="chart-container">
-              <h3>⏰ Actividad por Hora</h3>
+              <h3>? Actividad por Hora</h3>
               <div class="chart-wrapper">
                 <canvas id="hourlyChart"></canvas>
               </div>
@@ -711,12 +728,12 @@
               </svg>
               +57 322 5225582
             </a>
-            <a href="mailto:vivewayra@gmail.com" class="contact-item">
+            <a href="mailto:reservas@vivewayra.com.co" class="contact-item">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="2" y="4" width="20" height="16" rx="2"/>
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
               </svg>
-              vivewayra@gmail.com
+              reservas@vivewayra.com.co
             </a>
           </div>
         </div>
@@ -738,22 +755,15 @@
           <ul class="footer-list">
             <li><a href="#" onclick="abrirQuienesSomos(event)">Quiénes somos</a></li>
             <li><a href="contacto.html">Contáctanos</a></li>
-            <li><a href="politicas.html">Política de Privacidad</a></li>
-            <li><a href="politicas.html?tab=terminos">Términos y Condiciones</a></li>
-            <li><a href="faq.html">❓ Preguntas frecuentes</a></li>
-            <li><a href="como-llegar.html">✈️ Cómo llegar a Nuquí</a></li>
-            <li><a href="pqrs.html" style="color:#7fffd4;font-weight:700;">📋 Radica tu PQRS</a></li>
+            <li><a href="faq.html">Preguntas frecuentes</a></li>
+            <li><a href="como-llegar.html">Cómo llegar a Nuquí</a></li>
+            <li><a href="pqrs.html" style="color:#8ec2ff;font-weight:700;">Radica tu PQRS</a></li>
           </ul>
         </div>
 
         <!-- Columna 4: Horarios y Redes -->
         <div class="footer-col">
-          <h3>Horarios</h3>
-          <div class="footer-hours">
-            <p><span>Lunes a Viernes:</span> 8:00 AM - 6:00 PM</p>
-            <p><span>Sábados:</span> 9:00 AM - 5:00 PM</p>
-            <p><span>Domingos:</span> 10:00 AM - 4:00 PM</p>
-          </div>
+          <h3>Redes</h3>
           <div class="footer-social-icons">
             <a href="https://www.facebook.com/profile.php?id=61587257972289" class="footer-social-icon facebook"
               aria-label="Facebook" target="_blank" rel="noopener" data-fb-link title="Facebook">
@@ -805,10 +815,10 @@
 
       <!-- Footer Bottom -->
       <div class="footer-bottom">
-        <p>&copy; <span id="year"></span> WAYRA - Agencia de Viajes Responsable. Todos los derechos reservados.<br>
+        <p>&copy; <span id="year"></span> VIVE WAYRA - Agencia de Viajes Responsable. Todos los derechos reservados.<br>
           Diseñado con <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="display: inline; vertical-align: middle; margin: 0 2px;">
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-          </svg> por el equipo WAYRA | 
+          </svg> por el equipo VIVE WAYRA | 
           <a href="politicas.html">Política de Privacidad</a> • <a href="politicas.html?tab=terminos">Términos de Uso</a>
         </p>
       </div>
@@ -1193,17 +1203,17 @@
         const sourcesTbody = document.querySelector('#sourcesTable tbody');
         if (analytics.trafficSources && analytics.trafficSources.length > 0) {
           const sourceIcons = {
-            'google': '🔍',
-            'facebook': '📘',
-            'instagram': '📸',
-            'whatsapp': '💬',
-            'direct': '🔗',
-            'twitter': '🐦',
-            'bing': '🔎'
+            'google': '??',
+            'facebook': '??',
+            'instagram': '??',
+            'whatsapp': '??',
+            'direct': '??',
+            'twitter': '??',
+            'bing': '??'
           };
           sourcesTbody.innerHTML = analytics.trafficSources.map(s => `
             <tr>
-              <td><span class="source-icon">${sourceIcons[s.source.toLowerCase()] || '🌐'}</span>${s.source}</td>
+              <td><span class="source-icon">${sourceIcons[s.source.toLowerCase()] || '??'}</span>${s.source}</td>
               <td>${s.visits.toLocaleString()}</td>
               <td>${s.sessions.toLocaleString()}</td>
             </tr>
@@ -1346,3 +1356,15 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

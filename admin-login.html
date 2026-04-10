@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Acceso Admin ‚Äî vivewayra</title>
+    <title>Acceso Admin ó vivewayra</title>
     <link rel="icon" href="assets/img/favicon.ico" sizes="any">
     <link rel="icon" href="assets/img/favicon-32.png" type="image/png" sizes="32x32">
     <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         *,
         *::before,
@@ -239,6 +239,23 @@
             margin-top: 24px;
         }
     </style>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2179158445822195');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2179158445822195&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 
 <body>
@@ -246,33 +263,33 @@
         <div class="logo">
             <img src="assets/img/unicologo.png" alt="vivewayra Logo"
                 style="width: 130px; height: 130px; margin-bottom: 12px;">
-            <h1>Wayra Admin</h1>
+            <h1>VIVE WAYRA Admin</h1>
             <p class="subtitle">Acceso exclusivo para administradores</p>
         </div>
 
         <div class="fields">
             <div class="field-wrap">
-                <span class="icon">üë§</span>
+                <span class="icon">??</span>
                 <input type="text" id="inp-user" placeholder="Usuario" autocomplete="username" autofocus>
             </div>
             <div class="field-wrap">
-                <span class="icon">üîí</span>
-                <input type="password" id="inp-pass" placeholder="Contrase√±a" autocomplete="current-password">
+                <span class="icon">??</span>
+                <input type="password" id="inp-pass" placeholder="ContraseÒa" autocomplete="current-password">
             </div>
-            <div class="error" id="err-msg">Usuario o contrase√±a incorrectos.</div>
+            <div class="error" id="err-msg">Usuario o contraseÒa incorrectos.</div>
             <button class="btn-login" id="btn-login" onclick="doLogin()">
-                <span class="btn-text">Ingresar ‚Üí</span>
+                <span class="btn-text">Ingresar ?</span>
                 <div class="spinner"></div>
             </button>
         </div>
 
-        <p class="footer-note">üîí Conexi√≥n segura ¬∑ Acceso protegido por servidor</p>
+        <p class="footer-note">?? ConexiÛn segura ∑ Acceso protegido por servidor</p>
     </div>
 
     <script>
         const BACKEND_BASE_URL = (window.WAYRA_BACKEND_BASE_URL || 'https://wayra-turismo-git-main-gilbermenas-projects.vercel.app').replace(/\/$/, '');
         const ADMIN_SESSION_KEY = 'wayra_admin_session';
-        // Redirige al destino si ya tiene sesi√≥n v√°lida (la edge function redirige aqu√≠ si no la tiene)
+        // Redirige al destino si ya tiene sesiÛn v·lida (la edge function redirige aquÌ si no la tiene)
         const params = new URLSearchParams(location.search);
         const next = params.get('next') || '/reservas-admin.html';
 
@@ -284,7 +301,7 @@
             const card = document.getElementById('card');
 
             if (!user || !pass) {
-                err.textContent = 'Completa usuario y contrase√±a.';
+                err.textContent = 'Completa usuario y contraseÒa.';
                 err.classList.add('show');
                 return;
             }
@@ -319,7 +336,7 @@
                             res = tempRes;
                             break;
                         }
-                        console.warn(`Ruta ${url} devolvi√≥ ${tempRes.status}. Probando siguiente...`);
+                        console.warn(`Ruta ${url} devolviÛ ${tempRes.status}. Probando siguiente...`);
                     } catch (e) {
                         console.error(`Error de red en ${url}:`, e);
                     }
@@ -328,9 +345,9 @@
                 if (!res) {
                     const isLocal = hostname === 'localhost' || hostname === '127.0.0.1';
                     if (isLocal) {
-                        throw new Error("No se pudo encontrar el endpoint de autenticaci√≥n. Localmente debes usar 'vercel dev' o 'netlify dev' para que las funciones de /api/ funcionen.");
+                        throw new Error("No se pudo encontrar el endpoint de autenticaciÛn. Localmente debes usar 'vercel dev' o 'netlify dev' para que las funciones de /api/ funcionen.");
                     }
-                    throw new Error("No se pudo encontrar el endpoint de autenticaci√≥n (404/405 en todas las rutas).");
+                    throw new Error("No se pudo encontrar el endpoint de autenticaciÛn (404/405 en todas las rutas).");
                 }
 
                 // Verificamos si la respuesta es JSON
@@ -338,7 +355,7 @@
                 if (!contentType || !contentType.includes('application/json')) {
                     const text = await res.text();
                     console.error(`Error en ${lastTriedUrl} (No JSON):`, text.substring(0, 200));
-                    throw new Error(`Error ${res.status} en ${lastTriedUrl}: El servidor no ejecut√≥ la funci√≥n.`);
+                    throw new Error(`Error ${res.status} en ${lastTriedUrl}: El servidor no ejecutÛ la funciÛn.`);
                 }
 
                 const data = await res.json();
@@ -348,11 +365,11 @@
                         authenticated: true,
                         at: new Date().toISOString()
                     }));
-                    // ‚úÖ Login correcto ‚Üí redirige al panel
+                    // ? Login correcto ? redirige al panel
                     window.location.href = next;
                 } else {
-                    // ‚ùå Credenciales incorrectas o error de validaci√≥n
-                    err.textContent = data.error || 'Usuario o contrase√±a incorrectos.';
+                    // ? Credenciales incorrectas o error de validaciÛn
+                    err.textContent = data.error || 'Usuario o contraseÒa incorrectos.';
                     err.classList.add('show');
                     card.classList.remove('shake');
                     void card.offsetWidth;
@@ -362,10 +379,10 @@
                 }
             } catch (e) {
                 console.error('Login Error:', e);
-                // Si es un error de TypeError fetch, suele ser conexi√≥n o CORS
+                // Si es un error de TypeError fetch, suele ser conexiÛn o CORS
                 const isNetworkError = e instanceof TypeError;
                 err.textContent = isNetworkError
-                    ? 'Error de red o CORS. Verifica que el servidor (Vercel/Netlify) est√© activo y acepte peticiones POST.'
+                    ? 'Error de red o CORS. Verifica que el servidor (Vercel/Netlify) estÈ activo y acepte peticiones POST.'
                     : (e.message || 'Error desconocido en el proceso de login.');
 
                 err.classList.add('show');
@@ -385,3 +402,9 @@
 </body>
 
 </html>
+
+
+
+
+
+

@@ -1,0 +1,251 @@
+﻿{
+    "experiences":  [
+                        {
+                            "id":  "whale-watching",
+                            "title":  "Avistamiento de Ballenas",
+                            "badge":  "⭐ Imperdible",
+                            "price":  "",
+                            "duration":  "",
+                            "subtitle":  "",
+                            "description":  "Entre julio y octubre, las ballenas jorobadas visitan la bahía. Salidas al amanecer en bote, a distancia respetuosa, para vivir uno de los espectáculos más emocionantes de la naturaleza.",
+                            "descriptionLong":  "ACTIVIDADES ADICIONALES:\nCaminata ecológica al río Joví y Cascada La Chontadura.\nParque Nacional Natural Ensenada de Utría.\nCaminata Cascada Cuatro Encantos.\nAvistamiento de ranas de colores.",
+                            "includes":  [
+                                             "Tiquete aéreo ida y vuelta",
+                                             "Recibimiento en el aeropuerto de Nuquí",
+                                             "Traslado marítimo desde Nuquí – Playa Terco – Nuquí",
+                                             "Hospedaje",
+                                             "Alimentación completa: desayuno, almuerzo y cena",
+                                             "Salida de avistamiento de ballenas en lancha",
+                                             "Agua disponible para tomar",
+                                             "Acompañamiento a pozo de agua Termales, Cascada Terco, Cascada del Amor y Guachalito",
+                                             "Acceso a Internet WiFi"
+                                         ],
+                            "notIncluded":  [
+                                                "Impuesto al turismo de Nuquí ($30.000)",
+                                                "Entrada a termales ($15.000)",
+                                                "Cócteles, bebidas y licores",
+                                                "Otros no especificados"
+                                            ],
+                            "notes":  "Llevar ropa ligera de playa y de expedición en la selva: vestido de baño, pantalonetas, gorros, sombreros, gafas de sol, camisas manga larga o camibusos, sudaderas o pantalones cómodos. También bloqueador, repelente y dinero en efectivo por si deseas adquirir algo en el destino, ya que no hay cajeros automáticos en la zona.",
+                            "pricing":  [
+
+                                        ],
+                            "image":  "https://i.ibb.co/zWwwDFn1/imagen-2026-03-06-141426052.png",
+                            "active":  true,
+                            "priceTabs":  [
+                                              {
+                                                  "tab":  "Desde Medellín, Cali o Cartago",
+                                                  "adult":  "$2.280.000",
+                                                  "child":  "$1.890.000",
+                                                  "nightAdult":  "$340.000",
+                                                  "nightChild":  "$220.000",
+                                                  "duration": "3 Noches – 4 Días (Viernes a Lunes)"
+                                              },
+                                              {
+                                                  "tab":  "Desde Bogotá",
+                                                  "adult":  "$2.480.000",
+                                                  "child":  "$2.080.000",
+                                                  "nightAdult":  "$340.000",
+                                                  "nightChild":  "$220.000",
+                                                  "duration": "3 Noches – 4 Días (Todos los días)"
+                                              }
+                                          ]
+                        },
+                        {
+                            "id":  "plan-playa-terco",
+                            "detailType":  "plan",
+                            "title":  "Plan Playa Terco",
+                            "badge":  "🏖️ Plan recomendado",
+                            "price":  "Desde $1.250.000",
+                            "duration":  "3 días / 2 noches",
+                            "subtitle":  "Salidas grupales",
+                            "description":  "Vive Nuquí con el Plan Playa Terco: avistamiento de ballenas, caminata costera, conexión cultural y alojamiento para una escapada inolvidable en el Pacífico.",
+                            "descriptionLong":  "",
+                            "includes":  [
+
+                                         ],
+                            "notIncluded":  [
+
+                                            ],
+                            "notes":  "",
+                            "pricing":  [
+
+                                        ],
+                            "image":  "https://i.ibb.co/xtH9JSm0/Whats-App-Image-2026-03-05-at-10-53-02-PM-1.jpg",
+                            "active":  true,
+                             "priceTabs":  []
+                         },
+                        {
+                            "id":  "hiking",
+                            "title":  "Senderismo, Manglares y Avistamiento de Aves",
+                            "badge":  "🌿 Naturaleza",
+                            "price":  "",
+                            "duration":  "",
+                            "subtitle":  "",
+                             "description":  "Intérnate en la selva húmeda del Chocó para descubrir cascadas escondidas y piscinas naturales. Rutas guiadas por conocedores del territorio que comparten su historia y biodiversidad.",
+                             "descriptionLong":  "",
+                             "variants":  [
+                                             {
+                                                 "title":  "📍 City Tour – Nuquí",
+                                                 "price":  "$120.000 COP / persona",
+                                                 "duration":  "Medio día",
+                                                 "includes":  [
+                                                                  "Murales",
+                                                                  "Museo Melelé",
+                                                                  "Agüita e’ coco",
+                                                                  "Snacks",
+                                                                  "Degustación de viche curao",
+                                                                  "Guianza local"
+                                                              ]
+                                             },
+                                             {
+                                                 "title":  "🛶 Kayak en manglar",
+                                                 "price":  "$120.000 COP / persona",
+                                                 "duration":  "2 horas aprox.",
+                                                 "includes":  [
+                                                                  "Charla ambiental (manglares)",
+                                                                  "Agüita e’ coco",
+                                                                  "Snacks",
+                                                                  "Guianza local"
+                                                              ]
+                                             },
+                                             {
+                                                 "title":  "🌊 Tour Tribugá Town",
+                                                 "price":  "$200.000 COP / persona",
+                                                 "duration":  "Día completo",
+                                                 "includes":  [
+                                                                  "Transporte",
+                                                                  "Almuerzo",
+                                                                  "Viche curao",
+                                                                  "Reseña histórica",
+                                                                  "Snacks",
+                                                                  "Agüita e’ coco",
+                                                                  "Historias de Andres Landero",
+                                                                  "Guianza local"
+                                                              ]
+                                             },
+                                             {
+                                                 "title":  "🏝️ Playa Arena Azul (Pangui)",
+                                                 "price":  "$200.000 COP / persona",
+                                                 "duration":  "Día completo",
+                                                 "includes":  [
+                                                                  "Transporte",
+                                                                  "Almuerzo",
+                                                                  "Sendero ecológico",
+                                                                  "Playa Arena Azul",
+                                                                  "Snacks",
+                                                                  "Guianza local",
+                                                                  "Agüita e’ coco",
+                                                                  "Snorkel"
+                                                              ]
+                                             },
+                                             {
+                                                 "title":  "♨️ Termales Jurubirá Town",
+                                                 "price":  "$220.000 COP / persona",
+                                                 "duration":  "Día completo",
+                                                 "includes":  [
+                                                                  "Transporte",
+                                                                  "Almuerzo",
+                                                                  "Caminata en selva",
+                                                                  "Pozos de aguas termales",
+                                                                  "Snacks",
+                                                                  "Agüita e’ coco",
+                                                                  "Guianza local"
+                                                              ]
+                                             },
+                                             {
+                                                 "title":  "🌿🌊 Manglar / Sendero / Mar",
+                                                 "price":  "$200.000 COP / persona",
+                                                 "duration":  "Día completo",
+                                                 "includes":  [
+                                                                  "Transporte",
+                                                                  "Almuerzo",
+                                                                  "Playa Vikana",
+                                                                  "Snacks",
+                                                                  "Agüita e’ coco",
+                                                                  "Guianza local"
+                                                              ]
+                                             },
+                                             {
+                                                 "title":  "🐸🎋 Avistamiento de ranas venenosas",
+                                                 "price":  "$200.000 COP / persona",
+                                                 "duration":  "Medio día",
+                                                 "includes":  [
+                                                                  "Transporte",
+                                                                  "Avistamiento de fauna y flora",
+                                                                  "Snacks",
+                                                                  "Agüita e’ coco",
+                                                                  "Botas pantaneras",
+                                                                  "Guianza local"
+                                                              ]
+                                             },
+                                             {
+                                                 "title":  "🐋🌎 Avistamiento de ballenas",
+                                                 "price":  "$1.850.000 COP / persona",
+                                                 "duration":  "4 días / 3 noches",
+                                                 "includes":  [
+                                                                  "Hospedaje",
+                                                                  "Alimentación completa",
+                                                                  "Experiencias turísticas",
+                                                                  "Visita a piscinas termales / Playa Guachalito",
+                                                                  "Visita al PNN Utría / Playa Blanca",
+                                                                  "Liberación de tortugas",
+                                                                  "Cascadas del amor"
+                                                              ]
+                                             }
+                                         ],
+                             "includes":  [
+ 
+                                          ],
+                            "notIncluded":  [
+
+                                            ],
+                            "notes":  "",
+                            "pricing":  [
+
+                                        ],
+                             "image":  "https://i.ibb.co/KccZQ3bT/4.jpg",
+                             "active":  true,
+                             "priceTabs":  []
+                         },
+                        {
+                            "id":  "water-sports",
+                            "title":  "Deportes Acuáticos",
+                            "badge":  "📸 Fotografía",
+                            "price":  "",
+                            "duration":  "",
+                            "subtitle":  "",
+                            "description":  "Rutas especialmente diseñadas para capturar la biodiversidad del Pacífico: aves endémicas, manglares, flora exótica y paisajes costeros únicos en el mundo.",
+                            "descriptionLong":  "",
+                            "includes":  [
+
+                                         ],
+                            "notIncluded":  [
+
+                                            ],
+                            "notes":  "",
+                            "pricing":  [
+
+                                        ],
+                            "image":  "https://i.ibb.co/3YCsW8k4/Whats-App-Image-2026-03-06-at-8-25-41-PM.jpg",
+                            "active":  true,
+                            "priceTabs":  [
+                                              {
+                                                  "tab":  "Desde Medellín, Cali o Cartago",
+                                                  "adult":  "Consultar",
+                                                  "child":  "Consultar",
+                                                  "nightAdult":  "Consultar",
+                                                  "nightChild":  "Consultar"
+                                              },
+                                              {
+                                                  "tab":  "Desde Bogotá",
+                                                  "adult":  "Consultar",
+                                                  "child":  "Consultar",
+                                                  "nightAdult":  "Consultar",
+                                                  "nightChild":  "Consultar"
+                                              }
+                                          ]
+                        }
+                    ]
+}
+

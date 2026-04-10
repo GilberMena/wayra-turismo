@@ -1,0 +1,187 @@
+﻿{
+  "gallery": [
+    {
+      "src": "https://i.ibb.co/MDGSZXpL/94cede05-cd1f-4203-8f36-ebe7953f32f6.jpg",
+      "title": "Atardecer en Guachalito",
+      "desc": "El sol se cuela entre los morros mientras la gente disfruta la orilla. Guachalito, uno de los rincones más hermosos del Pacífico colombiano.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#6a3a00,#0d3052)",
+      "emoji": "🏖️"
+    },
+    {
+      "src": "https://i.ibb.co/JRPDxPGh/Whats-App-Image-2026-03-05-at-7-24-47-PM.jpg",
+      "title": "Cielo pintado en playa Termales",
+      "desc": "El cielo de Termales se convierte en un lienzo al caer la tarde. Naranjas, rojos y violetas sobre el Pacífico.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#8a3a00,#0d3052)",
+      "emoji": "🌅"
+    },
+    {
+      "src": "https://i.ibb.co/j9qF0FbJ/Whats-App-Image-2026-03-05-at-7-25-20-PM.jpg",
+      "title": "Los morros de Guachalito",
+      "desc": "Las imponentes rocas que vigilan la playa de Guachalito son una de las imágenes más icónicas del Pacífico colombiano.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#0d3052,#1a4030)",
+      "emoji": "🏔️"
+    },
+    {
+      "src": "https://i.ibb.co/WRZnQjj/Whats-App-Image-2026-03-05-at-7-27-00-PM.jpg",
+      "title": "Termales: cielo y arena",
+      "desc": "Playa Termales al atardecer. El cielo se pinta de colores imposibles y la arena negra refleja los últimos rayos del sol.",
+      "cat": "playa",
+      "aspect": "16/9",
+      "bg": "linear-gradient(160deg,#6a1a00,#0d3052)",
+      "emoji": "🌅"
+    },
+    {
+      "src": "https://i.ibb.co/PGdF3Ppf/Whats-App-Image-2026-03-05-at-7-27-04-PM.jpg",
+      "title": "Mar abierto en el Pacífico",
+      "desc": "Horizonte infinito frente a las playas de Nuquí. Un recordatorio de lo pequeños que somos ante el océano.",
+      "cat": "playa",
+      "aspect": "16/9",
+      "bg": "linear-gradient(160deg,#0d3052,#6a3a00)",
+      "emoji": "🌊"
+    },
+    {
+      "src": "https://i.ibb.co/Pzxk6gS7/Whats-App-Image-2026-03-05-at-7-28-36-PM.jpg",
+      "title": "Playa tranquila en Nuquí",
+      "desc": "Entre semana las playas de Nuquí son casi desiertas. Arena, selva y océano para ti solo.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#1a4a2e,#0d3052)",
+      "emoji": "🏖️"
+    },
+    {
+      "src": "https://i.ibb.co/fRScGpf/Whats-App-Image-2026-03-05-at-7-29-58-PM.jpg",
+      "title": "Olas del Pacífico, Nuquí",
+      "desc": "Las olas del Pacífico llegan poderosas y constantes. Ideal para surf, bodyboard o simplemente contemplar.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#0d3052,#1a5040)",
+      "emoji": "🌊"
+    },
+    {
+      "src": "https://i.ibb.co/vCQB4KcK/Whats-App-Image-2026-03-05-at-7-38-37-PM.jpg",
+      "title": "Anochecer en playa Termales",
+      "desc": "Cuando el día se despide en Termales, el cielo y el mar se funden en una paleta de colores que no se olvida.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#1a0a2e,#0d3052)",
+      "emoji": "🌙"
+    },
+    {
+      "src": "https://i.ibb.co/gbq1fwNT/Whats-App-Image-2026-03-06-at-3-45-58-PM.jpg",
+      "title": "Danza afropacífica",
+      "desc": "El ritmo del Pacífico vive en el cuerpo de su gente. La danza afropacífica es expresión pura de identidad, alegría y resistencia cultural del Chocó.",
+      "cat": "cultura",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#2a0a1a,#0d1a38)",
+      "emoji": "💃"
+    },
+    {
+      "src": "https://i.ibb.co/KcdpGNNv/Whats-App-Image-2026-03-06-at-3-26-30-PM-1.jpg",
+      "title": "Nuquí, Pacífico colombiano",
+      "desc": "Rincones únicos del Pacífico colombiano. Un paisaje que solo se puede vivir estando aquí.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#0d3052,#1a5040)",
+      "emoji": "🌊"
+    },
+    {
+      "src": "https://i.ibb.co/zW0XwTNL/Whats-App-Image-2026-03-06-at-3-26-30-PM.jpg",
+      "title": "Nuquí, Pacífico colombiano",
+      "desc": "La magia del Pacífico en estado puro. Naturaleza, silencio y autenticidad.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#1a5040,#0d3052)",
+      "emoji": "🏖️"
+    },
+    {
+      "src": "https://i.ibb.co/MkXfwnjX/Whats-App-Image-2026-03-06-at-3-34-26-PM-1.jpg",
+      "title": "Nuquí, Pacífico colombiano",
+      "desc": "Paisajes únicos del Pacífico colombiano donde la selva se encuentra con el océano.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#0a2a1e,#0d3052)",
+      "emoji": "🌊"
+    },
+    {
+      "src": "https://i.ibb.co/1fYddsDK/Whats-App-Image-2026-03-06-at-3-34-26-PM-2.jpg",
+      "title": "Nuquí, Pacífico colombiano",
+      "desc": "El Pacífico colombiano, un lugar donde cada imagen es irrepetible.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#0d3052,#1a4030)",
+      "emoji": "🏖️"
+    },
+    {
+      "src": "https://i.ibb.co/wNnfKsk1/Whats-App-Image-2026-03-06-at-3-34-26-PM.jpg",
+      "title": "Nuquí, Pacífico colombiano",
+      "desc": "Naturaleza salvaje y auténtica en el corazón del Pacífico. Un destino que transforma.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#1a5040,#0a2a1e)",
+      "emoji": "🌿"
+    },
+    {
+      "src": "https://i.ibb.co/qFCtG4mN/Whats-App-Image-2026-03-06-at-3-34-44-PM.jpg",
+      "title": "Nuquí, Pacífico colombiano",
+      "desc": "Cada rincón de Nuquí guarda una historia. Descúbrela con VIVE WAYRA.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#0d3052,#1a5040)",
+      "emoji": "✨"
+    },
+    {
+      "src": "https://i.ibb.co/8nW56BFF/Whats-App-Image-2026-03-06-at-3-41-19-PM.jpg",
+      "title": "Festival del Tamborito en Nuquí",
+      "desc": "Una noche de tambores, cantos y danza afropacífica. El Festival del Tamborito es el alma festiva de Nuquí, Patrimonio Cultural del Chocó.",
+      "cat": "cultura",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#2a0a0a,#0d1a38)",
+      "emoji": "🥁"
+    },
+    {
+      "src": "https://i.ibb.co/ZP9cp3G/Whats-App-Image-2026-03-06-at-3-41-20-PM.jpg",
+      "title": "Viche Curao de Nuquí",
+      "desc": "El viche curao es el licor ancestral del Pacífico. Preparado con caña artesanal y plantas medicinales, es símbolo de identidad y tradición del Chocó.",
+      "cat": "cultura",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#2a1a00,#0a2a1e)",
+      "emoji": "🌿"
+    },
+    {
+      "src": "https://i.ibb.co/My6PyBC0/Whats-App-Image-2026-03-13-at-7-06-34-PM-1.jpg",
+      "title": "Nuquí, Pacífico colombiano",
+      "desc": "Otro instante del Pacífico colombiano: naturaleza viva, horizonte abierto y la energía tranquila de Nuquí.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#0d3052,#1a5040)",
+      "emoji": "🌿"
+    },
+    {
+      "src": "https://i.ibb.co/FLYwJHjm/Whats-App-Image-2026-03-13-at-7-06-34-PM.jpg",
+      "title": "Paisajes de Nuquí",
+      "desc": "Una postal más del Pacífico: selva, playa y esa atmósfera única que hace de Nuquí un destino irrepetible.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#1a5040,#0d3052)",
+      "emoji": "🌿"
+    },
+    {
+      "src": "https://i.ibb.co/4gDcvDn3/Whats-App-Image-2026-03-13-at-7-06-35-PM.jpg",
+      "title": "Rincón del Pacífico",
+      "desc": "Una imagen que resume la esencia de Nuquí: belleza natural, autenticidad y conexión total con el Pacífico colombiano.",
+      "cat": "playa",
+      "aspect": "4/3",
+      "bg": "linear-gradient(160deg,#0a2a1e,#0d3052)",
+      "emoji": "🌿"
+    }
+  ]
+}
+
+
+

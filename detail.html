@@ -9,15 +9,30 @@
   <link rel="icon" href="assets/img/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/img/unicologo.png">
   <link rel="stylesheet" href="styles.css">
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2179158445822195');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2179158445822195&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 
 <body>
   <header class="site-header">
     <div class="container header-inner">
       <a class="logo" href="index.html">
-        <div class="wayra-brand-container">
-          <!-- Logo removido temporalmente -->
-        </div>
+        <img id="site-logo" src="assets/img/unicologo.png" alt="vivewayra Logo">
       </a>
 
       <nav class="main-nav" aria-label="Navegación principal">
@@ -66,7 +81,7 @@
           </svg>
           <span>Siguenos</span>
         </a>
-        <button class="nav-toggle" aria-label="Abrir navegación">☰</button>
+        <button class="nav-toggle" aria-label="Abrir navegación"><span class="nav-toggle-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span></button>
       </div>
     </div>
   </header>
@@ -216,6 +231,84 @@
       color: #1a3028;
       font-size: 16px;
     }
+
+    @media (max-width: 640px) {
+      .price-table-wrap {
+        margin: 20px 0 8px;
+      }
+      .price-tabs-nav {
+        justify-content: center;
+      }
+      .price-tab-btn {
+        padding: 10px 12px;
+        font-size: 13px;
+      }
+      .price-table {
+        font-size: 14px;
+      }
+      .price-table thead th,
+      .price-table tbody td {
+        padding: 12px 12px;
+      }
+      .price-table thead th:first-child {
+        width: 42%;
+      }
+      .price-val {
+        font-size: 15px;
+      }
+    }
+
+    /* Variaciones / opciones del plan */
+    .detail-variants-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 10px;
+    }
+    .variant-card {
+      border: 1px solid rgba(107, 143, 122, 0.16);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 6px 18px rgba(0,0,0,.06);
+      padding: 14px 14px 12px;
+    }
+    .variant-title {
+      font-weight: 900;
+      color: #0a2a1e;
+      font-size: 14px;
+      margin: 0 0 8px 0;
+      line-height: 1.25;
+    }
+    .variant-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      color: rgba(15, 23, 42, 0.74);
+      font-weight: 700;
+      font-size: 12.5px;
+      margin-bottom: 10px;
+    }
+    .variant-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(107, 143, 122, 0.10);
+      border: 1px solid rgba(107, 143, 122, 0.14);
+    }
+    .variant-includes {
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(15, 23, 42, 0.80);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .variant-includes li { margin: 6px 0; }
+
+    @media (max-width: 640px) {
+      .detail-variants-grid { grid-template-columns: 1fr; }
+    }
   </style>
 
   <main class="container section">
@@ -223,7 +316,7 @@
       <!-- Main Image -->
       <div id="detailImage" style="height:400px; background-size:cover; background-position:center;"></div>
 
-      <div style="padding:40px;">
+      <div class="detail-content">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:20px;">
           <div>
             <h1 id="detailTitle" style="font-family:Merriweather, serif; font-size:36px; margin:0 0 8px;">Cargando...
@@ -241,14 +334,29 @@
         <!-- Detailed Content -->
         <div id="detailBody" class="detail-description-long" style="margin-top:32px;"></div>
 
-        <div class="detail-section" id="section-includes" style="display:none;">
-          <h3>¿Qué incluye?</h3>
-          <ul id="list-includes" class="detail-list"></ul>
-        </div>
+        <div class="detail-inclusions">
+          <div class="detail-inclusions-grid">
+            <div class="detail-section detail-section-card" id="section-includes" style="display:none;">
+              <h3>¿Qué incluye?</h3>
+              <ul id="list-includes" class="detail-list"></ul>
+            </div>
 
-        <div class="detail-section" id="section-not-includes" style="display:none;">
-          <h3>No incluye</h3>
-          <ul id="list-not-includes" class="detail-list not-included"></ul>
+            <div class="detail-section detail-section-card" id="section-not-includes" style="display:none;">
+              <h3>No incluye</h3>
+              <ul id="list-not-includes" class="detail-list not-included"></ul>
+            </div>
+          </div>
+
+          <div class="detail-section detail-section-card detail-section-span" id="section-variants" style="display:none;">
+            <h3>Variaciones de este plan</h3>
+            <div id="variants-grid" class="detail-variants-grid"></div>
+          </div>
+
+          <div class="detail-section detail-section-card detail-section-span" id="section-additional-activities"
+            style="display:none;">
+            <h3>Actividades adicionales</h3>
+            <ul id="list-additional-activities" class="detail-list"></ul>
+          </div>
         </div>
 
         <div id="detailNotes" class="detail-notes" style="display:none;">
@@ -258,24 +366,22 @@
 
         <!-- Galería de fotos del plan -->
         <div id="section-photos" class="detail-photos-wrap">
-          <h2>📸 Imágenes del lugar</h2>
+          <h2>?? Imágenes del lugar</h2>
           <p class="detail-photos-sub">Fotos reales del alojamiento y los espacios que vivirás</p>
           <div class="detail-photos-grid" id="detailPhotosGrid"></div>
         </div>
 
         <div style="margin-top:48px; display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
-          <a id="btnReserveDetail" class="btn-primary open-reserve" href="#" style="padding:14px 32px;">Reservar ahora</a>
-          <a id="btnWhatsappDetail" class="btn-whatsapp" href="#" target="_blank" style="padding:13px 28px;">Consultar
-            por WhatsApp</a>
+          <a id="btnReserveDetail" class="btn-primary" href="#" style="padding:14px 32px;">Reservar ahora</a>
           <a id="btnBack" href="index.html#actividades" class="btn-secondary"
-            style="text-decoration:none; color:var(--muted); font-weight:600;">← Volver a inicio</a>
+            style="text-decoration:none; color:var(--muted); font-weight:600;">Volver a planes y experiencias</a>
         </div>
       </div>
     </div>
 
     <!-- Lightbox fotos plan -->
     <div class="plan-lb" id="planLightbox" onclick="this.classList.remove('open')">
-      <button class="plan-lb-close" onclick="document.getElementById('planLightbox').classList.remove('open')">✕</button>
+      <button class="plan-lb-close" onclick="document.getElementById('planLightbox').classList.remove('open')">?</button>
       <img src="" alt="Foto del plan">
     </div>
 
@@ -305,12 +411,12 @@
               </svg>
               +57 322 5225582
             </a>
-            <a href="mailto:vivewayra@gmail.com" class="contact-item">
+            <a href="mailto:reservas@vivewayra.com.co" class="contact-item">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="2" y="4" width="20" height="16" rx="2"/>
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
               </svg>
-              vivewayra@gmail.com
+              reservas@vivewayra.com.co
             </a>
           </div>
         </div>
@@ -332,22 +438,15 @@
           <ul class="footer-list">
             <li><a href="#" onclick="abrirQuienesSomos(event)">Quiénes somos</a></li>
             <li><a href="contacto.html">Contáctanos</a></li>
-            <li><a href="politicas.html">Política de Privacidad</a></li>
-            <li><a href="politicas.html?tab=terminos">Términos y Condiciones</a></li>
-            <li><a href="faq.html">❓ Preguntas frecuentes</a></li>
-            <li><a href="como-llegar.html">✈️ Cómo llegar a Nuquí</a></li>
-            <li><a href="pqrs.html" style="color:#7fffd4;font-weight:700;">📋 Radica tu PQRS</a></li>
+            <li><a href="faq.html">Preguntas frecuentes</a></li>
+            <li><a href="como-llegar.html">Cómo llegar a Nuquí</a></li>
+            <li><a href="pqrs.html" style="color:#8ec2ff;font-weight:700;">Radica tu PQRS</a></li>
           </ul>
         </div>
 
         <!-- Columna 4: Horarios y Redes -->
         <div class="footer-col">
-          <h3>Horarios</h3>
-          <div class="footer-hours">
-            <p><span>Lunes a Viernes:</span> 8:00 AM - 6:00 PM</p>
-            <p><span>Sábados:</span> 9:00 AM - 5:00 PM</p>
-            <p><span>Domingos:</span> 10:00 AM - 4:00 PM</p>
-          </div>
+          <h3>Redes</h3>
           <div class="footer-social-icons">
             <a href="https://www.facebook.com/profile.php?id=61587257972289" class="footer-social-icon facebook"
               aria-label="Facebook" target="_blank" rel="noopener" data-fb-link title="Facebook">
@@ -399,10 +498,10 @@
 
       <!-- Footer Bottom -->
       <div class="footer-bottom">
-        <p>&copy; <span id="year"></span> WAYRA - Agencia de Viajes Responsable. Todos los derechos reservados.<br>
+        <p>&copy; <span id="year"></span> VIVE WAYRA - Agencia de Viajes Responsable. Todos los derechos reservados.<br>
           Diseñado con <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="display: inline; vertical-align: middle; margin: 0 2px;">
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-          </svg> por el equipo WAYRA | 
+          </svg> por el equipo VIVE WAYRA | 
           <a href="politicas.html">Política de Privacidad</a> • <a href="politicas.html?tab=terminos">Términos de Uso</a>
         </p>
       </div>
@@ -412,28 +511,70 @@
   <script src="wayra-data.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-
     (async function () {
       const params = new URLSearchParams(window.location.search);
-      const type = params.get('type'); // 'plan' or 'exp'
-      const id = params.get('id');
+      const typeParam = (params.get('type') || '').toLowerCase();
+      const id = (params.get('id') || params.get('planId') || params.get('slug') || '').trim();
 
       if (!id) {
         showError();
         return;
       }
 
+      const isExperienceType = ['exp', 'experience', 'experiencia', 'experiences'].includes(typeParam);
+      const isPlanType = ['plan', 'planes'].includes(typeParam);
+      const parseJsonSafe = (raw, emptyValue) => {
+        const clean = String(raw || '').replace(/^\uFEFF/, '');
+        try { return JSON.parse(clean); } catch { return emptyValue; }
+      };
+      const loadJsonWithFallback = async (fileName, emptyValue) => {
+        const now = Date.now();
+        const candidates = [
+          `data/${fileName}?_t=${now}`,
+          `./data/${fileName}?_t=${now}`,
+          `/${'data'}/${fileName}?_t=${now}`,
+          `../data/${fileName}?_t=${now}`
+        ];
+        for (const url of candidates) {
+          try {
+            const resp = await fetch(url, { cache: 'no-store' });
+            if (!resp || !resp.ok) continue;
+            const text = await resp.text();
+            const parsed = parseJsonSafe(text, null);
+            if (parsed) return parsed;
+          } catch (_) {}
+        }
+        return emptyValue;
+      };
+
       try {
+        const [expData, planData] = await Promise.all([
+          loadJsonWithFallback('experiences.json', { experiences: [] }),
+          loadJsonWithFallback('planes.json', { planes: [] })
+        ]);
+
+        const findExperience = () => (expData.experiences || []).find(e => e.id === id);
+        const findPlan = () => (planData.planes || []).find(p => p.id === id);
+
         let item = null;
-        if (type === 'exp') {
-          const response = await fetch('data/experiences.json?_t=' + Date.now());
-          const data = await response.json();
-          item = data.experiences.find(e => e.id === id);
+        let resolvedType = typeParam;
+
+        if (isExperienceType) {
+          item = findExperience();
+          if (!item) {
+            item = findPlan();
+            resolvedType = 'plan';
+          } else {
+            resolvedType = 'exp';
+          }
         } else {
-          // type === 'plan' o sin type: busca en planes.json
-          const response = await fetch('data/planes.json?_t=' + Date.now());
-          const data = await response.json();
-          item = data.planes.find(p => p.id === id);
+          item = findPlan();
+          if (!item) {
+            item = findExperience();
+            resolvedType = 'exp';
+          } else {
+            resolvedType = 'plan';
+          }
         }
 
         if (!item) {
@@ -441,17 +582,15 @@
           return;
         }
 
-        renderDetail(item, type);
+        renderDetail(item, resolvedType);
 
-        // Botón "volver" dinámico
         const btnBack = document.getElementById('btnBack');
-        if (type === 'plan' || !type) {
-          btnBack.textContent = '← Volver a planes';
-          btnBack.href = 'plans-nuqui.html';
+        if (btnBack) {
+          btnBack.textContent = 'Volver a planes y experiencias';
+          btnBack.href = 'index.html#actividades';
         }
-        // type === 'exp' queda con el texto e href por defecto (← Volver a inicio → index.html#actividades)
       } catch (err) {
-        console.error("Error loading detail:", err);
+        console.error('Error loading detail:', err);
         showError();
       }
     })();
@@ -484,8 +623,11 @@
       document.getElementById('detailSubtitle').textContent = (d.duration || '') + (d.subtitle ? ' · ' + d.subtitle : '');
       document.getElementById('detailShortDesc').textContent = d.description || '';
 
+      const longText = (d.descriptionLong || '').trim();
+      const isAdditionalActivitiesLong = longText.toUpperCase().startsWith('ACTIVIDADES ADICIONALES');
+
       // Long history/itinerary
-      if (d.descriptionLong) {
+      if (longText && !isAdditionalActivitiesLong) {
         document.getElementById('detailBody').innerHTML = d.descriptionLong.split('\n').map(p => `<p>${p}</p>`).join('');
       } else {
         document.getElementById('detailBody').style.display = 'none';
@@ -501,6 +643,40 @@
       if (d.notIncluded && d.notIncluded.length) {
         document.getElementById('section-not-includes').style.display = 'block';
         document.getElementById('list-not-includes').innerHTML = d.notIncluded.map(i => `<li>${i}</li>`).join('');
+      }
+
+      // Variants / options
+      if (d.variants && d.variants.length) {
+        document.getElementById('section-variants').style.display = 'block';
+        document.getElementById('variants-grid').innerHTML = d.variants.map(v => {
+          const title = v.title || '';
+          const price = v.price || '';
+          const duration = v.duration || '';
+          const includes = Array.isArray(v.includes) ? v.includes : [];
+          return `
+            <article class="variant-card">
+              <div class="variant-title">${title}</div>
+              <div class="variant-meta">
+                ${price ? `<span>?? ${price}</span>` : ''}
+                ${duration ? `<span>?? ${duration}</span>` : ''}
+              </div>
+              ${includes.length ? `<ul class="variant-includes">${includes.map(i => `<li>${i}</li>`).join('')}</ul>` : ''}
+            </article>
+          `;
+        }).join('');
+      }
+
+      // Additional activities (shown below "No incluye")
+      const additionalActivities = isAdditionalActivitiesLong
+        ? longText
+            .split('\n')
+            .map(line => line.trim())
+            .filter(line => line && !line.toUpperCase().startsWith('ACTIVIDADES ADICIONALES'))
+        : [];
+
+      if (additionalActivities.length) {
+        document.getElementById('section-additional-activities').style.display = 'block';
+        document.getElementById('list-additional-activities').innerHTML = additionalActivities.map(i => `<li>${i}</li>`).join('');
       }
 
       // Image
@@ -519,10 +695,10 @@
         ).join('');
       } else {
         const placeholders = [
-          { emoji: '🏖️', label: 'Playa' },
-          { emoji: '🏨', label: 'Alojamiento' },
-          { emoji: '🌊', label: 'Mar' },
-          { emoji: '🌿', label: 'Entorno' }
+          { emoji: '???', label: 'Playa' },
+          { emoji: '??', label: 'Alojamiento' },
+          { emoji: '??', label: 'Mar' },
+          { emoji: '??', label: 'Entorno' }
         ];
         grid.innerHTML = placeholders.map(p =>
           `<div class="detail-photo-placeholder"><span>${p.emoji}</span>${p.label}</div>`
@@ -538,13 +714,11 @@
       // Actions
       const whatsappNumber = '573225225582';
       const msg = `Hola, estoy interesado en ${d.title}. Quisiera más información y disponibilidad, por favor.`;
-      document.getElementById('btnWhatsappDetail').href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
-      const reserveBtn = document.getElementById('btnReserveDetail');
-      reserveBtn.href = '#';
-      reserveBtn.dataset.planId = d.id || '';
-      reserveBtn.dataset.planTitle = d.title || '';
-      reserveBtn.dataset.planPrice = d.price || '';
-      reserveBtn.dataset.planEmail = 'vivewayra@gmail.com';
+      const btnWhatsappDetail = document.getElementById('btnWhatsappDetail');
+      const btnReserveDetail = document.getElementById('btnReserveDetail');
+      const waHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
+      if (btnWhatsappDetail) btnWhatsappDetail.href = waHref;
+      if (btnReserveDetail) btnReserveDetail.href = waHref;
     }
 
     function switchPriceTab(btn, idx) {
@@ -576,3 +750,15 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

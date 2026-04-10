@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>vivewayra — Vive</title>
+  <meta name="description"
+    content="vivewayra — Agencia de viajes responsable. Experiencias en la costa Pacífica: avistamiento de ballenas, fotografía, y programas a medida. Contáctanos por WhatsApp para más información.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="WAYRA – Turismo responsable en Nuquí, Chocó">
+  <meta property="og:description" content="Planes de viaje, avistamiento de ballenas y experiencias únicas en la costa Pacífica colombiana. Agencia WAYRA.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://vivewayra.com.co/assets/img/unicologo.png">
+  <meta property="og:url" content="https://vivewayra.com.co/">
+  <meta property="og:site_name" content="WAYRA Turismo">
+  <meta property="og:locale" content="es_CO">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WAYRA – Turismo responsable en Nuquí, Chocó">
+  <meta name="twitter:description" content="Planes de viaje y experiencias únicas en la costa Pacífica colombiana.">
+  <meta name="twitter:image" content="https://vivewayra.com.co/assets/img/unicologo.png">
+  <link rel="icon" href="assets/img/favicon.ico" sizes="any">
+  <link rel="icon" href="assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/img/unicologo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=2">
+  <!-- Structured data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "vivewayra",
+    "url": "https://vivewayra.com.co",
+    "telephone": "+573225225582",
+    "description": "Agencia de viajes responsable especializada en experiencias en la costa Pacífica como avistamiento de ballenas.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Colombia"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img id="site-logo" src="assets/img/unicologo.png" alt="vivewayra Logo">
+      </a>
+
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="#" id="btn-quienes-somos" onclick="abrirQuienesSomos(event)">Quiénes somos</a>
+        <a href="experiencias.html">Experiencias</a>
+        <a href="hoteles.html">Hoteles</a>
+        <a href="galeria.html">Galería</a>
+        <a href="plans-nuqui.html">Planes turísticos en Nuquí</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Social Icons con colores de marca -->
+        <a href="https://www.facebook.com/profile.php?id=61587257972289" class="social-brand-link fb-link"
+          aria-label="Síguenos en Facebook" target="_blank" rel="noopener" data-fb-link>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true">
+            <path
+              d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z" />
+          </svg>
+          <span>Síguenos</span>
+        </a>
+        <a href="https://www.instagram.com/vivewayra/" class="social-brand-link ig-link"
+          aria-label="Síguenos en Instagram" target="_blank" rel="noopener" data-ig-link>
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+            <defs>
+              <linearGradient id="ig-grad-hdr" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#f09433" />
+                <stop offset="25%" stop-color="#e6683c" />
+                <stop offset="50%" stop-color="#dc2743" />
+                <stop offset="75%" stop-color="#cc2366" />
+                <stop offset="100%" stop-color="#bc1888" />
+              </linearGradient>
+            </defs>
+            <path fill="url(#ig-grad-hdr)"
+              d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z" />
+          </svg>
+          <span>Síguenos</span>
+        </a>
+
+
+        <a href="https://www.tiktok.com/@vivewayra?_r=1&_t=ZS-94bh44eR05p" class="social-brand-link tt-link"
+          aria-label="Siguenos en TikTok" target="_blank" rel="noopener" data-tt-link>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M16.8 2H13.9v11.74a3.02 3.02 0 1 1-2.39-2.95V7.84a5.93 5.93 0 1 0 5.29 5.9V7.68A7.2 7.2 0 0 0 21 9.05V6.14a4.45 4.45 0 0 1-4.2-4.14z" />
+          </svg>
+          <span>Siguenos</span>
+        </a>
+        <button class="nav-toggle" aria-label="Abrir navegación">?</button>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+    <!-- -- ÁREA VIBRANTE HERO + RAZONES (Fondo extendido) -- -->
+    <div class="whale-vivid-area" id="vivid-hero-section">
+      <section class="hero" id="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+          <h1 id="hero-title">VIVEWAYRA</h1>
+          <p class="lead" id="hero-subtitle">El viaje que se queda.</p>
+          <p><a class="btn-primary" id="hero-cta" href="#porque-nuqui">Empieza aquí</a></p>
+        </div>
+      </section>
+
+      <section id="porque-nuqui" class="section-razones" style="background:transparent; box-shadow:none;">
+        <div class="container">
+          <p class="razones-eyebrow">¿POR QUÉ NUQUÍ?</p>
+          <h2 class="razones-titulo">5 razones para no<br>quedarte en casa</h2>
+          <p class="razones-sub">Nuquí, más que un destino. Es una experiencia que te cambia.</p>
+
+          <div class="razones-grid">
+            <div class="razon-card">
+              <div class="razon-emoji">??</div>
+              <h3>Ballenas de frente</h3>
+              <p>Uno de los mejores lugares del planeta para el avistamiento de ballenas jorobadas, de julio a octubre.
+              </p>
+            </div>
+            <div class="razon-card">
+              <div class="razon-emoji">??</div>
+              <h3>Selva sin filtros</h3>
+              <p>Ecosistemas del Pacífico colombiano casi intactos. Biodiversidad que te deja sin palabras.</p>
+            </div>
+            <div class="razon-card">
+              <div class="razon-emoji">??</div>
+              <h3>Luz y colores épicos</h3>
+              <p>Atardeceres increíbles, fauna exótica y paisajes que son una foto cada tres pasos.</p>
+            </div>
+            <div class="razon-card">
+              <div class="razon-emoji">??</div>
+              <h3>Mar salvaje</h3>
+              <p>Playas vírgenes, olas perfectas y agua tibia del Pacífico. Sin multitudes, sin prisa.</p>
+            </div>
+            <div class="razon-card">
+              <div class="razon-emoji">??</div>
+              <h3>Comunidades reales</h3>
+              <p>Gastronomía única, cultura afropacífica auténtica y guías locales que conocen cada rincón.</p>
+            </div>
+          </div>
+
+          <!-- <div class="razones-cta">
+            <a class="btn-primary" href="plans-nuqui.html#planes-nuqui">Ver planes a Nuquí ?</a>
+          </div> -->
+        </div>
+      </section>
+    </div>
+
+    <!-- Modal Quiénes somos -->
+    <div id="modal-quienes-somos" class="modal" aria-hidden="true"
+      onclick="if(event.target===this)cerrarQuienesSomos()">
+      <div class="modal-content qs-modal">
+        <button class="modal-close" aria-label="Cerrar" onclick="cerrarQuienesSomos()">×</button>
+        <h2 id="quienes-somos-title">Quiénes somos</h2>
+        <p class="subtitle" id="quienes-somos-subtitle">Descubre Nuquí con intención</p>
+        <img id="quienes-somos-img" class="qs-image" src="" alt="Wayra" />
+        <div class="qs-body" id="quienes-somos-text">
+          <!-- El contenido se carga dinámicamente -->
+        </div>
+        <div style="text-align:center; margin-top:24px;">
+          <a class="btn-primary" href="https://wa.me/573225225582" target="_blank">Contáctanos ?</a>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Modal de reserva (compartido) -->
+    <div id="reserveModal" class="modal" aria-hidden="true">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Cerrar">×</button>
+        <div id="reserveImage" class="plan-image" style="display:none;margin-bottom:10px"></div>
+        <h3 id="reserveTitle">Reservar</h3>
+        <form id="reserveForm" class="reserve-form">
+          <input type="hidden" name="planId" id="reservePlanId">
+          <label>
+            <span>Plan</span>
+            <div class="input-icon"><input type="text" id="reservePlanTitle" readonly><svg class="icon"
+                viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path fill="currentColor" d="M12 2L2 7l10 5 10-5-10-5zm0 7.5L4.2 6.8 12 11l7.8-4.2L12 9.5z"></path>
+              </svg></div>
+          </label>
+          <label>
+            <span>Precio estimado</span>
+            <div class="input-icon"><input type="text" id="reservePlanPrice" readonly><svg class="icon"
+                viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path fill="currentColor" d="M12 1v2a7 7 0 0 1 0 14v2a9 9 0 0 0 0-18z"></path>
+              </svg></div>
+          </label>
+          <label>
+            <span>Nombre completo</span>
+            <div class="input-icon"><input type="text" name="name" id="reserveName" required><svg class="icon"
+                viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path fill="currentColor"
+                  d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-5 0-9 2.5-9 5v1h18v-1c0-2.5-4-5-9-5z"></path>
+              </svg></div>
+          </label>
+          <label>
+            <span>Teléfono (para contacto / WhatsApp)</span>
+            <div class="input-icon"><input type="tel" name="phone" id="reservePhone" placeholder="+57 3xx xxx xxxx"
+                required><svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path fill="currentColor"
+                  d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l1.9-1.9a1 1 0 0 1 1-.2c1.1.4 2.3.6 3.5.6a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h2.4a1 1 0 0 1 1 1c0 1.2.2 2.4.6 3.5.2.4 0 .8-.2 1l-1.9 1.3z">
+                </path>
+              </svg></div>
+          </label>
+          <label>
+            <span>Correo</span>
+            <div class="input-icon"><input type="email" name="email" id="reserveEmail"><svg class="icon"
+                viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path fill="currentColor"
+                  d="M2 6v12h20V6l-10 6L2 6zm0-2h20a2 2 0 0 1 2 2v.1L12 12 0 .1V6a2 2 0 0 1 2-2z">
+                </path>
+              </svg></div>
+          </label>
+          <label>
+            <span>Fecha de llegada</span>
+            <div class="input-icon"><input type="date" name="start" id="reserveStart"><svg class="icon"
+                viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path fill="currentColor"
+                  d="M7 10h5v5H7zM19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z">
+                </path>
+              </svg></div>
+          </label>
+          <label>
+            <span>Fecha de salida</span>
+            <div class="input-icon"><input type="date" name="end" id="reserveEnd"><svg class="icon" viewBox="0 0 24 24"
+                width="18" height="18" aria-hidden="true">
+                <path fill="currentColor"
+                  d="M7 10h5v5H7zM19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z">
+                </path>
+              </svg></div>
+          </label>
+          <label>
+            <span>Número de personas</span>
+            <div class="input-icon"><input type="number" name="guests" id="reserveGuests" min="1" value="1"><svg
+                class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path fill="currentColor"
+                  d="M16 11c1.7 0 3-1.3 3-3s-1.3-3-3-3-3 1.3-3 3 1.3 3 3 3zM8 11c1.7 0 3-1.3 3-3S9.7 5 8 5 5 6.3 5 8s1.3 3 3 3zm0 2c-2.7 0-8 1.3-8 4v3h16v-3c0-2.7-5.3-4-8-4zm8 0c-.3 0-.7 0-1 .1 1.3.9 2 2.1 2 3.9v3h6v-3c0-2.7-5.3-4-8-4z">
+                </path>
+              </svg></div>
+          </label>
+          <label>
+            <span>Comentarios</span>
+            <div class="input-icon"><textarea name="comments" id="reserveComments" rows="3"></textarea><svg class="icon"
+                viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path fill="currentColor" d="M21 6H3v11h6v3l3-3h9V6z"></path>
+              </svg></div>
+          </label>
+          <div class="form-actions">
+            <button id="reserveWhatsapp" class="btn-whatsapp" type="button">Contactar por WhatsApp</button>
+            <button id="reserveMail" class="btn-primary" type="button">Enviar por correo</button>
+            <a href="tel:+573225225582" class="btn-outline">Llamar</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <section id="como-funciona" class="section-como">
+      <div class="container">
+        <p class="como-eyebrow">Nuestro Proceso</p>
+        <h2 class="como-titulo">Tu viaje a Nuquí en 3 simples pasos</h2>
+        <p class="como-sub">Planificar tu aventura en el Pacífico es fácil. Te acompañamos en cada paso para que disfrutes al máximo.</p>
+
+        <div class="como-grid">
+
+          <div class="como-paso">
+            <div class="paso-numero">01</div>
+            <div class="paso-icon">???</div>
+            <h3>Descubre tu experiencia</h3>
+            <p>Explora nuestros planes diseñados especialmente o cuéntanos qué sueñas: avistamiento de ballenas, fotografía de naturaleza, surf, meditación... ¡lo que desees!</p>
+          </div>
+
+          <div class="como-conector" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </div>
+
+          <div class="como-paso">
+            <div class="paso-numero">02</div>
+            <div class="paso-icon">??</div>
+            <h3>Personaliza tu plan</h3>
+            <p>Un asesor WAYRA te contactará para perfeccionar cada detalle: fechas, presupuesto, alojamiento, número de viajeros y cualquier preferencia especial que tengas.</p>
+          </div>
+
+          <div class="como-conector" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </div>
+
+          <div class="como-paso">
+            <div class="paso-numero">03</div>
+            <div class="paso-icon">??</div>
+            <h3>¡Vive el viaje!</h3>
+            <p>Empaca tu espíritu aventurero y relájate. Nos encargamos de la logística, transportes y todo lo necesario para que tu experiencia sea inolvidable.</p>
+          </div>
+
+        </div>
+
+        <!-- <div class="como-cta">
+          <a class="btn-primary" href="https://wa.me/573225225582" target="_blank">Comenzar ahora ?</a>
+          <a class="btn-secondary-link" href="plans-nuqui.html">Ver todos los planes</a>
+        </div> -->
+      </div>
+    </section>
+
+
+    <!-- -- ÁREA VIBRANTE DE BALLENAS (COMO VIAJAMOS HASTA ACTIVIDADES) -- -->
+    <div class="whale-vivid-area" id="vivid-whale-section">
+      <!-- Sección Cómo viajamos (filosofía) -->
+      <section id="como-viajamos" class="section light">
+        <div class="container">
+          <div class="how-hero">
+            <div class="how-text">
+              <h2>Cómo viajamos</h2>
+              <p class="subtitle">Experiencias que transforman: diseño responsable, contacto genuino con comunidades
+                locales y una inmersión auténtica en la costa Pacífica.</p>
+              <p>En WAYRA cuidamos cada detalle: seleccionamos alojamientos sostenibles, priorizamos guías locales y
+                diseñamos itinerarios que respetan el entorno. Nuestros viajes buscan generar impacto positivo para las
+                comunidades y memorias duraderas para los viajeros.</p>
+              <!-- <p style="margin-top:14px"><a class="btn-primary" href="#planes">Conoce nuestros itinerarios</a></p> -->
+            </div>
+            <div class="how-video-wrap">
+              <!-- Thumbnail con botón play: el iframe carga solo al hacer clic -->
+              <div class="yt-facade" id="yt-facade" onclick="loadYTVideo()"
+                   role="button" tabindex="0" aria-label="Reproducir video WAYRA en Nuquí">
+                <img src="https://i.ytimg.com/vi/K-o_eVLfA4o/maxresdefault.jpg"
+                     onerror="this.src='https://i.ytimg.com/vi/K-o_eVLfA4o/hqdefault.jpg'"
+                     alt="Video WAYRA – Nuquí, Colombia" class="yt-thumb">
+                <div class="yt-facade-overlay">
+                  <div class="yt-facade-badge">? WAYRA · Turismo en el Pacífico</div>
+                  <button class="yt-big-play" tabindex="-1" aria-hidden="true">
+                    <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="36" cy="36" r="36" fill="rgba(0,0,0,0.5)"/>
+                      <circle cx="36" cy="36" r="34" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+                      <path d="M29 23L51 36L29 49V23Z" fill="white"/>
+                    </svg>
+                  </button>
+                  <div class="yt-facade-location">?? Nuquí, Chocó · Colombia</div>
+                </div>
+              </div>
+              <iframe id="yt-iframe" src="" title="WAYRA – Nuquí, Colombia"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen class="how-video-iframe" style="display:none;"></iframe>
+            </div>
+            <script>
+            function loadYTVideo() {
+              var facade = document.getElementById('yt-facade');
+              var iframe = document.getElementById('yt-iframe');
+              iframe.src = 'https://www.youtube.com/embed/K-o_eVLfA4o?autoplay=1&rel=0&modestbranding=1';
+              iframe.style.display = 'block';
+              facade.style.transition = 'opacity 0.35s';
+              facade.style.opacity = '0';
+              facade.style.pointerEvents = 'none';
+              setTimeout(function() { facade.style.display = 'none'; }, 380);
+            }
+            document.getElementById('yt-facade').addEventListener('keydown', function(e) {
+              if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); loadYTVideo(); }
+            });
+            </script>
+          </div>
+
+          <div class="how-grid">
+            <article class="benefit-card">
+              <div class="benefit-icon">??</div>
+              <div class="benefit-copy">
+                <h3>Turismo sostenible</h3>
+                <p>Trabajamos con alojamientos y proveedores que cuidan los recursos naturales y promueven economía local.
+                </p>
+              </div>
+            </article>
+
+            <article class="benefit-card">
+              <div class="benefit-icon">??</div>
+              <div class="benefit-copy">
+                <h3>Conexión cultural</h3>
+                <p>Actividades guiadas por comunidades que comparten su historia, gastronomía y saberes con respeto y
+                  transparencia.</p>
+              </div>
+            </article>
+
+            <article class="benefit-card">
+              <div class="benefit-icon">??</div>
+              <div class="benefit-copy">
+                <h3>Experiencias a medida</h3>
+                <p>Itinerarios adaptables: fotografía, avistamiento de fauna, inmersión cultural o viajes pensados para
+                  familias y grupos reducidos.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección Actividades (acción) -->
+      <section id="actividades" class="section light">
+        <div class="container">
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:4px;">
+            <div>
+              <h2 style="margin-bottom:8px;">Actividades en Nuquí</h2>
+              <p class="subtitle" style="margin:0;">Experiencias únicas en uno de los destinos más biodiversos del planeta.</p>
+            </div>
+            <a href="plans-nuqui.html" style="display:inline-flex;align-items:center;gap:6px;color:var(--accent,#2d6a4f);font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;padding-bottom:4px;">Ver más planes</a>
+          </div>
+
+          <div class="grid cards act-grid" id="act-grid-home">
+            <div style="grid-column:1/-1;text-align:center;padding:30px;color:var(--muted);">? Cargando actividades...
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- Modal: Todas las actividades (fuera del flujo visual) -->
+    <div id="modal-actividades" class="modal" aria-hidden="true"
+      onclick="if(event.target===this)cerrarModalActividades()">
+      <div class="modal-content act-modal">
+        <button class="modal-close" aria-label="Cerrar" onclick="cerrarModalActividades()">&#x2715;</button>
+        <h2>Actividades en Nuquí</h2>
+        <p class="subtitle">4 experiencias destacadas para vivir el Pacífico colombiano</p>
+        <div class="act-modal-grid" id="act-modal-grid">
+          <div style="text-align:center;padding:30px;color:var(--muted);grid-column:1/-1;">? Cargando...</div>
+        </div>
+        <div style="text-align:center; margin-top:28px;">
+          <a class="btn-primary" href="https://wa.me/573225225582" target="_blank">Reservar una actividad ?</a>
+        </div>
+      </div>
+    </div>
+
+    <section id="informacion-y-cotizacion" class="section pale">
+      <div class="container">
+        <!-- departures and quote block moved from plans-nuqui -->
+        <div class="air-departures">
+          <h2 class="dep-title">SALIDAS EN AVION DESDE:</h2>
+          <div class="dep-grid">
+
+            <div class="dep-item dep-takeoff">
+              <div class="dep-icon-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24"
+                  aria-hidden="true">
+                  <path d="M21 16v-2l-8-5V3.5C13 2.67 12.33 2 11.5 2S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
+                </svg>
+                <div class="dep-underline"></div>
+              </div>
+              <strong>Medellín</strong>
+              <p>Todos los días.</p>
+            </div>
+
+            <div class="dep-item dep-cruise">
+              <div class="dep-icon-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24"
+                  aria-hidden="true">
+                  <path d="M11 2.5c.6 0 1 .4 1 1v6.4l7.2 4.1c.5.3.7.9.4 1.4l-.3.5-7.3-2v4.2l2 1.6v.9L11.5 20 9 21.1v-.9l2-1.6v-4.2l-7.3 2-.3-.5c-.3-.5-.1-1.1.4-1.4L11 9.9V3.5c0-.6.4-1 1-1z" />
+                </svg>
+                <div class="dep-underline"></div>
+              </div>
+              <strong>Bogotá</strong>
+              <p>Todos los días, con escala.</p>
+            </div>
+
+            <div class="dep-item dep-landing">
+              <div class="dep-icon-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24"
+                  aria-hidden="true">
+                  <path d="M2.5 19h19v2h-19zM20 8.94a1.993 1.993 0 0 0-2.44-1.41l-3.96 1.06L8.5 4 7 4.4l3.65 5.02-3.81 1.02-1.95-1.7L3.5 9.2l2.1 3.64 1 1.72 3.63-.97 4.07-1.09 3.96-1.06A2 2 0 0 0 20 8.94z" />
+                </svg>
+                <div class="dep-underline"></div>
+              </div>
+              <strong>Cali</strong>
+              <p>Sábados y Martes</p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="quote-form">
+          <h3>Realizar cotización</h3>
+          <form>
+            <div class="form-row">
+              <label>E-mail<input type="email" required></label>
+            </div>
+            <div class="form-row two-cols">
+              <label>Nombre<input type="text" required></label>
+              <label>Apellidos<input type="text" required></label>
+            </div>
+            <div class="form-row two-cols">
+              <label>Teléfono<input type="tel" placeholder="+57 3xx..." required></label>
+              <label>Número de personas<input type="number" min="1" value="2" required></label>
+            </div>
+            <div class="form-row two-cols">
+              <label>Fecha de viaje (aprox)<input type="date"></label>
+              <label>Destino/Plan de interés
+                <select name="plan">
+                  <option value="">Selecciona una opción</option>
+                  <optgroup label="??? Planes">
+                    <option value="Plan Playa Terco">Plan Playa Terco</option>
+                    <option value="SurfNuqui">SurfNuqui</option>
+                    <option value="Vive La Danza Y El Tamborito">Vive La Danza Y El Tamborito</option>
+                  </optgroup>
+                  <optgroup label="?? Experiencias">
+                    <option value="Avistamiento de Ballenas">Avistamiento de Ballenas</option>
+                    <option value="Senderismo, Manglares y Aves">Senderismo, Manglares y Aves</option>
+                    <option value="Deportes Acuáticos">Deportes Acuáticos</option>
+                    <option value="Pesca Deportiva">Pesca Deportiva</option>
+                  </optgroup>
+                  <optgroup label="? Otro">
+                    <option value="A tu medida">A tu medida</option>
+                  </optgroup>
+                </select>
+              </label>
+            </div>
+            <div class="form-row">
+              <label>Comentarios / Dudas<textarea rows="3"></textarea></label>
+            </div>
+            <div class="form-row">
+              <button type="submit" class="btn-primary">Enviar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- Modal para detalles de experiencia -->
+    <div id="experienceModal" class="modal" aria-hidden="true">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Cerrar">×</button>
+        <h3 id="modalTitle">Título</h3>
+        <p id="modalDesc">Descripción</p>
+        <div class="modal-actions">
+          <a id="modalWhatsapp" class="btn-whatsapp" href="https://wa.me/573225225582" target="_blank">Contactar por
+            WhatsApp</a>
+          <a id="modalContact" class="btn-primary" href="mailto:vivewayra@gmail.com">Contactar por Correo</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <!-- Main Footer Content -->
+      <div class="footer-grid">
+        <!-- Columna 1: Marca y Descripción -->
+        <div class="footer-col footer-logo-area">
+          <img id="site-logo" src="assets/img/unicologo.png" alt="vivewayra Logo">
+          <p class="footer-rnt">
+            Experiencias en Nuquí, Pacífico colombiano.<br>
+            <strong>Vive el viaje que se queda.</strong>
+          </p>
+          <div class="footer-contact-quick">
+            <a href="tel:+573225225582" class="contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              +57 322 5225582
+            </a>
+            <a href="mailto:vivewayra@gmail.com" class="contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+              vivewayra@gmail.com
+            </a>
+          </div>
+        </div>
+
+        <!-- Columna 2: Servicios -->
+        <div class="footer-col">
+          <h3>Servicios</h3>
+          <ul class="footer-list">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="plans-nuqui.html">Planes a Nuquí</a></li>
+            <li><a href="experiencias.html">Experiencias</a></li>
+            <li><a href="hoteles.html">Hoteles</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 3: Información -->
+        <div class="footer-col">
+          <h3>Información</h3>
+          <ul class="footer-list">
+            <li><a href="#" onclick="abrirQuienesSomos(event)">Quiénes somos</a></li>
+            <li><a href="contacto.html">Contáctanos</a></li>
+            <li><a href="politicas.html">Política de Privacidad</a></li>
+            <li><a href="politicas.html?tab=terminos">Términos y Condiciones</a></li>
+            <li><a href="faq.html">? Preguntas frecuentes</a></li>
+            <li><a href="como-llegar.html">?? Cómo llegar a Nuquí</a></li>
+            <li><a href="pqrs.html" style="color:#8ec2ff;font-weight:700;">?? Radica tu PQRS</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 4: Horarios y Redes -->
+        <div class="footer-col">
+          <h3>Redes</h3>
+          <div class="footer-social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61587257972289" class="footer-social-icon facebook"
+              aria-label="Facebook" target="_blank" rel="noopener" data-fb-link title="Facebook">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M22 12a10 10 0 1 0-11.5 9.9V14.9h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z" />
+              </svg>
+            </a>
+            <a href="https://wa.me/573225225582" class="footer-social-icon whatsapp" aria-label="WhatsApp"
+              target="_blank" rel="noopener" data-wa-link title="WhatsApp">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z" />
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/vivewayra/" class="footer-social-icon instagram" aria-label="Instagram"
+              target="_blank" rel="noopener" data-ig-link title="Instagram">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2c1.1 0 2 .9 2 2v2h-2V6H7v2H5V6c0-1.1.9-2 2-2h10zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm6.5-3.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 18.5 4.5z" />
+              </svg>
+            </a>
+            <a href="https://www.tiktok.com/@vivewayra?_r=1&_t=ZS-94bh44eR05p" class="footer-social-icon tiktok"
+              aria-label="TikTok" target="_blank" rel="noopener" data-tt-link title="TikTok">
+              <svg viewBox="0 0 24 24">
+                <path d="M16.8 2H13.9v11.74a3.02 3.02 0 1 1-2.39-2.95V7.84a5.93 5.93 0 1 0 5.29 5.9V7.68A7.2 7.2 0 0 0 21 9.05V6.14a4.45 4.45 0 0 1-4.2-4.14z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Trust Badges -->
+      <div class="footer-badges">
+        <div class="badge">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>100% Seguro</span>
+        </div>
+        <div class="badge">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span>Agencia Certificada</span>
+        </div>
+        <div class="badge">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22C6.48 22 2 17.52 2 12s4.48-10 10-10 10 4.48 10 10-4.48 10-10 10z"/><path d="m9 16 5-5 5 5"/>
+          </svg>
+          <span>Soporte 24/7</span>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> WAYRA - Agencia de Viajes Responsable. Todos los derechos reservados.<br>
+          Diseñado con <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="display: inline; vertical-align: middle; margin: 0 2px;">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg> por el equipo WAYRA | 
+          <a href="politicas.html">Política de Privacidad</a> • <a href="politicas.html?tab=terminos">Términos de Uso</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Botón flotante WhatsApp -->
+  <a href="https://wa.me/573225225582?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20planes%20a%20Nuqu%C3%AD"
+    class="wa-float" target="_blank" rel="noopener" aria-label="Contáctanos por WhatsApp" data-wa-link>
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+      <path
+        d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.6A12 12 0 1 0 20.5 3.5zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3.3.9.9-3.2-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.1-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1A8 8 0 0 1 9.5 13a7.2 7.2 0 0 1-1.7-2c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5L7.4 8c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.1 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.2.2-1.4l-.3-.2z" />
+    </svg>
+    <span class="wa-float-text">¿Hablamos?</span>
+  </a>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="wayra-data.js"></script>
+  <script>
+    // -- Experiencias (actividades) --
+    loadExperiences(function (exps) {
+      if (exps) {
+        renderExperienceCards(exps, 'act-grid-home');
+        renderModalActividades(exps, 'act-modal-grid');
+      } else {
+        ['act-grid-home', 'act-modal-grid'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.innerHTML = '<p class="muted" style="text-align:center;grid-column:1/-1;">No se pudieron cargar las actividades.</p>';
+        });
+      }
+    });
+
+    // -- Configuración general (textos dinámicos) --
+    loadConfig(function (cfg) { applyConfig(cfg); });
+  </script>
+  <script src="wayra-analytics.js" defer></script>
+  <script src="script.js" defer></script>
+  <script src="cookie-banner.js" defer></script>
+</body>
+
+</html>
+
+
+

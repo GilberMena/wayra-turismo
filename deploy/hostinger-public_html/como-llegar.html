@@ -1,0 +1,575 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cómo llegar a Nuquí – Rutas, vuelos y traslados | VIVE WAYRA</title>
+  <meta name="description" content="Guía completa para llegar a Nuquí, Chocó: vuelos desde Medellín, Bogotá, Cali; ruta en lancha y consejos de equipaje en avioneta. Agencia VIVE WAYRA.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cómo llegar a Nuquí – Vuelos, lanchas y traslados | VIVE WAYRA">
+  <meta property="og:description" content="Guía completa para viajar a Nuquí. Avioneta desde Medellín, conexiones, equipaje y traslados. Ag. VIVE WAYRA.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://vivewayra.com.co/assets/img/unicologo.png">
+  <meta property="og:url" content="https://vivewayra.com.co/como-llegar.html">
+  <meta property="og:site_name" content="VIVE WAYRA Turismo">
+  <meta property="og:locale" content="es_CO">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Cómo llegar a Nuquí | VIVE WAYRA">
+  <meta name="twitter:description" content="Guia de transporte para llegar a Nuquí, Chocó.">
+  <link rel="icon" href="assets/img/unicologo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Montserrat, sans-serif; color: #1a2e1e; background: #f6f9ff; }
+
+    /* NAV */
+    .cl-nav {
+      background: #0b2442; padding: 14px 24px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .cl-nav a.back {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: rgba(255,255,255,.8); text-decoration: none;
+      font-size: 13px; font-weight: 600;
+    }
+    .cl-nav a.back:hover { color: #fff; }
+    .cl-nav img { height: 34px; margin-left: auto; }
+
+    /* HERO */
+    .cl-hero {
+      background: linear-gradient(135deg, #0b2442 0%, #1e508b 60%, #133a67 100%);
+      background-size: cover; background-position: center;
+      padding: 52px 24px 44px; text-align: center;
+      color: #fff; position: relative; overflow: hidden;
+    }
+    .cl-hero::before {
+      content:''; position:absolute; inset:0;
+      background: linear-gradient(180deg,rgba(0,0,0,.4),rgba(0,0,0,.2));
+      pointer-events:none;
+    }
+    .cl-hero > * { position:relative; z-index:1; }
+    .cl-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25);
+      color:#fff; font-size:11px; font-weight:700; letter-spacing:1.3px;
+      text-transform:uppercase; padding:5px 16px; border-radius:20px; margin-bottom:16px;
+    }
+    .cl-hero h1 {
+      font-family: Merriweather, serif; font-size: 40px;
+      margin-bottom: 12px; text-shadow: 0 2px 20px rgba(0,0,0,.4); line-height:1.2;
+    }
+    .cl-hero p { font-size:17px; color:rgba(255,255,255,.88); max-width:560px; margin:0 auto; line-height:1.7; }
+
+    /* RESUMEN RÁPIDO */
+    .cl-quick {
+      background:#fff; border-bottom:1px solid #dce8f5;
+    }
+    .cl-quick .container {
+      max-width:960px; margin:0 auto; padding:24px;
+      display:flex; flex-wrap:wrap; gap:20px; justify-content:center;
+    }
+    .cl-quick-card {
+      flex:1; min-width:180px; max-width:210px; text-align:center;
+      background:#edf4fc; border:1px solid #c2d8ef; border-radius:14px;
+      padding:20px 16px;
+    }
+    .cl-quick-card .ico { font-size:28px; margin-bottom:10px; }
+    .cl-quick-card h4 { font-size:13px; font-weight:700; color:#0b2442; margin-bottom:4px; }
+    .cl-quick-card p { font-size:12px; color:#4a6283; line-height:1.5; }
+    .cl-quick-card strong { color:#1e508b; }
+
+    /* MAIN */
+    .cl-main { max-width:900px; margin:0 auto; padding:40px 24px 60px; }
+
+    /* SECCIÓN */
+    .cl-section {
+      margin-bottom:16px;
+      background:#fff;
+      border:1px solid #d8e6f4;
+      border-radius:16px;
+      overflow:hidden;
+      transition:box-shadow .2s ease, border-color .2s ease;
+    }
+    .cl-section:hover {
+      border-color:#bfd6ed;
+      box-shadow:0 10px 28px rgba(30,80,139,.12);
+    }
+    .cl-section h2 {
+      font-family: Merriweather, serif; font-size:22px; color:#0b2442;
+      margin:0;
+      display:flex; align-items:center; gap:10px;
+    }
+    .cl-section h2 span { font-size:26px; }
+
+    .cl-acc-trigger {
+      width:100%;
+      background:none;
+      border:none;
+      padding:22px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      cursor:pointer;
+      text-align:left;
+      color:inherit;
+      font:inherit;
+    }
+    .cl-acc-trigger:hover { background:#f6f9ff; }
+    .cl-acc-label {
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .cl-acc-icons {
+      display:flex;
+      align-items:center;
+      gap:14px;
+      color:#1e508b;
+      flex-shrink:0;
+    }
+    .cl-acc-plus {
+      font-size:28px;
+      font-weight:300;
+      line-height:1;
+      transition:transform .25s ease;
+    }
+    .cl-acc-chevron {
+      font-size:24px;
+      line-height:1;
+      transition:transform .25s ease;
+    }
+    .cl-section.open .cl-acc-plus { transform:rotate(45deg); }
+    .cl-section.open .cl-acc-chevron { transform:rotate(90deg); }
+    .cl-acc-body {
+      max-height:0;
+      overflow:hidden;
+      padding:0 24px;
+      transition:max-height .35s ease, padding .25s ease;
+    }
+    .cl-section.open .cl-acc-body {
+      max-height:2400px;
+      padding:0 24px 24px;
+    }
+
+    /* RUTA CARD */
+    .ruta-card {
+      background:#fff; border:1px solid #d8e6f4; border-radius:16px;
+      padding:24px 24px; margin-bottom:16px;
+      display:flex; gap:20px; align-items:flex-start;
+    }
+    .ruta-card:hover { box-shadow:0 4px 16px rgba(30,80,139,.12); }
+    .ruta-icon {
+      width:52px; height:52px; border-radius:14px;
+      background: linear-gradient(135deg,#1e508b,#133a67);
+      display:flex; align-items:center; justify-content:center;
+      font-size:24px; flex-shrink:0;
+    }
+    .ruta-body h3 { font-size:16px; font-weight:700; color:#0b2442; margin-bottom:6px; }
+    .ruta-body p { font-size:13.5px; color:#3e5a80; line-height:1.7; margin-bottom:8px; }
+    .ruta-body ul { font-size:13.5px; color:#3e5a80; line-height:1.75; padding-left:18px; }
+    .ruta-body li { margin-bottom:5px; }
+    .tag {
+      display:inline-block; font-size:11px; font-weight:700; letter-spacing:.4px;
+      text-transform:uppercase; padding:3px 10px; border-radius:12px; margin-bottom:10px;
+    }
+    .tag-recomendado { background:#e8f1fb; color:#1e508b; }
+    .tag-economico { background:#fff3e0; color:#b34000; }
+    .tag-aventura { background:#e3f2fd; color:#1565c0; }
+
+    /* MAPA VISUAL */
+    .cl-mapa {
+      background: linear-gradient(135deg,#0b2442,#1e508b);
+      border-radius:20px; padding:32px 28px; color:#fff; margin-bottom:36px;
+      position:relative; overflow:hidden;
+    }
+    .cl-mapa::before {
+      content:''; position:absolute; inset:0;
+      background: radial-gradient(ellipse at 80% 20%, rgba(255,255,255,.06), transparent 60%);
+      pointer-events:none;
+    }
+    .cl-mapa h3 {
+      font-family: Merriweather, serif; font-size:18px; margin-bottom:24px;
+      position:relative; z-index:1;
+    }
+    .ruta-visual {
+      display:flex; align-items:center; flex-wrap:wrap; gap:8px;
+      position:relative; z-index:1;
+    }
+    .rv-node {
+      background:rgba(255,255,255,.15); border:1.5px solid rgba(255,255,255,.3);
+      border-radius:12px; padding:10px 16px; text-align:center;
+      min-width:110px;
+    }
+    .rv-node .city { font-size:13px; font-weight:700; }
+    .rv-node .detail { font-size:10px; color:rgba(255,255,255,.7); margin-top:2px; }
+    .rv-arrow {
+      color:rgba(255,255,255,.5); font-size:20px; flex-shrink:0;
+    }
+
+    /* TIPS */
+    .tips-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px;
+    }
+    .tip-card {
+      background:#fff; border:1px solid #d8e6f4; border-radius:14px; padding:18px 18px;
+    }
+    .tip-card .tip-ico { font-size:22px; margin-bottom:8px; }
+    .tip-card h4 { font-size:14px; font-weight:700; color:#0b2442; margin-bottom:6px; }
+    .tip-card p { font-size:13px; color:#4a6283; line-height:1.6; }
+
+    /* EQUIPAJE */
+    .equipaje-table {
+      width:100%; border-collapse:collapse; margin-top:8px;
+    }
+    .equipaje-table th {
+      background:#0b2442; color:#fff; font-size:12px; font-weight:700;
+      padding:10px 14px; text-align:left; letter-spacing:.5px;
+    }
+    .equipaje-table th:first-child { border-radius:10px 0 0 0; }
+    .equipaje-table th:last-child { border-radius:0 10px 0 0; }
+    .equipaje-table td {
+      padding:12px 14px; font-size:13px; color:#3e5a80;
+      border-bottom:1px solid #e8f1fb;
+    }
+    .equipaje-table tr:last-child td { border-bottom:none; }
+    .equipaje-table tr:nth-child(even) td { background:#f6f9ff; }
+    .ok { color:#1e508b; font-weight:700; }
+    .no { color:#c2185b; font-weight:700; }
+
+    /* CTA */
+    .cl-cta {
+      background:linear-gradient(135deg,#0b2442,#1e508b);
+      border-radius:20px; padding:36px 28px; text-align:center; color:#fff;
+    }
+    .cl-cta h3 { font-family:Merriweather,serif; font-size:22px; margin-bottom:10px; }
+    .cl-cta p { font-size:15px; color:rgba(255,255,255,.88); margin-bottom:24px; line-height:1.65; max-width:480px; margin-left:auto; margin-right:auto; }
+    .cl-cta-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+    .btn-wa { display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg,#2f80ed,#1f5fbf); color:#fff; padding:13px 28px; border-radius:32px; text-decoration:none; font-weight:700; font-size:14px; }
+    .btn-sec { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.12); border:1.5px solid rgba(255,255,255,.45); color:#fff; padding:13px 24px; border-radius:32px; text-decoration:none; font-weight:600; font-size:14px; }
+
+    /* FOOTER */
+    .cl-footer { background:#0b2442; color:rgba(255,255,255,.6); text-align:center; padding:20px 24px; font-size:12px; line-height:1.6; }
+    .cl-footer a { color:rgba(255,255,255,.7); }
+
+    @media(max-width:600px) {
+      .cl-hero h1 { font-size:28px; }
+      .ruta-card { flex-direction:column; }
+      .ruta-visual { flex-direction:column; align-items:flex-start; }
+      .rv-arrow { transform:rotate(90deg); }
+      .cl-acc-trigger { padding:18px 16px; }
+      .cl-section.open .cl-acc-body,
+      .cl-acc-body {
+        padding-left:16px;
+        padding-right:16px;
+      }
+      .cl-section.open .cl-acc-body { padding-bottom:18px; }
+    }
+  </style>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2179158445822195');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2179158445822195&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+</head>
+<body>
+
+  <nav class="cl-nav">
+    <a class="back" href="index.html">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      Volver al inicio
+    </a>
+    <img src="assets/img/unicologo.png" alt="VIVE WAYRA" id="site-logo">
+  </nav>
+
+  <section class="cl-hero">
+    <div class="cl-badge">✈️ Guía de viaje</div>
+    <h1>Cómo llegar a Nuquí</h1>
+    <p>Nuquí no tiene carretera. Eso es precisamente lo que lo hace tan especial. Aquí te explicamos todas las rutas para llegar a este rincón único del Pacífico.</p>
+  </section>
+
+  <!-- Resumen rápido -->
+  <div class="cl-quick">
+    <div class="container">
+      <div class="cl-quick-card">
+        <div class="ico">✈️</div>
+        <h4>Desde Medellín</h4>
+        <p><strong>~55 min</strong> en avioneta desde EOH</p>
+      </div>
+      <div class="cl-quick-card">
+        <div class="ico">🏙️</div>
+        <h4>Desde Bogotá</h4>
+        <p>Vuelo a EOH + avioneta a Nuquí. <strong>~3–4 h total</strong></p>
+      </div>
+      <div class="cl-quick-card">
+        <div class="ico">🚤</div>
+        <h4>Por lancha</h4>
+        <p>Desde Bahía Solano. <strong>~2–3 h</strong> por mar</p>
+      </div>
+      <div class="cl-quick-card">
+        <div class="ico">🎒</div>
+        <h4>Límite de equipaje</h4>
+        <p>Avioneta: máx. <strong>10 kg</strong> por pasajero</p>
+      </div>
+    </div>
+  </div>
+
+  <main class="cl-main">
+
+    <!-- MAPA VISUAL DE RUTAS -->
+    <div class="cl-mapa">
+      <h3>🗺️ Rutas más usadas para llegar a Nuquí</h3>
+      <div class="ruta-visual">
+        <div class="rv-node"><div class="city">Bogotá (BOG)</div><div class="detail">El Dorado</div></div>
+        <div class="rv-arrow">→</div>
+        <div class="rv-node"><div class="city">Medellín (EOH)</div><div class="detail">Olaya Herrera</div></div>
+        <div class="rv-arrow">→</div>
+        <div class="rv-node"><div class="city">Nuquí (NQU)</div><div class="detail">~55 min ✈️</div></div>
+      </div>
+      <div class="ruta-visual" style="margin-top:12px;">
+        <div class="rv-node"><div class="city">Cali / Pereira</div><div class="detail">Otras ciudades</div></div>
+        <div class="rv-arrow">→</div>
+        <div class="rv-node"><div class="city">Medellín (EOH)</div><div class="detail">Conexión</div></div>
+        <div class="rv-arrow">→</div>
+        <div class="rv-node"><div class="city">Nuquí (NQU)</div><div class="detail">~55 min ✈️</div></div>
+      </div>
+      <div class="ruta-visual" style="margin-top:12px;">
+        <div class="rv-node"><div class="city">Bahía Solano</div><div class="detail">Por mar</div></div>
+        <div class="rv-arrow">→</div>
+        <div class="rv-node"><div class="city">Nuquí</div><div class="detail">~2–3 h 🚤</div></div>
+      </div>
+    </div>
+
+    <!-- RUTAS EN DETALLE -->
+    <div class="cl-section">
+      <h2><span>✈️</span> Rutas aéreas</h2>
+
+      <div class="ruta-card">
+        <div class="ruta-icon">🥇</div>
+        <div class="ruta-body">
+          <span class="tag tag-recomendado">⭐ Ruta recomendada</span>
+          <h3>Medellín (EOH) → Nuquí — Avioneta directa</h3>
+          <p>La ruta más usada y más còmoda. Sale del <strong>Aeropuerto Olaya Herrera (EOH)</strong>, el aeropuerto pequeño de Medellín, ubicado al sur de la ciudad.</p>
+          <ul>
+            <li><strong>Duración del vuelo:</strong> 45–55 minutos</li>
+            <li><strong>Aerolíneas:</strong> Aero Chocó, Satena y operadoras chárter</li>
+            <li><strong>Frecuencia:</strong> 1–2 vuelos diarios (depende la temporada)</li>
+            <li><strong>Capacidad:</strong> avionetas de 8–19 pasajeros (Cessna, Beechcraft, Twin Otter)</li>
+            <li><strong>Precio referencial:</strong> $350.000–$650.000 COP ida (varía según temporada)</li>
+          </ul>
+          <p style="margin-top:10px;background:#e8f1fb;border-left:3px solid #1e508b;border-radius:0 8px 8px 0;padding:10px 14px;font-size:13px;color:#234f82;">
+            💡 <strong>VIVE WAYRA gestiona el tiquete de avioneta dentro de tu plan.</strong> No necesitas buscarlo por separado.
+          </p>
+        </div>
+      </div>
+
+      <div class="ruta-card">
+        <div class="ruta-icon">🏙️</div>
+        <div class="ruta-body">
+          <span class="tag tag-recomendado">Desde Bogotá</span>
+          <h3>Bogotá (BOG) → Medellín (EOH) → Nuquí</h3>
+          <p>Viaja primero a Medellín (Olaya Herrera o Rionegro) y conectas con la avioneta a Nuquí. Hay que coordinar bien los horarios para no perderse el vuelo de avioneta.</p>
+          <ul>
+            <li><strong>Desde Rionegro (MDE):</strong> taxis o Uber a EOH (~50–70 min, $80.000–$120.000 COP)</li>
+            <li><strong>Desde Olaya Herrera (EOH):</strong> ya estás en el aeropuerto correcto</li>
+            <li><strong>Tiempo total:</strong> 3–4 horas incluyendo conexión y traslado</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ruta-card">
+        <div class="ruta-icon">🏖️</div>
+        <div class="ruta-body">
+          <span class="tag tag-aventura">Ruta alternativa</span>
+          <h3>Bahía Solano → Nuquí — Lancha rápida</h3>
+          <p>Si ya estás en Bahía Solano (otro destino del Chocó Pacífico), puedes llegar a Nuquí en lancha por la costa.</p>
+          <ul>
+            <li><strong>Duración:</strong> 2–3 horas (según estado del mar)</li>
+            <li><strong>Precio referencial:</strong> $50.000–$100.000 COP por persona</li>
+            <li><strong>Disponibilidad:</strong> depende de operadores locales, no hay horario fijo</li>
+            <li><strong>⚠️ Nota:</strong> el mar del Pacífico puede ser bravo. Se recomienda solo con mar en calma.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ruta-card">
+        <div class="ruta-icon">🛶</div>
+        <div class="ruta-body">
+          <span class="tag tag-economico">Ruta larga</span>
+          <h3>Quibdó → Nuquí — Lancha fluvial + mar</h3>
+          <p>La ruta más económica pero también la más larga y menos cómoda. Sale de Quibdó por río y luego por mar.</p>
+          <ul>
+            <li><strong>Duración total:</strong> 8–12 horas</li>
+            <li><strong>Solo recomendada</strong> si ya estás en Quibdó por otro motivo</li>
+            <li>No incluida en los planes estándar de VIVE WAYRA</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- LÍMITE DE EQUIPAJE -->
+    <div class="cl-section">
+      <h2><span>🎒</span> Límites de equipaje en avioneta</h2>
+      <p style="font-size:14px;color:#4a6283;margin-bottom:16px;line-height:1.7;">Las avionetas que vuelan a Nuquí tienen restricciones estrictas de peso. Panel de selección de asientos no existe: se distribuye por peso para equilibrar la aeronave.</p>
+      <table class="equipaje-table">
+        <thead>
+          <tr><th>Aerolínea</th><th>Bodega</th><th>Mano</th><th>Total máx.</th><th>Exceso</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Aero Chocó / chárter general</td><td>8 kg</td><td>2 kg</td><td><strong>10 kg</strong></td><td>Se puede pagar extra (~$8.000/kg)</td></tr>
+          <tr><td>Satena</td><td>10 kg</td><td>3 kg</td><td><strong>13 kg</strong></td><td>$10.000/kg aprox.</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px;color:#7a9a88;margin-top:10px;">* Los límites pueden variar. VIVE WAYRA te confirmará el límite exacto al momento de coordinar tu tiquete.</p>
+    </div>
+
+    <!-- TRASLADO AL AEROPUERTO EOH -->
+    <div class="cl-section">
+      <h2><span>🚗</span> Cómo llegar a Olaya Herrera (EOH) en Medellín</h2>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-ico">🚕</div>
+          <h4>Taxi o Uber</h4>
+          <p>Desde el centro o El Poblado: 25–40 minutos, $25.000–$45.000 COP. Es la opción más cómoda con maletas.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-ico">🚇</div>
+          <h4>Metro + bus</h4>
+          <p>Estación Estadio o San Javier + bus al aeropuerto. Económico pero no práctico con maletas grandes.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-ico">⏰</div>
+          <h4>¿Cuándo debo estar?</h4>
+          <p>Llega <strong>90 minutos antes</strong> del vuelo de avioneta. El check-in es manual y hay pesaje de equipaje.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-ico">🔄</div>
+          <h4>Si vienes de Rionegro (MDE)</h4>
+          <p>Uber o taxi hasta EOH: 50–70 min, $80.000–$120.000 COP. Coordina con tiempo si tienes conexión el mismo día.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRASLADO EN NUQUI -->
+    <div class="cl-section">
+      <h2><span>🛬</span> Al llegar a Nuquí</h2>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-ico">🛺</div>
+          <h4>Mototaxi</h4>
+          <p>Desde el aeropuerto al casco urbano: 5–10 minutos en mototaxi. Costo: $3.000–$6.000 COP.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-ico">🚤</div>
+          <h4>Lancha al hotel</h4>
+          <p>Algunos hoteles en playas alejadas requieren traslado en lancha desde el muelle. VIVE WAYRA coordina este traslado.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-ico">📦</div>
+          <h4>Recepción de equipaje</h4>
+          <p>En el aeropuerto de Nuquí el equipaje se entrega a mano. No hay cinta transportadora. Es un aeropuerto muy pequeño y cálido.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-ico">🌧️</div>
+          <h4>Lluvia en la llegada</h4>
+          <p>Ten tu impermeable o poncho a la mano en el equipaje de cabina. El aguacero puede caer sin aviso al aterrizar.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA FINAL -->
+    <div class="cl-cta">
+      <h3>¿VIVE WAYRA coordina mi viaje completo?</h3>
+      <p>Sí. Gestionamos tiquetes, traslados, alojamiento y todas las actividades. Solo llegas con tu maleta y ganas de disfrutar.</p>
+      <div class="cl-cta-btns">
+        <a class="btn-wa" href="https://wa.me/573225225582?text=Hola%20Vive%20Wayra%2C%20quiero%20saber%20c%C3%B3mo%20llegar%20a%20Nuqu%C3%AD%20desde%20mi%20ciudad" target="_blank">
+          💬 Consultar mi ruta
+        </a>
+        <a class="btn-sec" href="plans-nuqui.html">Ver planes →</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="cl-footer">
+    <p>
+      <strong style="color:rgba(255,255,255,.9);">VIVE WAYRA – Agencia de Viajes Responsable</strong><br>
+      reservas@vivewayra.com.co · +57 322 5225582<br>
+      <a href="politicas.html">Política de Privacidad</a> · <a href="faq.html">Preguntas frecuentes</a> · <a href="pqrs.html">PQRS</a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      const sections = document.querySelectorAll('.cl-section');
+
+      sections.forEach((section, index) => {
+        const heading = section.querySelector('h2');
+        if (!heading) return;
+
+        const trigger = document.createElement('button');
+        trigger.type = 'button';
+        trigger.className = 'cl-acc-trigger';
+        trigger.setAttribute('aria-expanded', index === 0 ? 'true' : 'false');
+
+        const label = document.createElement('span');
+        label.className = 'cl-acc-label';
+        label.innerHTML = heading.innerHTML;
+
+        const icons = document.createElement('span');
+        icons.className = 'cl-acc-icons';
+        icons.innerHTML = '<span class="cl-acc-plus" aria-hidden="true">+</span><span class="cl-acc-chevron" aria-hidden="true">›</span>';
+
+        trigger.append(label, icons);
+
+        const body = document.createElement('div');
+        body.className = 'cl-acc-body';
+
+        const nodes = Array.from(section.childNodes).filter(node => node !== heading);
+        nodes.forEach(node => body.appendChild(node));
+
+        section.innerHTML = '';
+        section.append(trigger, body);
+
+        if (index === 0) section.classList.add('open');
+
+        trigger.addEventListener('click', () => {
+          const isOpen = section.classList.contains('open');
+          sections.forEach(item => {
+            item.classList.remove('open');
+            const btn = item.querySelector('.cl-acc-trigger');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+          });
+
+          if (!isOpen) {
+            section.classList.add('open');
+            trigger.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    })();
+  </script>
+  <script src="cookie-banner.js" defer></script>
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,18 +1,18 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>¡Reserva recibida! – WAYRA</title>
+  <title>�Reserva recibida! � VIVE WAYRA</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" href="assets/img/unicologo.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
     body {
       font-family: Montserrat, sans-serif;
-      background: linear-gradient(135deg, #0a2a1e 0%, #1a5040 60%, #0d3052 100%);
+      background: linear-gradient(135deg, #0a2a1e 0%, #164a8a 60%, #0d3052 100%);
       min-height: 100vh; display: flex; align-items: center; justify-content: center;
       padding: 24px;
     }
@@ -25,7 +25,7 @@
 
     .check-circle {
       width: 80px; height: 80px; border-radius: 50%;
-      background: linear-gradient(135deg, #1a5040, #25d366);
+      background: linear-gradient(135deg, #164a8a, #2f80ed);
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 24px;
       animation: popIn .5s cubic-bezier(.34,1.56,.64,1) forwards;
@@ -79,7 +79,7 @@
     .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
     .btn-wa {
       display: inline-flex; align-items: center; gap: 8px;
-      background: linear-gradient(135deg, #25d366, #1aa050);
+      background: linear-gradient(135deg, #2f80ed, #1f5fbf);
       color: #fff; padding: 13px 24px; border-radius: 32px;
       text-decoration: none; font-weight: 700; font-size: 14px;
     }
@@ -89,7 +89,7 @@
       text-decoration: none; font-weight: 600; font-size: 14px;
     }
     .btn-wa:hover { filter: brightness(1.1); }
-    .btn-home:hover { background: #1a5040; }
+    .btn-home:hover { background: #164a8a; }
 
     /* LOGO */
     .logo-top { margin-bottom: 24px; }
@@ -100,56 +100,74 @@
       h1 { font-size: 22px; }
     }
   </style>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2179158445822195');
+  fbq('track', 'PageView');
+  fbq('track', 'Lead');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2179158445822195&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 <body>
 
   <div class="card">
     <div class="logo-top">
-      <img src="assets/img/unicologo.png" alt="WAYRA" id="conf-logo">
+      <img src="assets/img/unicologo.png" alt="VIVE WAYRA" id="conf-logo">
     </div>
 
     <div class="check-circle">
       <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
     </div>
 
-    <h1>¡Tu solicitud de reserva fue recibida!</h1>
+    <h1>�Tu solicitud de reserva fue recibida!</h1>
     <p class="subtitle">
-      Gracias por elegir WAYRA. Revisaremos tu solicitud y nos comunicaremos contigo en las próximas <strong>24 horas</strong> para confirmar disponibilidad y coordinar el pago.
+      Gracias por elegir VIVE WAYRA. Revisaremos tu solicitud y nos comunicaremos contigo en las pr�ximas <strong>24 horas</strong> para confirmar disponibilidad y coordinar el pago.
     </p>
 
     <!-- Detalles de la reserva (llenados desde URL params) -->
     <div class="details-box" id="detailsBox">
       <div class="detail-row">
         <span class="detail-label">Plan</span>
-        <span class="detail-val" id="conf-plan">—</span>
+        <span class="detail-val" id="conf-plan">�</span>
       </div>
       <div class="detail-row">
         <span class="detail-label">Fecha de llegada</span>
-        <span class="detail-val" id="conf-fecha">—</span>
+        <span class="detail-val" id="conf-fecha">�</span>
       </div>
       <div class="detail-row">
         <span class="detail-label">Personas</span>
-        <span class="detail-val" id="conf-personas">—</span>
+        <span class="detail-val" id="conf-personas">�</span>
       </div>
       <div class="detail-row">
         <span class="detail-label">Folio</span>
-        <span class="detail-val" id="conf-folio" style="color:#1a5040;">—</span>
+        <span class="detail-val" id="conf-folio" style="color:#164a8a;">�</span>
       </div>
     </div>
 
-    <p class="steps-title">¿Qué sigue?</p>
+    <p class="steps-title">�Qu� sigue?</p>
     <ul class="steps">
       <li>
         <div class="step-num">1</div>
-        <span>Recibirás un correo de confirmación con los detalles de tu solicitud.</span>
+        <span>Recibir�s un correo de confirmaci�n con los detalles de tu solicitud.</span>
       </li>
       <li>
         <div class="step-num">2</div>
-        <span>Un asesor WAYRA te contactará en máximo <strong>24 horas</strong> para confirmar disponibilidad.</span>
+        <span>Un asesor VIVE WAYRA te contactar� en m�ximo <strong>24 horas</strong> para confirmar disponibilidad.</span>
       </li>
       <li>
         <div class="step-num">3</div>
-        <span>Una vez confirmado, te enviaremos el link de pago seguro a través de WhatsApp o correo.</span>
+        <span>Una vez confirmado, te enviaremos el link de pago seguro a trav�s de WhatsApp o correo.</span>
       </li>
       <li>
         <div class="step-num">4</div>
@@ -159,16 +177,16 @@
 
     <div class="btns">
       <a class="btn-wa" href="https://wa.me/573225225582?text=Hola%2C%20acabo%20de%20enviar%20una%20solicitud%20de%20reserva%20y%20quiero%20confirmar%20que%20la%20recibieron." target="_blank">
-        💬 Confirmar por WhatsApp
+        ?? Confirmar por WhatsApp
       </a>
       <a class="btn-home" href="index.html">
-        🏠 Volver al inicio
+        ?? Volver al inicio
       </a>
     </div>
   </div>
 
   <script>
-    // Leer datos de los parámetros de URL
+    // Leer datos de los par�metros de URL
     // Ejemplo: /confirmacion.html?plan=Plan+Ballenas&fecha=2024-08-15&personas=2
     const params = new URLSearchParams(window.location.search);
 
@@ -182,18 +200,18 @@
     if (params.get('fecha'))    fechaEl.textContent   = formatFecha(params.get('fecha'));
     if (params.get('personas')) persEl.textContent    = params.get('personas') + ' persona(s)';
 
-    // Generar folio único
+    // Generar folio �nico
     const folio = 'WY-' + Date.now().toString(36).toUpperCase().slice(-6);
     folioEl.textContent = folio;
 
-    // Imagen del logo desde wayra-data si existe
+    // Imagen del logo desde WAYRA-data si existe
     try {
       const cfg = JSON.parse(localStorage.getItem('wayra_config') || '{}');
       if (cfg.logoUrl) logoEl.src = cfg.logoUrl;
     } catch(e) {}
 
     function formatFecha(iso) {
-      if (!iso) return '—';
+      if (!iso) return '�';
       const [y, m, d] = iso.split('-');
       const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
       return `${parseInt(d)} de ${meses[parseInt(m)-1]} de ${y}`;
@@ -201,3 +219,10 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
