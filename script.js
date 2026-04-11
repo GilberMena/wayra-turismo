@@ -208,13 +208,13 @@ document.addEventListener('DOMContentLoaded', function(){
 
     const isMobile = window.matchMedia('(max-width: 900px)').matches;
     const existing = nav.querySelector('.mobile-nav-social');
+    const existingEmail = nav.querySelector('.mobile-nav-email');
 
     if (!isMobile) {
       if (existing) existing.remove();
+      if (existingEmail) existingEmail.remove();
       return;
     }
-
-    if (existing) return;
 
     const headerActions = document.querySelector('.header-actions');
     if (!headerActions) return;
@@ -222,12 +222,24 @@ document.addEventListener('DOMContentLoaded', function(){
     const socialLinks = headerActions.querySelectorAll('.social-brand-link');
     if (!socialLinks.length) return;
 
-    const wrap = document.createElement('div');
+    const wrap = existing || document.createElement('div');
     wrap.className = 'mobile-nav-social';
-    socialLinks.forEach(function(link) {
-      wrap.appendChild(link.cloneNode(true));
-    });
-    nav.appendChild(wrap);
+
+    if (!existing) {
+      socialLinks.forEach(function(link) {
+        wrap.appendChild(link.cloneNode(true));
+      });
+      nav.appendChild(wrap);
+    }
+
+    if (!existingEmail) {
+      const emailLink = document.createElement('a');
+      emailLink.className = 'mobile-nav-email';
+      emailLink.href = 'mailto:reservas@vivewayra.com.co';
+      emailLink.textContent = 'reservas@vivewayra.com.co';
+      emailLink.setAttribute('aria-label', 'Enviar correo a reservas@vivewayra.com.co');
+      nav.appendChild(emailLink);
+    }
   }
 
   syncMobileNavSocialLinks();

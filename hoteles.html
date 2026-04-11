@@ -1571,6 +1571,29 @@
         ----------------------------------- */
         const WA_NUM = '573225225582';
         let hotelsData = [];
+        const MOBILE_HOTEL_IDS = new Set(['cantil', 'hotel-delfin-real']);
+
+        function normalizeHotelText(value) {
+            return String(value || '')
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .trim()
+                .toLowerCase();
+        }
+
+        function getHotelsForCurrentViewport(hotels) {
+            const list = Array.isArray(hotels) ? hotels : [];
+            const isMobile = window.matchMedia('(max-width: 760px)').matches;
+            if (!isMobile) return list;
+
+            return list.filter(h => {
+                const id = normalizeHotelText(h.id);
+                const name = normalizeHotelText(h.name);
+                return MOBILE_HOTEL_IDS.has(id)
+                    || name === 'posada la virgen'
+                    || name === 'hotel delfin real';
+            });
+        }
 
         function addManualHotels(hotels) {
             const list = Array.isArray(hotels) ? hotels.slice() : [];
@@ -1607,7 +1630,8 @@
 
         loadHotels(function (hotels) {
             if (hotels) {
-                hotelsData = addManualHotels(hotels);
+                const mergedHotels = addManualHotels(hotels);
+                hotelsData = getHotelsForCurrentViewport(mergedHotels);
                 // Actualizar contador
                 const statEl = document.getElementById('stat-hotels');
                 if (statEl) statEl.textContent = '+' + hotelsData.length;
