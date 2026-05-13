@@ -13,6 +13,68 @@ const DATA_PATH = (() => {
   return 'data/';
 })();
 
+const WAYRA_DEFAULT_SITE = {
+  whatsapp: '573225225582',
+  whatsappMessages: {
+    general: 'Hola, quiero cotizar un viaje a Nuquí con ViveWayra. ¿Me pueden ayudar?',
+    plan: 'Hola, quiero cotizar el plan {nombrePlan}. Viajaríamos {cantidadPersonas} personas aproximadamente entre {fechaInicio} y {fechaFin}. ¿Me pueden enviar precio con hospedaje, traslados y experiencias incluidas?',
+    whales: 'Hola, quiero cotizar un viaje a Nuquí en temporada de ballenas. ¿Me pueden enviar opciones disponibles?'
+  }
+};
+
+window.WAYRA_SITE = window.WAYRA_SITE || Object.assign({}, WAYRA_DEFAULT_SITE);
+
+function wayraDigits(value) {
+  return String(value || '').replace(/\D+/g, '');
+}
+
+function getWayraSite() {
+  return Object.assign({}, WAYRA_DEFAULT_SITE, window.WAYRA_SITE || {});
+}
+
+function wayraFillTemplate(template, values) {
+  const data = values || {};
+  return String(template || '').replace(/\{([^}]+)\}/g, function(_, key) {
+    return data[key] || data[key.trim()] || '';
+  });
+}
+
+function wayraWhatsappUrl(message, phone) {
+  const site = getWayraSite();
+  const number = wayraDigits(phone || site.whatsapp || WAYRA_DEFAULT_SITE.whatsapp);
+  const text = message || (site.whatsappMessages && site.whatsappMessages.general) || WAYRA_DEFAULT_SITE.whatsappMessages.general;
+  return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+}
+
+function wayraPlanWhatsappMessage(plan, values) {
+  const site = getWayraSite();
+  const template = (plan && plan.whatsappMessage) || (site.whatsappMessages && site.whatsappMessages.plan) || WAYRA_DEFAULT_SITE.whatsappMessages.plan;
+  return wayraFillTemplate(template, Object.assign({
+    nombrePlan: plan && plan.title ? plan.title : 'ViveWayra',
+    cantidadPersonas: '2',
+    fechaInicio: 'por definir',
+    fechaFin: 'por definir'
+  }, values || {}));
+}
+
+function wayraFormatPrice(plan) {
+  if (plan && plan.priceFrom) return '$' + Number(plan.priceFrom).toLocaleString('es-CO');
+  if (plan && plan.price) return plan.price;
+  return '';
+}
+
+function wayraApplyCommercialText(root) {
+  const scope = root || document;
+  scope.querySelectorAll('[data-wa-link]').forEach(function(el) {
+    const msg = el.dataset.waMessage || (getWayraSite().whatsappMessages || {}).general;
+    el.href = wayraWhatsappUrl(msg);
+  });
+}
+
+window.getWayraSite = getWayraSite;
+window.wayraWhatsappUrl = wayraWhatsappUrl;
+window.wayraPlanWhatsappMessage = wayraPlanWhatsappMessage;
+
 /**
  * fetch con caché inteligente:
  * - Admin: siempre fresco.
@@ -28,9 +90,9 @@ function freshFetch(url, options = {}) {
   return fetch(url);
 }
 
-/* ════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    EXPERIENCES
-════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function loadExperiences(callback) {
   freshFetch(DATA_PATH + 'experiences.json', { alwaysFresh: true })
     .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
@@ -38,9 +100,9 @@ function loadExperiences(callback) {
     .catch(err => { console.warn('[WAYRA-data] experiences.json:', err.message); callback(null); });
 }
 
-/* ════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    HOTELS
-════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function loadHotels(callback) {
   freshFetch(DATA_PATH + 'hotels.json')
     .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
@@ -48,9 +110,9 @@ function loadHotels(callback) {
     .catch(err => { console.warn('[WAYRA-data] hotels.json:', err.message); callback(null); });
 }
 
-/* ════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    PLANES TURÍSTICOS
-════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function loadPlanes(callback) {
   freshFetch(DATA_PATH + 'planes.json')
     .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
@@ -58,9 +120,9 @@ function loadPlanes(callback) {
     .catch(err => { console.warn('[WAYRA-data] planes.json:', err.message); callback(null); });
 }
 
-/* ════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    CONFIG GENERAL (hero, textos, contacto)
-════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function loadConfig(callback) {
   freshFetch(DATA_PATH + 'config.json', { alwaysFresh: true })
     .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
@@ -68,9 +130,9 @@ function loadConfig(callback) {
     .catch(err => { console.warn('[WAYRA-data] config.json:', err.message); callback(null); });
 }
 
-/* ════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    GALLERY
-════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function loadGallery(callback) {
   freshFetch(DATA_PATH + 'gallery.json', { alwaysFresh: true })
     .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
@@ -78,9 +140,9 @@ function loadGallery(callback) {
     .catch(err => { console.warn('[WAYRA-data] gallery.json:', err.message); callback(null); });
 }
 
-/* ════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    RENDER: 3 tarjetas destacadas en index.html
-════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function renderExperienceCards(experiences, containerId, maxCards) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -106,9 +168,9 @@ function renderExperienceCards(experiences, containerId, maxCards) {
   }).join('');
 }
 
-/* ════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    RENDER: Modal "Ver todas las actividades"
-════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function renderModalActividades(experiences, containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -126,9 +188,9 @@ function renderModalActividades(experiences, containerId) {
   }).join('');
 }
 
-/* ════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    RENDER: Página completa experiencias.html
-════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function renderExperienciasPage(experiences, containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -153,9 +215,9 @@ function renderExperienciasPage(experiences, containerId) {
   }).join('');
 }
 
-/* ════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    RENDER: Grid de planes turísticos (index.html)
-════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function renderPlanes(planes, containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -184,10 +246,15 @@ function renderPlanes(planes, containerId) {
   }
   container.innerHTML = planes.map(plan => {
     const detailId = plan.id || plan.slug || plan._id || '';
+    const detailHref = plan.slug ? `planes/${encodeURIComponent(plan.slug)}.html` : `detail.html?v=20260325r2&type=plan&id=${encodeURIComponent(detailId)}`;
     const bg = plan.image ? `url('${plan.image}')` : 'none';
     const bgPos = plan.imagePosition || 'center';
     const bgSize = plan.imageFit || 'cover';
     const bgColor = plan.imageFit === 'contain' ? 'background-color:#0f2a1a;' : '';
+    const price = wayraFormatPrice(plan);
+    const priceText = price ? `Desde ${price}` : 'Cotiza según tu fecha de viaje';
+    const includesSummary = (plan.includes || []).slice(0, 3).join(' · ');
+    const idealFor = plan.idealFor || 'Viajeros que buscan naturaleza y cultura local';
     const emptyOverlay = !plan.image
       ? `<div class="plan-img-placeholder"><span class="plan-img-ico">${planIcon(detailId)}</span>${plan.badge ? `<span class="plan-img-badge">${plan.badge}</span>` : ''}</div>`
       : '';
@@ -195,28 +262,32 @@ function renderPlanes(planes, containerId) {
         <div class="plan-image" style="${bgColor}${plan.image ? `background-image:${bgSize==='contain'?'':' linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.12)),'}${bg};background-size:${bgSize};background-position:${bgPos};background-repeat:no-repeat;` : ''}">${emptyOverlay}</div>
         <div class="plan-header">
           <h3>${plan.title || ''}</h3>
-          <div class="price">${plan.price || ''}</div>
+          <div class="price">${priceText}</div>
         </div>
         <p class="muted">${plan.duration || ''}${plan.subtitle ? ' \u00B7 ' + plan.subtitle : ''}</p>
-        <p>${plan.description || ''}</p>
+        <p>${plan.shortDescription || plan.description || ''}</p>
+        ${includesSummary ? `<p class="muted"><strong>Incluye:</strong> ${includesSummary}</p>` : ''}
+        <p class="muted"><strong>Ideal para:</strong> ${idealFor}</p>
         <div class="plan-actions">
-          <a href="detail.html?v=20260325r2&type=plan&id=${encodeURIComponent(detailId)}" class="btn-outline btn-plan"
-            data-plan-title="${plan.title}" data-plan-price="${plan.price}"
+          <a href="${detailHref}" class="btn-outline btn-plan"
+            data-plan-title="${plan.title}" data-plan-price="${price}"
             data-plan-duration="${plan.duration}" data-plan-desc="${plan.description}"
-            data-plan-image="${plan.image || ''}">Ver plan</a>
+            data-plan-image="${plan.image || ''}">Ver detalles</a>
           <a href="#" class="btn-whatsapp open-reserve"
             data-plan-id="${detailId}" data-plan-title="${plan.title}"
-            data-plan-price="${plan.price}" data-plan-image="${plan.image || ''}">Reservar</a>
+            data-plan-price="${price}" data-plan-image="${plan.image || ''}">Cotizar este plan</a>
         </div>
       </article>`;
   }).join('');
+  wayraApplyCommercialText(container);
 }
 
-/* ════════════════════════════════════════════════════
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    APPLY CONFIG: aplica config.json al DOM
-════════════════════════════════════════════════════ */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function applyConfig(cfg) {
   if (!cfg) return;
+  window.WAYRA_SITE = Object.assign({}, getWayraSite(), cfg);
   const formatWhatsAppDisplay = (num) => {
     const digits = String(num || '').replace(/\D+/g, '');
     if (digits.length === 12 && digits.startsWith('57')) {
@@ -233,7 +304,16 @@ function applyConfig(cfg) {
   const heroSubtitle = document.getElementById('hero-subtitle');
   const heroCTA = document.getElementById('hero-cta');
   const heroSection = document.querySelector('.hero');
-  if (heroTitle && cfg.heroTitle) heroTitle.textContent = cfg.heroTitle;
+  if (heroTitle && cfg.heroTitle) {
+    if (heroTitle.classList.contains('hero-title-brand')) {
+      const parts = String(cfg.heroTitle).trim().split(/\s+/);
+      const last = parts.pop() || 'Nuquí';
+      const first = parts.join(' ') || 'Vive';
+      heroTitle.innerHTML = `<span>${first}</span> <span class="hero-title-nuqui">${last}</span>`;
+    } else {
+      heroTitle.textContent = cfg.heroTitle;
+    }
+  }
   if (heroSubtitle && cfg.heroSubtitle) heroSubtitle.textContent = cfg.heroSubtitle;
   if (heroCTA && cfg.heroCTA) heroCTA.textContent = cfg.heroCTA;
   if (heroSection && cfg.heroImage) heroSection.style.backgroundImage = `url('${cfg.heroImage}')`;
@@ -246,9 +326,9 @@ function applyConfig(cfg) {
   }
   // WhatsApp links
   if (cfg.whatsapp) {
-    const wa = encodeURIComponent(cfg.whatsappMessage || 'Hola, quiero informacion');
     document.querySelectorAll('[data-wa-link]').forEach(el => {
-      el.href = `https://wa.me/${cfg.whatsapp}?text=${wa}`;
+      const msg = el.dataset.waMessage || cfg.whatsappMessage || (cfg.whatsappMessages && cfg.whatsappMessages.general);
+      el.href = wayraWhatsappUrl(msg, cfg.whatsapp);
     });
   }
 
@@ -258,12 +338,13 @@ function applyConfig(cfg) {
       el.href = `mailto:${cfg.email}`;
     });
   }
-  if (cfg.phone) {
+  if (cfg.phone || cfg.whatsapp) {
+    const primaryPhone = cfg.phone || cfg.whatsapp;
     document.querySelectorAll('[data-phone-link]').forEach(el => {
-      el.href = `tel:${cfg.phone.replace(/\s+/g, '')}`;
+      el.href = `tel:${wayraDigits(primaryPhone)}`;
     });
     const phoneEl = document.getElementById('site-phone');
-    if (phoneEl) phoneEl.textContent = cfg.phone;
+    if (phoneEl) phoneEl.textContent = formatWhatsAppDisplay(primaryPhone);
   }
   if (cfg.instagram) {
     document.querySelectorAll('[data-ig-link]').forEach(el => {
@@ -478,6 +559,25 @@ function applyConfig(cfg) {
   const contactEmailText = document.getElementById('contact-email-text');
   if (contactEmailText && cfg.email) contactEmailText.textContent = cfg.email;
 
+  document.querySelectorAll('[data-site-nit]').forEach(el => { el.textContent = cfg.nit || 'TODO_AGREGAR_NIT'; });
+  document.querySelectorAll('[data-site-rnt]').forEach(el => {
+    const pending = !cfg.rnt || cfg.rnt === 'TODO_AGREGAR_RNT';
+    el.textContent = pending ? 'RNT pendiente por confirmar' : cfg.rnt;
+  });
+  document.querySelectorAll('[data-cancellation-summary]').forEach(el => {
+    el.textContent = (cfg.cancellationPolicy && cfg.cancellationPolicy.summary) || '';
+  });
+  document.querySelectorAll('[data-cancellation-rules]').forEach(el => {
+    const rules = cfg.cancellationPolicy && Array.isArray(cfg.cancellationPolicy.rules) ? cfg.cancellationPolicy.rules : [];
+    el.innerHTML = rules.map(rule => `<li><strong>${rule.window}:</strong> ${rule.refund}</li>`).join('');
+  });
+  document.querySelectorAll('[data-payment-policy]').forEach(el => {
+    el.textContent = (cfg.paymentPolicy && (cfg.paymentPolicy.visibleText || cfg.paymentPolicy.reservationDeposit)) || '';
+  });
+  document.querySelectorAll('[data-reservation-policy]').forEach(el => {
+    el.textContent = (cfg.reservationPolicy && cfg.reservationPolicy.summary) || '';
+  });
+
   // Exponer llaves públicas para integraciones frontend.
   if (typeof cfg.recaptchaSiteKey === 'string') {
     window.WAYRA_RECAPTCHA_SITE_KEY = cfg.recaptchaSiteKey.trim();
@@ -500,6 +600,7 @@ function applyConfig(cfg) {
 if (!window.location.pathname.includes('/admin/')) {
   loadConfig(applyConfig);
 }
+
 
 
 

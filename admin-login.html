@@ -1,10 +1,10 @@
-<!doctype html>
+ï»¿<!doctype html>
 <html lang="es">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Acceso Admin — vivewayra</title>
+    <title>Acceso Admin  vivewayra</title>
     <link rel="icon" href="assets/img/favicon.ico" sizes="any">
     <link rel="icon" href="assets/img/favicon-32.png" type="image/png" sizes="32x32">
     <meta name="robots" content="noindex, nofollow">
@@ -249,11 +249,11 @@
   t.src=v;s=b.getElementsByTagName(e)[0];
   s.parentNode.insertBefore(t,s)}(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '2179158445822195');
+  fbq('init', '2431001967343914');
   fbq('track', 'PageView');
   </script>
   <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=2179158445822195&ev=PageView&noscript=1"
+  src="https://www.facebook.com/tr?id=2431001967343914&ev=PageView&noscript=1"
   /></noscript>
   <!-- End Meta Pixel Code -->
 </head>
@@ -269,27 +269,27 @@
 
         <div class="fields">
             <div class="field-wrap">
-                <span class="icon">??</span>
+                <span class="icon"></span>
                 <input type="text" id="inp-user" placeholder="Usuario" autocomplete="username" autofocus>
             </div>
             <div class="field-wrap">
-                <span class="icon">??</span>
-                <input type="password" id="inp-pass" placeholder="Contraseña" autocomplete="current-password">
+                <span class="icon"></span>
+                <input type="password" id="inp-pass" placeholder="Contrasea" autocomplete="current-password">
             </div>
-            <div class="error" id="err-msg">Usuario o contraseña incorrectos.</div>
+            <div class="error" id="err-msg">Usuario o contrasea incorrectos.</div>
             <button class="btn-login" id="btn-login" onclick="doLogin()">
-                <span class="btn-text">Ingresar ?</span>
+                <span class="btn-text">Ingresar</span>
                 <div class="spinner"></div>
             </button>
         </div>
 
-        <p class="footer-note">?? Conexión segura · Acceso protegido por servidor</p>
+        <p class="footer-note">Conexin segura  Acceso protegido por servidor</p>
     </div>
 
     <script>
         const BACKEND_BASE_URL = (window.WAYRA_BACKEND_BASE_URL || 'https://wayra-turismo-git-main-gilbermenas-projects.vercel.app').replace(/\/$/, '');
         const ADMIN_SESSION_KEY = 'wayra_admin_session';
-        // Redirige al destino si ya tiene sesión válida (la edge function redirige aquí si no la tiene)
+        // Redirige al destino si ya tiene sesin vlida (la edge function redirige aqu si no la tiene)
         const params = new URLSearchParams(location.search);
         const next = params.get('next') || '/reservas-admin.html';
 
@@ -301,7 +301,7 @@
             const card = document.getElementById('card');
 
             if (!user || !pass) {
-                err.textContent = 'Completa usuario y contraseña.';
+                err.textContent = 'Completa usuario y contrasea.';
                 err.classList.add('show');
                 return;
             }
@@ -336,7 +336,7 @@
                             res = tempRes;
                             break;
                         }
-                        console.warn(`Ruta ${url} devolvió ${tempRes.status}. Probando siguiente...`);
+                        console.warn(`Ruta ${url} devolvi ${tempRes.status}. Probando siguiente...`);
                     } catch (e) {
                         console.error(`Error de red en ${url}:`, e);
                     }
@@ -345,9 +345,9 @@
                 if (!res) {
                     const isLocal = hostname === 'localhost' || hostname === '127.0.0.1';
                     if (isLocal) {
-                        throw new Error("No se pudo encontrar el endpoint de autenticación. Localmente debes usar 'vercel dev' o 'netlify dev' para que las funciones de /api/ funcionen.");
+                        throw new Error("No se pudo encontrar el endpoint de autenticacin. Localmente debes usar 'vercel dev' o 'netlify dev' para que las funciones de /api/ funcionen.");
                     }
-                    throw new Error("No se pudo encontrar el endpoint de autenticación (404/405 en todas las rutas).");
+                    throw new Error("No se pudo encontrar el endpoint de autenticacin (404/405 en todas las rutas).");
                 }
 
                 // Verificamos si la respuesta es JSON
@@ -355,7 +355,7 @@
                 if (!contentType || !contentType.includes('application/json')) {
                     const text = await res.text();
                     console.error(`Error en ${lastTriedUrl} (No JSON):`, text.substring(0, 200));
-                    throw new Error(`Error ${res.status} en ${lastTriedUrl}: El servidor no ejecutó la función.`);
+                    throw new Error(`Error ${res.status} en ${lastTriedUrl}: El servidor no ejecut la funcin.`);
                 }
 
                 const data = await res.json();
@@ -368,8 +368,8 @@
                     // ? Login correcto ? redirige al panel
                     window.location.href = next;
                 } else {
-                    // ? Credenciales incorrectas o error de validación
-                    err.textContent = data.error || 'Usuario o contraseña incorrectos.';
+                    // ? Credenciales incorrectas o error de validacin
+                    err.textContent = data.error || 'Usuario o contrasea incorrectos.';
                     err.classList.add('show');
                     card.classList.remove('shake');
                     void card.offsetWidth;
@@ -379,10 +379,10 @@
                 }
             } catch (e) {
                 console.error('Login Error:', e);
-                // Si es un error de TypeError fetch, suele ser conexión o CORS
+                // Si es un error de TypeError fetch, suele ser conexin o CORS
                 const isNetworkError = e instanceof TypeError;
                 err.textContent = isNetworkError
-                    ? 'Error de red o CORS. Verifica que el servidor (Vercel/Netlify) esté activo y acepte peticiones POST.'
+                    ? 'Error de red o CORS. Verifica que el servidor (Vercel/Netlify) est activo y acepte peticiones POST.'
                     : (e.message || 'Error desconocido en el proceso de login.');
 
                 err.classList.add('show');
@@ -402,6 +402,10 @@
 </body>
 
 </html>
+
+
+
+
 
 
 

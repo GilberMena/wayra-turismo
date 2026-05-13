@@ -287,20 +287,21 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 
   // --- Funcionalidad WhatsApp y modal de experiencias ---
-  const whatsappNumber = '573225225582'; // +57 322 522 5582 (formato para wa.me)
+  const whatsappNumber = (window.WAYRA_SITE && window.WAYRA_SITE.whatsapp) || '573225225582';
   function whatsappUrlFor(message){
-    return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    if (typeof window.wayraWhatsappUrl === 'function') return window.wayraWhatsappUrl(message, whatsappNumber);
+    return `https://wa.me/${String(whatsappNumber).replace(/\D+/g, '')}?text=${encodeURIComponent(message)}`;
   }
 
   // Nota: los enlaces 'Ver plan' y 'Ver experiencias' ahora navegan a detail.html
   // Si venimos con ?reserve=plan-id en la URL abrimos el modal automáticamente.
   const plansData = {
-    'plan-explorador': { title: 'Plan Explorador', price: '$1.250.000', image: 'assets/card1.svg' },
+    'plan-explorador': { title: 'Plan Explorador', price: '', image: 'assets/card1.svg' },
     'plan-fotografo': { title: 'Plan Fotógrafo', price: '$1.800.000', image: 'assets/card2.svg' },
-    'plan-a-tu-medida': { title: 'Plan A tu Medida', price: 'Desde $2.200.000', image: 'assets/card3.svg' },
+    'plan-a-tu-medida': { title: 'Plan A tu Medida', price: '', image: 'assets/card3.svg' },
     'nuqui-esencial': { title: 'Nuquí Esencial', price: '$1.100.000', image: 'assets/card1.svg' },
-    'nuqui-fotografico': { title: 'Nuquí Fotográfico', price: '$1.750.000', image: 'assets/card2.svg' },
-    'nuqui-a-tu-medida': { title: 'Nuquí A tu Medida', price: 'Desde $2.200.000', image: 'assets/card3.svg' }
+    'nuqui-fotografico': { title: 'Nuquí Fotográfico', price: '', image: 'assets/card2.svg' },
+    'nuqui-a-tu-medida': { title: 'Nuquí A tu Medida', price: '', image: 'assets/card3.svg' }
   };
 
   // Si la URL contiene ?reserve=plan-id abrimos el modal con esos datos
@@ -390,7 +391,7 @@ document.addEventListener('DOMContentLoaded', function(){
         <button id="chooserClose" aria-label="Cerrar" style="background:transparent;border:0;font-size:18px">X</button>
       </div>
       <div class="chooser-actions">
-        <a id="chooserWhatsapp" class="btn-whatsapp" href="#" target="_blank">WhatsApp</a>
+        <a id="chooserWhatsapp" class="btn-whatsapp" href="#" target="_blank">Cotizar por WhatsApp</a>
         <a id="chooserMail" class="btn-primary" href="#">Enviar por correo</a>
       </div>
     `;
@@ -417,7 +418,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const id = opts.id || '';
     const emailTarget = opts.email || 'reservas@vivewayra.com.co';
 
-    const message = `Hola, quiero mas informacion para reservar ${title ? `*${title}*` : 'este plan'}${price ? ` (${price})` : ''}.${id ? ` Referencia: ${id}.` : ''}`;
+    const message = `Hola, quiero cotizar ${title ? `*${title}*` : 'este plan'}.${id ? ` Referencia: ${id}.` : ''} ¿Me pueden confirmar disponibilidad, precio final y qué incluye?`;
     wa.href = whatsappUrlFor(message);
 
     const subject = `Solicitud de reserva: ${title || 'Plan ViveWayra'}`;
@@ -504,7 +505,7 @@ document.addEventListener('DOMContentLoaded', function(){
         saveLocalReservation(d);
         sendReservationToBackend(d);
       }
-      const text = `Solicitud de reserva: ${d.title}\nNombre: ${d.name}\nTelefono: ${d.phone}\nEmail: ${d.email}\nFechas: ${d.start} - ${d.end}\nPersonas: ${d.guests}\nComentarios: ${d.comments}\n\nPor favor confirme disponibilidad y pasos para confirmar la reserva.`;
+      const text = `Hola, quiero cotizar el plan ${d.title}. Viajaríamos ${d.guests || '2'} personas aproximadamente entre ${d.start || 'por definir'} y ${d.end || 'por definir'}.\n\nNombre: ${d.name}\nWhatsApp: ${d.phone}\nEmail: ${d.email}\nComentarios: ${d.comments}\n\n¿Me pueden enviar precio con hospedaje, traslados y experiencias incluidas?`;
       window.open(whatsappUrlFor(text), '_blank');
     });
   }
@@ -676,7 +677,7 @@ document.addEventListener('DOMContentLoaded', function(){
       const fechaText = fecha || 'por definir';
       const planText = plan || 'por definir';
 
-      const waMsg = 'Nueva cotizacion WAYRA\n\n'
+      const waMsg = 'Hola, quiero cotizar un viaje a Nuquí con ViveWayra.\n\n'
         + 'Nombre: ' + nombre + ' ' + apellidos + '\n'
         + 'Email: ' + email + '\n'
         + 'Telefono: ' + telefono + '\n'

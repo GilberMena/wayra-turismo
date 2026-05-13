@@ -1,0 +1,16 @@
+{
+  "TODO": "Agregar testimonios reales de viajeros con autorización. No publicar reseñas inventadas.",
+  "placeholder": "Próximamente compartiremos experiencias reales de viajeros que han vivido Nuquí con ViveWayra.",
+  "schema": {
+    "name": "",
+    "city": "",
+    "date": "",
+    "trip": "",
+    "comment": "",
+    "rating": null,
+    "image": "",
+    "source": "",
+    "hasAuthorization": false
+  },
+  "testimonials": []
+}
